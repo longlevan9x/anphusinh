@@ -8,12 +8,17 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AreaController;
+use App\Http\Controllers\Admin\CategoryCityController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CategoryDistrictController;
+use App\Http\Controllers\Admin\CategoryStreetController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\AdminAuth\LoginController as AdminLoginController;
 
+use App\Http\Controllers\Admin\StoreController;
+use App\Http\Controllers\Admin\NewsController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['admin.guest'])->group(function() {
@@ -44,8 +49,17 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	     ->name(DashboardController::getAdminRouteName('dashboard'));
 	/*===========Dashboard Route============*/
 
-	Route::resource(CategoryController::getResourceName(), CategoryController::getClassName());
+	Route::get('category/get-category', CategoryController::getControllerWithAction('getOptionCategoryWithType'));
+
+	/*===========Resource===========*/
 	Route::resource(SettingController::getResourceName(), SettingController::getClassName());
+	Route::resource(CategoryController::getResourceName(), CategoryController::getClassName());
 	Route::resource(AreaController::getResourceName(), AreaController::getClassName());
+	Route::resource(CategoryCityController::getResourceName(), CategoryCityController::getClassName());
+	Route::resource(CategoryDistrictController::getResourceName(), CategoryDistrictController::getClassName());
+	Route::resource(CategoryStreetController::getResourceName(), CategoryStreetController::getClassName());
+	Route::resource(StoreController::getResourceName(), StoreController::getClassName());
+	Route::resource(AdminController::getResourceName(), AdminController::getClassName());
+	Route::resource(NewsController::getResourceName(), NewsController::getClassName());
 });
 

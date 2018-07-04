@@ -24,6 +24,7 @@ class MenuController extends Controller
 	 */
 	public function menu() {
 		return [
+			/*Dashboard*/
 			[
 				'name'     => __("Home"),
 				'url'      => url_admin('/'),
@@ -31,6 +32,8 @@ class MenuController extends Controller
 				'icon'     => 'fa-home',
 				'children' => []
 			],
+			/*Dashboard*/
+			/*Profile*/
 			[
 				'name'     => __("Profile"),
 				'url'      => url_admin('profile'),
@@ -38,6 +41,30 @@ class MenuController extends Controller
 				'icon'     => 'fa-user-circle-o',
 				'children' => []
 			],
+			/*Profile*/
+			/*News*/
+			[
+				'name'     => __("News"),
+				'url'      => '#',
+				'visible'  => true,
+				'icon'     => 'fa-list-alt',
+				'children' => [
+					[
+						'name'    => __("List News"),
+						'url'     => url_admin('news'),
+						'visible' => true,
+						'icon'    => 'fa-list-alt',
+					],
+					[
+						'name'    => __("Add News"),
+						'url'     => url_admin('news/create'),
+						'visible' => true,
+						'icon'    => 'fa-plus',
+					],
+				]
+			],
+			/*News*/
+			/*Category*/
 			[
 				'name'     => __("Category"),
 				'url'      => '#',
@@ -45,39 +72,162 @@ class MenuController extends Controller
 				'icon'     => 'fa-list-alt',
 				'children' => [
 					[
-						'name'     => __("List Category"),
-						'url'      => url_admin('category'),
-						'visible'  => true,
-						'icon'     => 'fa-list-alt',
+						'name'    => __("List Category"),
+						'url'     => url_admin('category'),
+						'visible' => true,
+						'icon'    => 'fa-list-alt',
 					],
 					[
-						'name'     => __("Add Category"),
-						'url'      => url_admin('category/create'),
-						'visible'  => true,
-						'icon'     => 'fa-plus',
+						'name'    => __("Add Category"),
+						'url'     => url_admin('category/create'),
+						'visible' => true,
+						'icon'    => 'fa-plus',
 					],
 				]
 			],
+			/*Category*/
+			/*System Store*/
 			[
-				'name'     => __("Area"),
+				'name'     => __("System Store"),
 				'url'      => '#',
 				'visible'  => true,
 				'icon'     => 'fa-globe',
 				'children' => [
+					/*Store*/
 					[
-						'name'     => __("List Area"),
-						'url'      => url_admin('area'),
+						'name'     => __("Store"),
+						'url'      => '#',
+						'visible'  => true,
+						'icon'     => 'fa-cube',
+						'children' => [
+							[
+								'name'    => __("List Store"),
+								'url'     => url_admin('store'),
+								'visible' => true,
+								'icon'    => 'fa-cube',
+							],
+							[
+								'name'    => __("Add Area"),
+								'url'     => url_admin('store/create'),
+								'visible' => true,
+								'icon'    => 'fa-plus',
+							],
+						]
+					],
+					/*Store*/
+					/*Area*/
+					[
+						'name'     => __("Area"),
+						'url'      => '#',
 						'visible'  => true,
 						'icon'     => 'fa-globe',
+						'children' => [
+							[
+								'name'    => __("List Area"),
+								'url'     => url_admin('area'),
+								'visible' => true,
+								'icon'    => 'fa-globe',
+							],
+							[
+								'name'    => __("Add Area"),
+								'url'     => url_admin('area/create'),
+								'visible' => true,
+								'icon'    => 'fa-plus',
+							],
+						]
+					],
+					/*Area*/
+					/*City*/
+					[
+						'name'     => __("City"),
+						'url'      => '#',
+						'visible'  => true,
+						'icon'     => 'fa-globe',
+						'children' => [
+							[
+								'name'    => __("List City"),
+								'url'     => url_admin('category-city'),
+								'visible' => true,
+								'icon'    => 'fa-globe',
+							],
+							[
+								'name'    => __("Add City"),
+								'url'     => url_admin('category-city/create'),
+								'visible' => true,
+								'icon'    => 'fa-plus',
+							],
+						]
+					],
+					/*City*/
+					/*District*/
+					[
+						'name'     => __("District"),
+						'url'      => '#',
+						'visible'  => true,
+						'icon'     => 'fa-globe',
+						'children' => [
+							[
+								'name'    => __("List District"),
+								'url'     => url_admin('category-district'),
+								'visible' => true,
+								'icon'    => 'fa-globe',
+							],
+							[
+								'name'    => __("Add District"),
+								'url'     => url_admin('category-district/create'),
+								'visible' => true,
+								'icon'    => 'fa-plus',
+							],
+						]
+					],
+					/*District*/
+					/*Street*/
+					[
+						'name'     => __("Street"),
+						'url'      => '#',
+						'visible'  => true,
+						'icon'     => 'fa-globe',
+						'children' => [
+							[
+								'name'    => __("List Street"),
+								'url'     => url_admin('category-street'),
+								'visible' => true,
+								'icon'    => 'fa-globe',
+							],
+							[
+								'name'    => __("Add District"),
+								'url'     => url_admin('category-street/create'),
+								'visible' => true,
+								'icon'    => 'fa-plus',
+							],
+						]
+					],
+					/*Street*/
+				]
+			],
+			/*System Store*/
+			/*User*/
+			[
+				'name'     => __("Users"),
+				'url'      => '#',
+				'visible'  => true,
+				'icon'     => 'fa-user-circle',
+				'children' => [
+					[
+						'name'    => __("List User"),
+						'url'     => url_admin('admin'),
+						'visible' => true,
+						'icon'    => 'fa-user-circle',
 					],
 					[
-						'name'     => __("Add Area"),
-						'url'      => url_admin('area/create'),
-						'visible'  => true,
-						'icon'     => 'fa-plus',
+						'name'    => __("Add User"),
+						'url'     => url_admin('admin/create'),
+						'visible' => true,
+						'icon'    => 'fa-plus',
 					],
 				]
 			],
+			/*User*/
 		];
 	}
 }
