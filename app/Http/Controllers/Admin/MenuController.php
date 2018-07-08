@@ -64,6 +64,28 @@ class MenuController extends Controller
 				]
 			],
 			/*News*/
+			/*Post*/
+			[
+				'name'     => __("Post"),
+				'url'      => '#',
+				'visible'  => true,
+				'icon'     => 'fa-list-alt',
+				'children' => [
+					[
+						'name'    => __("List Post"),
+						'url'     => url_admin('post'),
+						'visible' => true,
+						'icon'    => 'fa-list-alt',
+					],
+					[
+						'name'    => __("Add Post"),
+						'url'     => url_admin('post/create'),
+						'visible' => true,
+						'icon'    => 'fa-plus',
+					],
+				]
+			],
+			/*Post*/
 			/*Category*/
 			[
 				'name'     => __("Category"),
@@ -206,6 +228,37 @@ class MenuController extends Controller
 				]
 			],
 			/*System Store*/
+			/*Q & A*/
+			[
+				'name'     => __("Q & A"),
+				'url'     => url_admin('answer'),
+				'visible'  => true,
+				'icon'     => 'fa-list-alt',
+				'children' => []
+			],
+			/*Q & A*/
+			/*Advice*/
+			[
+				'name'     => __("Advices"),
+				'url'      => '#',
+				'visible'  => true,
+				'icon'     => 'fa-user-circle',
+				'children' => [
+					[
+						'name'    => __("List Advice"),
+						'url'     => url_admin('advice'),
+						'visible' => true,
+						'icon'    => 'fa-user-circle',
+					],
+					[
+						'name'    => __("Add Advice"),
+						'url'     => url_admin('advice/create'),
+						'visible' => true,
+						'icon'    => 'fa-plus',
+					],
+				]
+			],
+			/*Advice*/
 			/*User*/
 			[
 				'name'     => __("Users"),

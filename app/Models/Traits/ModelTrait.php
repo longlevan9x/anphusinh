@@ -4,6 +4,7 @@ namespace App\Models\Traits;
 
 use App\Commons\Facade\CFile;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Event;
 
@@ -18,6 +19,10 @@ use Illuminate\Support\Facades\Event;
  * Trait ModelTrait
  * @package App\Models\Traits
  * @property Model $this
+ * @method  static Builder where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
+ * @method  static Builder orWhere(string $column, string $operator = null, string $value = null)
+ * @method  static Builder|Model findOrFail(mixed|int|string  $id, array $column = ['*'])
+ * @see Builder
  */
 trait ModelTrait
 {
@@ -63,6 +68,9 @@ trait ModelTrait
 	 * @throws \Exception
 	 */
 	public function save(array $options = []) {
+		if (!$this->beforeSave()) {
+			return $this->beforeSave();
+		}
 		if (method_exists($this, 'uploadImage') && $this->isAutoUploadImage()) {
 			$this->uploadImage();
 		}
@@ -74,6 +82,7 @@ trait ModelTrait
 
 			return false;
 		}
+		$this->afterSave();
 
 		return $save;
 	}
@@ -104,10 +113,19 @@ trait ModelTrait
 	}
 
 	public function showImage($key = '') {
-		$attribute = $this->getAttribute('is_active');
+		$attribute = $this->getAttribute($key);
 		if (isset($attribute)) {
 			return view('admin.layouts.widget.image.show', ['src' => $this->getImagePath('', $key)]);
 		}
 		return "";
 	}
+
+	public function beforeSave() {
+		return true;
+	}
+
+	public function afterSave() {
+		return true;
+	}
+
 }

@@ -7,6 +7,8 @@
  */
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdviceController;
+use App\Http\Controllers\Admin\AnswerController;
 use App\Http\Controllers\Admin\AreaController;
 use App\Http\Controllers\Admin\CategoryCityController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -14,6 +16,7 @@ use App\Http\Controllers\Admin\CategoryDistrictController;
 use App\Http\Controllers\Admin\CategoryStreetController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\AdminAuth\LoginController as AdminLoginController;
 
@@ -50,7 +53,6 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	/*===========Dashboard Route============*/
 
 	Route::get('category/get-category', CategoryController::getControllerWithAction('getOptionCategoryWithType'));
-
 	/*===========Resource===========*/
 	Route::resource(SettingController::getResourceName(), SettingController::getClassName());
 	Route::resource(CategoryController::getResourceName(), CategoryController::getClassName());
@@ -61,5 +63,8 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	Route::resource(StoreController::getResourceName(), StoreController::getClassName());
 	Route::resource(AdminController::getResourceName(), AdminController::getClassName());
 	Route::resource(NewsController::getResourceName(), NewsController::getClassName());
+	Route::resource(PostController::getResourceName(), PostController::getClassName());
+	Route::resource(AnswerController::getResourceName(), AnswerController::getClassName());
+	Route::resource(AdviceController::getResourceName(), AdviceController::getClassName());
 });
 

@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-	    if ($request->acceptsJson()) {
+	    if ($request->acceptsJson() && $request->wantsJson()) {
 	    	if(strpos($exception->getMessage(), 'No query results for model') !== false) {
 			    return responseJson(CConstant::STATUS_NOT_FOUND, null, 404);
 		    }

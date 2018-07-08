@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Carbon;
 
 class NewsController extends Controller
 {
@@ -13,7 +15,7 @@ class NewsController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$models = Post::where('type', 'news')->get();
+		$models = Post::whereType(Post::TYPE_NEWS)->get();
 
 		return view('admin.news.index', compact('models'));
 	}
@@ -28,13 +30,14 @@ class NewsController extends Controller
 
 	/**
 	 * Store a newly created resource in storage.
-	 * @param  \Illuminate\Http\Request $request
+	 * @param PostRequest $request
 	 * @return \Illuminate\Http\Response
+	 * @throws \Exception
 	 */
-	public function store(Request $request) {
-		$model = new Post;
-		$model->fill($request->all());
+	public function store(PostRequest $request) {
+		$model = new Post($request->all());
 		$model->type = Post::TYPE_NEWS;
+		$model->setAuthorId();
 		$model->save();
 
 		return redirect(self::getUrlAdmin());
@@ -57,7 +60,7 @@ class NewsController extends Controller
 	 */
 	public function edit($id) {
 		$model = Post::findOrFail($id);
-		return view('admin.category.update', compact('model'));
+		return view('admin.news.update', compact('model'));
 	}
 
 	/**
@@ -65,11 +68,13 @@ class NewsController extends Controller
 	 * @param  \Illuminate\Http\Request $request
 	 * @param  int                      $id
 	 * @return \Illuminate\Http\Response
+	 * @throws \Exception
 	 */
 	public function update(Request $request, $id) {
 		/** @var Post $model */
 		$model = Post::findOrFail($id);
 		$model->fill($request->all());
+		$model->setAuthorUpdatedId();
 		$model->save();
 		return redirect(self::getUrlAdmin());
 	}

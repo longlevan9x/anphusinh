@@ -13,6 +13,7 @@ use Illuminate\Support\Collection;
  * @property string $type
  * @property int    $is_active
  * @property int    parent_id
+ * @property string name
  */
 class Category extends Model
 {
@@ -105,6 +106,7 @@ class Category extends Model
 		$category->put(0, "Select " . ucfirst($type));
 		$category = $category->toArray();
 		ksort($category);
+
 		return new Collection($category);
 	}
 }

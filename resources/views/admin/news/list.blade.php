@@ -2,7 +2,7 @@
     <div class="row">
         <div class="x_panel">
             @include('admin.layouts.title_table', ['text' => 'List department'])
-            @include('admin.layouts.widget.button.button_link.create', ['text' => __("Add City"), 'btn_size' => 'md', 'icon' => 'fa-plus', 'options' => ['data-style'=>"zoom-in", 'class' => 'ladda-button'], 'url' => route(\App\Http\Controllers\Admin\CategoryCityController::getAdminRouteName('create'))])
+            @include('admin.layouts.widget.button.button_link.create', ['text' => __("Add News"), 'btn_size' => 'md', 'icon' => 'fa-plus', 'options' => ['data-style'=>"zoom-in", 'class' => 'ladda-button'], 'url' => route(\App\Http\Controllers\Admin\NewsController::getAdminRouteName('create'))])
             <div class="x_content">
                 <div class="table-responsive">
                     <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
@@ -11,10 +11,14 @@
                             <th>
                                 <input type="checkbox" id="check-all" class="">
                             </th>
-                            <th>Parent</th>
-                            <th>Name</th>
-                            <th>Slug</th>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Author</th>
                             <th>Is Active</th>
+                            <th>Publish Date</th>
+                            <th>Created Date</th>
+                            <th>Author Update</th>
+                            <th>Updated Date</th>
                             <th>Action</th>
                         </tr>
                         </thead>

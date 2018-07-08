@@ -27,7 +27,9 @@ class CreateTablePost extends Migration
 	        $table->string('overview', 1000)->nullable();
 	        $table->text('content')->nullable();
 	        $table->string('status', 30)->nullable();
+	        $table->integer('author_updated_id')->default(0);
         	$table->timestamps();
+        	$table->unique(['title', 'slug', 'type']);
         });
     }
 

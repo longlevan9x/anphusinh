@@ -16,6 +16,16 @@ if (!function_exists('is_exist_path')) {
 		throw  new Exception("Can't find $path folder");
 	}
 }
+
+if (!function_exists('public_path_admin')) {
+	/**
+	 * @param string $path
+	 * @return string
+	 */
+	function public_path_admin($path = '') {
+		return public_path("admin/$path");
+	}
+}
 if (!function_exists('replace_multiple_space')) {
 	/**
 	 * @param        $str
