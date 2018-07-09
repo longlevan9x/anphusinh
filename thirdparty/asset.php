@@ -103,7 +103,41 @@ if (!function_exists('asset_login')) {
 }
 
 if (!function_exists('asset_admin')) {
+	/**
+	 * @param string $path
+	 * @return string
+	 */
 	function asset_admin($path = '') {
 		return asset("admins/$path");
+	}
+}
+
+if (!function_exists('asset_app')) {
+	/**
+	 * @param $path
+	 * @return string
+	 */
+	function asset_app($path = '') {
+		return asset("app/$path");
+	}
+}
+
+if (!function_exists('asset_app_css')) {
+	/**
+	 * @param string $path
+	 * @return string
+	 */
+	function asset_app_css($path = '') {
+		return asset_app("css/$path");
+	}
+}
+
+if (!function_exists('asset_app_js')) {
+	/**
+	 * @param string $path
+	 * @return string
+	 */
+	function asset_app_js($path = '') {
+		return asset_app("js/$path");
 	}
 }
