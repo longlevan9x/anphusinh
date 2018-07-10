@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
-            @include('admin.layouts.title_form', ['title' => "Form Depertment"])
+            @include('admin.layouts.title_form', ['title' => __('admin/menu.add city')])
             <div class="x_content">
                 {{ Form::model(isset($model) ? $model : null, [
                     'url' => \App\Http\Controllers\Admin\CategoryCityController::getUrlAdmin(isset($model) ? $model->id : ''),
@@ -20,14 +20,14 @@
                     'method' => isset($model) ? 'put' : 'post'
                 ]) }}
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="parent_id"> {{__('Area')}}</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="parent_id"> {{__('admin.area')}}</label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         {!! Form::select('parent_id', \App\Models\Category::pluckWithArea('name', 'id'), $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'parent_id']) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name<span class="required">*</span></label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">@lang('admin/common.name')<span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         {!! Form::text('name', $value = null,['required' => "required", 'class' => 'form-control col-md-7 col-xs-12', 'id' => 'name']) !!}
                     </div>
@@ -36,11 +36,11 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="slug">@lang('admin/category.slug')</label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         {!! Form::text('slug', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'slug']) !!}
-                        <p class="help-block">Will be automatically generated from your title, if left empty.</p>
+                        <p class="help-block">@lang('admin/category.will be automatically generated from your title, if left empty.')</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Is active</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">@lang('admin/common.is_active')</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
                         <div class="">
                             <label>
@@ -53,8 +53,7 @@
                 <div class="ln_solid"></div>
                 <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <button type="submit" class="btn btn-success">@lang('admin.submitButton')</button>
-                        <button class="btn btn-primary" type="reset">@lang('admin.resetButton')</button>
+                        @include('admin.layouts.widget.button.button-action-form', ['url' => url_admin('category-district')])
                     </div>
                 </div>
 

@@ -31,15 +31,15 @@
         <div class="wrap-login100">
             <form class="login100-form validate-form" method="post" action="{{route(\App\Http\Controllers\Admin\AdminAuth\LoginController::getAdminRouteName('login'))}}">
 					<span class="login100-form-title p-b-43">
-						{{__('Login to continue')}}
+						{{__('auth.login to continue')}}
 					</span>
 
                 @include('admin.errors.validation-message')
 
-                <div id="txtUsername" class="wrap-input100 validate-input {{ $errors->has('email') ? ' is-invalid' : '' }}" data-validate="{{__('Username is required')}}">
-                    <input class="input100" type="text" id="" name="username" autofocus value="{{old('username')}}" title="{{__('Enter your username')}}" required>
+                <div id="txtUsername" class="wrap-input100 validate-input {{ $errors->has('email') ? ' is-invalid' : '' }}" data-validate="{{__('auth.Username is required')}}">
+                    <input class="input100" type="text" id="" name="username" autofocus value="{{old('username')}}" title="{{__('auth.enter your username')}}" required>
                     <span class="focus-input100"></span>
-                    <span class="label-input100">{{__('Username')}}</span>
+                    <span class="label-input100">{{__('auth.username')}}</span>
                     @if ($errors->has('username'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('username') }}</strong>
@@ -47,10 +47,10 @@
                     @endif
                 </div>
 
-                <div class="wrap-input100 validate-input {{ $errors->has('password') ? ' is-invalid' : '' }}" data-validate="{{__('Password is required')}}">
-                    <input class="input100" type="password" name="password" title="{{__('Enter your password')}}" required>
+                <div class="wrap-input100 validate-input {{ $errors->has('password') ? ' is-invalid' : '' }}" data-validate="{{__('auth.password is required')}}">
+                    <input class="input100" type="password" name="password" title="{{__('auth.enter your password')}}" required>
                     <span class="focus-input100"></span>
-                    <span class="label-input100">{{__('Password')}}</span>
+                    <span class="label-input100">{{__('auth.password')}}</span>
 
                     @if ($errors->has('password'))
                         <span class="invalid-feedback">
@@ -63,7 +63,7 @@
                     <div class="contact100-form-checkbox">
                         <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember">
                         <label class="label-checkbox100" for="ckb1">
-                            {{__('Remember me')}}
+                            {{__('auth.remember me')}}
                         </label>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
 
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">
-                        {{__('Login')}}
+                        {{__('auth.login')}}
                     </button>
                 </div>
             </form>

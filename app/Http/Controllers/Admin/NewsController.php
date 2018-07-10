@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Commons\Facade\CFile;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\PostMeta;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Carbon;
@@ -35,7 +37,7 @@ class NewsController extends Controller
 	 * @throws \Exception
 	 */
 	public function store(PostRequest $request) {
-		$model = new Post($request->all());
+		$model       = new Post($request->all());
 		$model->type = Post::TYPE_NEWS;
 		$model->setAuthorId();
 		$model->save();
@@ -50,6 +52,7 @@ class NewsController extends Controller
 	 */
 	public function show($id) {
 		$model = Post::findOrFail($id);
+
 		return view('admin.news.view', compact('model'));
 	}
 
@@ -60,6 +63,7 @@ class NewsController extends Controller
 	 */
 	public function edit($id) {
 		$model = Post::findOrFail($id);
+
 		return view('admin.news.update', compact('model'));
 	}
 
@@ -76,6 +80,7 @@ class NewsController extends Controller
 		$model->fill($request->all());
 		$model->setAuthorUpdatedId();
 		$model->save();
+
 		return redirect(self::getUrlAdmin());
 	}
 
@@ -88,9 +93,36 @@ class NewsController extends Controller
 	public function destroy($id) {
 		/** @var Post $model */
 		$model = Post::findOrFail($id);
-		if  ($model->delete()) {
+		if ($model->delete()) {
 			return redirect(self::getUrlAdmin());
 		}
+
 		return redirect(self::getUrlAdmin())->with('error', "Delete Fail");
+	}
+
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function showBanner() {
+		$model = PostMeta::where('key', 'is_banner')->first();
+
+		return view('admin.news.banner', compact('model'));
+	}
+
+	public function doBanner(Request $request) {
+		$old_image = '';
+		/** @var PostMeta $post */
+		$post = PostMeta::where('key', 'is_banner')->first();
+		if (isset($post) && !empty($post)) {
+			$old_image = $post->value;
+		} else {
+			$post = new PostMeta;
+		}
+		/** @var PostMeta $request */
+		$post->post_id = $request->post_id;
+		$post->key     = 'is_banner';
+		$post->value   = CFile::upload('image', 'post_meta', $old_image);
+		$post->save();
+		return redirect(url_admin('news/banner'));
 	}
 }

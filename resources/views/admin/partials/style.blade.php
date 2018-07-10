@@ -32,6 +32,10 @@
     <link href="{{asset('css/custom.css')}}" rel="stylesheet" type="text/css" />
     @push('cssString')
         <style type="text/css" rel="stylesheet">
+            .box-header.with-border {
+                border-bottom: 1px solid #f4f4f4;
+            }
+
             #check-all {
                 zoom: 1.5;
             }

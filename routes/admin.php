@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\CategoryStreetController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\AdminAuth\LoginController as AdminLoginController;
 
@@ -52,6 +53,8 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	     ->name(DashboardController::getAdminRouteName('dashboard'));
 	/*===========Dashboard Route============*/
 
+	Route::get(NewsController::getResourceName('banner'), NewsController::getControllerWithAction('showBanner'));
+	Route::post(NewsController::getResourceName('banner'), NewsController::getControllerWithAction('doBanner'));
 	Route::get('category/get-category', CategoryController::getControllerWithAction('getOptionCategoryWithType'));
 	/*===========Resource===========*/
 	Route::resource(SettingController::getResourceName(), SettingController::getClassName());
@@ -66,5 +69,6 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	Route::resource(PostController::getResourceName(), PostController::getClassName());
 	Route::resource(AnswerController::getResourceName(), AnswerController::getClassName());
 	Route::resource(AdviceController::getResourceName(), AdviceController::getClassName());
+	Route::resource(ProductController::getResourceName(), ProductController::getClassName());
 });
 

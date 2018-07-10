@@ -26,7 +26,7 @@ class MenuController extends Controller
 		return [
 			/*Dashboard*/
 			[
-				'name'     => __("Home"),
+				'name'     => __("admin/menu.dashboard"),
 				'url'      => url_admin('/'),
 				'visible'  => true,
 				'icon'     => 'fa-home',
@@ -35,29 +35,44 @@ class MenuController extends Controller
 			/*Dashboard*/
 			/*Profile*/
 			[
-				'name'     => __("Profile"),
+				'name'     => __("admin/menu.your_profile"),
 				'url'      => url_admin('profile'),
 				'visible'  => true,
 				'icon'     => 'fa-user-circle-o',
 				'children' => []
 			],
 			/*Profile*/
+			/*Product*/
+			[
+				'name'     => __("admin/menu.Product"),
+				'url'      => url_admin('product'),
+				'visible'  => true,
+				'icon'     => 'fa-user-circle-o',
+				'children' => []
+			],
+			/*Product*/
 			/*News*/
 			[
-				'name'     => __("News"),
+				'name'     => __('admin/menu.News'),
 				'url'      => '#',
 				'visible'  => true,
 				'icon'     => 'fa-list-alt',
 				'children' => [
 					[
-						'name'    => __("List News"),
+						'name'    => __('admin/menu.list_news'),
 						'url'     => url_admin('news'),
 						'visible' => true,
 						'icon'    => 'fa-list-alt',
 					],
 					[
-						'name'    => __("Add News"),
+						'name'    => __('admin/menu.add_news'),
 						'url'     => url_admin('news/create'),
+						'visible' => true,
+						'icon'    => 'fa-plus',
+					],
+					[
+						'name'    => __("admin/menu.setting_banner"),
+						'url'     => url_admin('news/banner'),
 						'visible' => true,
 						'icon'    => 'fa-plus',
 					],
@@ -66,19 +81,19 @@ class MenuController extends Controller
 			/*News*/
 			/*Post*/
 			[
-				'name'     => __("Post"),
+				'name'     => __("admin/menu.post"),
 				'url'      => '#',
 				'visible'  => true,
 				'icon'     => 'fa-list-alt',
 				'children' => [
 					[
-						'name'    => __("List Post"),
+						'name'    => __("admin/menu.list"),
 						'url'     => url_admin('post'),
 						'visible' => true,
 						'icon'    => 'fa-list-alt',
 					],
 					[
-						'name'    => __("Add Post"),
+						'name'    => __("admin/menu.add_new"),
 						'url'     => url_admin('post/create'),
 						'visible' => true,
 						'icon'    => 'fa-plus',
@@ -88,19 +103,19 @@ class MenuController extends Controller
 			/*Post*/
 			/*Category*/
 			[
-				'name'     => __("Category"),
+				'name'     => __("admin/menu.category"),
 				'url'      => '#',
 				'visible'  => true,
 				'icon'     => 'fa-list-alt',
 				'children' => [
 					[
-						'name'    => __("List Category"),
+						'name'    => __("admin/menu.list"),
 						'url'     => url_admin('category'),
 						'visible' => true,
 						'icon'    => 'fa-list-alt',
 					],
 					[
-						'name'    => __("Add Category"),
+						'name'    => __("admin/menu.add_new"),
 						'url'     => url_admin('category/create'),
 						'visible' => true,
 						'icon'    => 'fa-plus',
@@ -110,26 +125,26 @@ class MenuController extends Controller
 			/*Category*/
 			/*System Store*/
 			[
-				'name'     => __("System Store"),
+				'name'     => __("admin/menu.system_store"),
 				'url'      => '#',
 				'visible'  => true,
 				'icon'     => 'fa-globe',
 				'children' => [
 					/*Store*/
 					[
-						'name'     => __("Store"),
+						'name'     => __("admin/menu.store"),
 						'url'      => '#',
 						'visible'  => true,
 						'icon'     => 'fa-cube',
 						'children' => [
 							[
-								'name'    => __("List Store"),
+								'name'    => __("admin/menu.list store"),
 								'url'     => url_admin('store'),
 								'visible' => true,
 								'icon'    => 'fa-cube',
 							],
 							[
-								'name'    => __("Add Area"),
+								'name'    => __("admin/menu.add store"),
 								'url'     => url_admin('store/create'),
 								'visible' => true,
 								'icon'    => 'fa-plus',
@@ -139,19 +154,19 @@ class MenuController extends Controller
 					/*Store*/
 					/*Area*/
 					[
-						'name'     => __("Area"),
+						'name'     => __("admin/menu.area"),
 						'url'      => '#',
 						'visible'  => true,
 						'icon'     => 'fa-globe',
 						'children' => [
 							[
-								'name'    => __("List Area"),
+								'name'    => __("admin/menu.list"),
 								'url'     => url_admin('area'),
 								'visible' => true,
 								'icon'    => 'fa-globe',
 							],
 							[
-								'name'    => __("Add Area"),
+								'name'    => __("admin/menu.add"),
 								'url'     => url_admin('area/create'),
 								'visible' => true,
 								'icon'    => 'fa-plus',
@@ -161,19 +176,19 @@ class MenuController extends Controller
 					/*Area*/
 					/*City*/
 					[
-						'name'     => __("City"),
+						'name'     => __("admin/menu.city"),
 						'url'      => '#',
 						'visible'  => true,
 						'icon'     => 'fa-globe',
 						'children' => [
 							[
-								'name'    => __("List City"),
+								'name'    => __("admin/menu.list"),
 								'url'     => url_admin('category-city'),
 								'visible' => true,
 								'icon'    => 'fa-globe',
 							],
 							[
-								'name'    => __("Add City"),
+								'name'    => __("admin/menu.add"),
 								'url'     => url_admin('category-city/create'),
 								'visible' => true,
 								'icon'    => 'fa-plus',
@@ -183,19 +198,19 @@ class MenuController extends Controller
 					/*City*/
 					/*District*/
 					[
-						'name'     => __("District"),
+						'name'     => __("admin/menu.district"),
 						'url'      => '#',
 						'visible'  => true,
 						'icon'     => 'fa-globe',
 						'children' => [
 							[
-								'name'    => __("List District"),
+								'name'    => __("admin/menu.list"),
 								'url'     => url_admin('category-district'),
 								'visible' => true,
 								'icon'    => 'fa-globe',
 							],
 							[
-								'name'    => __("Add District"),
+								'name'    => __("admin/menu.add"),
 								'url'     => url_admin('category-district/create'),
 								'visible' => true,
 								'icon'    => 'fa-plus',
@@ -205,19 +220,19 @@ class MenuController extends Controller
 					/*District*/
 					/*Street*/
 					[
-						'name'     => __("Street"),
+						'name'     => __("admin/menu.street"),
 						'url'      => '#',
 						'visible'  => true,
 						'icon'     => 'fa-globe',
 						'children' => [
 							[
-								'name'    => __("List Street"),
+								'name'    => __("admin/menu.list"),
 								'url'     => url_admin('category-street'),
 								'visible' => true,
 								'icon'    => 'fa-globe',
 							],
 							[
-								'name'    => __("Add District"),
+								'name'    => __("admin/menu.add"),
 								'url'     => url_admin('category-street/create'),
 								'visible' => true,
 								'icon'    => 'fa-plus',
@@ -230,7 +245,7 @@ class MenuController extends Controller
 			/*System Store*/
 			/*Q & A*/
 			[
-				'name'     => __("Q & A"),
+				'name'     => __("admin/menu.q & a"),
 				'url'     => url_admin('answer'),
 				'visible'  => true,
 				'icon'     => 'fa-list-alt',
@@ -239,19 +254,19 @@ class MenuController extends Controller
 			/*Q & A*/
 			/*Advice*/
 			[
-				'name'     => __("Advices"),
+				'name'     => __("admin/menu.advices"),
 				'url'      => '#',
 				'visible'  => true,
 				'icon'     => 'fa-user-circle',
 				'children' => [
 					[
-						'name'    => __("List Advice"),
+						'name'    => __("admin/menu.list"),
 						'url'     => url_admin('advice'),
 						'visible' => true,
 						'icon'    => 'fa-user-circle',
 					],
 					[
-						'name'    => __("Add Advice"),
+						'name'    => __("admin/menu.add"),
 						'url'     => url_admin('advice/create'),
 						'visible' => true,
 						'icon'    => 'fa-plus',
@@ -261,19 +276,19 @@ class MenuController extends Controller
 			/*Advice*/
 			/*User*/
 			[
-				'name'     => __("Users"),
+				'name'     => __("admin/menu.users"),
 				'url'      => '#',
 				'visible'  => true,
 				'icon'     => 'fa-user-circle',
 				'children' => [
 					[
-						'name'    => __("List User"),
+						'name'    => __("admin/menu.list user"),
 						'url'     => url_admin('admin'),
 						'visible' => true,
 						'icon'    => 'fa-user-circle',
 					],
 					[
-						'name'    => __("Add User"),
+						'name'    => __("admin/menu.add user"),
 						'url'     => url_admin('admin/create'),
 						'visible' => true,
 						'icon'    => 'fa-plus',

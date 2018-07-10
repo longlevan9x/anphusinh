@@ -42,7 +42,7 @@ class Category extends Model
 	public static function pluckWithType($column, $key = null, $type = '') {
 		$category = Category::where('type', $type)->pluck($column, $key);
 		/** @var Collection $category */
-		$category->put(0, "Select " . ucfirst($type));
+		$category->put(0, __('admin.select') . " " . __("admin.$type"));
 		$category = $category->toArray();
 		ksort($category);
 
@@ -103,7 +103,7 @@ class Category extends Model
 	public static function getCategoryByParent($parent_id = 0, $type = self::TYPE_CATEGORY) {
 		$category = Category::where('type', $type)->where('parent_id', $parent_id)->pluck('name', 'id');
 		/** @var Collection $category */
-		$category->put(0, "Select " . ucfirst($type));
+		$category->put(0, __('admin.select'). " " . __("admin.$type"));
 		$category = $category->toArray();
 		ksort($category);
 

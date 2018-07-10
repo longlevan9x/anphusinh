@@ -8,6 +8,7 @@ use App\Models\Traits\ModelUploadTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 /**
  * Class Post
@@ -152,7 +153,7 @@ class Post extends Model
 	public function getAuthorName() {
 		if (isset($this->author)) {
 			if ($this->author->username == CUser::userAdmin()->username) {
-				return "You";
+				return __("admin/common.you");
 			}
 
 			return $this->author->username;
@@ -174,12 +175,22 @@ class Post extends Model
 	public function getAuthorUpdatedName() {
 		if (isset($this->authorUpdated)) {
 			if ($this->authorUpdated->username == CUser::userAdmin()->username) {
-				return "You";
+				return __("admin/common.you");
 			}
 
 			return $this->authorUpdated->username;
 		}
 
 		return '-';
+	}
+
+	public static function pluckWithType($column, $key = null, $type = '') {
+		$post = Post::where('type', $type)->pluck($column, $key);
+		/** @var Collection $post */
+		$post->put(0, __('admin.select') . " " . __("admin.$type"));
+		$post = $post->toArray();
+		ksort($post);
+
+		return new Collection($post);
 	}
 }

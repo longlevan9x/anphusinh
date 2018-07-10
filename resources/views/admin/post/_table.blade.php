@@ -12,7 +12,7 @@
     <td class="vertical-middle">{{$model->created_at}}</td>
     <td class="vertical-middle">{{$model->getAuthorUpdatedName()}}</td>
     <td class="vertical-middle">{{$model->updated_at}}</td>
-    <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2 vertical-middle">
-        @include('admin.layouts.widget.button.button_link.action', ['url' => \App\Http\Controllers\Admin\PostController::getUrlAdmin($model->id),])
+    <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 vertical-middle">
+        @include('admin.layouts.widget.button.button_link.action-text', ['url' => \App\Http\Controllers\Admin\PostController::getUrlAdmin($model->id),])
     </td>
 </tr>
