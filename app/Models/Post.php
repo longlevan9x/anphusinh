@@ -71,6 +71,13 @@ class Post extends Model
 	}
 
 	/**
+	 * @return string
+	 */
+	public function fieldSlugable() {
+		return 'title';
+	}
+
+	/**
 	 * @param string $type
 	 * @return Builder
 	 */
@@ -192,5 +199,12 @@ class Post extends Model
 		ksort($post);
 
 		return new Collection($post);
+	}
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function postMeta() {
+		return $this->hasOne(PostMeta::class);
 	}
 }

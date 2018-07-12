@@ -45,7 +45,7 @@ class MenuController extends Controller
 			/*Product*/
 			[
 				'name'     => __("admin/menu.Product"),
-				'url'      => url_admin('product'),
+				'url'      => url_admin('product/detail'),
 				'visible'  => true,
 				'icon'     => 'fa-user-circle-o',
 				'children' => []

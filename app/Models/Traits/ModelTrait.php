@@ -53,7 +53,7 @@ trait ModelTrait
 	 * @return array
 	 */
 	public function sluggable(): array {
-		$attribute = $this->getAttribute($this->fieldSlug());
+		$attribute = key_exists($this->fieldSlug(), $this->getAttributes());
 		if (isset($attribute)) {
 			return [
 				$this->fieldSlug() => [

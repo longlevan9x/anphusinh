@@ -57,7 +57,9 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 
 	Route::get(NewsController::getResourceName('banner'), NewsController::getControllerWithAction('showBanner'));
 	Route::post(NewsController::getResourceName('banner'), NewsController::getControllerWithAction('doBanner'));
-	Route::get('category/get-category', CategoryController::getControllerWithAction('getOptionCategoryWithType'));
+	Route::get(CategoryController::getResourceName('get-category'), CategoryController::getControllerWithAction('getOptionCategoryWithType'));
+	Route::get(ProductController::getResourceName('detail'), ProductController::getControllerWithAction('_index'));
+	Route::post(ProductController::getResourceName('detail'), ProductController::getControllerWithAction('_store'));
 	/*===========Resource===========*/
 	Route::resource(SettingController::getResourceName(), SettingController::getClassName());
 	Route::resource(CategoryController::getResourceName(), CategoryController::getClassName());
@@ -72,8 +74,6 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	Route::resource(AnswerController::getResourceName(), AnswerController::getClassName());
 	Route::resource(AdviceController::getResourceName(), AdviceController::getClassName());
 	Route::resource(ProductController::getResourceName(), ProductController::getClassName());
-
-
 	/*===========Route Ajax===========*/
 
 	/*===========Route Bulk===========*/

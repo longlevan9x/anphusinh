@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
  */
 class Controller extends \App\Http\Controllers\Controller
 {
+	public $model;
+
 	/**
 	 * @param Request $request
 	 * @return \Illuminate\Http\JsonResponse

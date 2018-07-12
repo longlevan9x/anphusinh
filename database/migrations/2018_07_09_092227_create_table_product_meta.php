@@ -13,7 +13,7 @@ class CreateTableProductMeta extends Migration
      */
     public function up()
     {
-        Schema::create('product_meta', function(Blueprint $table) {
+        Schema::create('product_metas', function(Blueprint $table) {
         	$table->increments('id');
         	$table->integer('product_id')->default(0);
         	$table->string('key');
