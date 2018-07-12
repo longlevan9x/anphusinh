@@ -38,6 +38,9 @@ return [
 	'status'       => 'Trạng thái',
 	'delete all'   => "Xóa tất",
 	'delete bulk'  => 'Xóa nhiều',
+	'close'        => "Đóng",
+	'yes'          => "Đồng ý",
+	'no'           => "Không",
 
 	'lang_en' => "Tiếng anh",
 	'lang_vi' => "Tiếng việt",

@@ -3,7 +3,19 @@
     @csrf
     <input type="hidden" name="table" value="{{$table}}">
     <input type="hidden" name="ids" id="ids" value="">
-    @include('admin.layouts.widget.button.button', ['text' => __('admin.delete bulk'), 'btn_size' => $btn_size ?? 'md', 'icon' => 'fa-remove', 'options' => ['onclick' => 'return confirmDelete($(this));', 'data-reference-to-class' => $reference ?? $table, 'id' => "bulk-delete-" . ($id ?? $table), 'name'=>"bulk-delete-$table"]])
+    @include('admin.layouts.widget.button.button', [
+        'text' => __('admin.delete bulk'),
+        'btn_size' => $btn_size ?? 'md',
+        'btn_type' => "warning",
+        'icon' => 'fa-remove',
+        'options' => [
+            'onclick' => '',
+            'data-reference-to-class' => $reference ?? $table,
+            'id' => "bulk-delete-" . ($id ?? $table),
+            'name'=>"bulk-delete-$table",
+            'data-modal-title'=> 'Are you sure delete item selected?'
+        ]
+    ])
 </form>
 @push('scriptString')
     <script>
@@ -28,7 +40,9 @@
                 return false;
             }
             _form.find("#ids").val(ids);
+            return confirmDelete($(this));
             _form.unbind("submit");
+
         });
     </script>
 @endpush

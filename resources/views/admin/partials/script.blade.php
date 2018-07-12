@@ -217,13 +217,14 @@
             let $modal = $("#modal-alert-delete");
             $modal.find(".modal-title").text(caption);
 
-
             if (typeof message === "object") {
                 let _this = message;
                 message   = _this.data("modal-title");
                 $modal.find(".modal-body .modal-message").text(message);
                 $modal.modal();
                 $("#delete-yes").click(function () {
+                    console.log(_this.parents("form"));
+                    _this.parents("form").unbind("submit");
                     _this.parents("form").submit();
                     return true;
                 });

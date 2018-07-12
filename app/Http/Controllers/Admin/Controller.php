@@ -41,6 +41,7 @@ class Controller extends \App\Http\Controllers\Controller
 	public function bulkDelete(Request $request) {
 		$table = $request->table;
 		$ids   = $request->ids;
+
 		if (is_string($ids)) {
 			$ids = explode(',', $ids);
 		}

@@ -2,10 +2,16 @@
     <div class="row">
         <div class="x_panel">
             @include('admin.layouts.title_table', ['text' => __('admin/post.list post')])
-            @include('admin.layouts.widget.button.button_link.create', ['text' => __('admin/post.add post'), 'btn_size' => 'md', 'icon' => 'fa-plus', 'options' => ['data-style'=>"zoom-in", 'class' => 'ladda-button'], 'url' => route(\App\Http\Controllers\Admin\PostController::getAdminRouteName('create'))])
+            <div class="box-header with-border">
+                <div style="float: left;">
+                    @include('admin.layouts.widget.button.button_link.create', ['text' => __('admin/post.add post'), 'btn_size' => 'md', 'icon' => 'fa-plus', 'options' => ['data-style'=>"zoom-in", 'class' => 'ladda-button'], 'url' => route(\App\Http\Controllers\Admin\PostController::getAdminRouteName('create'))])
+                </div>
+                @include('admin.layouts.widget.button.bulk-delete', ['table' => \App\Models\Post::table()])
+                <div class="clearfix"></div>
+            </div>
             <div class="x_content">
                 <div class="table-responsive">
-                    <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                    <table id="datatable-checkbox" class="table {{\App\Models\Post::table()}} table-striped table-bordered bulk_action">
                         <thead>
                         <tr>
                             <th>
