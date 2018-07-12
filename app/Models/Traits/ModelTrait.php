@@ -3,7 +3,6 @@
 namespace App\Models\Traits;
 
 use App\Commons\Facade\CFile;
-use App\Models\Post;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -54,7 +53,7 @@ trait ModelTrait
 	 */
 	public function sluggable(): array {
 		$attribute = key_exists($this->fieldSlug(), $this->getAttributes());
-		if (isset($attribute)) {
+		if (isset($attribute) && $attribute) {
 			return [
 				$this->fieldSlug() => [
 					'source' => $this->fieldSlugable()
