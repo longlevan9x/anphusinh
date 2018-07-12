@@ -126,7 +126,9 @@ class Product extends Model
 		if (isset($meta) && !empty($meta)) {
 			$value = $meta->value;
 		}
-		$this->setAttribute($attribute, $value);
+		if (isset($this) && !empty($this)) {
+			$this->setAttribute($attribute, $value);
+		}
 
 		return $this;
 	}
