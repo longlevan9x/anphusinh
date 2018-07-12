@@ -82,7 +82,9 @@ class ProductController extends Controller
 	public function _index() {
 		/** @var Product $model */
 		$model = Product::where('post_type', 'detail')->limit(1)->first();
-		$model->setAttributeMeta('element', '_element');
+		if (isset($model) && !empty($model)) {
+			$model->setAttributeMeta('element', '_element');
+		}
 
 		return view('admin.product._index', compact('model'));
 	}
