@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Commons\Facade\CUser;
 use App\Models\Traits\ModelTrait;
 use App\Models\Traits\ModelUploadTrait;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -13,20 +14,23 @@ use Illuminate\Support\Collection;
 /**
  * Class Post
  * @package App\Models
- * @property string   $title
- * @property string   $type
- * @property string   $post_time
- * @property Category category
- * @property Admins   $author
- * @property Admins   $authorUpdated
- * @property int      $author_id
- * @property int      author_updated_id
- * @property mixed    content
+ * @property string       $title
+ * @property string       $type
+ * @property string       $post_time
+ * @property Category     category
+ * @property Admins       $author
+ * @property Admins       $authorUpdated
+ * @property int          $author_id
+ * @property int          author_updated_id
+ * @property mixed        content
+ * @property int          is_active
+ * @property mixed|string path
  */
 class Post extends Model
 {
 	use ModelTrait;
 	use ModelUploadTrait;
+
 	const TYPE_POST     = 'post';
 	const TYPE_NEWS     = 'news';
 	const TYPE_QUESTION = 'question';
@@ -49,7 +53,8 @@ class Post extends Model
 		'overview',
 		'content',
 		'status',
-		'author_updated_id'
+		'author_updated_id',
+		'path'
 	];
 
 	/**
@@ -98,7 +103,8 @@ class Post extends Model
 	public function beforeSave() {
 		$this->parsePostTime();
 		if ($this->getType() == self::TYPE_NEWS) {
-			$this->folder = 'post/news';
+			$this->path   = 'post/news';
+			$this->folder = $this->path;
 		}
 
 		return true;
@@ -109,10 +115,13 @@ class Post extends Model
 	 */
 	public function folder() {
 		if ($this->getType() == self::TYPE_NEWS) {
-			return $this->folder = 'post/news';
-		}
-		elseif ($this->getType() == self::TYPE_ADVICE) {
-			return $this->folder = 'post/advice';
+			$this->path = 'post/news';
+
+			return $this->folder = $this->path;
+		} elseif ($this->getType() == self::TYPE_ADVICE) {
+			$this->path = 'post/advice';
+
+			return $this->folder = $this->path;
 		}
 		if (empty($this->folder)) {
 			return $this->folder = $this->getTable();

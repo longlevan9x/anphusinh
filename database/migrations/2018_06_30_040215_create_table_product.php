@@ -27,6 +27,7 @@ class CreateTableProduct extends Migration
 			$table->string('overview', 1000)->nullable();
 			$table->dateTime('post_time')->nullable();
 			$table->string('post_type', 30)->nullable();
+			$table->string('path')->nullable()->comment('folder file');
 			$table->integer('admin_id')->default(0)->nullable();
 			$table->timestamps();
 			$table->unique(['name', 'post_type']);

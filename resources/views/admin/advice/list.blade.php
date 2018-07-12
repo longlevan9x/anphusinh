@@ -6,7 +6,7 @@
                 <div style="float: left;">
                     @include('admin.layouts.widget.button.button_link.create', ['text' => __("admin/advice.add advice"), 'btn_size' => 'md', 'icon' => 'fa-plus', 'options' => ['data-style'=>"zoom-in", 'class' => 'ladda-button'], 'url' => route(\App\Http\Controllers\Admin\AdviceController::getAdminRouteName('create'))])
                 </div>
-                @include('admin.layouts.widget.button.bulk-delete', ['table' => \App\Models\Post::table()])
+                @include('admin.layouts.widget.button.bulk-delete', ['table' => \App\Models\Post::table(), 'classTable' => \App\Models\Post::class])
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">

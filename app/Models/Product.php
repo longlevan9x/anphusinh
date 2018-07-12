@@ -37,6 +37,7 @@ class Product extends Model
 		'overview',
 		'post_time',
 		'post_type',
+		'path',
 		'admin_id'
 	];
 

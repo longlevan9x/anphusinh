@@ -61,7 +61,7 @@ class CFile extends Common
 	 */
 	public function removeFile($folder, $file) {
 		$file_path = storage_app_uploads($folder, $file);
-		if (file_exists($file_path)) {
+		if (file_exists($file_path) && !is_dir($file_path)) {
 			return unlink($file_path);
 		}
 

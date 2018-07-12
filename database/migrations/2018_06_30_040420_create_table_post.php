@@ -28,6 +28,7 @@ class CreateTablePost extends Migration
 	        $table->text('content')->nullable();
 	        $table->string('status', 30)->nullable();
 	        $table->integer('author_updated_id')->default(0);
+	        $table->string('path')->nullable()->comment('folder file');
         	$table->timestamps();
         	$table->unique(['title', 'type']);
         	$table->unique(['title', 'slug', 'type']);

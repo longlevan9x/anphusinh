@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{config('app.name')}}</title>
+    <title>{{setting(KEY_WEBSITE_NAME, config('app.name'))}} | {{setting(KEY_WEBSITE_DESCRIPTION)}}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
@@ -16,8 +16,6 @@
     <link rel="stylesheet" type="text/css" href="{{asset_login('login_v18/vendor/animate/animate.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset_login('login_v18/vendor/css-hamburgers/hamburgers.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset_login('login_v18/vendor/animsition/css/animsition.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset_login('login_v18/vendor/select2/select2.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset_login('login_v18/vendor/daterangepicker/daterangepicker.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset_login('login_v18/css/util.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset_login('login_v18/css/main.css')}}">
 
@@ -84,13 +82,8 @@
 </div>
 
 <script type="text/javascript" src="{{asset_login('login_v18/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
-<script type="text/javascript" src="{{asset_login('login_v18/vendor/animsition/js/animsition.min.js')}}"></script>
 <script type="text/javascript" src="{{asset_login('login_v18/vendor/bootstrap/js/popper.js')}}"></script>
 <script type="text/javascript" src="{{asset_login('login_v18/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="{{asset_login('login_v18/vendor/select2/select2.min.js')}}"></script>
-<script type="text/javascript" src="{{asset_login('login_v18/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
-<script type="text/javascript" src="{{asset_login('login_v18/vendor/daterangepicker/daterangepicker.js')}}"></script>
-<script type="text/javascript" src="{{asset_login('login_v18/vendor/daterangepicker/moment.min.js')}}"></script>
 <script type="text/javascript" src="{{asset_login('login_v18/js/main.js')}}"></script>
 </body>
 </html>

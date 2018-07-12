@@ -6,7 +6,7 @@
                 <div style="float: left;">
                     @include('admin.layouts.widget.button.button_link.create', ['text' => __("admin/menu.add city"), 'btn_size' => 'md', 'icon' => 'fa-plus', 'options' => ['data-style'=>"zoom-in", 'class' => 'ladda-button'], 'url' => route(\App\Http\Controllers\Admin\CategoryCityController::getAdminRouteName('create'))])
                 </div>
-                @include('admin.layouts.widget.button.bulk-delete', ['table' => \App\Models\Category::table()])
+                @include('admin.layouts.widget.button.bulk-delete', ['table' => \App\Models\Category::table(), 'classTable' => \App\Models\Category::class])
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">

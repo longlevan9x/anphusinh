@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Facade;
  * Class CFile
  * @package App\Commons\Facade
  * @method static string|boolean upload(string $key, string $folder, string $old_image = '')
- * @method static string remove(string $folder, string $old_image = '')
+ * @method static string removeFile(string $folder, string $file)
  * @method static string getImageUrl(string $folder, string $image, string $default_image = '')
  * @method static string getErrors()
  * @property string $errors

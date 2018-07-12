@@ -5,64 +5,74 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Answer;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
+/**
+ * Class AnswerController
+ * @package App\Http\Controllers\Admin
+ * @property Answer $model
+ */
 class AnswerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-		$models = Answer::whereType(Post::TYPE_QUESTION)->get();
+	/**
+	 * AnswerController constructor.
+	 * @param Answer $model
+	 */
+	public function __construct(Answer $model) { $this->model = $model; }
+
+	/**
+	 * Display a listing of the resource.
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index() {
+		$models = Answer::where('type', Post::TYPE_QUESTION)->get();
+
 		return view('admin.answer.index', compact('models'));
-    }
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.admin.create');
-    }
+	/**
+	 * Show the form for creating a new resource.
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create() {
+		return view('admin.answer.create');
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+	/**
+	 * Store a newly created resource in storage.
+	 * @param  \Illuminate\Http\Request $request
+	 * @return \Illuminate\Http\Response
+	 * @throws \Exception
+	 */
+	public function store(Request $request) {
+		$this->model->fill($request->all());
+		$this->model->prepareValue($request);
+		if ($this->model->save()) {
+			return redirect(self::getUrlAdmin());
+		}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+		return redirect(url_admin('create'));
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $model = Answer::findOrFail($id);
-        return view('admin.news.update', compact('model'));
-    }
+	/**
+	 * Display the specified resource.
+	 * @param  int $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show($id) {
+		//
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 * @param  int $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit($id) {
+		/** @var Answer $model */
+		$model = Answer::findOrFail($id);
+		$model->prepare();
+		return view('admin.answer.update', compact('model'));
+	}
 
 	/**
 	 * Update the specified resource in storage.
@@ -71,23 +81,21 @@ class AnswerController extends Controller
 	 * @return \Illuminate\Http\Response
 	 * @throws \Exception
 	 */
-	public function update(Request $request, $id)
-    {
-	    /** @var Answer $model */
-	    $model = Answer::findOrFail($id);
-        $model->parseContent($request);
-        $model->save();
-        return redirect(self::getUrlAdmin());
-    }
+	public function update(Request $request, $id) {
+		/** @var Answer $model */
+		$model = Answer::findOrFail($id);
+		$model->prepareValue($request);
+		$model->save();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+		return redirect(self::getUrlAdmin());
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 * @param  int $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($id) {
+		//
+	}
 }

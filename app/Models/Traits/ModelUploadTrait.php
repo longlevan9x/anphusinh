@@ -124,7 +124,7 @@ trait ModelUploadTrait
 		} else {
 			$attribute = $this->getAttribute($image);
 			if (isset($attribute)) {
-				CFile::remove($folder, $this->{$item});
+				CFile::removeFile($folder, $this->{$item});
 			} else {
 				//throw new \Exception("The {$attribute} doesn't exist");
 			}
@@ -163,7 +163,7 @@ trait ModelUploadTrait
 	public function remove($folder = '', $image = '') {
 		$attribute = $this->this->getAttribute($image);
 		if (isset($attribute)) {
-			CFile::remove($folder, $image);
+			CFile::removeFile($folder, $image);
 		} else {
 			//throw new \Exception("The {$attribute} doesn't exist");
 		}
