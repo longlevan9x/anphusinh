@@ -29,5 +29,7 @@ return [
 	'inactive'            => "Không hoạt động",
 	'edit'                => 'Chỉnh sửa',
 	'status'              => 'Trạng thái',
-	'link'                => 'Liên kết'
+	'link'                => 'Liên kết',
+	'empty'               => "Không có ",
+	'not found'           => "Không tìm thấy"
 ];

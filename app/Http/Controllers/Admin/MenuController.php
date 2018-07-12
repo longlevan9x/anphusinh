@@ -296,6 +296,15 @@ class MenuController extends Controller
 				]
 			],
 			/*User*/
+			/*Setting*/
+			[
+				'name'     => __("admin/menu.setting"),
+				'url'      => url_admin('setting'),
+				'visible'  => true,
+				'icon'     => 'fa-cog',
+				'children' => []
+			],
+			/*Setting*/
 		];
 	}
 }

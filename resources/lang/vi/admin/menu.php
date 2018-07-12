@@ -42,8 +42,9 @@ return [
 	'advices'        => 'Lời khuyên chuyên gia',
 	'list advice'    => 'Danh sách lời khuyên',
 	'add advice'     => 'Thêm mới lời khuyên',
-	'users' => 'Người dùng',
-	'list user' => 'Danh sách người dùng',
-	'add user' => 'Thêm mới người dùng',
+	'users'          => 'Người dùng',
+	'list user'      => 'Danh sách người dùng',
+	'add user'       => 'Thêm mới người dùng',
+	'setting'        => "Cài đặt"
 
 ];

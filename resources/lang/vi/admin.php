@@ -35,5 +35,10 @@ return [
 	'city'         => 'Thành phố',
 	'district'     => 'Quận / Huyện',
 	'street'       => 'Đường phố',
-	'status'       => 'Trạng thái'
+	'status'       => 'Trạng thái',
+	'delete all'   => "Xóa tất",
+	'delete bulk'  => 'Xóa nhiều',
+
+	'lang_en' => "Tiếng anh",
+	'lang_vi' => "Tiếng việt",
 ];

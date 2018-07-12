@@ -8,8 +8,10 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdviceController;
+use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\Admin\AnswerController;
 use App\Http\Controllers\Admin\AreaController;
+use App\Http\Controllers\Admin\BulkController;
 use App\Http\Controllers\Admin\CategoryCityController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CategoryDistrictController;
@@ -70,5 +72,11 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	Route::resource(AnswerController::getResourceName(), AnswerController::getClassName());
 	Route::resource(AdviceController::getResourceName(), AdviceController::getClassName());
 	Route::resource(ProductController::getResourceName(), ProductController::getClassName());
+
+
+	/*===========Route Ajax===========*/
+
+	/*===========Route Bulk===========*/
+	Route::delete(BulkController::getResourceName('bulk-delete'), BulkController::getControllerWithAction('bulkDelete'));
 });
 

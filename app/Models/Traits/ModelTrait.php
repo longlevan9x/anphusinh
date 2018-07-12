@@ -3,6 +3,7 @@
 namespace App\Models\Traits;
 
 use App\Commons\Facade\CFile;
+use App\Models\Post;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -21,8 +22,8 @@ use Illuminate\Support\Facades\Event;
  * @property Model $this
  * @method  static Builder where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method  static Builder orWhere(string $column, string $operator = null, string $value = null)
- * @method  static Builder|Model findOrFail(mixed|int|string  $id, array $column = ['*'])
- * @see Builder
+ * @method  static Builder|Model findOrFail(mixed | int | string $id, array $column = ['*'])
+ * @see     Builder
  */
 trait ModelTrait
 {
@@ -40,6 +41,7 @@ trait ModelTrait
 	public function fieldSlug() {
 		return "slug";
 	}
+
 	/**
 	 * @return string
 	 */
@@ -55,10 +57,11 @@ trait ModelTrait
 		if (isset($attribute)) {
 			return [
 				$this->fieldSlug() => [
-					'source' =>  $this->fieldSlugable()
+					'source' => $this->fieldSlugable()
 				]
 			];
 		}
+
 		return [];
 	}
 
@@ -109,6 +112,7 @@ trait ModelTrait
 		if (isset($attribute)) {
 			return view('admin.layouts.widget.labels.active', ['slot' => $this->is_active]);
 		}
+
 		return "";
 	}
 
@@ -117,6 +121,7 @@ trait ModelTrait
 		if (isset($attribute)) {
 			return view('admin.layouts.widget.image.show', ['src' => $this->getImagePath('', $key)]);
 		}
+
 		return "";
 	}
 
@@ -128,4 +133,12 @@ trait ModelTrait
 		return true;
 	}
 
+	public static function table() {
+		return (new static)->getTable();
+	}
+
+	public function delete() {
+		parent::delete();
+
+	}
 }

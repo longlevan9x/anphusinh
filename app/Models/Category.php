@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\ModelTrait;
 use App\Models\Traits\ModelUploadTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
@@ -108,5 +109,13 @@ class Category extends Model
 		ksort($category);
 
 		return new Collection($category);
+	}
+
+	/**
+	 * @param string $type
+	 * @return Builder
+	 */
+	public static function whereType($type = self::TYPE_CATEGORY) {
+		return Category::where('type', $type);
 	}
 }
