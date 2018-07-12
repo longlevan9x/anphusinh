@@ -82,7 +82,8 @@ class ProductController extends Controller
 	public function _index() {
 		/** @var Product $model */
 		$model = Product::where('post_type', 'detail')->limit(1)->first();
-		$model->setAttribute('element' , $model->productMetaByKey('_element')->first()->value);
+		$model->setAttributeMeta('element', '_element');
+
 		return view('admin.product._index', compact('model'));
 	}
 
@@ -93,10 +94,10 @@ class ProductController extends Controller
 	 */
 	public function _store(Request $request) {
 		$model = Product::where('post_type', 'detail')->limit(1)->first();
-		$flag = 0;
+		$flag  = 0;
 		if (isset($model) && !empty($model)) {
 			$this->model = $model;
-			$flag = 1;
+			$flag        = 1;
 		}
 		$this->model->fill($request->all());
 		$this->model->post_type = 'detail';
@@ -107,6 +108,7 @@ class ProductController extends Controller
 		if ($check) {
 			return redirect(url_admin('product/detail'))->with('success', $flag == 1 ? __('message.update success') : __('message.create new success'));
 		}
+
 		return redirect(url_admin('product/detail'))->with('fail', $flag == 1 ? __('message.update fail') : __('message.create new fail'));
 	}
 }

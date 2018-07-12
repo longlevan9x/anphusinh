@@ -121,7 +121,7 @@ class Product extends Model
 	 */
 	public function setAttributeMeta($attribute, $key) {
 		/** @var ProductMeta $meta */
-		$meta  = $this->productMetaByKey('_element')->first();
+		$meta  = $this->productMetaByKey($key)->first();
 		$value = '';
 		if (isset($meta) && !empty($meta)) {
 			$value = $meta->value;
