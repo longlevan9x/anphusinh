@@ -1,8 +1,13 @@
 @php
     $imagePreview = '';
+    $urlDelete = $urlDelete ?? '';
     if (isset($model)) {
-        if (method_exists($model, 'getImagePath')) {
-            $imagePreview = $model->getImagePath();
+        if (method_exists($model, 'getImagePathWithoutDefault')) {
+            $imagePreview = $model->getImagePathWithoutDefault();
+        }
+
+        if (empty($urlDelete)) {
+            $urlDelete = isset($model) ? $model->getUrlDeleteImage($name ?? 'image') : '';
         }
     }
     elseif(isset($imagePath) && !empty($imagePath)) {
@@ -25,13 +30,13 @@
             showUpload:           false,
             initialPreviewAsData: true,
             initialPreviewConfig: [
-                {caption: "logo.png"}
+                {caption: "logo.png", url: '{{$urlDelete}}'}
             ]
         };
-        let _imagePreview = '{{$imagePreview}}';
-        if (_imagePreview !== '') {
+        let _imagePreview   = '{{$imagePreview}}';
+        if (_imagePreview !== "") {
             configFileinput.dropZoneEnabled = true;
-            configFileinput.initialPreview = _imagePreview;
+            configFileinput.initialPreview  = _imagePreview;
         }
 
         $("#{{$id ?? 'image'}}").fileinput(configFileinput);

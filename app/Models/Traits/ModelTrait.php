@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Event;
 /**
  * Trait ModelTrait
  * @package App\Models\Traits
- * @property Model $this
+ * @property Model  $this
+ * @property int    id
+ * @property string slug
  * @method  static Builder where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method  static Builder orWhere(string $column, string $operator = null, string $value = null)
  * @method  static Builder|Model findOrFail(mixed | int | string $id, array $column = ['*'])
@@ -115,15 +117,6 @@ trait ModelTrait
 		return "";
 	}
 
-	public function showImage($key = '') {
-		$attribute = $this->getAttribute($key);
-		if (isset($attribute)) {
-			return view('admin.layouts.widget.image.show', ['src' => $this->getImagePath('', $key)]);
-		}
-
-		return "";
-	}
-
 	public function beforeSave() {
 		return true;
 	}
@@ -136,8 +129,12 @@ trait ModelTrait
 		return (new static)->getTable();
 	}
 
+	/**
+	 * Delete the model from the database.
+	 * @return bool|null
+	 * @throws \Exception
+	 */
 	public function delete() {
 		parent::delete();
-
 	}
 }

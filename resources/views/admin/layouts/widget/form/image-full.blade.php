@@ -1,13 +1,17 @@
 @php
-
     $imagePreview = '';
-    if(isset($imagePath) && !empty($imagePath)) {
-        $imagePreview = $imagePath;
-    }
-    elseif (isset($model)) {
-        if (method_exists($model, 'getImagePath')) {
-            $imagePreview = $model->getImagePath();
+    $urlDelete = $urlDelete ?? '';
+    if (isset($model)) {
+        if (method_exists($model, 'getImagePathWithoutDefault')) {
+            $imagePreview = $model->getImagePathWithoutDefault();
         }
+
+        if (empty($urlDelete)) {
+            $urlDelete = isset($model) ? $model->getUrlDeleteImage($name ?? 'image') : '';
+        }
+    }
+    elseif(isset($imagePath) && !empty($imagePath)) {
+        $imagePreview = $imagePath;
     }
     else {
         //$imagePreview = \App\Commons\Facade\CFile::getImageUrl('www', '');
@@ -26,7 +30,7 @@
             showUpload:           false,
             initialPreviewAsData: true,
             initialPreviewConfig: [
-                {caption: "logo.png"}
+                {caption: "logo.png", url : '{{$urlDelete}}'}
             ]
         };
         let _imagePreview   = '{{$imagePreview}}';
@@ -36,5 +40,12 @@
         }
 
         $("#{{$id ?? 'image'}}").fileinput(configFileinput);
+        $("#{{$id ?? 'image'}}").on("filepredelete", function(jqXHR) {
+            var abort = true;
+            if (confirm("Are you sure you want to delete this image?")) {
+                abort = false;
+            }
+            return abort; // you can also send any data/object that you can receive on `filecustomerror` event
+        });
     </script>
 @endpush

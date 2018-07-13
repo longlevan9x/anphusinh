@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\AdminAuth\LoginController as AdminLoginController;
 
+use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\NewsController;
 use Illuminate\Support\Facades\Route;
@@ -73,8 +74,9 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	Route::resource(AnswerController::getResourceName(), AnswerController::getClassName());
 	Route::resource(AdviceController::getResourceName(), AdviceController::getClassName());
 	Route::resource(ProductController::getResourceName(), ProductController::getClassName());
+	Route::resource(SlideController::getResourceName(), SlideController::getClassName());
 	/*===========Route Ajax===========*/
-
+	Route::post(AjaxController::getResourceName('delete-file/{table}/{key}/{id}'), AjaxController::getControllerWithAction('deleteFile'));
 	/*===========Route Bulk===========*/
 	Route::delete(BulkController::getResourceName('bulk-delete'), BulkController::getControllerWithAction('bulkDelete'));
 });

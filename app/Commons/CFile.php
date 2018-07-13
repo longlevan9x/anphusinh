@@ -79,10 +79,18 @@ class CFile extends Common
 			return $folder;
 		}
 
+		if (filter_var($image, FILTER_VALIDATE_URL)) {
+			return $image;
+		}
+
 		$image_path = storage_app_uploads($folder, $image);
 		$image_path = str_replace("\\", "/", $image_path);
 		if (file_exists($image_path) && !is_dir($image_path)) {
 			return Storage::url($folder . '/' . $image);
+		}
+
+		if (empty($default_image)) {
+			return '';
 		}
 
 		return Storage::url(self::DEFAULT_IMAGE_FOLDER . "/$default_image");

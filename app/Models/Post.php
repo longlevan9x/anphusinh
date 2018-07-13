@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use MicrosoftAzure\Storage\Common\Models\RetentionPolicy;
 
 /**
  * Class Post
@@ -25,6 +26,9 @@ use Illuminate\Support\Collection;
  * @property mixed        content
  * @property int          is_active
  * @property mixed|string path
+ * @property int          parent_id
+ * @property null         image
+ * @property string       slug
  */
 class Post extends Model
 {
@@ -35,10 +39,12 @@ class Post extends Model
 	const TYPE_NEWS     = 'news';
 	const TYPE_QUESTION = 'question';
 	const TYPE_ADVICE   = 'advice';
+	const TYPE_SLIDE    = 'slide';
 	public static $TYPE_NEWS     = self::TYPE_NEWS;
 	public static $TYPE_POST     = self::TYPE_POST;
 	public static $TYPE_QUESTION = self::TYPE_QUESTION;
 	public static $TYPE_ADVICE   = self::TYPE_ADVICE;
+	public static $TYPE_SLIDE    = self::TYPE_SLIDE;
 
 	protected $fillable = [
 		'author_id',
@@ -115,16 +121,23 @@ class Post extends Model
 	 */
 	public function folder() {
 		if ($this->getType() == self::TYPE_NEWS) {
-			$this->path = 'post/news';
+			$this->path = "post/" . self::TYPE_NEWS;
 
 			return $this->folder = $this->path;
 		} elseif ($this->getType() == self::TYPE_ADVICE) {
-			$this->path = 'post/advice';
+			$this->path = "post/" . self::TYPE_ADVICE;
+
+			return $this->folder = $this->path;
+		} elseif ($this->getType() == self::TYPE_SLIDE) {
+			$this->path = "post/" . self::$TYPE_SLIDE;
 
 			return $this->folder = $this->path;
 		}
+
 		if (empty($this->folder)) {
-			return $this->folder = $this->getTable();
+			$this->path = $this->getTable();
+
+			return $this->folder = $this->path;
 		}
 
 		return $this->folder;
@@ -215,5 +228,19 @@ class Post extends Model
 	 */
 	public function postMeta() {
 		return $this->hasOne(PostMeta::class);
+	}
+
+	/**
+	 * @param string $type
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne|Post
+	 */
+	public function getParent($type = '') {
+		$relate = $this->hasOne(Post::class, 'id', 'parent_id');
+		if (!empty($type)) {
+			$relate->where('type', $type);
+		}
+
+		return $relate;
+		//Category::where('id', $this->parent_id)->where('type', $type)->first();
 	}
 }

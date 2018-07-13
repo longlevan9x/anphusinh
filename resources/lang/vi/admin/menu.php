@@ -45,6 +45,9 @@ return [
 	'users'          => 'Người dùng',
 	'list user'      => 'Danh sách người dùng',
 	'add user'       => 'Thêm mới người dùng',
-	'setting'        => "Cài đặt"
-
+	'setting'        => "Cài đặt",
+	'website'        => 'Website',
+	'slide'          => 'Ảnh trượt',
+	'add slide'      => 'Thêm mới ảnh trượt',
+	'list slide'     => 'Danh sách ảnh trượt'
 ];

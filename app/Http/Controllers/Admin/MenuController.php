@@ -246,7 +246,7 @@ class MenuController extends Controller
 			/*Q & A*/
 			[
 				'name'     => __("admin/menu.q & a"),
-				'url'     => url_admin('answer'),
+				'url'      => url_admin('answer'),
 				'visible'  => true,
 				'icon'     => 'fa-list-alt',
 				'children' => []
@@ -292,6 +292,22 @@ class MenuController extends Controller
 						'url'     => url_admin('admin/create'),
 						'visible' => true,
 						'icon'    => 'fa-plus',
+					],
+				]
+			],
+			/*User*/
+			/*User*/
+			[
+				'name'     => __("admin/menu.website"),
+				'url'      => '#',
+				'visible'  => true,
+				'icon'     => 'fa-user-circle',
+				'children' => [
+					[
+						'name'    => __("admin/menu.slide"),
+						'url'     => url_admin('slide'),
+						'visible' => true,
+						'icon'    => 'fa-user-circle',
 					],
 				]
 			],

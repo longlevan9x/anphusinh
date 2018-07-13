@@ -30,10 +30,6 @@ return [
 	'edit'                => 'Chỉnh sửa',
 	'status'              => 'Trạng thái',
 	'link'                => 'Liên kết',
-	'type link'           => 'Liên kết',
 	'empty'               => "Không có ",
-	'not found'           => "Không tìm thấy",
-	'description'         => "Miêu tả",
-	'select image'        => 'Chọn ảnh',
-	'cover image'         => "Ảnh bìa"
+	'not found'           => "Không tìm thấy"
 ];
