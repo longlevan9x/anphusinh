@@ -4,6 +4,7 @@ namespace App\Models\Traits;
 
 use App\Commons\Facade\CFile;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Event;
@@ -29,6 +30,11 @@ use Illuminate\Support\Facades\Event;
 trait ModelTrait
 {
 	use Sluggable;
+	use SluggableScopeHelpers;
+
+	public function getSlugKeyName() {
+		return 'slug';
+	}
 
 	/**
 	 * set auto upload image in method save
@@ -44,7 +50,7 @@ trait ModelTrait
 	}
 
 	/**
-	 * @return string
+	 * @return string|array
 	 */
 	public function fieldSlugable() {
 		return '';
@@ -144,5 +150,13 @@ trait ModelTrait
 	 */
 	public function whereIsActive($value = 1) {
 		return self::where('is_active', $value);
+	}
+
+	public function getSlugAndId() {
+		if (!empty($this->{$this->getSlugKeyName()})) {
+			return $this->{$this->getSlugKeyName()} . "--" . $this->id;
+		} else {
+			return $this->id;
+		}
 	}
 }

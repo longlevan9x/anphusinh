@@ -21,7 +21,7 @@
                             <th>@lang('admin/common.title')</th>
                             <th>@lang('admin/news.author')</th>
                             <th>@lang('admin/common.is_active')</th>
-                            <th>@lang('admin/common.created date')</th>
+                            <th>@lang('admin/news.publish date')</th>
                             <th>@lang('admin/common.action')</th>
                         </tr>
                         </thead>

@@ -12,5 +12,9 @@ return [
 	'question answer' => "Hỏi đáp",
 	'order'           => "Đặt hàng",
 	'news'            => "Tin tức",
-	'system_store'    => "Hệ thống nhà thuốc"
+	'system_store'    => "Hệ thống nhà thuốc",
+	'read more'       => "Xem thêm",
+	'name_street'     => 'Tên đường',
+	'address_store'   => "Địa chỉ nhà thuốc",
+	'name_store'      => "Tên Nhà Thuốc"
 ];

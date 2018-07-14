@@ -120,4 +120,13 @@ class Category extends Model
 	public static function whereType($type = self::TYPE_CATEGORY) {
 		return Category::where('type', $type);
 	}
+
+	/**
+	 * @param string $type
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function getChildren() {
+		return $this->hasMany(self::class, 'parent_id', 'id');
+	}
+
 }

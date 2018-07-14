@@ -238,10 +238,10 @@ trait ModelUploadTrait
 
 
 	public function showImage($key = '') {
-		$attribute = $this->getAttribute($key);
-		if (isset($attribute)) {
-			$src = $attribute;
-			if (!filter_var($attribute, FILTER_VALIDATE_URL)) {
+		$value = $this->getAttribute($key);
+		if (key_exists($key, $this->getAttributes())) {
+			$src = $value;
+			if (!filter_var($value, FILTER_VALIDATE_URL)) {
 				$src = $this->getImagePath('', $key);
 			}
 

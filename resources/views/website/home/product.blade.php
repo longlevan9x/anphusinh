@@ -1,28 +1,5 @@
 @extends('website.index')
 @section('content')
-    <style>
-        .product_nav_tab .nav-link.active {
-            background: #306fbe !important;
-            color: #fff !important;
-            border: 1px solid #306fbe;
-        }
-
-        .product_nav_tab li {
-            width: 50%;
-            text-align: center;
-        }
-
-        .product_nav_tab .nav-link {
-            background: #4587d9;
-            color: #fff;
-            border-radius: 0;
-            margin-right: 0 !important;
-        }
-
-        .product_tab {
-            padding-top: 20px;
-        }
-    </style>
     <div role="tabpanel">
         <ul class="nav nav-tabs product_nav_tab" role="tablist">
             <li class="active" role="presentation">

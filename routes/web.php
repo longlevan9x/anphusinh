@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Auth::routes();
+Route::get('admin', function() {
+	return redirect(url_admin('login'));
+});
+
 Route::namespace('Website')->group(function() {
 	Route::get('/', 'HomeController@index')->name('home');
 	Route::get('/home', 'HomeController@index')->name('home');
@@ -28,6 +32,6 @@ Route::namespace('Website')->group(function() {
 	Route::get('/tin-tuc', HomeController::getControllerWithAction('showNews'));
 	Route::get('/he-thong-nha-thuoc', HomeController::getControllerWithAction('showSystemStore'));
 	Route::get('/dat-hang', HomeController::getControllerWithAction('showOrder'));
-	Route::get('/{slug}-{id}', HomeController::getControllerWithAction('showByPost'));
+	Route::get('/{slug}', HomeController::getControllerWithAction('showBySlug'));
 	Route::get('/danh-muc/{slug}', HomeController::getControllerWithAction('showByCategory'));
 });

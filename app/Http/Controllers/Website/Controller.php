@@ -49,14 +49,14 @@ class Controller extends \App\Http\Controllers\Controller
 				if ($category->parent_id == 0) {
 					$output[$category->id] = [
 						'text'     => $category->name,
-						'url'      => url("/danh-muc/" . $category->slug),
+						'url'      => url($category->slug),
 						'children' => []
 					];
 				} else {
 					$output[$category->parent_id]['url']                     = "#";
 					$output[$category->parent_id]['children'][$category->id] = [
 						'text' => $category->name,
-						'url'  => url("/danh-muc/" . $category->slug)
+						'url'  => url($category->slug)
 					];
 					unset($category->id);
 				}
@@ -75,9 +75,10 @@ class Controller extends \App\Http\Controllers\Controller
 	public function getCurrentMethod() {
 		$action = Route::currentRouteAction();
 		$action = substr($action, strpos($action, '@') + 1);
-		if(!$action) {
+		if (!$action) {
 			return '';
 		}
+
 		return $action;
 	}
 }

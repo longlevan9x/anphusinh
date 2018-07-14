@@ -24,6 +24,7 @@ use MicrosoftAzure\Storage\Common\Models\RetentionPolicy;
  * @property int          $author_id
  * @property int          author_updated_id
  * @property mixed        content
+ * @property string       overview
  * @property int          is_active
  * @property mixed|string path
  * @property int          parent_id
