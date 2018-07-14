@@ -26,6 +26,13 @@ class AjaxController extends Controller
 			} else {
 				$folder = $table;
 			}
+
+			if (filter_var($model->{$key}, FILTER_VALIDATE_URL)) {
+				DB::table($table)->where('id' , $id)->update([$key => '']);
+
+				return responseJson(CConstant::STATUS_SUCCESS);
+			}
+
 			if (CFile::removeFile($folder, $model->{$key})) {
 				DB::table($table)->where('id' , $id)->update([$key => '']);
 

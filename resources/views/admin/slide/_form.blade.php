@@ -41,15 +41,15 @@
                         <div class="col-md-10 col-sm-10 col-xs-12">
                             <label for="toPost">
                                 @lang('admin/slide.to post'):
-                                <input type="radio" class="flat" name="type_link" id="toPost" value="to_post" />&nbsp;&nbsp;&nbsp;
+                                {{ Form::radio('type_link', $value = "to_post", isset($model) ? ($model->type_link == "to_post" ? ['checked'] : '') : '' , ['class' => "flat", 'id' => "toPost"]) }}&nbsp;&nbsp;&nbsp;
                             </label>
                             <label for="toLinkOut">
                                 @lang('admin/slide.to link out'):
-                                <input type="radio" class="flat" name="type_link" id="toLinkOut" checked="" value="to_link_out" />&nbsp;&nbsp;&nbsp;
+                                {{ Form::radio('type_link', $value = "to_link_out", isset($model) ? ($model->type_link == "to_link_out" ? ['checked'] : '') : '' , ['class' => "flat", 'id' => "toLinkOut"]) }}&nbsp;&nbsp;&nbsp;
                             </label>
                             <label for="noLink">
                                 @lang('admin.no'):
-                                <input type="radio" class="flat" name="type_link" id="noLink" value="no_link" />
+                                {{ Form::radio('type_link', $value = "no_link", isset($model) ? ($model->type_link == "no_link" ? ['checked'] : '') : ['checked'] , ['class' => "flat", 'id' => "noLink"]) }}&nbsp;&nbsp;&nbsp;
                             </label>
                         </div>
                         <div class="clearfix"></div>
@@ -61,28 +61,29 @@
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="form-group hidden" id="js-link">
-                        <label class="col-md-12 col-sm-12 col-xs-12" for="link">@lang('admin/common.link')</label>
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            {!! Form::text('link', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'link']) !!}
-                        </div>
-                    </div>
                     <div class="form-group hidden" id="js-select-image">
                         <label class="col-md-1 col-sm-1 col-xs-12" for="select_image">@lang('admin/common.select image'):</label>
                         <div class="col-md-10 col-sm-10 col-xs-12">
                             <label for="select_image_from_post">
                                 @lang('admin/slide.from post'):
-                                <input type="radio" class="flat" name="select_image" id="select_image_from_post" value="from_post" />&nbsp;&nbsp;&nbsp;
+                                {{ Form::radio('select_image', $value = "from_post", isset($model) ? ($model->select_image == "from_post" ? ['checked'] : '') : '' , ['class' => "flat", 'id' => "select_image_from_post"]) }}&nbsp;&nbsp;&nbsp;
                             </label>
                             <label for="select_image_up_new">
                                 @lang('admin/slide.up new image'):
-                                <input type="radio" class="flat" name="select_image" id="select_image_up_new" value="up_new" checked="" />&nbsp;&nbsp;&nbsp;
+                                {{ Form::radio('select_image', $value = "up_new", isset($model) ? ($model->select_image == "up_new" ? ['checked'] : '') : ['checked'] , ['class' => "flat", 'id' => "select_image_up_new"]) }}
                             </label>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="" id="js-image">
                         @include('admin.layouts.widget.form.image-full', ['model' => $model ?? null])
+                    </div>
+
+                    <div class="form-group hidden" id="js-link">
+                        <label class="col-md-12 col-sm-12 col-xs-12" for="link">@lang('admin/common.link')</label>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            {!! Form::text('link', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'link']) !!}
+                        </div>
                     </div>
 
                 </div>
@@ -132,8 +133,20 @@
         $(function () {
             const _class_hidden = "hidden";
             $(window).load(() => {
-                if ($("input[name=\"type_link\"]:checked").val() === "to_link_out") {
+                if ($("input[name=\"select_image\"]:checked").val() === "from_post") {
+                    $('#js-image').addClass(_class_hidden);
+                }
+                else {
+                    $('#js-image').removeClass(_class_hidden);
+                }
+
+                let type_link = $("input[name=\"type_link\"]:checked").val();
+                if (type_link === "to_link_out") {
                     $("#js-link").removeClass(_class_hidden);
+                }
+                else if (type_link === "to_post") {
+                    $("#js-post").removeClass(_class_hidden);
+                    $("#js-select-image").removeClass(_class_hidden);
                 }
             });
 

@@ -137,4 +137,12 @@ trait ModelTrait
 	public function delete() {
 		parent::delete();
 	}
+
+	/**
+	 * @param int $value
+	 * @return Builder
+	 */
+	public function whereIsActive($value = 1) {
+		return self::where('is_active', $value);
+	}
 }

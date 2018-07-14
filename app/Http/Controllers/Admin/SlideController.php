@@ -54,6 +54,12 @@ class SlideController extends Controller
 			$model->slug = "{$parent->slug}-{$parent->id}";
 		}
 
+		$content = [
+			'type_link' => $request->type_link,
+			'select_image' => $request->select_image
+		];
+		$model->content = json_encode($content);
+
 		$model->type = Post::TYPE_SLIDE;
 		$model->setAuthorId();
 		$model->save();
@@ -69,10 +75,10 @@ class SlideController extends Controller
 	public function show($id) {
 		/** @var Post $model */
 		$model = Post::findOrFail($id);
-		if (filter_var($model->image, FILTER_VALIDATE_URL)) {
-			$model->setAttribute('link', '');
-		}
-
+		$content = json_decode($model->content);
+		$model->setAttribute('type_link', $content->type_link);
+		$model->setAttribute('select_image', $content->select_image);
+		$model->setAttribute('link', $model->slug);
 		return view('admin.slide.view', compact('model'));
 	}
 
@@ -82,7 +88,12 @@ class SlideController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id) {
+		/** @var Post $model */
 		$model = Post::findOrFail($id);
+		$content = json_decode($model->content);
+		$model->setAttribute('type_link', $content->type_link);
+		$model->setAttribute('select_image', $content->select_image);
+		$model->setAttribute('link', $model->slug);
 
 		return view('admin.slide.update', compact('model'));
 	}
@@ -100,11 +111,10 @@ class SlideController extends Controller
 		$model->fill($request->all());
 		if ($request->type_link != 'to_post') {
 			$model->parent_id = 0;
-			$model->image     = null;
 			if ($request->type_link == 'to_link_out') {
 				$model->slug = $request->link;
 			} else {
-				$model->slug = "";
+				$model->slug = null;
 			}
 		} elseif ($request->type_link == 'to_post') {
 			/** @var Post $parent */
@@ -117,6 +127,11 @@ class SlideController extends Controller
 			}
 			$model->slug = "{$parent->slug}-{$parent->id}";
 		}
+		$content = [
+			'type_link' => $request->type_link,
+			'select_image' => $request->select_image
+		];
+		$model->content = json_encode($content);
 
 		$model->type = Post::TYPE_SLIDE;
 		$model->setAuthorUpdatedId();
