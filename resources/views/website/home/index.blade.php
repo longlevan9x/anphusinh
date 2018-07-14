@@ -118,24 +118,24 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="about-post">
-                                <a href="#." class="border_radius"><img src="{{asset_app('images/hands.png')}}" alt="hands"></a>
+                                <a href="#." class="border_radius"><img src="{{asset_website('images/hands.png')}}" alt="hands"></a>
                                 <h4>Good Planning</h4>
                                 <p>Renean sit amet massa</p>
                             </div>
                             <div class="about-post">
-                                <a href="#." class="border_radius"><img src="{{asset_app('images/awesome.png')}}" alt="hands"></a>
+                                <a href="#." class="border_radius"><img src="{{asset_website('images/awesome.png')}}" alt="hands"></a>
                                 <h4>Happy Students</h4>
                                 <p>Renean sit amet massa</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="about-post">
-                                <a href="#." class="border_radius"><img src="{{asset_app('images/maintenance.png')}}" alt="hands"></a>
+                                <a href="#." class="border_radius"><img src="{{asset_website('images/maintenance.png')}}" alt="hands"></a>
                                 <h4>Our Courses</h4>
                                 <p>Renean sit amet massa</p>
                             </div>
                             <div class="about-post">
-                                <a href="#." class="border_radius"><img src="{{asset_app('images/home.png')}}" alt="hands"></a>
+                                <a href="#." class="border_radius"><img src="{{asset_website('images/home.png')}}" alt="hands"></a>
                                 <h4>Our Teachers</h4>
                                 <p>Renean sit amet massa</p>
                             </div>
@@ -143,7 +143,7 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-sm-6 wow fadeInRight" data-wow-delay="300ms">
-                    <img src="{{asset_app('images/about.jpg')}}" alt="our priorties" class="img-responsive" style="width:100%;">
+                    <img src="{{asset_website('images/about.jpg')}}" alt="our priorties" class="img-responsive" style="width:100%;">
                 </div>
             </div>
         </div>
@@ -166,7 +166,7 @@
                         <div id="course_slider" class="owl-carousel">
                             <div class="item">
                                 <div class="image bottom20">
-                                    <img src="{{asset_app('images/course1.jpg')}}" alt="Courses" class="img-responsive border_radius">
+                                    <img src="{{asset_website('images/course1.jpg')}}" alt="Courses" class="img-responsive border_radius">
                                 </div>
                                 <h3 class="bottom15"><a href="course_detail.html">Introduction LearnPress</a></h3>
                                 <p class="bottom15">We offer the most complete house renovating services in the country, from kitchen design to bathroom remodeling.</p>
@@ -174,7 +174,7 @@
                             </div>
                             <div class="item">
                                 <div class="image bottom20">
-                                    <img src="{{asset_app('images/course2.jpg')}}" alt="Courses" class="img-responsive border_radius">
+                                    <img src="{{asset_website('images/course2.jpg')}}" alt="Courses" class="img-responsive border_radius">
                                 </div>
                                 <h3 class="bottom15"><a href="course_detail.html">Introduction LearnPress</a></h3>
                                 <p class="bottom15">We offer the most complete house renovating services in the country, from kitchen design to bathroom remodeling.</p>
@@ -182,7 +182,7 @@
                             </div>
                             <div class="item">
                                 <div class="image bottom20">
-                                    <img src="{{asset_app('images/course3.jpg')}}" alt="Courses" class="img-responsive border_radius">
+                                    <img src="{{asset_website('images/course3.jpg')}}" alt="Courses" class="img-responsive border_radius">
                                 </div>
                                 <h3 class="bottom15"><a href="course_detail.html">Introduction LearnPress</a></h3>
                                 <p class="bottom15">We offer the most complete house renovating services in the country, from kitchen design to bathroom remodeling.</p>
@@ -190,7 +190,7 @@
                             </div>
                             <div class="item">
                                 <div class="image bottom20">
-                                    <img src="{{asset_app('images/course1.jpg')}}" alt="Courses" class="img-responsive border_radius">
+                                    <img src="{{asset_website('images/course1.jpg')}}" alt="Courses" class="img-responsive border_radius">
                                 </div>
                                 <h3 class="bottom15"><a href="course_detail.html">Introduction LearnPress</a></h3>
                                 <p class="bottom15">We offer the most complete house renovating services in the country, from kitchen design to bathroom remodeling.</p>
@@ -198,7 +198,7 @@
                             </div>
                             <div class="item">
                                 <div class="image bottom20">
-                                    <img src="{{asset_app('images/course2.jpg')}}" alt="Courses" class="img-responsive border_radius">
+                                    <img src="{{asset_website('images/course2.jpg')}}" alt="Courses" class="img-responsive border_radius">
                                 </div>
                                 <h3 class="bottom15"><a href="course_detail.html">Introduction LearnPress</a></h3>
                                 <p class="bottom15">We offer the most complete house renovating services in the country, from kitchen design to bathroom remodeling.</p>
@@ -206,7 +206,7 @@
                             </div>
                             <div class="item">
                                 <div class="image bottom20">
-                                    <img src="{{asset_app('images/course3.jpg')}}" alt="Courses" class="img-responsive border_radius">
+                                    <img src="{{asset_website('images/course3.jpg')}}" alt="Courses" class="img-responsive border_radius">
                                 </div>
                                 <h3 class="bottom15"><a href="course_detail.html">Introduction LearnPress</a></h3>
                                 <p class="bottom15">We offer the most complete house renovating services in the country, from kitchen design to bathroom remodeling.</p>
@@ -248,7 +248,7 @@
                 </div>
                 <div class="col-md-7 col-sm-4">
                     <div class="fact-image">
-                        <img src="{{asset_app('images/fun-facts.png')}}" alt=" some facts" class="img-responsive">
+                        <img src="{{asset_website('images/fun-facts.png')}}" alt=" some facts" class="img-responsive">
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-4">
@@ -277,19 +277,19 @@
                         <div class="item">
                             <h4>John Smith</h4>
                             <p>Ditector Shangha</p>
-                            <img src="{{asset_app('images/customer1.png')}}" class="client_pic border_radius" alt="costomer">
+                            <img src="{{asset_website('images/customer1.png')}}" class="client_pic border_radius" alt="costomer">
                             <p>I've been happy with the services provided by Edua LLC. Scooter Libby has been wonderful! He has returned my calls quickly, and he answered all my questions. This is required when, for example, the final text is not yet available. We are here to help you from the initial phase to the final Edua phase.</p>
                         </div>
                         <div class="item">
                             <h4>John Smith</h4>
                             <p>Ditector Shangha</p>
-                            <img src="{{asset_app('images/customer1.png')}}" class="client_pic border_radius" alt="costomer">
+                            <img src="{{asset_website('images/customer1.png')}}" class="client_pic border_radius" alt="costomer">
                             <p>I've been happy with the services provided by Edua LLC. Scooter Libby has been wonderful! He has returned my calls quickly, and he answered all my questions. This is required when, for example, the final text is not yet available. We are here to help you from the initial phase to the final Edua phase.</p>
                         </div>
                         <div class="item">
                             <h4>John Smith</h4>
                             <p>Ditector Shangha</p>
-                            <img src="{{asset_app('images/customer1.png')}}" class="client_pic border_radius" alt="costomer">
+                            <img src="{{asset_website('images/customer1.png')}}" class="client_pic border_radius" alt="costomer">
                             <p>I've been happy with the services provided by Edua LLC. Scooter Libby has been wonderful! He has returned my calls quickly, and he answered all my questions. This is required when, for example, the final text is not yet available. We are here to help you from the initial phase to the final Edua phase.</p>
                         </div>
                     </div>
@@ -388,7 +388,7 @@
                             <div class="item">
                                 <div class="content_wrap">
                                     <div class="image">
-                                        <img src="{{asset_app('images/news1.jpg')}}" alt="Edua" class="img-responsive border_radius">
+                                        <img src="{{asset_website('images/news1.jpg')}}" alt="Edua" class="img-responsive border_radius">
                                     </div>
                                     <div class="news_box border_radius">
                                         <h4><a href="blog_detail.html">4 Springtime Color Schemes to Try at Home</a>
@@ -405,7 +405,7 @@
                             <div class="item">
                                 <div class="content_wrap">
                                     <div class="image">
-                                        <img src="{{asset_app('images/news2.jpg')}}" alt="Edua" class="img-responsive border_radius">
+                                        <img src="{{asset_website('images/news2.jpg')}}" alt="Edua" class="img-responsive border_radius">
                                     </div>
                                     <div class="news_box border_radius">
                                         <h4><a href="blog_detail.html"> Springtime Color Schemes to Try at Home</a></h4>
@@ -421,7 +421,7 @@
                             <div class="item">
                                 <div class="content_wrap">
                                     <div class="image">
-                                        <img src="{{asset_app('images/news3.jpg')}}" alt="Edua" class="img-responsive border_radius">
+                                        <img src="{{asset_website('images/news3.jpg')}}" alt="Edua" class="img-responsive border_radius">
                                     </div>
                                     <div class="news_box border_radius">
                                         <h4><a href="blog_detail.html">4 Springtime Color Schemes to Try at Home</a>
@@ -438,7 +438,7 @@
                             <div class="item">
                                 <div class="content_wrap">
                                     <div class="image">
-                                        <img src="{{asset_app('images/news1.jpg')}}" alt="Edua" class="img-responsive border_radius">
+                                        <img src="{{asset_website('images/news1.jpg')}}" alt="Edua" class="img-responsive border_radius">
                                     </div>
                                     <div class="news_box border_radius">
                                         <h4><a href="blog_detail.html">4 Springtime Color Schemes to Try at Home</a>
@@ -455,7 +455,7 @@
                             <div class="item">
                                 <div class="content_wrap">
                                     <div class="image">
-                                        <img src="{{asset_app('images/news2.jpg')}}" alt="Edua" class="img-responsive border_radius">
+                                        <img src="{{asset_website('images/news2.jpg')}}" alt="Edua" class="img-responsive border_radius">
                                     </div>
                                     <div class="news_box border_radius">
                                         <h4><a href="blog_detail.html">4 Springtime Color Schemes to Try at Home</a>
@@ -472,7 +472,7 @@
                             <div class="item">
                                 <div class="content_wrap">
                                     <div class="image">
-                                        <img src="{{asset_app('images/news3.jpg')}}" alt="Edua" class="img-responsive border_radius">
+                                        <img src="{{asset_website('images/news3.jpg')}}" alt="Edua" class="img-responsive border_radius">
                                     </div>
                                     <div class="news_box border_radius">
                                         <h4><a href="blog_detail.html">4 Springtime Color Schemes to Try at Home</a>

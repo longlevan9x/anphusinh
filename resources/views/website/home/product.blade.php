@@ -41,7 +41,7 @@
                 {!! $model->content  !!}
             </div>
             <div class="tab-pane" id="tab2" role="tabpanel" aria-expanded="false">
-                {!! $model->productMetaByKey('_element')->first()->value !!}
+                {!! $model->productMetaByKey('_element')->first()->value ?? '' !!}
             </div>
         </div>
     </div>
