@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-4 footer_panel bottom25">
                 <h3 class="heading bottom25">About Us<span class="divider-left"></span></h3>
-                <a href="index.html" class="footer_logo bottom25"><img src="{{asset_app('images/logo-white.png')}}" alt="Edua"></a>
+                <a href="{{url('/')}}" class="footer_logo bottom25"><img src="{{asset_website('images/logo-white.png')}}" alt="Edua"></a>
                 <p>We offer the most complete house renovating services in the country, from kitchen design to bathroom remodeling.</p>
                 <ul class="social_icon top25">
                     <li><a href="#." class="facebook"><i class="fa fa-facebook"></i></a></li>
@@ -34,7 +34,7 @@
                 <p class=" address"><i class="icon-map-pin"></i>198 West 21th Street Victoria 8007, Australia</p>
                 <p class=" address"><i class="icon-phone"></i>(654) 332-112-222</p>
                 <p class=" address"><i class="icon-mail"></i><a href="mailto:Edua@info.com">Edua@info.com</a></p>
-                <img src="{{asset_app('images/footer-map.png')}}" alt="we are here" class="img-responsive">
+                <img src="{{asset_website('images/footer-map.png')}}" alt="we are here" class="img-responsive">
             </div>
         </div>
     </div>

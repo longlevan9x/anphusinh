@@ -7,9 +7,9 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">
-                    <img src="{{asset_app('images/logo.png')}}" alt="logo" class="logo logo-display">
-                    <img src="{{asset_app('images/logo.png')}}" class="logo logo-scrolled" alt="">
+                <a class="navbar-brand" href="{{url('/')}}">
+                    <img src="{{asset_website('images/logo.png')}}" alt="logo" class="logo logo-display">
+                    <img src="{{asset_website('images/logo.png')}}" class="logo logo-scrolled" alt="">
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-menu">
