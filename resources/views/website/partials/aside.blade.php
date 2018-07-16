@@ -57,7 +57,7 @@
         <h3 class="bottom20">@lang('admin/menu.share experience')</h3>
         @forelse($share_experience as $item)
             <div class="media">
-                <a class="media-left" style="width: 35%;" href="#."><img style="width: 100%;" src="{{$item->getImagePath()}}" alt="post"></a>
+                <a class="media-left" style="width: 35%;" href="{{$item->getSlugAndId()}}"><img style="width: 100%;" src="{{$item->getImagePath()}}" alt="post"></a>
                 <div class="media-body">
                     <h5 class="bottom5">{{$item->title}}</h5>
                     <a href="#." class="btn-primary btn btn-sm border_radius bottom5">@lang('website.read more')</a>

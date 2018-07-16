@@ -176,7 +176,7 @@ class Controller extends \App\Http\Controllers\Controller
 			$advice_expert = Cache::get('advice_expert');
 		} else {
 			$advice_expert = Post::whereType(Post::TYPE_ADVICE)->orderByDesc('created_at')->limit(5)->get();
-			cache()->put('share_experience', $advice_expert, 60);
+			cache()->put('advice_expert', $advice_expert, 60);
 		}
 		view()->share(compact('advice_expert'));
 	}
