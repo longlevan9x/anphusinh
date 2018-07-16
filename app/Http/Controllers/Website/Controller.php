@@ -134,7 +134,7 @@ class Controller extends \App\Http\Controllers\Controller
 
 		$pathInfo = request()->getPathInfo();
 		$pathInfo = str_replace('/', '', $pathInfo);
-		if (in_array($pathInfo, ['san-pham', 'he-thong-nha-thuoc', 'dat-hang', 'tin-tuc', 'hoi-dap'])) {
+		if (in_array($pathInfo, ['san-pham', 'he-thong-nha-thuoc', 'dat-hang', 'tin-tuc', 'hoi-dap', 'chuyen-gia'])) {
 			$this->breadcrumb = [['text' => __('website.' . $pathInfo), 'url' => '#']];
 		} else {
 			$prefix = $this->prefixBreadcrumb;

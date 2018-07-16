@@ -27,6 +27,6 @@ return [
 	'expert consultants' => "Chuyên gia tư vấn",
 	'ask_submit'         => 'Gửi thắc mắc',
 	'hoi-dap'            => "Hỏi đáp",
-	'question'            => "Hỏi đáp"
+	'question'           => "Hỏi đáp",
 
 ];

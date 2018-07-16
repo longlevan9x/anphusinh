@@ -30,6 +30,7 @@ Route::namespace('Website')->group(function() {
 	Route::get('/san-pham', HomeController::getControllerWithAction('showProduct'))->name('san-pham');
 	Route::get('/hoi-dap', HomeController::getControllerWithAction('showAnswerQuestion'))->name('hoi-dap');
 	Route::get('/tin-tuc', HomeController::getControllerWithAction('showNews'))->name('tin-tuc');
+	Route::get('/chuyen-gia', HomeController::getControllerWithAction('showExpert'))->name('chuyen-gia');
 	Route::get('/he-thong-nha-thuoc', HomeController::getControllerWithAction('showSystemStore'))->name('he-thong-nha-thuoc');
 	Route::get('/dat-hang', HomeController::getControllerWithAction('showOrder'))->name('dat-hang');
 	Route::post('/dat-hang', HomeController::getControllerWithAction('postOrder'))->name('dat-hang');

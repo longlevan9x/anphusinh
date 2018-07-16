@@ -71,6 +71,12 @@ class HomeController extends Controller
 		return view('website.home.category', compact('models'));
 	}
 
+	public function showExpert() {
+		$models = Post::whereType(Post::TYPE_EXPERT)->where('is_active', CConstant::STATE_ACTIVE)->paginate(5);
+
+		return view('website.home.category', compact('models'));
+	}
+
 	/**
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
