@@ -5,23 +5,47 @@ namespace App\Http\Controllers\Website;
 use App\Commons\CConstant;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostMeta;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 class Controller extends \App\Http\Controllers\Controller
 {
 	public function __construct() {
+		$current_method = $this->getCurrentMethod();
+		$this->getMenu();
+		view()->share(compact('current_method'));
+		$this->getBannerBottomLeft();
+		$this->getBreadcrumb();
+		$this->getAdviceAside();
+		$this->getShareAside();
+	}
+
+	/**
+	 * @return array|mixed
+	 * @throws \Exception
+	 */
+	public function getMenu() {
 		if (cache()->has('menus')) {
 			$menus = Cache::get('menus');
 		} else {
 
-			$menus0     = [
+			$menus0 = [
 				['text' => __('website.home page'), 'url' => url('/')],
 				['text' => __('website.product'), 'url' => url('/san-pham')],
 			];
-			$categories = Category::whereType(Category::TYPE_CATEGORY)->where('is_active', 1)->get();
-			$menus1     = $this->getCategoryMenu($categories);
-			$menus2     = [
+
+			$menus1 = [
+				['text' => __('website.diseases'), 'url' => '#', 'children' => []],
+			];
+
+			$categories            = Category::whereType(Category::TYPE_CATEGORY)->where('is_active', 1)->get();
+			$menus1[0]['children'] = $this->getCategoryMenu($categories);
+
+			$menus2 = [
+				['text' => __('website.chuyen-gia'), 'url' => url('/chuyen-gia')],
+				['text' => __('website.chia-se'), 'url' => url('/chia-se')],
 				['text' => __('website.question answer'), 'url' => url('/hoi-dap')],
 				['text' => __('website.news'), 'url' => url('/tin-tuc')],
 				['text' => __('website.system_store'), 'url' => url('/he-thong-nha-thuoc')],
@@ -31,8 +55,7 @@ class Controller extends \App\Http\Controllers\Controller
 			$menus = array_merge($menus0, $menus1, $menus2);
 			cache()->put('menus', $menus, 60);
 		}
-		$current_method = $this->getCurrentMethod();
-		view()->share(compact('menus', 'current_method'));
+		view()->share(compact('menus'));
 	}
 
 	/**
@@ -80,5 +103,81 @@ class Controller extends \App\Http\Controllers\Controller
 		}
 
 		return $action;
+	}
+
+	public function getBannerBottomLeft() {
+		/** @var PostMeta $model */
+		$model = PostMeta::where('key', 'is_banner')->first();
+
+		$post = $model->post()->first();
+
+		if (empty($model) || empty($post)) {
+			$banner_bottom_left = [];
+		} else {
+			/** @var Post $post */
+
+			$banner_bottom_left = [
+				'image' => $model->getImagePath('', 'value'),
+				'url'   => url($post->getSlugAndId())
+			];
+		}
+
+		view()->share(compact('banner_bottom_left'));
+	}
+
+	public    $breadcrumb         = [];
+	protected $prefixBreadcrumb   = '';
+	protected $pathInfoBreadcrumb = '';
+
+	public function getBreadcrumb() {
+		$breadcrumb = [['text' => __('website.home page'), 'url' => url('/')]];
+
+		$pathInfo = request()->getPathInfo();
+		$pathInfo = str_replace('/', '', $pathInfo);
+		if (in_array($pathInfo, ['san-pham', 'he-thong-nha-thuoc', 'dat-hang', 'tin-tuc', 'hoi-dap'])) {
+			$this->breadcrumb = [['text' => __('website.' . $pathInfo), 'url' => '#']];
+		} else {
+			$prefix = $this->prefixBreadcrumb;
+			if ($this->prefixBreadcrumb == Post::TYPE_NEWS) {
+				$prefix = 'tin-tuc';
+			}
+
+			if (!empty($this->pathInfoBreadcrumb)) {
+				$pathInfo = $this->pathInfoBreadcrumb;
+			}
+
+			if (!empty($prefix)) {
+				$this->breadcrumb[] = ['text' => __('website.' . $prefix), 'url' => url($prefix)];
+			}
+			if (!empty($this->pathInfoBreadcrumb)) {
+				$this->breadcrumb[] = ['text' => __('' . $pathInfo), 'url' => '#'];
+			}
+		}
+
+		if (!empty($this->breadcrumb)) {
+			$breadcrumb = array_merge($breadcrumb, $this->breadcrumb);
+		}
+
+		view()->share(compact('breadcrumb'));
+	}
+
+	public function getShareAside() {
+		if (cache()->has('share_experience')) {
+			$share_experience = Cache::get('share_experience');
+		} else {
+			$share_experience = Post::whereType(Post::TYPE_SHARE)->orderByDesc('created_at')->limit(5)->get();
+			cache()->put('share_experience', $share_experience, 60);
+		}
+		view()->share(compact('share_experience'));
+	}
+
+	public function getAdviceAside() {
+		if (cache()->has('advice_expert')) {
+			$advice_expert = Cache::get('advice_expert');
+		} else {
+			$advice_expert = Post::whereType(Post::TYPE_ADVICE)->orderByDesc('created_at')->limit(5)->get();
+			cache()->put('share_experience', $advice_expert, 60);
+		}
+		view()->share(compact('advice_expert'));
 	}
 }

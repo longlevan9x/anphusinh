@@ -67,7 +67,7 @@
                             {!! Form::select('format_time', ['H:i' => __('admin/setting.Hour:Minutes'), "H:i:s" => __('admin/setting.Hour:Minutes:Second')],$value = null,['required' => "required", 'class' => 'form-control col-md-7 col-xs-12', 'id' => 'format_time']) !!}
                         </div>
                     </div>
-
+                    @include('admin.layouts.widget.form.image-col-6', ['name' => 'logo', 'imagePath' => isset($model) ? $model->getImagePathWithoutDefault('', 'logo') : '', 'label' => __('admin/setting.logo')])
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

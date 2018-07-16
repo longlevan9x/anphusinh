@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{config('app.locale')}}">
 @include('website.partials.style')
 @stack('cssFile')
 @stack('cssString')
@@ -24,25 +24,26 @@
     @yield('content')
 @else
     <!--Page Header-->
-    <section class="page_header padding-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 page-content">
-                    <h1>Student Courses</h1>
-                    <p>We offer the most complete house renovating services in the country</p>
-                    <div class="page_nav">
-                        <span>You are here:</span> <a href="index.html">Home</a>
-                        <span><i class="fa fa-angle-double-right"></i>Courses</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{--<section class="page_header padding-top">--}}
+        {{--<div class="container">--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-md-12 page-content">--}}
+                    {{--<h1>Student Courses</h1>--}}
+                    {{--<p>We offer the most complete house renovating services in the country</p>--}}
+                    {{--<div class="page_nav">--}}
+                        {{--<span>You are here:</span> <a href="index.html">Home</a>--}}
+                        {{--<span><i class="fa fa-angle-double-right"></i>Courses</span>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</section>--}}
     <!--Page Header-->
     <section id="event_detail" class="padding">
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 event wow fadeIn" data-wow-delay="500ms">
+                    @include('website.partials.breadcrumb')
                     @yield('content')
                     <div class="col-md-12">
                         <div class="fb-comments" data-width="100%" data-href="{{url()->current()}}" data-numposts="5"></div>
@@ -57,7 +58,7 @@
 <!-- /page content -->
 
 @include('website.partials.footer')
-
+@includeWhen(!empty($banner_bottom_left), 'website.partials.banner-bottom-left')
 @stack("scriptFile")
 @stack('scriptString')
 

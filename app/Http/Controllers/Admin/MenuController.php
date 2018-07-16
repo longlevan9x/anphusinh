@@ -274,6 +274,50 @@ class MenuController extends Controller
 				]
 			],
 			/*Advice*/
+			/*Share*/
+			[
+				'name'     => __("admin/menu.share experience"),
+				'url'      => '#',
+				'visible'  => true,
+				'icon'     => 'fa-user-circle',
+				'children' => [
+					[
+						'name'    => __("admin/menu.list"),
+						'url'     => url_admin('share'),
+						'visible' => true,
+						'icon'    => 'fa-user-circle',
+					],
+					[
+						'name'    => __("admin/menu.add"),
+						'url'     => url_admin('share/create'),
+						'visible' => true,
+						'icon'    => 'fa-plus',
+					],
+				]
+			],
+			/*Share*/
+			/*Expert*/
+			[
+				'name'     => __("admin/menu.expert"),
+				'url'      => '#',
+				'visible'  => true,
+				'icon'     => 'fa-user-circle',
+				'children' => [
+					[
+						'name'    => __("admin/menu.list"),
+						'url'     => url_admin('expert'),
+						'visible' => true,
+						'icon'    => 'fa-user-circle',
+					],
+					[
+						'name'    => __("admin/menu.add"),
+						'url'     => url_admin('expert/create'),
+						'visible' => true,
+						'icon'    => 'fa-plus',
+					],
+				]
+			],
+			/*Expert*/
 			/*User*/
 			[
 				'name'     => __("admin/menu.users"),

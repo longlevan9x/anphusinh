@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Commons\CConstant;
+use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Product;
@@ -56,7 +57,9 @@ class HomeController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function showAnswerQuestion() {
-		return view('website.home.question-answer');
+		$models = Answer::whereType(Post::TYPE_QUESTION)->orderByDesc('created_at')->whereIsActive(1)->paginate(5);
+
+		return view('website.home.question-answer', compact('models'));
 	}
 
 	/**
@@ -82,7 +85,17 @@ class HomeController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function showOrder() {
-		return view('website.home.order');
+		$model = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
+
+		return view('website.home.order', compact('model'));
+	}
+
+	public function postOrder() {
+
+	}
+
+	public function postOrderAjax() {
+
 	}
 
 	/**
@@ -93,16 +106,37 @@ class HomeController extends Controller
 		/** @var Category $category */
 		$category = Category::findBySlugOrFail($slug);
 		if ($category->type == Category::TYPE_STREET) {
-			$models = Store::where('is_active', CConstant::STATE_ACTIVE)->get();
+			$this->prefixBreadcrumb   = Category::TYPE_STREET;
+			$models                   = Store::where('is_active', CConstant::STATE_ACTIVE)->get();
+			$this->prefixBreadcrumb   = 'he-thong-nha-thuoc';
+			$this->pathInfoBreadcrumb = $category->name;
+			$this->getBreadcrumb();
+
 			return view('website.home.store', compact('models'));
 		}
-		if ($category->slug != Category::TYPE_CATEGORY) {
+		if ($category->type != Category::TYPE_CATEGORY) {
 			$models = $category->getChildren()->get();
+
+			if (
+			in_array($category->type, [
+				Category::TYPE_CITY,
+				Category::TYPE_DISTRICT,
+				Category::TYPE_AREA
+			])) {
+				$this->prefixBreadcrumb = 'he-thong-nha-thuoc';
+			}
+			$this->pathInfoBreadcrumb = $category->name;
+
+			$this->getBreadcrumb();
 
 			return view('website.home.system-store', compact('models'));
 		}
 
+		$this->prefixBreadcrumb = Post::TYPE_NEWS;
+
 		$models = Post::where('category_id', $category->id)->where('is_active', CConstant::STATE_ACTIVE)->paginate(5);
+
+		$this->getBreadcrumb();
 
 		return view('website.home.category', compact('models'));
 
@@ -113,9 +147,17 @@ class HomeController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function showPost($slug) {
-		$id    = substr($slug, strpos($slug, '--'));
-		$slug  = str_replace($id, '', $slug);
+		$id   = substr($slug, strpos($slug, '--'));
+		$slug = str_replace($id, '', $slug);
+		/** @var Post $model */
 		$model = Post::findBySlug($slug);
+
+		$this->pathInfoBreadcrumb = $model->title;
+		$this->prefixBreadcrumb   = $model->type;
+		$this->getBreadcrumb();
+		if ($model->type == Post::TYPE_QUESTION) {
+			return view('website.home.question-answer-detail', compact('model'));
+		}
 
 		return view('website.home.post', compact('model'));
 	}

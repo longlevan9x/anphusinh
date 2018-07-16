@@ -20,7 +20,6 @@ class Product extends Model
 {
 	use ModelTrait;
 	use ModelUploadTrait;
-	use ModelMethodTrait;
 	const POST_TYPE_DETAIL = 'detail';
 
 	protected $fillable = [

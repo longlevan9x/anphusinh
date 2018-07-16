@@ -31,7 +31,7 @@ trait ModelTrait
 {
 	use Sluggable;
 	use SluggableScopeHelpers;
-
+	use ModelMethodTrait;
 	public function getSlugKeyName() {
 		return 'slug';
 	}

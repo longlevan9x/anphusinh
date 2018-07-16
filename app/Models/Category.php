@@ -21,7 +21,6 @@ class Category extends Model
 {
 	use ModelTrait;
 	use ModelUploadTrait;
-	use ModelMethodTrait;
 	const TYPE_CATEGORY = 'category';
 	const TYPE_AREA     = 'area';
 	const TYPE_CITY     = 'city';

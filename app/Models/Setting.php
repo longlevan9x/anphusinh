@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Commons\Facade\CFile;
+use App\Models\Traits\ModelTrait;
+use App\Models\Traits\ModelUploadTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -20,9 +23,12 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property string $format_date
  * @property string $format_datetime
  * @property string $blog_charset
+ * @property mixed  value
  */
 class Setting extends Model
 {
+	use ModelTrait;
+	use ModelUploadTrait;
 	use InsertOnDuplicateKey;
 	const KEY_WEBSITE_NAME        = 'website_name';
 	const KEY_WEBSITE_DESCRIPTION = 'website_description';
@@ -32,12 +38,17 @@ class Setting extends Model
 	const KEY_FORMAT_DATE         = 'format_date';
 	const KEY_FORMAT_DATETIME     = 'format_datetime';
 	const KEY_BLOG_CHARSET        = 'blog_charset';
+	const KEY_LOGO                = 'logo';
 
 	/**
 	 * @var array
 	 */
 	protected $fillable = ['key', 'value', 'is_active'];
 
+	/**
+	 * @var string
+	 */
+	public $logo = '';
 	/**
 	 * @var string
 	 */
@@ -118,6 +129,20 @@ class Setting extends Model
 	/**
 	 * @return string
 	 */
+	public function getLogo(): string {
+		return $this->logo;
+	}
+
+	/**
+	 * @param string $logo
+	 */
+	public function setLogo(string $logo): void {
+		$this->logo = $logo;
+	}
+
+	/**
+	 * @return string
+	 */
 	public function getWebsiteDescription(): string {
 		return $this->website_description;
 	}
@@ -175,8 +200,8 @@ class Setting extends Model
 	 * @return \Illuminate\Database\Eloquent\Collection|static[]
 	 */
 	public function loadModel() {
-		if (Session::has('setting')) {
-			return Session::get('setting');
+		if (Session::has('settings')) {
+			return Session::get('settings');
 		}
 
 		$models = Setting::all();
@@ -188,7 +213,7 @@ class Setting extends Model
 			$this->{$key} = $value;
 		});
 
-		Session::put('setting', $this);
+		Session::put('settings', $this);
 
 		return $models;
 	}
@@ -199,9 +224,9 @@ class Setting extends Model
 	 * @throws \Exception
 	 */
 	public function getValue($key) {
-		if (Session::has('setting')) {
+		if (Session::has('settings')) {
 			/** @var Setting $models */
-			$models    = Session::get('setting');
+			$models    = Session::get('settings');
 			$attribute = key_exists($key, $models);
 			if (isset($attribute) && !empty($attribute)) {
 				return $models->{$key};
@@ -219,11 +244,11 @@ class Setting extends Model
 	}
 
 	public static function getModel() {
-		if (!Session::has('setting')) {
-			(new static)->loadModel();
+		if (!Session::has('settings')) {
+			return (new static)->loadModel();
 		}
 
-		return Session::get('setting');
+		return Session::get('settings');
 	}
 
 	public function setModel(Request $request) {
@@ -233,6 +258,7 @@ class Setting extends Model
 		$this->format_date         = $request->get(self::KEY_FORMAT_DATE);
 		$this->format_time         = $request->get(self::KEY_FORMAT_TIME);
 		$this->format_datetime     = $request->get(self::KEY_FORMAT_DATETIME);
+		$this->logo                = $request->get(self::KEY_LOGO);
 	}
 
 	public function save(
@@ -242,20 +268,31 @@ class Setting extends Model
 			self::KEY_LANG_DEFAULT,
 			self::KEY_FORMAT_TIME,
 			self::KEY_FORMAT_DATE,
-			self::KEY_FORMAT_DATETIME
+			self::KEY_FORMAT_DATETIME,
+			self::KEY_LOGO
 		]
 	) {
 		$data = [];
 		foreach ($options as $index => $option) {
-			$data[] = [
-				'key'        => $option,
-				'value'      => $this->{$option},
-				'is_active'  => 1,
-				'created_at' => Carbon::now(),
-				'updated_at' => Carbon::now()
-			];
+			if ($option == self::KEY_LOGO) {
+				$data[] = [
+					'key'        => $option,
+					'value'      => CFile::upload(self::KEY_LOGO, $this->getTable()),
+					'is_active'  => 1,
+					'created_at' => Carbon::now(),
+					'updated_at' => Carbon::now()
+				];
+			} else {
+				$data[] = [
+					'key'        => $option,
+					'value'      => $this->{$option},
+					'is_active'  => 1,
+					'created_at' => Carbon::now(),
+					'updated_at' => Carbon::now()
+				];
+			}
 		}
-
+		Session::remove('settings');
 		Setting::insertOnDuplicateKey($data, ['value', 'updated_at']);
 	}
 }

@@ -16,6 +16,5 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class ProductMeta extends Model
 {
-	use ModelMethodTrait;
 	protected $fillable = ['product_id', 'key', 'value'];
 }

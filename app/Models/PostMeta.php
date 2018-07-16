@@ -17,7 +17,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PostMeta extends Model
 {
-	use ModelMethodTrait;
+	use ModelTrait;
 	use ModelUploadTrait;
 	protected $fillable = ['post_id', 'key', 'value'];
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function post() {
+		return $this->belongsTo(Post::class, 'post_id', 'id');
+	}
 }

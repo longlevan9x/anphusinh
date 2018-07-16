@@ -20,5 +20,6 @@ return [
 	'Hour:Minutes'                       => "Giờ:Phút",
 	'Hour:Minutes:Second'                => "Giờ:Phút:Giây",
 	'Year-Month-Day'                     => "Năm-Tháng-Ngày",
-	'Day-Month-Year'                     => "Ngày-Tháng-Năm"
+	'Day-Month-Year'                     => "Ngày-Tháng-Năm",
+	'logo'                               => "Logo"
 ];

@@ -96,7 +96,7 @@ trait ModelUploadTrait
 			}
 		}
 
-		$key_upload_image = $this->key_image_upload;
+		$key_upload_image = $this->getKeyImageUpload();
 
 		if (!empty($key_upload_image)) {
 			if (is_string($key_upload_image)) {

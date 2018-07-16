@@ -1,76 +1,128 @@
+@php
+    /** @var \App\Models\Post $item */
+@endphp
+<style>
+    .widget .sb_body {
+        /*border: 1px solid #2155A4;*/
+    }
+
+    .widget .video-list {
+        /*background-color: #ebebeb;*/
+        padding: 5px 0px;
+    }
+
+    .widget .video-list ul {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+
+    .widget .video-list ul li {
+        border-bottom: 1px solid #bababa;
+    }
+
+    .widget .video-list ul li::before {
+        font-size: 20px;
+        line-height: 24px;
+        content: "‣";
+        color: #b0b0b0;
+    }
+
+    .widget .video-list ul li a {
+        line-height: 24px;
+        padding-left: 5px;
+        color: #1464a1;
+        font-style: italic;
+    }
+
+    aside h3.bottom20 {
+        text-align: center;
+        background: #4587d9;
+        padding: 8px 0;
+        border-radius: 10px 10px 0 0;
+        text-transform: uppercase;
+        color: #fff;
+    }
+
+    .w-100 {
+        width: 100% !important;
+    }
+
+    .p-2 {
+        padding: 0.5rem 0.5rem !important;
+    }
+</style>
 <aside class="col-sm-4 wow fadeIn" data-wow-delay="400ms">
     <div class="widget heading_space">
-        <h3 class="bottom20">Featured Courses</h3>
-        <div class="media">
-            <a class="media-left" href="#."><img src="images/post1.png" alt="post"></a>
-            <div class="media-body">
-                <h5 class="bottom5">Basic Time Management Course</h5>
-                <a href="#." class="btn-primary border_radius bottom5">free</a>
-                <form class="star_rating">
-                    <div class="stars">
-                        <input type="radio" name="star" class="star-1" id="star-01" />
-                        <label class="star-1" for="star-1">1</label>
-                        <input type="radio" name="star" class="star-2" id="star-02" />
-                        <label class="star-2" for="star-2">2</label>
-                        <input type="radio" name="star" class="star-3" id="star-03" />
-                        <label class="star-3" for="star-3">3</label>
-                        <input type="radio" name="star" class="star-4" id="star-04" />
-                        <label class="star-4" for="star-4">4</label>
-                        <input type="radio" name="star" class="star-5" id="star-05" checked />
-                        <label class="star-5" for="star-5">5</label>
-                        <span></span>
-                    </div>
-                </form>
-                <span class="name">Michael Windzor</span>
+        <h3 class="bottom20">@lang('admin/menu.share experience')</h3>
+        @forelse($share_experience as $item)
+            <div class="media">
+                <a class="media-left" style="width: 35%;" href="#."><img style="width: 100%;" src="{{$item->getImagePath()}}" alt="post"></a>
+                <div class="media-body">
+                    <h5 class="bottom5">{{$item->title}}</h5>
+                    <a href="#." class="btn-primary btn btn-sm border_radius bottom5">@lang('website.read more')</a>
+                </div>
             </div>
-        </div>
-        <div class="media">
-            <a class="media-left" href="#."><img src="images/post1.png" alt="post"></a>
-            <div class="media-body">
-                <h5 class="bottom5">Basic Time Management Course</h5>
-                <a href="#." class="btn-primary border_radius bottom5">free</a>
-                <form class="star_rating">
-                    <div class="stars">
-                        <input type="radio" name="star" class="star-1" id="star-1" />
-                        <label class="star-1" for="star-1">1</label>
-                        <input type="radio" name="star" class="star-2" id="star-2" />
-                        <label class="star-2" for="star-2">2</label>
-                        <input type="radio" name="star" class="star-3" id="star-3" />
-                        <label class="star-3" for="star-3">3</label>
-                        <input type="radio" name="star" class="star-4" id="star-4" checked />
-                        <label class="star-4" for="star-4">4</label>
-                        <input type="radio" name="star" class="star-5" id="star-5" />
-                        <label class="star-5" for="star-5">5</label>
-                        <span></span>
-                    </div>
-                </form>
-                <span class="name">Michael Windzor</span>
-            </div>
-        </div>
-        <div class="media">
-            <a class="media-left" href="#."><img src="images/post1.png" alt="post"></a>
-            <div class="media-body">
-                <h5 class="bottom5">Basic Time Management Course</h5>
-                <a href="#." class="btn-primary border_radius bottom5">free</a>
-                <form class="star_rating">
-                    <div class="stars">
-                        <input type="radio" name="star" class="star-1" id="star-21" />
-                        <label class="star-1" for="star-1">1</label>
-                        <input type="radio" name="star" class="star-2" id="star-22" />
-                        <label class="star-2" for="star-2">2</label>
-                        <input type="radio" name="star" class="star-3" id="star-23" />
-                        <label class="star-3" for="star-3">3</label>
-                        <input type="radio" name="star" class="star-4" id="star-24" checked />
-                        <label class="star-4" for="star-4">4</label>
-                        <input type="radio" name="star" class="star-5" id="star-25" />
-                        <label class="star-5" for="star-5">5</label>
-                        <span></span>
-                    </div>
-                </form>
-                <span class="name">Michael Windzor</span>
-            </div>
-        </div>
+        @empty
+        @endforelse
     </div>
+    @if(!empty($advice_expert))
+        <div class="widget heading_space">
+            <h3 class="bottom20">@lang('admin/menu.expert advice')</h3>
+
+            <div class="sb_body">
+                <div class="embed-responsive embed-responsive-16by9" style="margin-top: -20px;">
+                    <iframe width="560" height="315" src="{{$item->image}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+                <div class="video-list">
+                    <ul>
+                        @forelse($advice_expert as $item)
+                            <li>
+                                <a href="{{$item->getSlugAndId()}}">{{$item->title}}</a>
+                            </li>
+                        @empty
+                        @endforelse
+                    </ul>
+                </div>
+            </div>
+        </div>
+    @endif
+    @if(request()->getPathInfo() == 'hoi-dap')
+        <div class="widget heading_space" style="border: 1px solid #4587d9;border-radius: 10px 10px 0 0;">
+            <h3 class="bottom20">@lang('website.expert consultants')</h3>
+            <div class="sb_body">
+                <img src="http://bottamnhanhung.vn/assets/uploads/thumbs/anh-bac-si-tu-van_9835306.png" class="w-100">
+                {{Form::open([
+                    'url' => '',
+                    'style' => '    padding: 15px;text-align:center'
+                ])}}
+                <div class="form-group">
+                    {{Form::text('name', $value = null, ['class' => 'form-control', 'placeholder' => __('admin/common.name')])}}
+                </div>
+                <div class="form-group">
+                    {{Form::text('phone', $value = null, ['class' => 'form-control', 'placeholder' => __('admin/common.phone')])}}
+                </div>
+                <div class="form-group">
+                    {{Form::textarea('question', $value = null, ['class' => 'form-control', 'rows' => 2, 'placeholder' => __('Câu hỏi')])}}
+                </div>
+                <div class="form-group">
+                    {{Form::textarea('content', $value = null, ['class' => 'form-control', 'rows' => 2, 'placeholder' => __('Nội dung câu hỏi')])}}
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="col-md-6">
+                    @include('admin.layouts.widget.button.button', ['name' => 'ask_submit', 'btn_size' => 'md', 'btn_type' => "primary", 'text' => __('website.ask_submit'), 'options' => ['class' => "btn-block"]])
+                </div>
+                <div class="col-md-6">
+                    @include('admin.layouts.widget.button.button', ['btn_type' => "default", 'btn_size' => 'md', 'text' => __('admin.cancelButton'), 'type' => "reset", 'options' => ['class' => "btn-block"]])
+                </div>
+
+                <div class="clearfix"></div>
+
+                {{Form::close()}}
+            </div>
+        </div>
+    @endif
     <div class="widget">
         <div class="fb-page" data-href="https://www.facebook.com/chuyencuaem.page/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
             <blockquote cite="https://www.facebook.com/chuyencuaem.page/" class="fb-xfbml-parse-ignore">

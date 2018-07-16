@@ -38,14 +38,18 @@ class Post extends Model
 
 	const TYPE_POST     = 'post';
 	const TYPE_NEWS     = 'news';
+	const TYPE_SHARE    = 'share';
 	const TYPE_QUESTION = 'question';
 	const TYPE_ADVICE   = 'advice';
 	const TYPE_SLIDE    = 'slide';
+	const TYPE_EXPERT   = 'expert';
 	public static $TYPE_NEWS     = self::TYPE_NEWS;
+	public static $TYPE_SHARE    = self::TYPE_SHARE;
 	public static $TYPE_POST     = self::TYPE_POST;
 	public static $TYPE_QUESTION = self::TYPE_QUESTION;
 	public static $TYPE_ADVICE   = self::TYPE_ADVICE;
 	public static $TYPE_SLIDE    = self::TYPE_SLIDE;
+	public static $TYPE_EXPERT   = self::TYPE_EXPERT;
 
 	protected $fillable = [
 		'author_id',
@@ -94,7 +98,7 @@ class Post extends Model
 	 * @return Builder
 	 */
 	public static function whereType($type = self::TYPE_POST) {
-		return Post::where('type', $type);
+		return self::where('type', $type);
 	}
 
 	/**
@@ -109,9 +113,10 @@ class Post extends Model
 	 */
 	public function beforeSave() {
 		$this->parsePostTime();
-		if ($this->getType() == self::TYPE_NEWS) {
-			$this->path   = 'post/news';
-			$this->folder = $this->path;
+		if (in_array($this->getType(), [self::TYPE_NEWS, self::TYPE_SLIDE, self::TYPE_SHARE, self::TYPE_ADVICE, self::TYPE_EXPERT])) {
+			$this->path = "post/" . $this->getType();
+
+			return $this->folder = $this->path;
 		}
 
 		return true;
@@ -121,16 +126,22 @@ class Post extends Model
 	 * @return mixed|string
 	 */
 	public function folder() {
-		if ($this->getType() == self::TYPE_NEWS) {
-			$this->path = "post/" . self::TYPE_NEWS;
+		//		if ($this->getType() == self::TYPE_NEWS) {
+		//			$this->path = "post/" . self::TYPE_NEWS;
+		//
+		//			return $this->folder = $this->path;
+		//		} elseif ($this->getType() == self::TYPE_ADVICE) {
+		//			$this->path = "post/" . self::TYPE_ADVICE;
+		//
+		//			return $this->folder = $this->path;
+		//		} elseif ($this->getType() == self::TYPE_SLIDE) {
+		//			$this->path = "post/" . self::$TYPE_SLIDE;
+		//
+		//			return $this->folder = $this->path;
+		//		}
 
-			return $this->folder = $this->path;
-		} elseif ($this->getType() == self::TYPE_ADVICE) {
-			$this->path = "post/" . self::TYPE_ADVICE;
-
-			return $this->folder = $this->path;
-		} elseif ($this->getType() == self::TYPE_SLIDE) {
-			$this->path = "post/" . self::$TYPE_SLIDE;
+		if (in_array($this->getType(), [self::TYPE_NEWS, self::TYPE_SLIDE, self::TYPE_SHARE, self::TYPE_ADVICE, self::TYPE_EXPERT])) {
+			$this->path = "post/" . $this->getType();
 
 			return $this->folder = $this->path;
 		}
@@ -215,7 +226,7 @@ class Post extends Model
 	}
 
 	public static function pluckWithType($column, $key = null, $type = '') {
-		$post = Post::where('type', $type)->pluck($column, $key);
+		$post = self::where('type', $type)->pluck($column, $key);
 		/** @var Collection $post */
 		$post->put(0, __('admin.select') . " " . __("admin.$type"));
 		$post = $post->toArray();

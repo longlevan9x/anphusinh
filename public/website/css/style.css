@@ -166,7 +166,7 @@ body {
     line-height: 1.5em;
     font-size: 1em;
     overflow-x: hidden;
-    font-family: 'Source Sans Pro';
+    /*font-family: 'Source Sans Pro';*/
 }
 
 body, html {
@@ -291,7 +291,8 @@ p {
 
 .padding {
     padding-bottom: 90px;
-    padding-top: 90px;
+    /*padding-top: 90px;*/
+    padding-top: 140px;
 }
 
 .padding-top {
@@ -1211,7 +1212,7 @@ nav.navbar.bootsnav.sticked .navbar-brand img, nav.navbar.bootsnav.navbar-fixed 
 }
 
 nav.navbar.bootsnav ul.nav > li {
-    margin: 0 20px;
+    margin: 0 12px;
 }
 
 nav.navbar.bootsnav ul.nav > li > a {
@@ -2330,8 +2331,8 @@ body.pushmenu-push-toright .wrap-sticky nav.navbar.bootsnav.sticked {
 
 .widget .media {
     border-bottom: 1px solid #d5d5d5;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+    padding-bottom: 5px;
+    /*margin-bottom: 20px;*/
 }
 
 .widget .media h5 {
