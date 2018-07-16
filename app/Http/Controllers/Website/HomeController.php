@@ -62,19 +62,31 @@ class HomeController extends Controller
 		return view('website.home.question-answer', compact('models'));
 	}
 
-	/**
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-	 */
-	public function showNews() {
-		$models = Post::whereType(Post::TYPE_NEWS)->where('is_active', CConstant::STATE_ACTIVE)->paginate(5);
+	public function showCategory($type) {
+		$models = Post::whereType($type)->where('is_active', CConstant::STATE_ACTIVE)->paginate(5);
 
 		return view('website.home.category', compact('models'));
 	}
 
-	public function showExpert() {
-		$models = Post::whereType(Post::TYPE_EXPERT)->where('is_active', CConstant::STATE_ACTIVE)->paginate(5);
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function showNews() {
+		return $this->showCategory(Post::TYPE_NEWS);
+	}
 
-		return view('website.home.category', compact('models'));
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function showExpert() {
+		return $this->showCategory(Post::TYPE_EXPERT);
+	}
+
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function showShare() {
+		return $this->showCategory(Post::TYPE_SHARE);
 	}
 
 	/**
