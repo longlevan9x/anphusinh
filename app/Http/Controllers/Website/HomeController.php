@@ -172,10 +172,20 @@ class HomeController extends Controller
 
 		$this->pathInfoBreadcrumb = $model->title;
 		$this->prefixBreadcrumb   = $model->type;
-		$this->getBreadcrumb();
+
+
 		if ($model->type == Post::TYPE_QUESTION) {
+			$this->prefixBreadcrumb = 'hoi-dap';
+			$this->getBreadcrumb();
+
 			return view('website.home.question-answer-detail', compact('model'));
+		} elseif ($model->type == Post::TYPE_ADVICE) {
+			$this->prefixBreadcrumb = '';
+			$this->getBreadcrumb();
+
+			return view('website.home.advice', compact('model'));
 		}
+		$this->getBreadcrumb();
 
 		return view('website.home.post', compact('model'));
 	}

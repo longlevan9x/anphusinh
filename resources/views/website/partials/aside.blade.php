@@ -67,12 +67,22 @@
         @endforelse
     </div>
     @if(!empty($advice_expert))
+        @php
+            $urlVideo = $item->image;
+            if (\Illuminate\Support\Str::startsWith($urlVideo, 'https://www.youtube.com/')) {
+                $urlVideo = substr($urlVideo, strpos($urlVideo, '='));
+                $listUrl = explode("=", $urlVideo);
+                if (count($listUrl) > 1) {
+                    $urlVideo = $listUrl[1];
+                }
+            }
+        @endphp
         <div class="widget heading_space">
             <h3 class="bottom20">@lang('admin/menu.expert advice')</h3>
 
             <div class="sb_body">
                 <div class="embed-responsive embed-responsive-16by9" style="margin-top: -20px;">
-                    <iframe width="560" height="315" src="{{$item->image}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$urlVideo}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 </div>
                 <div class="video-list">
                     <ul>
