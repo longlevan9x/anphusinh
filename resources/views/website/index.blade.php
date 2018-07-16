@@ -6,8 +6,25 @@
 @include('website.partials.script')
 @include('website.partials.header')
 <body>
+<style>
+    #icon_order_fix {
+        position: fixed;
+        top: 40%;
+        z-index: 100000;
+        right: 0px;
+    }
+    #icon_order_fix img {
+        width: 80px;
+        height: auto;
+    }
+</style>
+<a class="hidden-sm-down" id="icon_order_fix" href="{{url('dat-hang')}}">
+    <img src="{{asset_uploads('www/icon-cart.png')}}">
+</a>
+
 <div id="fb-root"></div>
-<script>(function (d, s, id) {
+<script>
+    (function (d, s, id) {
         var js,
             fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
@@ -15,7 +32,8 @@
         js.id  = id;
         js.src = "https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.0&appId=393413527780669&autoLogAppEvents=1";
         fjs.parentNode.insertBefore(js, fjs);
-    }(document, "script", "facebook-jssdk"));</script>
+    }(document, "script", "facebook-jssdk"));
+</script>
 @include('website.partials.topbar')
 @include('website.partials.menu')
 <!-- page content -->
@@ -25,18 +43,18 @@
 @else
     <!--Page Header-->
     {{--<section class="page_header padding-top">--}}
-        {{--<div class="container">--}}
-            {{--<div class="row">--}}
-                {{--<div class="col-md-12 page-content">--}}
-                    {{--<h1>Student Courses</h1>--}}
-                    {{--<p>We offer the most complete house renovating services in the country</p>--}}
-                    {{--<div class="page_nav">--}}
-                        {{--<span>You are here:</span> <a href="index.html">Home</a>--}}
-                        {{--<span><i class="fa fa-angle-double-right"></i>Courses</span>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
+    {{--<div class="container">--}}
+    {{--<div class="row">--}}
+    {{--<div class="col-md-12 page-content">--}}
+    {{--<h1>Student Courses</h1>--}}
+    {{--<p>We offer the most complete house renovating services in the country</p>--}}
+    {{--<div class="page_nav">--}}
+    {{--<span>You are here:</span> <a href="index.html">Home</a>--}}
+    {{--<span><i class="fa fa-angle-double-right"></i>Courses</span>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
     {{--</section>--}}
     <!--Page Header-->
     <section id="event_detail" class="padding">

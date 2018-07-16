@@ -28,5 +28,8 @@ return [
 	'ask_submit'         => 'Gửi thắc mắc',
 	'hoi-dap'            => "Hỏi đáp",
 	'question'           => "Hỏi đáp",
+	'expert-share'       => "Chuyên gia chia sẻ",
+	'about-us'           => "Về chúng tôi",
+	'quick-link'         => 'Liên kết nhanh'
 
 ];
