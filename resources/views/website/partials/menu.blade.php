@@ -8,8 +8,8 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="{{url('/')}}">
-                    <img src="{{asset_website('images/logo.png')}}" alt="logo" class="logo logo-display">
-                    <img src="{{asset_website('images/logo.png')}}" class="logo logo-scrolled" alt="">
+                    <img src="{{\App\Commons\Facade\CFile::getImageUrl('settings', setting(KEY_LOGO))}}" alt="logo" class="logo logo-display">
+                    <img src="{{\App\Commons\Facade\CFile::getImageUrl('settings', setting(KEY_LOGO))}}" class="logo logo-scrolled" alt="">
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-menu">

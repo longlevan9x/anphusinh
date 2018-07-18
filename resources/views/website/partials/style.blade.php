@@ -11,11 +11,11 @@
     <link rel="stylesheet" type="text/css" href="{{asset_website_css('style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset_website_css('loader.css')}}">
 
-    <link rel="icon" href="{{asset_website('images/favicon.png')}}">
+    <link rel="icon" href="{{\App\Commons\Facade\CFile::getImageUrl('settings', setting(KEY_LOGO))}}">
 
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
         .pagination .current_page {
@@ -45,6 +45,7 @@
         .product_tab {
             padding-top: 20px;
         }
+
         /*Product page*/
     </style>
 @endpush

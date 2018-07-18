@@ -12,6 +12,7 @@ if (!function_exists('setting')) {
 	define('KEY_FORMAT_DATE', 'format_date');
 	define('KEY_FORMAT_DATETIME', 'format_datetime');
 	define('KEY_BLOG_CHARSET', 'blog_charset');
+	define('KEY_LOGO', 'logo');
 
 	/**
 	 * @param string $key
