@@ -13,6 +13,7 @@
         z-index: 100000;
         right: 0px;
     }
+
     #icon_order_fix img {
         width: 80px;
         height: auto;
@@ -38,40 +39,49 @@
 @include('website.partials.menu')
 <!-- page content -->
 <!-- EVENTS -->
-@if($current_method == 'index')
-    @yield('content')
+@php
+    /** @var \Symfony\Component\HttpKernel\Exception\NotFoundHttpException $exception */
+@endphp
+
+@if(isset($exception) && !empty($exception) && $exception->getStatusCode() != 200)
+    @yield('error')
 @else
-    <!--Page Header-->
-    {{--<section class="page_header padding-top">--}}
-    {{--<div class="container">--}}
-    {{--<div class="row">--}}
-    {{--<div class="col-md-12 page-content">--}}
-    {{--<h1>Student Courses</h1>--}}
-    {{--<p>We offer the most complete house renovating services in the country</p>--}}
-    {{--<div class="page_nav">--}}
-    {{--<span>You are here:</span> <a href="index.html">Home</a>--}}
-    {{--<span><i class="fa fa-angle-double-right"></i>Courses</span>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</section>--}}
-    <!--Page Header-->
-    <section id="event_detail" class="padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8 event wow fadeIn" data-wow-delay="500ms">
-                    @include('website.partials.breadcrumb')
-                    @yield('content')
-                    <div class="col-md-12">
-                        <div class="fb-comments" data-width="100%" data-href="{{url()->current()}}" data-numposts="5"></div>
+    @if($current_method == 'index')
+        @yield('content')
+    @else
+        <!--Page Header-->
+        {{--<section class="page_header padding-top">--}}
+        {{--<div class="container">--}}
+        {{--<div class="row">--}}
+        {{--<div class="col-md-12 page-content">--}}
+        {{--<h1>Student Courses</h1>--}}
+        {{--<p>We offer the most complete house renovating services in the country</p>--}}
+        {{--<div class="page_nav">--}}
+        {{--<span>You are here:</span> <a href="index.html">Home</a>--}}
+        {{--<span><i class="fa fa-angle-double-right"></i>Courses</span>--}}
+        {{--</div>--}}
+        {{--</div>--}}
+        {{--</div>--}}
+        {{--</div>--}}
+        {{--</section>--}}
+        <!--Page Header-->
+        <section id="event_detail" class="padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 event wow fadeIn" data-wow-delay="200ms">
+                        @include('website.partials.breadcrumb')
+                        @yield('content')
+                        <div class="col-md-12">
+                            <div class="fb-comments" data-width="100%" data-href="{{url()->current()}}" data-numposts="5"></div>
+                        </div>
                     </div>
+                    @include('website.partials.aside')
                 </div>
-                @include('website.partials.aside')
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 @endif
+
 <!-- EVENTS ends -->
 <!-- /page content -->
 

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer is_active
  * @property int     author_id
  * @property int     id
+ * @property int     price
  */
 class Product extends Model
 {

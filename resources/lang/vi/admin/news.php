@@ -12,5 +12,6 @@ return [
 	'publish date'   => "Ngày đăng",
 	'content'        => "Nội dung",
 	'slug'           => 'Đường dẫn',
-	'setting banner' => "Cài đặt quảng cáo"
+	'setting banner' => "Cài đặt quảng cáo",
+	'content-banner' => "Nội dung quảng cáo"
 ];

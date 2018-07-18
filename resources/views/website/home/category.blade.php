@@ -5,12 +5,12 @@
         /** @var \Illuminate\Pagination\LengthAwarePaginator $models */
     @endphp
     @forelse($models as  $model)
-        <article class="blog_item heading_space wow fadeInLeft" data-wow-delay="300ms">
+        <article class="blog_item bottom5 wow fadeInLeft" data-wow-delay="300ms">
             <div class="row">
-                <div class="col-md-5 col-sm-5 heading_space">
+                <div class="col-md-4 col-sm-4 bottom15">
                     <div class="image"><img src="{{$model->getImagePath()}}" alt="blog" class="border_radius"></div>
                 </div>
-                <div class="col-md-7 col-sm-7 heading_space">
+                <div class="col-md-8 col-sm-8 bottom15">
                     <h3>{{$model->title}}</h3>
                     {{--<ul class="comment margin10">--}}
                     {{--<li><a href="#.">May 10, 2016</a></li>--}}

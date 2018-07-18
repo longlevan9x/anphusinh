@@ -104,25 +104,36 @@ class NewsController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function showBanner() {
-		$model = PostMeta::where('key', 'is_banner')->first();
+		$model   = PostMeta::getValue(PostMeta::KEY_IS_BANNER);
+		$content = PostMeta::getValue(PostMeta::KEY_BANNER_CONTENT);
+		if (isset($model)) {
+			if (isset($content)) {
+				$model->setAttribute('content', $content->value);
+			}
+		}
 
 		return view('admin.news.banner', compact('model'));
 	}
 
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+	 */
 	public function doBanner(Request $request) {
+
 		$old_image = '';
 		/** @var PostMeta $post */
-		$post = PostMeta::where('key', 'is_banner')->first();
+		$post = PostMeta::where('key', PostMeta::KEY_IS_BANNER)->first();
 		if (isset($post) && !empty($post)) {
 			$old_image = $post->value;
-		} else {
-			$post = new PostMeta;
 		}
-		/** @var PostMeta $request */
-		$post->post_id = $request->post_id;
-		$post->key     = 'is_banner';
-		$post->value   = CFile::upload('image', 'post_meta', $old_image);
-		$post->save();
+
+		$value = CFile::upload('value', PostMeta::table(), $old_image);
+
+
+		PostMeta::updateOrCreateKeyValue($request->post_id, PostMeta::KEY_IS_BANNER, $value);
+		PostMeta::updateOrCreateKeyValue($request->post_id, PostMeta::KEY_BANNER_CONTENT, $request->content);
+
 		return redirect(url_admin('news/banner'));
 	}
 }

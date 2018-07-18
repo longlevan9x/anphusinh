@@ -41,14 +41,13 @@ class Handler extends ExceptionHandler
         parent::report($exception);
     }
 
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
-     */
-    public function render($request, Exception $exception)
+	/**
+	 * Render an exception into an HTTP response.
+	 * @param  \Illuminate\Http\Request $request
+	 * @param  \Exception               $exception
+	 * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+	 */
+	public function render($request, Exception $exception)
     {
 	    if ($request->acceptsJson() && $request->wantsJson()) {
 	    	if(strpos($exception->getMessage(), 'No query results for model') !== false) {

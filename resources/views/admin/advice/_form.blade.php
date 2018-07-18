@@ -21,15 +21,18 @@
                 ]) }}
 
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">@lang('admin/common.title')<span class="required">*</span></label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">@lang('admin/common.title')
+                        <span class="required">*</span>
+                    </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         {!! Form::text('title', $value = null,['required' => "required", 'class' => 'form-control col-md-7 col-xs-12', 'id' => 'title']) !!}
                     </div>
                 </div>
+                @include('admin.layouts.widget.form.image-col-6')
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="overview">@lang('Video')</label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        {!! Form::text('overview', $value = null,['placeholder' => __('admin/advice.enter your url'), 'required' => "required", 'class' => 'form-control col-md-7 col-xs-12', 'id' => 'overview']) !!}
+                        {!! Form::text('overview', $value = null,['placeholder' => __('admin/advice.enter your url'), 'class' => 'form-control col-md-7 col-xs-12', 'id' => 'overview']) !!}
                     </div>
                 </div>
                 <div class="form-group">

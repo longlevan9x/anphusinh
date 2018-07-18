@@ -16,7 +16,13 @@
     <script src="{{asset_website_js('revolution.extension.video.min.js')}}"></script>
     <script src="{{asset_website_js('wow.min.js')}}"></script>
     <script src="{{asset_website_js('functions.js')}}"></script>
+    <script src="{{asset_website_js('website.js')}}"></script>
     <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name=\"csrf-token\"]").attr("content")
+            }
+        });
         // set tab page product
         $(document).ready(function () {
             //scroll button
@@ -27,7 +33,7 @@
                         if ($(this).parent("li")) {
                             $("li").removeClass("active");
                             $("li a").removeClass("active");
-                            $(this).addClass('active');
+                            $(this).addClass("active");
                         }
 
                         // return false;

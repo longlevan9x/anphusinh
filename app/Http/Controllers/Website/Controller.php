@@ -107,7 +107,7 @@ class Controller extends \App\Http\Controllers\Controller
 
 	public function getBannerBottomLeft() {
 		/** @var PostMeta $model */
-		$model = PostMeta::where('key', 'is_banner')->first();
+		$model = PostMeta::where('key', PostMeta::KEY_IS_BANNER)->first();
 
 		$post = $model->post()->first();
 
@@ -140,6 +140,10 @@ class Controller extends \App\Http\Controllers\Controller
 			$prefix = $this->prefixBreadcrumb;
 			if ($this->prefixBreadcrumb == Post::TYPE_NEWS) {
 				$prefix = 'tin-tuc';
+			}
+
+			if ($this->prefixBreadcrumb == Post::TYPE_EXPERT) {
+				$prefix = 'chuyen-gia';
 			}
 
 			if (!empty($this->pathInfoBreadcrumb)) {

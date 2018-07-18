@@ -44,3 +44,13 @@
     </div>
 </div>
 <!--FOOTER ends-->
+<script lang="javascript">var _vc_data = {id: 5780231, secret: "310bdbc353d4f5f942dc9b8dee1508b8"};
+    (function () {
+        var ga   = document.createElement("script");
+        ga.type  = "text/javascript";
+        ga.async = true;
+        ga.defer = true;
+        ga.src   = "//live.vnpgroup.net/client/tracking.js?id=5780231";
+        var s    = document.getElementsByTagName("script");
+        s[0].parentNode.insertBefore(ga, s[0]);
+    })();</script>

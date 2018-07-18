@@ -10,12 +10,12 @@
             $urlDelete = isset($model) ? $model->getUrlDeleteImage($name ?? 'image') : '';
         }
     }
-    elseif(isset($imagePath) && !empty($imagePath)) {
+    if(isset($imagePath) && !empty($imagePath)) {
         $imagePreview = $imagePath;
     }
-    else {
+    //else {
         //$imagePreview = \App\Commons\Facade\CFile::getImageUrl('www', '');
-    }
+    //}
 @endphp
 <div class="form-group row">
     <label for="{{$id ?? 'image'}}" class="col-xs-2 col-form-label">{{$label ?? __('admin/common.image')}}</label>

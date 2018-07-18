@@ -1082,8 +1082,8 @@ ul.comment li a > i {
     font-size: 25px;
     position: fixed;
     z-index: 1000;
-    bottom: 16px;
-    right: 40px;
+    bottom: 80px;
+    right: 23px;
     display: none;
     background: #ffb600;
 }

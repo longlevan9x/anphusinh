@@ -36,13 +36,14 @@ class Post extends Model
 	use ModelTrait;
 	use ModelUploadTrait;
 
-	const TYPE_POST     = 'post';
-	const TYPE_NEWS     = 'news';
-	const TYPE_SHARE    = 'share';
-	const TYPE_QUESTION = 'question';
-	const TYPE_ADVICE   = 'advice';
-	const TYPE_SLIDE    = 'slide';
-	const TYPE_EXPERT   = 'expert';
+	const TYPE_POST      = 'post';
+	const TYPE_NEWS      = 'news';
+	const TYPE_SHARE     = 'share';
+	const TYPE_QUESTION  = 'question';
+	const TYPE_ADVICE    = 'advice';
+	const TYPE_SLIDE     = 'slide';
+	const TYPE_EXPERT    = 'expert';
+	const TYPE_SUBSCRIBE = 'subscribe';
 	public static $TYPE_NEWS     = self::TYPE_NEWS;
 	public static $TYPE_SHARE    = self::TYPE_SHARE;
 	public static $TYPE_POST     = self::TYPE_POST;
@@ -113,7 +114,14 @@ class Post extends Model
 	 */
 	public function beforeSave() {
 		$this->parsePostTime();
-		if (in_array($this->getType(), [self::TYPE_NEWS, self::TYPE_SLIDE, self::TYPE_SHARE, self::TYPE_ADVICE, self::TYPE_EXPERT])) {
+		if (
+		in_array($this->getType(), [
+			self::TYPE_NEWS,
+			self::TYPE_SLIDE,
+			self::TYPE_SHARE,
+			self::TYPE_ADVICE,
+			self::TYPE_EXPERT
+		])) {
 			$this->path = "post/" . $this->getType();
 
 			return $this->folder = $this->path;
@@ -140,7 +148,14 @@ class Post extends Model
 		//			return $this->folder = $this->path;
 		//		}
 
-		if (in_array($this->getType(), [self::TYPE_NEWS, self::TYPE_SLIDE, self::TYPE_SHARE, self::TYPE_ADVICE, self::TYPE_EXPERT])) {
+		if (
+		in_array($this->getType(), [
+			self::TYPE_NEWS,
+			self::TYPE_SLIDE,
+			self::TYPE_SHARE,
+			self::TYPE_ADVICE,
+			self::TYPE_EXPERT
+		])) {
 			$this->path = "post/" . $this->getType();
 
 			return $this->folder = $this->path;
@@ -243,6 +258,13 @@ class Post extends Model
 	}
 
 	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function postMetas() {
+		return $this->hasMany(PostMeta::class);
+	}
+
+	/**
 	 * @param string $type
 	 * @return \Illuminate\Database\Eloquent\Relations\HasOne|Post
 	 */
@@ -254,5 +276,29 @@ class Post extends Model
 
 		return $relate;
 		//Category::where('id', $this->parent_id)->where('type', $type)->first();
+	}
+
+	/**
+	 * @param null $models
+	 * @return Post|Builder|mixed
+	 */
+	public static function prepareMetaValueKey($models = null) {
+		if (!isset($models) || empty($models)) {
+			$models = Post::query()->join(PostMeta::table(), PostMeta::table() . '.post_id', '=', Post::table() . '.id')
+			              ->get();
+		}
+
+		$model = new self;
+		if (isset($models) && !empty($models)) {
+			$model = $models->get(0);
+			foreach ($models as $index => $item) {
+				/** @var PostMeta $item */
+				$model->setAttribute($item->key, $item->value);
+			}
+
+			return $model;
+		}
+
+		return $model;
 	}
 }

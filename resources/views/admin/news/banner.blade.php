@@ -16,13 +16,21 @@
                     @method('post')
                     <div class="col-md-9 row">
                         <div class="form-group">
-                            <label class="col-md-12 col-sm-12 col-xs-12" for="post_id">@lang('admin/common.link')<span class="required">*</span></label>
+                            <label class="col-md-12 col-sm-12 col-xs-12" for="post_id">@lang('admin/common.link')
+                                <span class="required">*</span>
+                            </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 {!! Form::select('post_id', \App\Models\Post::pluckWithType('title', 'id', \App\Models\Post::TYPE_NEWS), $value = null,['required' => "required", 'class' => 'form-control col-md-7 col-xs-12', 'id' => 'post_id']) !!}
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-md-12 col-sm-12 col-xs-12" for="editor">@lang('admin/news.content-banner')</label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                {!! Form::textarea('content',  $value = null,['required' => "required", 'class' => 'form-control col-md-7 col-xs-12', 'id' => 'editor', 'height' => 150]) !!}
+                            </div>
+                        </div>
 
-                        @include('admin.layouts.widget.form.image-full', ['imagePath' => isset($model) ? $model->getImagePath('post_meta', 'value') : ''])
+                        @include('admin.layouts.widget.form.image-full', ['name' => 'value', 'imagePath' => isset($model) ? $model->getImagePath(\App\Models\PostMeta::table(), 'value') : ''])
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12">

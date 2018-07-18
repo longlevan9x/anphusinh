@@ -30,6 +30,9 @@ return [
 	'question'           => "Hỏi đáp",
 	'expert-share'       => "Chuyên gia chia sẻ",
 	'about-us'           => "Về chúng tôi",
-	'quick-link'         => 'Liên kết nhanh'
+	'quick-link'         => 'Liên kết nhanh',
+	'expert'             => 'Chuyên gia',
+
+	'chúng tôi rất tiếc, trang bạn muốn không còn ở đây nữa. có thể là một trong những liên kết dưới đây có thể giúp bạn!' => 'Chúng tôi rất tiếc, trang bạn muốn không còn ở đây nữa. Có thể là một trong những liên kết dưới đây có thể giúp bạn!'
 
 ];

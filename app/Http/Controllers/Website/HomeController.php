@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Website;
 
 use App\Commons\CConstant;
+use App\Http\Requests\PostRequest;
 use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostMeta;
 use App\Models\Product;
 use App\Models\Store;
 use Carbon\Carbon;
@@ -13,6 +15,7 @@ use Faker\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
+use function MicrosoftAzure\Storage\Samples\deleteDirectory;
 
 /**
  * Class HomeController
@@ -57,7 +60,7 @@ class HomeController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function showAnswerQuestion() {
-		$models = Answer::whereType(Post::TYPE_QUESTION)->orderByDesc('created_at')->whereIsActive(1)->paginate(5);
+		$models = Answer::whereType(Post::TYPE_QUESTION)->latest()->whereIsActive(CConstant::STATE_ACTIVE)->paginate(5);
 
 		return view('website.home.question-answer', compact('models'));
 	}
@@ -173,21 +176,26 @@ class HomeController extends Controller
 		$this->pathInfoBreadcrumb = $model->title;
 		$this->prefixBreadcrumb   = $model->type;
 
+		$relate_posts = Post::whereType($model->type)->latest()->limit(6)->get();
 
 		if ($model->type == Post::TYPE_QUESTION) {
 			$this->prefixBreadcrumb = 'hoi-dap';
 			$this->getBreadcrumb();
 
-			return view('website.home.question-answer-detail', compact('model'));
+			return view('website.home.question-answer-detail', compact('model', 'relate_posts'));
 		} elseif ($model->type == Post::TYPE_ADVICE) {
 			$this->prefixBreadcrumb = '';
 			$this->getBreadcrumb();
 
-			return view('website.home.advice', compact('model'));
+			return view('website.home.advice', compact('model', 'relate_posts'));
 		}
 		$this->getBreadcrumb();
+		/** @var Post $advertise_post */
+		$advertise_post = Post::prepareMetaValueKey();
 
-		return view('website.home.post', compact('model'));
+		$product = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
+
+		return view('website.home.post', compact('model', 'relate_posts', 'advertise_post', 'product'));
 	}
 
 	/**
@@ -200,5 +208,36 @@ class HomeController extends Controller
 		}
 
 		return $this->showPost($slug);
+	}
+
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\JsonResponse
+	 * @throws \Exception
+	 */
+	public function postSubscribe(Request $request) {
+
+		$phone = intval($request->phone);
+		if (strlen($phone) < 9 || strlen($phone) > 11) {
+			return responseJson(CConstant::STATUS_FAIL, "Số điện thoại không hợp lệ");
+		}
+
+		$model = Post::whereType(Post::TYPE_SUBSCRIBE)->where('title', $request->phone)->first();
+		if (isset($model) && !empty($model)) {
+			return responseJson(CConstant::STATUS_FAIL, "Số điện thoại này đã đăng ký");
+		}
+
+		$model = new Post;
+
+		$model->type = Post::TYPE_SUBSCRIBE;
+
+		$model->title    = $request->phone;
+		$model->overview = $request->name;
+
+		if ($model->save()) {
+			return responseJson(CConstant::STATUS_SUCCESS, 'Xác nhận đăng ký thành công. Yêu cầu tư vấn của bạn đã được chúng tôi tiếp nhận.');
+		}
+
+		return responseJson(CConstant::STATUS_FAIL, 'Yêu cầu đăng ký tư vấn của bạn đã thất bại. Xin vui lòng thử lại sau.');
 	}
 }

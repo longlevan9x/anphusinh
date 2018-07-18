@@ -52,7 +52,7 @@
         padding: 0.5rem 0.5rem !important;
     }
 </style>
-<aside class="col-sm-4 wow fadeIn" data-wow-delay="400ms">
+<aside class="col-sm-4 wow fadeIn" data-wow-delay="200ms">
     <div class="widget heading_space">
         <h3 class="bottom20">@lang('admin/menu.share experience')</h3>
         @forelse($share_experience as $item)
@@ -66,14 +66,18 @@
         @empty
         @endforelse
     </div>
+
     @if(!empty($advice_expert))
         @php
-            $urlVideo = $item->image;
+            $item = $advice_expert->get(0);
+            $urlVideo = $item->overview;
             if (\Illuminate\Support\Str::startsWith($urlVideo, 'https://www.youtube.com/')) {
                 $urlVideo = substr($urlVideo, strpos($urlVideo, '='));
                 $listUrl = explode("=", $urlVideo);
                 if (count($listUrl) > 1) {
                     $urlVideo = $listUrl[1];
+                    $urlVideo1 = substr($urlVideo, strpos($urlVideo, '&'));
+                    $urlVideo = str_replace($urlVideo1, '', $urlVideo);
                 }
             }
         @endphp
