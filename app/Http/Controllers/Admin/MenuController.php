@@ -353,6 +353,12 @@ class MenuController extends Controller
 						'visible' => true,
 						'icon'    => 'fa-user-circle',
 					],
+					[
+						'name'    => __("admin/menu.content message website"),
+						'url'     => url_admin('website-message'),
+						'visible' => true,
+						'icon'    => 'fa-user-circle',
+					],
 				]
 			],
 			/*User*/

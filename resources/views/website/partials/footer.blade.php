@@ -4,9 +4,9 @@
         <div class="row">
             <div class="col-md-4 col-sm-4 footer_panel bottom25">
                 <h3 class="heading bottom25">@lang('website.about-us')<span class="divider-left"></span></h3>
-                <a href="{{url('/')}}" class="footer_logo bottom25"><img src="{{asset_website('images/logo-white.png')}}" alt="Edua"></a>
+                <a style="width: 105px;float: left;margin-right: 25px;" href="{{url('/')}}" class="footer_logo bottom25"><img style="width: 100%;" src="{{\App\Commons\Facade\CFile::getImageUrl('settings', setting(KEY_LOGO))}}" alt="{{setting(KEY_WEBSITE_DESCRIPTION)}}"></a>
                 <p>{{setting(KEY_WEBSITE_DESCRIPTION)}}</p>
-                <ul class="social_icon top25">
+                <ul class="social_icon">
                     <li><a href="#." class="facebook"><i class="fa fa-facebook"></i></a></li>
                     {{--<li><a href="#." class="twitter"><i class="icon-twitter4"></i></a></li>--}}
                     {{--<li><a href="#." class="dribble"><i class="icon-dribbble5"></i></a></li>--}}

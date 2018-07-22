@@ -179,14 +179,14 @@ body, html {
 /*Share Common Font Family*/
 #rev_slider h1, #rev_slider_full h1, #rev_slider_video h1, #text_rotator h1, h3, .page_header .page-content h1, .aboutus h4, .events h4, .items > li > a, #error .error h1,
 .shopping_box h4, .shop_tab .tabs li, .pushmenu .push_nav > li > a > span {
-    font-family: 'museo_slab500';
+    /*font-family: 'museo_slab500';*/
 }
 
 h2, #about .priorty .about-post h4, .icon_box h4, .contact_address .address h4, .number-counters .counters-item strong, #parallax h1,
 .reviews .review_left strong, #error .error h2,
 .shopping_box h4.price_product, .cart_table .price_product, .cart_table .product-name h4,
 nav.bootsnav .megamenu-content .title {
-    font-family: 'museo_slab700';
+    /*font-family: 'museo_slab700';*/
 }
 
 p {
@@ -2522,7 +2522,8 @@ body.pushmenu-push-toright .wrap-sticky nav.navbar.bootsnav.sticked {
 .events:hover h4 a, .news_box:hover h4 a,
 .course:hover h3 > a,
 #course_slider .item:hover h3 a {
-    color: #4587d9;
+    /*color: #4587d9;*/
+    color: #ffb600;
 }
 
 /**------- Events ends------**/
@@ -2698,7 +2699,7 @@ form.findus .form-control, form.findus textarea {
 
 form.findus textarea {
     width: 100%;
-    min-height: 210px;
+    min-height: 100px;
 }
 
 /* --------------- BLOG ---------------  */

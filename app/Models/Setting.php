@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Commons\CConstant;
 use App\Commons\Facade\CFile;
 use App\Models\Traits\ModelTrait;
 use App\Models\Traits\ModelUploadTrait;
@@ -30,20 +31,21 @@ class Setting extends Model
 	use ModelTrait;
 	use ModelUploadTrait;
 	use InsertOnDuplicateKey;
-	const KEY_WEBSITE_NAME        = 'website_name';
-	const KEY_WEBSITE_DESCRIPTION = 'website_description';
-	const KEY_ADMIN_EMAIL         = 'admin_email';
-	const KEY_LANG_DEFAULT        = 'lang_default';
-	const KEY_FORMAT_TIME         = 'format_time';
-	const KEY_FORMAT_DATE         = 'format_date';
-	const KEY_FORMAT_DATETIME     = 'format_datetime';
-	const KEY_BLOG_CHARSET        = 'blog_charset';
-	const KEY_LOGO                = 'logo';
-
+	const KEY_WEBSITE_NAME          = 'website_name';
+	const KEY_WEBSITE_DESCRIPTION   = 'website_description';
+	const KEY_ADMIN_EMAIL           = 'admin_email';
+	const KEY_LANG_DEFAULT          = 'lang_default';
+	const KEY_FORMAT_TIME           = 'format_time';
+	const KEY_FORMAT_DATE           = 'format_date';
+	const KEY_FORMAT_DATETIME       = 'format_datetime';
+	const KEY_BLOG_CHARSET          = 'blog_charset';
+	const KEY_LOGO                  = 'logo';
+	const KEY_MESSAGE_ORDER         = '_message_order';
+	const KEY_MESSAGE_ORDER_SUCCESS = '_message_order_success';
 	/**
 	 * @var array
 	 */
-	protected $fillable = ['key', 'value', 'is_active'];
+	protected $fillable = ['key', 'value', 'is_active', 'autoload'];
 
 	/**
 	 * @var string
@@ -204,7 +206,7 @@ class Setting extends Model
 			return Session::get('settings');
 		}
 
-		$models = Setting::all();
+		$models = Setting::where('autoload', 1)->get();
 		$models->map(function($item, $index) {
 			/**@var Setting $item */
 			$key   = $item->getAttribute('key');
@@ -278,7 +280,8 @@ class Setting extends Model
 				$data[] = [
 					'key'        => $option,
 					'value'      => CFile::upload(self::KEY_LOGO, $this->getTable()),
-					'is_active'  => 1,
+					'is_active'  => CConstant::STATE_ACTIVE,
+					'autoload'   => CConstant::STATE_ACTIVE,
 					'created_at' => Carbon::now(),
 					'updated_at' => Carbon::now()
 				];
@@ -286,7 +289,8 @@ class Setting extends Model
 				$data[] = [
 					'key'        => $option,
 					'value'      => $this->{$option},
-					'is_active'  => 1,
+					'is_active'  => CConstant::STATE_ACTIVE,
+					'autoload'   => CConstant::STATE_ACTIVE,
 					'created_at' => Carbon::now(),
 					'updated_at' => Carbon::now()
 				];

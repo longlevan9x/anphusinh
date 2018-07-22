@@ -117,7 +117,7 @@ class Category extends Model
 	 * @return Builder
 	 */
 	public static function whereType($type = self::TYPE_CATEGORY) {
-		return Category::where('type', $type);
+		return self::where('type', $type);
 	}
 
 	/**

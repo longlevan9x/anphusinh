@@ -32,6 +32,7 @@ trait ModelTrait
 	use Sluggable;
 	use SluggableScopeHelpers;
 	use ModelMethodTrait;
+
 	public function getSlugKeyName() {
 		return 'slug';
 	}
@@ -117,20 +118,47 @@ trait ModelTrait
 	public function getIsActiveLabel() {
 		$attribute = $this->getAttribute('is_active');
 		if (isset($attribute)) {
-			return view('admin.layouts.widget.labels.active', ['slot' => $this->is_active]);
+			return view('admin.layouts.widget.labels.active', [
+				'slot'          => $this->is_active,
+				'text_active'   => $this->getTextActive(),
+				'text_inactive' => $this->getTextInActive()
+			]);
 		}
 
 		return "";
 	}
 
+	/**
+	 * @return array|null|string
+	 */
+	public function getTextActive() {
+		return __('admin/common.active');
+	}
+
+	/**
+	 * @return array|null|string
+	 */
+	public function getTextInActive() {
+		return __('admin/common.inactive');
+	}
+
+	/**
+	 * @return boolean
+	 */
 	public function beforeSave() {
 		return true;
 	}
 
+	/**
+	 * @return boolean
+	 */
 	public function afterSave() {
 		return true;
 	}
 
+	/**
+	 * @return string
+	 */
 	public static function table() {
 		return (new static)->getTable();
 	}
@@ -152,6 +180,9 @@ trait ModelTrait
 		return self::where('is_active', $value);
 	}
 
+	/**
+	 * @return int|string
+	 */
 	public function getSlugAndId() {
 		if (!empty($this->{$this->getSlugKeyName()})) {
 			return $this->{$this->getSlugKeyName()} . "--" . $this->id;

@@ -6,9 +6,11 @@ use App\Commons\CConstant;
 use App\Http\Requests\PostRequest;
 use App\Models\Answer;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Post;
 use App\Models\PostMeta;
 use App\Models\Product;
+use App\Models\Setting;
 use App\Models\Store;
 use Carbon\Carbon;
 use Faker\Factory;
@@ -44,7 +46,10 @@ class HomeController extends Controller
 			Cache::put('slides', $slides, 60);
 		}
 
-		return view('website.home.index', compact('slides'));
+		$categories = Category::whereType(Category::TYPE_CATEGORY)->get();
+		$shares     = Post::whereType(Post::TYPE_SHARE)->latest()->limit(10)->get();
+
+		return view('website.home.index', compact('slides', 'categories', 'shares'));
 	}
 
 	/**
@@ -106,13 +111,38 @@ class HomeController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function showOrder() {
-		$model = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
+		$model   = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
+		$setting = Setting::where('key', Setting::KEY_MESSAGE_ORDER)->first();
 
-		return view('website.home.order', compact('model'));
+		return view('website.home.order', compact('model', 'setting'));
 	}
 
-	public function postOrder() {
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+	 * @throws \Exception
+	 */
+	public function postOrder(Request $request) {
+		$model = new Order($request->all());
+		/** @var Product $product */
+		$product            = Product::whereId($model->product_id)->first();
+		$model->price       = $product->price;
+		$model->total_price = $model->price * (int) $model->quantity;
+		$model->status      = Order::STATUS_NEW;
+		if ($model->save()) {
+			return redirect(route('dat-hang-thanh-cong', ['mess' => CConstant::STATUS_SUCCESS]));
+		}
 
+		return redirect(route('dat-hang-thanh-cong', ['mess' => CConstant::STATUS_FAIL]));
+	}
+
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function showOrderMessage() {
+		$model = Setting::where('key', Setting::KEY_MESSAGE_ORDER_SUCCESS)->first();
+
+		return view('website.home.order-message', compact('model'));
 	}
 
 	public function postOrderAjax() {

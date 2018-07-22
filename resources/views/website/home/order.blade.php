@@ -75,15 +75,9 @@
             </h2>
         </div>
     </div>
-    <div class="content-tab row">
+    <div class="content-tab">
         <div class="col-md-7 poster hidden-xs">
-            <center><strong>LƯU Ý KHI MUA HÀNG ONLINE</strong></center>
-            <ul style="text-align: left;">
-                <li>- Miễn phí giao hàng từ 5 hộp trở lên</li>
-                <li>- Nhận hàng và thanh toán tiền tại địa chỉ giao hàng</li>
-                <li>- Giao hàng từ thứ 2 đến thứ 6 hàng tuần</li>
-            </ul>
-            <img src="http://bottamnhanhung.vn/images/order.jpg" class="w-75">
+            {{$setting->value ?? ''}}
         </div>
         <div class="col-md-5">
             <div class="form-order">
@@ -96,27 +90,57 @@
                     </div>
                 </div>
                 {{ Form::open(['url' => route('dat-hang')]) }}
-                    <div class="col-xs-12 input-order">
-                        <input name="ip" type="hidden" value="116.96.243.213">
-                        <input name="url" type="hidden" value="http://bottamnhanhung.vn/dat-hang-thanh-cong">
-                        <i style="color:red;">* : Thông tin bắt buộc</i>
-                        <input class="form-control" placeholder="Họ và tên: *" name="name" type="text" value="">
-                        <input class="form-control" placeholder="Điện thoại: *" name="phone" type="text" value="">
-
-                        <div class="row">
-                            <div class="col-12" style="text-align: center;">
-                                <img src="{{$model->getImagePath()}}" class="w-50">
-                                <strong style="text-align:center;display:block;color:red;font-size:18px">{{number_format($model->price)}} đ</strong>
-                                <input class="form-control" placeholder="Số hộp" name="count" type="text" value="">
-                            </div>
-                        </div>
-
-                        <div class="clear"></div>
-                        <button class="btn btn-block btn-primary">Đặt hàng ngay</button>
+                <div class="col-xs-12 input-order">
+                    {{ Form::hidden('ipv4', $value = null, ['id' => 'ipv4']) }}
+                    {{ Form::hidden('city', $value = null, ['id' => 'city']) }}
+                    {{ Form::hidden('product_id', $value = $model->id, ['id' => 'product_id']) }}
+                    <i style="color:red;">* : Thông tin bắt buộc</i>
+                    {{ Form::text('name', $value = null, ['placeholder' => "Họ và tên: *", 'required' => true, 'class' => 'form-control']) }}
+                    {{ Form::number('phone', $value = null, ['placeholder' => "Điện thoại: *", 'required' => true, 'class' => 'form-control']) }}
+                    <div class="col-12" style="text-align: center;">
+                        <img src="{{$model->getImagePath()}}" class="w-50">
+                        <strong style="text-align:center;display:block;color:red;font-size:18px">{{number_format($model->price)}} đ</strong>
+                        {{ Form::number('quantity', $value = null, ['placeholder' => "Số hộp: *", 'required' => true, 'class' => 'form-control']) }}
                     </div>
-                </form>
+
+                    <div class="clear"></div>
+                    @include('admin.layouts.widget.button.button', ['class' => 'btn-block', 'text' => 'Đặt hàng ngay', 'id' => 'btnOrder'])
+                </div>
                 {{Form::close()}}
             </div>
         </div>
     </div>
 @endsection
+@push('scriptString')
+    <script type="text/javascript">
+        $(function () {
+
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": $("meta[name=\"csrf-token\"]").attr("content")
+                }
+            });
+
+            $("#btnOrder").click(function () {
+
+            });
+            // $.get("http://ipinfo.io", function (response) {
+            //     console.log(response);
+            //     $("#ip").html("IP: " + response.ip);
+            //     $("#address").html("Location: " + response.city + ", " + response.region);
+            //     $("#details").html(JSON.stringify(response, null, 4));
+            // }, "jsonp");
+
+            $.ajax({
+                url:           "https://geoip-db.com/jsonp",
+                jsonpCallback: "callback",
+                dataType:      "jsonp",
+                success:       function (location) {
+                    // console.log(location);
+                    $("#city").val(location.city);
+                    $("#ipv4").val(location.IPv4);
+                }
+            });
+        });
+    </script>
+@endpush

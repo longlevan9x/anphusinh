@@ -1,6 +1,10 @@
 @extends('website.index')
 @section("content")
-
+    @php
+        /** @var \App\Models\Post $slide */
+        /** @var \App\Models\Category $category */
+        /** @var \App\Models\Post $share */
+    @endphp
     <!--Slider-->
     <section class="rev_slider_wrapper text-center" style="top: 19%;">
         <!-- START REVOLUTION SLIDER 5.0 auto mode -->
@@ -10,7 +14,6 @@
                 @foreach($slides as $slide)
                     @php
                         $href = '';
-                        /** @var \App\Models\Post $slide */
                         if (filter_var($slide->slug, FILTER_VALIDATE_URL)) {
                             $href = $slide->slug;
                         }
@@ -62,11 +65,12 @@
                             @endif
                         </div>
                     </li>
-                @endforeach
-                <!-- END REVOLUTION SLIDER -->
+            @endforeach
+            <!-- END REVOLUTION SLIDER -->
             </ul>
         </div><!-- END REVOLUTION SLIDER -->
     </section>
+
 
 
     <!--ABout US-->
@@ -150,13 +154,14 @@
     </section>
     <!--ABout US-->
 
-
     <!-- Courses -->
-    <section id="courses" class="padding parallax">
+    <section id="courses" class="padding parallax" style="background: #4587d9">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="heading heading_space wow fadeInDown">Popular Courses<span class="divider-left"></span>
+                    <h2 class="heading heading_space wow fadeInDown" style="font-family:'Simplesnailsver'; font-size: 1.5em;">Bạn có biết hơn
+                        <span style="text-transform: uppercase; font-weight: bold;color: pink;">90%</span> trẻ em ở Việt Nam chưa được chăm sóc da đúng cách?.
+                        <span class="divider-left"></span>
                     </h2>
                 </div>
             </div>
@@ -164,54 +169,16 @@
                 <div class="col-md-12">
                     <div class="slider_wrapper">
                         <div id="course_slider" class="owl-carousel">
-                            <div class="item">
-                                <div class="image bottom20">
-                                    <img src="{{asset_website('images/course1.jpg')}}" alt="Courses" class="img-responsive border_radius">
+                            @forelse($categories as $category)
+                                <div class="item">
+                                    <div class="image bottom20">
+                                        <img src="{{$category->getImagePath()}}" alt="Courses" class="img-responsive border_radius">
+                                    </div>
+                                    <h3 class="bottom15" style="text-align: center;">
+                                        <a href="{{url($category->slug)}}">{{$category->name}}</a></h3>
                                 </div>
-                                <h3 class="bottom15"><a href="course_detail.html">Introduction LearnPress</a></h3>
-                                <p class="bottom15">We offer the most complete house renovating services in the country, from kitchen design to bathroom remodeling.</p>
-                                <a href="course_detail.html" class="btn_common blue border_radius">Read More</a>
-                            </div>
-                            <div class="item">
-                                <div class="image bottom20">
-                                    <img src="{{asset_website('images/course2.jpg')}}" alt="Courses" class="img-responsive border_radius">
-                                </div>
-                                <h3 class="bottom15"><a href="course_detail.html">Introduction LearnPress</a></h3>
-                                <p class="bottom15">We offer the most complete house renovating services in the country, from kitchen design to bathroom remodeling.</p>
-                                <a href="course_detail.html" class="btn_common blue border_radius">Read More</a>
-                            </div>
-                            <div class="item">
-                                <div class="image bottom20">
-                                    <img src="{{asset_website('images/course3.jpg')}}" alt="Courses" class="img-responsive border_radius">
-                                </div>
-                                <h3 class="bottom15"><a href="course_detail.html">Introduction LearnPress</a></h3>
-                                <p class="bottom15">We offer the most complete house renovating services in the country, from kitchen design to bathroom remodeling.</p>
-                                <a href="course_detail.html" class="btn_common blue border_radius">Read More</a>
-                            </div>
-                            <div class="item">
-                                <div class="image bottom20">
-                                    <img src="{{asset_website('images/course1.jpg')}}" alt="Courses" class="img-responsive border_radius">
-                                </div>
-                                <h3 class="bottom15"><a href="course_detail.html">Introduction LearnPress</a></h3>
-                                <p class="bottom15">We offer the most complete house renovating services in the country, from kitchen design to bathroom remodeling.</p>
-                                <a href="course_detail.html" class="btn_common blue border_radius">Read More</a>
-                            </div>
-                            <div class="item">
-                                <div class="image bottom20">
-                                    <img src="{{asset_website('images/course2.jpg')}}" alt="Courses" class="img-responsive border_radius">
-                                </div>
-                                <h3 class="bottom15"><a href="course_detail.html">Introduction LearnPress</a></h3>
-                                <p class="bottom15">We offer the most complete house renovating services in the country, from kitchen design to bathroom remodeling.</p>
-                                <a href="course_detail.html" class="btn_common blue border_radius">Read More</a>
-                            </div>
-                            <div class="item">
-                                <div class="image bottom20">
-                                    <img src="{{asset_website('images/course3.jpg')}}" alt="Courses" class="img-responsive border_radius">
-                                </div>
-                                <h3 class="bottom15"><a href="course_detail.html">Introduction LearnPress</a></h3>
-                                <p class="bottom15">We offer the most complete house renovating services in the country, from kitchen design to bathroom remodeling.</p>
-                                <a href="course_detail.html" class="btn_common blue border_radius">Read More</a>
-                            </div>
+                            @empty
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -219,9 +186,6 @@
         </div>
     </section>
     <!-- Courses -->
-
-
-
 
     <!--Fun Facts-->
     <section id="facts" class="padding">
@@ -302,195 +266,336 @@
 
 
     <!--Pricings-->
-    <section class="padding" id="pricing">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center wow fadeInDown">
-                    <h2 class="heading">Pricing Tables <span class="divider-center"></span></h2>
-                    <p class="heading_space margin10">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                </div>
-                <div class="col-md-12">
-                    <div class="pricing">
-                        <div class="pricing_item wow fadeInUp" data-wow-delay="300ms">
-                            <h3>Basic</h3>
-                            <div class="pricing_price"><span class="pricing_currency">$</span>9.90</div>
-                            <p class="pricing_sentence">Perfect for single freelancers who work by themselves</p>
-                            <ul class="pricing_list">
-                                <li class="pricing_feature">Support forum</li>
-                                <li class="pricing_feature">Free hosting</li>
-                                <li class="pricing_feature">40MB of storage space</li>
-                                <li>Social media integration</li>
-                                <li>1GB of storage space</li>
-                            </ul>
-                            <a class="btn_common text-center" href="#.">Choose plan</a>
-                        </div>
-                        <div class="pricing_item active wow fadeInUp" data-wow-delay="400ms">
-                            <h3>Popular</h3>
-                            <div class="pricing_price"><span class="pricing_currency">$</span>29,90</div>
-                            <p class="pricing_sentence">Suitable for small businesses with up to 5 employees</p>
-                            <ul class="pricing_list">
-                                <li class="pricing_feature">Unlimited calls</li>
-                                <li class="pricing_feature">Free hosting</li>
-                                <li class="pricing_feature">10 hours of support</li>
-                                <li class="pricing_feature">Social media integration</li>
-                                <li class="pricing_feature">1GB of storage space</li>
-                            </ul>
-                            <a class="btn_common text-center" href="#.">Choose plan</a>
-                        </div>
-                        <div class="pricing_item dark_gray wow fadeInUp" data-wow-delay="500ms">
-                            <h3>Premier</h3>
-                            <div class="pricing_price"><span class="pricing_currency">$</span>59,90</div>
-                            <p class="pricing_sentence">Great for large businesses with more than 5 employees</p>
-                            <ul class="pricing_list">
-                                <li class="pricing_feature">Unlimited calls</li>
-                                <li class="pricing_feature">Free hosting</li>
-                                <li class="pricing_feature">Unlimited hours of support</li>
-                                <li class="pricing_feature">Social media integration</li>
-                                <li class="pricing_feature">Unlimited storage space</li>
-                            </ul>
-                            <a class="btn_common text-center" href="#.">Choose plan</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{--<section class="padding" id="pricing">--}}
+    {{--<div class="container">--}}
+    {{--<div class="row">--}}
+    {{--<div class="col-md-12 text-center wow fadeInDown">--}}
+    {{--<h2 class="heading">Pricing Tables <span class="divider-center"></span></h2>--}}
+    {{--<p class="heading_space margin10">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>--}}
+    {{--</div>--}}
+    {{--<div class="col-md-12">--}}
+    {{--<div class="pricing">--}}
+    {{--<div class="pricing_item wow fadeInUp" data-wow-delay="300ms">--}}
+    {{--<h3>Basic</h3>--}}
+    {{--<div class="pricing_price"><span class="pricing_currency">$</span>9.90</div>--}}
+    {{--<p class="pricing_sentence">Perfect for single freelancers who work by themselves</p>--}}
+    {{--<ul class="pricing_list">--}}
+    {{--<li class="pricing_feature">Support forum</li>--}}
+    {{--<li class="pricing_feature">Free hosting</li>--}}
+    {{--<li class="pricing_feature">40MB of storage space</li>--}}
+    {{--<li>Social media integration</li>--}}
+    {{--<li>1GB of storage space</li>--}}
+    {{--</ul>--}}
+    {{--<a class="btn_common text-center" href="#.">Choose plan</a>--}}
+    {{--</div>--}}
+    {{--<div class="pricing_item active wow fadeInUp" data-wow-delay="400ms">--}}
+    {{--<h3>Popular</h3>--}}
+    {{--<div class="pricing_price"><span class="pricing_currency">$</span>29,90</div>--}}
+    {{--<p class="pricing_sentence">Suitable for small businesses with up to 5 employees</p>--}}
+    {{--<ul class="pricing_list">--}}
+    {{--<li class="pricing_feature">Unlimited calls</li>--}}
+    {{--<li class="pricing_feature">Free hosting</li>--}}
+    {{--<li class="pricing_feature">10 hours of support</li>--}}
+    {{--<li class="pricing_feature">Social media integration</li>--}}
+    {{--<li class="pricing_feature">1GB of storage space</li>--}}
+    {{--</ul>--}}
+    {{--<a class="btn_common text-center" href="#.">Choose plan</a>--}}
+    {{--</div>--}}
+    {{--<div class="pricing_item dark_gray wow fadeInUp" data-wow-delay="500ms">--}}
+    {{--<h3>Premier</h3>--}}
+    {{--<div class="pricing_price"><span class="pricing_currency">$</span>59,90</div>--}}
+    {{--<p class="pricing_sentence">Great for large businesses with more than 5 employees</p>--}}
+    {{--<ul class="pricing_list">--}}
+    {{--<li class="pricing_feature">Unlimited calls</li>--}}
+    {{--<li class="pricing_feature">Free hosting</li>--}}
+    {{--<li class="pricing_feature">Unlimited hours of support</li>--}}
+    {{--<li class="pricing_feature">Social media integration</li>--}}
+    {{--<li class="pricing_feature">Unlimited storage space</li>--}}
+    {{--</ul>--}}
+    {{--<a class="btn_common text-center" href="#.">Choose plan</a>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</section>--}}
     <!--Pricings-->
 
 
     <!--Paralax -->
-    <section id="parallax" class="parallax">
+    {{--<section id="parallax" class="parallax">--}}
+        {{--<div class="container">--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-md-12 text-center wow bounceIn">--}}
+                    {{--<h2>We Believe that Education for Everyone Since</h2>--}}
+                    {{--<h1 class="margin10">1942</h1>--}}
+                    {{--<a href="#." class="border_radius btn_common white_border margin10">Gaet a Quote</a>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</section>--}}
+    <!--Paralax -->
+
+    <style>
+        #quytrinh {
+            background: no-repeat;
+            background-size: 100% 100%;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 2px solid #fff;
+        }
+
+        body .page-section {
+            padding: 50px 0 0;
+            background-size: cover;
+            background: #f3f3f3 no-repeat center center;
+            position: relative;
+        }
+
+        @media (min-width: 1200px) {
+            #quytrinh h2 {
+                padding-top: 10px;
+            }
+
+            body .page-section .section-heading {
+                margin: 10px 0 30px;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 2.5rem;
+            }
+
+            body .text-blue {
+                color: #0073bc;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            #quytrinh .quytrinh_item {
+                padding: 60px 0 130px;
+            }
+
+            .fadeInLeft {
+                -webkit-animation-name: fadeInLeft;
+                animation-name: fadeInLeft;
+            }
+
+            .animated {
+                -webkit-animation-duration: 1.3s;
+                animation-duration: 1.3s;
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+            }
+
+            .text-center {
+                text-align: center !important;
+            }
+
+            .col-5 {
+                flex: 0 0 41.66667%;
+                max-width: 41.66667%;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            #quytrinh .quytrinh_item img {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            #quytrinh .quytrinh_item p {
+                font-size: 25px;
+                width: 90%;
+                margin: 0px auto;
+                padding-top: 10px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            #quytrinh .quytrinh_item_mui_ten {
+                padding: 60px 0 150px;
+            }
+        }
+
+        .col-2 {
+            flex: 0 0 16.66667%;
+            max-width: 16.66667%;
+        }
+
+        @media (min-width: 1200px) {
+            #quytrinh .quytrinh_item_mui_ten img {
+                height: 300px;
+            }
+
+            .zoomIn {
+                -webkit-animation-name: zoomIn;
+                animation-name: zoomIn;
+            }
+
+            .animated {
+                -webkit-animation-duration: 1.3s;
+                animation-duration: 1.3s;
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            #quytrinh .quytrinh_item {
+                padding: 60px 0 130px;
+            }
+
+            .fadeInRight {
+                -webkit-animation-name: fadeInRight;
+                animation-name: fadeInRight;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            #quytrinh .quytrinh_item img {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            #quytrinh .quytrinh_item p {
+                font-size: 25px;
+                width: 90%;
+                margin: 0px auto;
+                padding-top: 10px;
+            }
+        }
+    </style>
+    <section id="quytrinh" class="page-section">
+
         <div class="container">
+            <h2 class="section-heading text-blue text-center text-uppercase clearfix  scrollpoint sp-zoomIn active animated zoomIn">Khi da bé khỏe</h2>
             <div class="row">
-                <div class="col-md-12 text-center wow bounceIn">
-                    <h2>We Believe that Education for Everyone Since</h2>
-                    <h1 class="margin10">1942</h1>
-                    <a href="#." class="border_radius btn_common white_border margin10">Gaet a Quote</a>
+                <div class="col-5 col-md-5 quytrinh_item text-center scrollpoint sp-fadeInLeft active animated fadeInLeft">
+                    <a href="http://bottamnhanhung.vn/bi-quyet-cham-soc-da-be-khoe-manh-moi-ngay">
+                        <img src="http://bottamnhanhung.vn/images/b1.png">
+                        <p style="font-weight: 500;">Khi da bé khỏe</p>
+                    </a>
+
+                </div>
+                <div class="col-2 col-md-2 quytrinh_item_mui_ten text-center">
+                    <img src="http://bottamnhanhung.vn/images/mui_ten.png" class="scrollpoint sp-zoomIn active animated zoomIn">
+                </div>
+                <div class="col-5 col-md-5 quytrinh_item text-center scrollpoint sp-fadeInRight active animated fadeInRight">
+                    <a href="http://bottamnhanhung.vn/tai-sao-khi-da-be-khoe-co-the-dung-sua-tam-thong-thuong">
+                        <img src="http://bottamnhanhung.vn/images/b2.png">
+                        <p class="clearfix" style="font-weight: 500;">Có thể tắm cho bé bằng các loại sữa tắm thông thường</p>
+                    </a>
+
                 </div>
             </div>
         </div>
     </section>
-    <!--Paralax -->
-
 
     <!-- News-->
     <section id="news" class="padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 wow fadeInDown">
-                    <h2 class="heading heading_space">Latest News <span class="divider-left"></span></h2>
+                    <h2 class="heading heading_space">@lang('website.chia-se-cua-me')<span class="divider-left"></span>
+                    </h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="slider_wrapper">
                         <div id="news_slider" class="owl-carousel">
-                            <div class="item">
-                                <div class="content_wrap">
-                                    <div class="image">
-                                        <img src="{{asset_website('images/news1.jpg')}}" alt="Edua" class="img-responsive border_radius">
-                                    </div>
-                                    <div class="news_box border_radius">
-                                        <h4><a href="blog_detail.html">4 Springtime Color Schemes to Try at Home</a>
-                                        </h4>
-                                        <ul class="commment">
-                                            <li><a href="#."><i class="icon-icons20"></i>June 6, 2016</a></li>
-                                            <li><a href="#."><i class="icon-comment"></i> 02</a></li>
-                                        </ul>
-                                        <p>We offer the most complete house Services in the country...</p>
-                                        <a href="blog_detail.html" class="readmore">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="content_wrap">
-                                    <div class="image">
-                                        <img src="{{asset_website('images/news2.jpg')}}" alt="Edua" class="img-responsive border_radius">
-                                    </div>
-                                    <div class="news_box border_radius">
-                                        <h4><a href="blog_detail.html"> Springtime Color Schemes to Try at Home</a></h4>
-                                        <ul class="commment">
-                                            <li><a href="#."><i class="icon-icons20"></i>June 6, 2016</a></li>
-                                            <li><a href="#."><i class="icon-comment"></i> 02</a></li>
-                                        </ul>
-                                        <p>We offer the most complete house Services in the country...</p>
-                                        <a href="blog_detail.html" class="readmore">Read More</a>
+                            @forelse($shares as $share)
+                                <div class="item">
+                                    <div class="content_wrap">
+                                        <div class="image">
+                                            <img src="{{$share->getImagePath()}}" alt="Edua" class="img-responsive border_radius">
+                                        </div>
+                                        <div class="news_box border_radius" style="height: 70px;">
+                                            <h4><a href="{{$share->getSlugAndId()}}">{{str_limit($share->title)}}</a>
+                                            </h4>
+                                            {{--<ul class="commment">--}}
+                                            {{--<li><a href="#."><i class="icon-icons20"></i>June 6, 2016</a></li>--}}
+                                            {{--<li><a href="#."><i class="icon-comment"></i> 02</a></li>--}}
+                                            {{--</ul>--}}
+                                            {{--<p>We offer the most complete house Services in the country...</p>--}}
+                                            {{--<a href="blog_detail.html" class="readmore">Read More</a>--}}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item">
-                                <div class="content_wrap">
-                                    <div class="image">
-                                        <img src="{{asset_website('images/news3.jpg')}}" alt="Edua" class="img-responsive border_radius">
-                                    </div>
-                                    <div class="news_box border_radius">
-                                        <h4><a href="blog_detail.html">4 Springtime Color Schemes to Try at Home</a>
-                                        </h4>
-                                        <ul class="commment">
-                                            <li><a href="#."><i class="icon-icons20"></i>June 6, 2016</a></li>
-                                            <li><a href="#."><i class="icon-comment"></i> 02</a></li>
-                                        </ul>
-                                        <p>We offer the most complete house Services in the country...</p>
-                                        <a href="blog_detail.html" class="readmore">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="content_wrap">
-                                    <div class="image">
-                                        <img src="{{asset_website('images/news1.jpg')}}" alt="Edua" class="img-responsive border_radius">
-                                    </div>
-                                    <div class="news_box border_radius">
-                                        <h4><a href="blog_detail.html">4 Springtime Color Schemes to Try at Home</a>
-                                        </h4>
-                                        <ul class="commment">
-                                            <li><a href="#."><i class="icon-icons20"></i>June 6, 2016</a></li>
-                                            <li><a href="#."><i class="icon-comment"></i> 02</a></li>
-                                        </ul>
-                                        <p>We offer the most complete house Services in the country...</p>
-                                        <a href="blog_detail.html" class="readmore">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="content_wrap">
-                                    <div class="image">
-                                        <img src="{{asset_website('images/news2.jpg')}}" alt="Edua" class="img-responsive border_radius">
-                                    </div>
-                                    <div class="news_box border_radius">
-                                        <h4><a href="blog_detail.html">4 Springtime Color Schemes to Try at Home</a>
-                                        </h4>
-                                        <ul class="commment">
-                                            <li><a href="#."><i class="icon-icons20"></i>June 6, 2016</a></li>
-                                            <li><a href="#."><i class="icon-comment"></i> 02</a></li>
-                                        </ul>
-                                        <p>We offer the most complete house Services in the country...</p>
-                                        <a href="blog_detail.html" class="readmore">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="content_wrap">
-                                    <div class="image">
-                                        <img src="{{asset_website('images/news3.jpg')}}" alt="Edua" class="img-responsive border_radius">
-                                    </div>
-                                    <div class="news_box border_radius">
-                                        <h4><a href="blog_detail.html">4 Springtime Color Schemes to Try at Home</a>
-                                        </h4>
-                                        <ul class="commment">
-                                            <li><a href="#."><i class="icon-icons20"></i>June 6, 2016</a></li>
-                                            <li><a href="#."><i class="icon-comment"></i> 02</a></li>
-                                        </ul>
-                                        <p>We offer the most complete house Services in the country...</p>
-                                        <a href="blog_detail.html" class="readmore">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @empty
+                            @endforelse
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
+    <!--Contact Deatils -->
+    <section id="contact" class="padding">
+        <div class="container">
+            <div class="row padding-bottom">
+                <div class="col-md-8 wow fadeInRight" data-wow-delay="1000ms">
+                    <h2 class="heading heading_space">LIÊN HỆ VỚI CHÚNG TÔI<span class="divider-left"></span></h2>
+                    <p> Chỉ cần để lại thông tin, chúng tôi sẽ liên hệ và tư vấn trực tiếp cho bạn</p>
+
+                    <form class="form-inline findus" id="contact-form" onSubmit="return false">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="result"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Name" name="name" id="name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <textarea placeholder="Comment" name="message" rows="2" id="message"></textarea>
+                                <button class="btn_common yellow border_radius" id="btn_submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                    <ul class="social_icon black top30">
+                        <li><a href="#." class="facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#." class="twitter"><i class="icon-twitter4"></i></a></li>
+                        <li><a href="#." class="dribble"><i class="icon-dribbble5"></i></a></li>
+                        <li><a href="#." class="instagram"><i class="icon-instagram"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 contact_address heading_space wow fadeInLeft" data-wow-delay="1000ms">
+                    <h2 class="heading heading_space">Hoặc<span class="divider-left"></span></h2>
+                    <p></p>
+                    <div class="address">
+                        <i class="icon icon-map-pin border_radius"></i>
+                        <h4>Visit Us</h4>
+                        <p>Tottenham Road, Japan.</p>
+                    </div>
+                    <div class="address">
+                        <i class="icon icon-mail border_radius"></i>
+                        <h4>Email Us</h4>
+                        <p><a href="mailto:Edua@info.com">Edua@info.com</a></p>
+                    </div>
+                    <div class="address">
+                        <i class="icon icon-phone4 border_radius"></i>
+                        <h4>Call Us</h4>
+                        <p>(+01) 123 456 7890</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Contact Deatils -->
+
 
 @endsection

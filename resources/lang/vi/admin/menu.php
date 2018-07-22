@@ -48,6 +48,7 @@ return [
 	'setting'          => "Cài đặt",
 	'website'          => 'Website',
 	'slide'            => 'Ảnh trượt',
+	'message'          => 'Tin nhắn',
 	'add slide'        => 'Thêm mới ảnh trượt',
 	'list slide'       => 'Danh sách ảnh trượt',
 	'share'            => "Chia sẻ kinh nghiệm",
@@ -57,5 +58,7 @@ return [
 	'expert'           => "Chuyên gia",
 	'add expert'       => "Thêm ý kiến chuyên gia",
 	'list expert'      => "Danh sách ý kiến chuyên gia",
-	'expert advice'    => "Lời khuyên chuyên gia"
+	'expert advice'    => "Lời khuyên chuyên gia",
+
+	'content message website' => 'Nội dung tin nhắn trang web',
 ];

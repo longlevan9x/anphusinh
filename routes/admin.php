@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\ShareController;
 use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\WebsiteMessage;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['admin.guest'])->group(function() {
@@ -79,6 +80,7 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	Route::resource(SlideController::getResourceName(), SlideController::getClassName());
 	Route::resource(ShareController::getResourceName(), ShareController::getClassName());
 	Route::resource(ExpertController::getResourceName(), ExpertController::getClassName());
+	Route::resource(WebsiteMessage::getResourceName(), WebsiteMessage::getClassName());
 	/*===========Route Ajax===========*/
 	Route::post(AjaxController::getResourceName('delete-file/{table}/{key}/{id?}'), AjaxController::getControllerWithAction('deleteFile'));
 	/*===========Route Bulk===========*/

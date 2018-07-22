@@ -20,6 +20,8 @@ use Illuminate\Database\Query\Builder as QueryBuilder;
  * @method  static QueryBuilder whereIn($column, $values, $boolean = 'and', $not = false)
  * @method  static Builder|Model findOrFail(mixed|int|string  $id, array $column = ['*'])
  * @method  static Builder|Model updateOrCreate(array $attributes, array $values = [])
+ * @method  static Builder whereId(int|string $id)
+ * @method  static Builder whereType(string $id)
  * @see Builder
  * @see QueryBuilder
  *

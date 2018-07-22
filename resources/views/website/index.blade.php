@@ -9,9 +9,9 @@
 <style>
     #icon_order_fix {
         position: fixed;
-        top: 40%;
+        top: 50%;
         z-index: 100000;
-        right: 0px;
+        right: 0;
     }
 
     #icon_order_fix img {
