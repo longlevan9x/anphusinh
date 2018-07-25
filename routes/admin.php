@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\CategoryDistrictController;
 use App\Http\Controllers\Admin\CategoryStreetController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExpertController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
@@ -63,6 +64,9 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	Route::get(CategoryController::getResourceName('get-category'), CategoryController::getControllerWithAction('getOptionCategoryWithType'));
 	Route::get(ProductController::getResourceName('detail'), ProductController::getControllerWithAction('_index'));
 	Route::post(ProductController::getResourceName('detail'), ProductController::getControllerWithAction('_store'));
+	Route::put(OrderController::getResourceName('confirm/{id}'), OrderController::getControllerWithAction('confirm'));
+	Route::put(OrderController::getResourceName('cancel/{id}'), OrderController::getControllerWithAction('cancel'));
+
 	/*===========Resource===========*/
 	Route::resource(SettingController::getResourceName(), SettingController::getClassName());
 	Route::resource(CategoryController::getResourceName(), CategoryController::getClassName());
@@ -81,6 +85,7 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	Route::resource(ShareController::getResourceName(), ShareController::getClassName());
 	Route::resource(ExpertController::getResourceName(), ExpertController::getClassName());
 	Route::resource(WebsiteMessage::getResourceName(), WebsiteMessage::getClassName());
+	Route::resource(OrderController::getResourceName(), OrderController::getClassName());
 	/*===========Route Ajax===========*/
 	Route::post(AjaxController::getResourceName('delete-file/{table}/{key}/{id?}'), AjaxController::getControllerWithAction('deleteFile'));
 	/*===========Route Bulk===========*/

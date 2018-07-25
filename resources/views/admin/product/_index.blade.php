@@ -1,17 +1,10 @@
+@php /** @var \App\Models\Product $model */ @endphp
 @extends('admin.index')
 @section('content')
-	<?php
-	/**
-	 * Created by PhpStorm.
-	 * User: LongPC
-	 * Date: 5/7/2018
-	 * Time: 10:56 PM
-	 */
-	?>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
-                @include('admin.layouts.title_form', ['title' => __('admin/post.add post')])
+                @include('admin.layouts.title_form', ['title' => __('admin/post.add post'), 'small_title' => isset($model->slug) && !empty($model->slug) ? "Xem trên website: " . link_to(url('san-pham'), url('san-pham'), ['style' => "text-decoration:underline;"]) : ''])
                 <div class="x_content">
                     {{ Form::model(isset($model) ? $model : null, [
                         'url' => \App\Http\Controllers\Admin\ProductController::getUrlAdmin('detail'),

@@ -12,6 +12,7 @@ return [
 	'list_post'        => 'Danh sách Bài viết',
 	'post'             => 'Bài viết',
 	'Product'          => 'sản phẩm',
+	'order'            => 'Đơn đặt hàng',
 	'Profile'          => 'Hồ sơ',
 	'your_profile'     => 'Hồ sơ của bạn',
 	'home'             => 'Trang chủ',

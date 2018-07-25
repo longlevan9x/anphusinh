@@ -211,15 +211,42 @@
 
         /**
          * @param {string} caption
-         * @param {string} message
+         * @param {string|object} message
+         * ex : message is this
          */
-        function confirmDelete(message = "", caption = "Delete item?") {
+        function confirmDelete(message = "", caption = "{{__("admin.confirm delete item?")}}") {
             let $modal = $("#modal-alert-delete");
             $modal.find(".modal-title").text(caption);
 
             if (typeof message === "object") {
                 let _this = message;
                 message   = _this.data("modal-title");
+                $modal.find(".modal-body .modal-message").text(message);
+                $modal.modal();
+                $("#delete-yes").click(function () {
+                    console.log(_this.parents("form"));
+                    _this.parents("form").unbind("submit");
+                    _this.parents("form").submit();
+                    return true;
+                });
+                $("#delete-no").click(function () {
+                    $modal.close();
+                    return false;
+                });
+                return false;
+            }
+        }
+
+        /**
+         * @param {string} caption
+         * @param {string|object} _this
+         */
+        function confirmMessage(_this, caption = "{{__("admin.Confirm message")}}") {
+            let $modal = $("#modal-alert-delete");
+            $modal.find(".modal-title").text(caption);
+
+            if (typeof _this === "object") {
+                let message   = _this.data("modal-title");
                 $modal.find(".modal-body .modal-message").text(message);
                 $modal.modal();
                 $("#delete-yes").click(function () {

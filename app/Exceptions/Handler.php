@@ -8,6 +8,8 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\ViewErrorBag;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -69,5 +71,27 @@ class Handler extends ExceptionHandler
 		    return redirect('admin/login');
 	    }
     	return parent::unauthenticated($request, $exception);
+    }
+
+	/**
+	 * Render the given HttpException.
+	 *
+	 * @param  \Symfony\Component\HttpKernel\Exception\HttpException  $e
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	protected function renderHttpException(HttpException $e) {
+
+	    $this->registerErrorViewPaths();
+		if (request()->segment(1) == 'admin') {
+			if (view()->exists($view = "admin.errors.{$e->getStatusCode()}")) {
+				return response()->view($view, [
+					'errors' => new ViewErrorBag,
+					'exception' => $e,
+				], $e->getStatusCode(), $e->getHeaders());
+			}
+
+			return $this->convertExceptionToResponse($e);
+		}
+		return parent::renderHttpException($e);
     }
 }

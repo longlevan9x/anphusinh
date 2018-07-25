@@ -51,6 +51,15 @@ class MenuController extends Controller
 				'children' => []
 			],
 			/*Product*/
+			/*Order*/
+			[
+				'name'     => __("admin/menu.order"),
+				'url'      => url_admin('order'),
+				'visible'  => true,
+				'icon'     => 'fa-user-circle-o',
+				'children' => []
+			],
+			/*Order*/
 			/*News*/
 			[
 				'name'     => __('admin/menu.News'),

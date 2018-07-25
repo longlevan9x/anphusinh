@@ -17,10 +17,10 @@
     {{--</div>--}}
     {{--</div>--}}
     <h3 class="top30 bottom20" style="font-size: 2em;">{{$model->title}}</h3>
-    <p class="bottom25" style="font-weight: 700;font-size: 1.1em;">{{$model->overview}}</p>
+    <p class="bottom25" style="font-weight: 700;font-size: 1.1em;">{!! $model->overview !!}</p>
     <img src="{{$model->getImagePath()}}" alt="Teachers" class=" border_radius img-responsive bottom15">
 
-    <p class="bottom25">{{$model->content}}</p>
+    <p class="bottom25">{!! $model->content !!}</p>
 
     <div class="clearfix"></div>
 

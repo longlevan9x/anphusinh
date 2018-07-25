@@ -1,10 +1,11 @@
+@php /** @var App\Models\Traits\ModelTrait|\Illuminate\Database\Eloquent\Model|\App\Models\Store $model*/ @endphp
 <tr>
     <td class="a-center vertical-middle ">
         @include('admin.layouts.widget.table.input-check-one')
     </td>
     {{--<td class="a-center "><input type="checkbox" name="table_records"></td>--}}
 {{--    <td class="vertical-middle">{{$model->getParentName(\App\Models\Category::TYPE_AREA)}}</td>--}}
-    <td class="vertical-middle">{{$model->name}}</td>
+    <td class="vertical-middle">{!! $model->name !!}</td>
     <td class="vertical-middle">{{$model->getAreaName()}}</td>
     <td class="vertical-middle">{{$model->getStreetName()}}</td>
     <td class="vertical-middle">{{$model->phone}}</td>

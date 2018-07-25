@@ -1,8 +1,9 @@
+@php /** @var App\Models\Traits\ModelTrait|\Illuminate\Database\Eloquent\Model|\App\Models\Post $model*/ @endphp
 <tr>
     <td class="a-center vertical-middle ">
         @include('admin.layouts.widget.table.input-check-one')
     </td>
-    <td class="vertical-middle">{{$model->getQuestion()}}</td>
+    <td class="vertical-middle">{!! $model->getLinkSlugAndId() !!}</td>
     <td class="vertical-middle">{{$model->getName()}}</td>
     <td class="vertical-middle">{{$model->getPhone()}}</td>
     <td class="vertical-middle">{{$model->getContentQuestion()}}</td>

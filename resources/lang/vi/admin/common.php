@@ -18,6 +18,8 @@ return [
 	'update your profile' => "Cập nhật hồ sơ của bạn",
 	'phone'               => "Điện thoại",
 	'phone number'        => "Số điện thoại",
+	'total_money'         => "Tổng tiền",
+	'quantity'            => 'Số lượng',
 	'title'               => "Tiêu đề",
 	'is_active'           => 'Tình trạng',
 	'created date'        => "Ngày tạo",

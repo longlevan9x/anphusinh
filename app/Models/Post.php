@@ -192,10 +192,6 @@ class Post extends Model
 		return $this->author_id = CUser::userAdmin()->id;
 	}
 
-	public function setAuthorUpdatedId() {
-		return $this->author_updated_id = CUser::userAdmin()->id;
-	}
-
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|Admins
 	 */
@@ -213,28 +209,6 @@ class Post extends Model
 			}
 
 			return $this->author->username;
-		}
-
-		return '-';
-	}
-
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|Admins
-	 */
-	public function authorUpdated() {
-		return $this->belongsTo(Admins::class, 'author_updated_id', 'id');
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getAuthorUpdatedName() {
-		if (isset($this->authorUpdated)) {
-			if ($this->authorUpdated->username == CUser::userAdmin()->username) {
-				return __("admin/common.you");
-			}
-
-			return $this->authorUpdated->username;
 		}
 
 		return '-';

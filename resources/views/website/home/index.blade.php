@@ -154,6 +154,200 @@
     </section>
     <!--ABout US-->
 
+
+    <style>
+
+        body .page-section#section-chuyen-gia {
+            position: relative;
+            overflow: hidden;
+        }
+
+        body .page-section {
+            padding: 50px 0;
+            background-color: #fff;
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        body .page-section#section-chuyen-gia:before {
+            position: absolute;
+            height: 40px;
+            width: 126px;
+            background: url(../img/section-arrow2.png) no-repeat top center/auto 100%;
+            content: '';
+            top: 0;
+            left: 50%;
+            margin-left: -63px;
+        }
+
+        body .page-section#section-chuyen-gia .border-cloud {
+            background: url(../img/cloud.png) no-repeat center center/100% auto;
+            text-align: center;
+            height: 135px;
+        }
+
+        body .page-section#section-chuyen-gia .border-cloud .section-heading {
+            font-weight: normal;
+            text-transform: none;
+            margin: 0;
+        }
+
+        body .page-section .section-heading {
+            margin: 10px 0 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 2.5rem;
+        }
+
+        .w-100 {
+            width: 100% !important;
+        }
+
+        body .text-blue {
+            color: #0073bc;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        .mb-1 {
+            margin-bottom: 0.25rem !important;
+        }
+
+        .mt-0 {
+            margin-top: 0 !important;
+        }
+
+        .font-weight-bold {
+            font-weight: bold;
+        }
+
+        .font-weight-bold {
+            font-weight: bold;
+        }
+
+        body .page-section#section-chuyen-gia .doctor-comment {
+            background: url(../img/doctor-human.png) no-repeat bottom right/70% auto;
+            min-height: 400px;
+        }
+
+        .pt-5 {
+            padding-top: 3rem !important;
+        }
+
+        .mt-5 {
+            margin-top: 3rem !important;
+        }
+
+        body .page-section#section-chuyen-gia .doctor-comment .blockquote {
+            border: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        body .page-section#section-chuyen-gia .doctor-comment .blockquote:before {
+            content: '"';
+            font-size: 80px;
+            position: absolute;
+            top: 10px;
+            left: 0;
+            font-family: 'Roboto';
+            font-style: italic;
+            line-height: 30px;
+        }
+
+        .fadeIn {
+            -webkit-animation-name: fadeIn;
+            animation-name: fadeIn;
+        }
+
+        .animated {
+            -webkit-animation-duration: 1.3s;
+            animation-duration: 1.3s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+        @media (min-width: 768px) {
+
+            .hidden-md-up {
+                display: none !important;
+            }
+
+            .text-left {
+                text-align: left !important;
+            }
+
+            .pl-1 {
+                padding-left: 0.25rem !important;
+            }
+        }
+
+        .w-50 {
+            width: 50% !important;
+        }
+
+    </style>
+    <section id="section-chuyen-gia" class="page-section bg-blue2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="border-cloud d-flex justify-content-center align-items-center mb-md-5 mb-3">
+                        <a href="http://bottamnhanhung.vn/chuyen-gia">
+                            <h2 class="section-heading text-blue font-weight-normal">
+                                Ý kiến chuyên gia </h2></a>
+                    </div>
+                    <div class="box-video">
+                        <iframe class="w-100" height="315" src="https://www.youtube.com/embed/FB4EbSH6vts" frameborder="0" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+                <div class="col-md-6 text-blue text-center">
+                    <p class="mt-0 mb-1 h1 title_mobile">Bác sĩ Nguyễn Văn Lộc</p>
+                    <p class="font-weight-bold">Nguyên phó giám đốc Bệnh viện Nhi Trung ương</p>
+                    <div class="doctor-comment row" style="background: url(http://bottamnhanhung.vn/assets/uploads/thumbs/doctor-human42611051095212_9315890.png) no-repeat bottom right/70% auto;">
+                        <div class="col-md-6 col-12 pt-5 mt-5 xs-m-0 xs-p-0">
+                            <div class="blockquote block_quote">
+                                <p class="h5 font-weight-bold"></p>
+                                <p class="blockquote_content scrollpoint sp-fadeIn active animated fadeIn">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-weight:500;">&nbsp;Bột tắm Nhân Hưng</i> có tác dụng se da rất nhanh, đặc biệt là giúp ngăn cản sự phát triển của vi khuẩn, siêu vi trùng, nấm. Do đó, các bà mẹ nên dùng bột tắm này tắm cho trẻ, nhất là những trẻ bị bệnh ngoài da.&nbsp;
+                                </p>
+                                <style type="text/css">
+                                    .blockquote_content {
+                                        -vendor-animation-duration: 5s;
+                                        -vendor-animation-delay: 4s;
+                                        -vendor-animation-iteration-count: infinite;
+                                    }
+
+                                    .blockquote_content::after {
+                                        content: '"';
+                                        font-size: 80px;
+                                        position: absolute;
+                                        font-family: 'Roboto';
+                                        font-style: italic;
+                                        line-height: 30px;
+                                        bottom: -20px;
+                                    }
+
+                                    .block_quote::after {
+                                        content: '' !important;
+                                    }
+                                </style>
+                            </div>
+                            <div class="hidden-md-up text-left  pl-1" style="padding-top: 50px">
+                                <a href="#contactForm">
+                                    <img src="http://bottamnhanhung.vn/images/btn_tuvan.gif" class="w-50">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Courses -->
     <section id="courses" class="padding parallax" style="background: #4587d9">
         <div class="container">
@@ -324,15 +518,15 @@
 
     <!--Paralax -->
     {{--<section id="parallax" class="parallax">--}}
-        {{--<div class="container">--}}
-            {{--<div class="row">--}}
-                {{--<div class="col-md-12 text-center wow bounceIn">--}}
-                    {{--<h2>We Believe that Education for Everyone Since</h2>--}}
-                    {{--<h1 class="margin10">1942</h1>--}}
-                    {{--<a href="#." class="border_radius btn_common white_border margin10">Gaet a Quote</a>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
+    {{--<div class="container">--}}
+    {{--<div class="row">--}}
+    {{--<div class="col-md-12 text-center wow bounceIn">--}}
+    {{--<h2>We Believe that Education for Everyone Since</h2>--}}
+    {{--<h1 class="margin10">1942</h1>--}}
+    {{--<a href="#." class="border_radius btn_common white_border margin10">Gaet a Quote</a>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
     {{--</section>--}}
     <!--Paralax -->
 

@@ -32,6 +32,7 @@ trait ModelTrait
 	use Sluggable;
 	use SluggableScopeHelpers;
 	use ModelMethodTrait;
+	use ModelRelateTrait;
 
 	public function getSlugKeyName() {
 		return 'slug';
@@ -44,6 +45,8 @@ trait ModelTrait
 	public $auto_upload_image = true;
 
 	/**
+	 * this field save slug to database
+	 * default is field slug
 	 * @return string
 	 */
 	public function fieldSlug() {
@@ -51,10 +54,22 @@ trait ModelTrait
 	}
 
 	/**
+	 * this method return field to use slug
+	 * ex : [name | title ...]
 	 * @return string|array
 	 */
 	public function fieldSlugable() {
 		return '';
+	}
+
+	/**
+	 * field show text when using method getLinkSlug and getLinkSlugAndId
+	 * this is field convert to field slug
+	 * ex : [name | title ...]
+	 * @return array|string
+	 */
+	public function fieldTextLink() {
+		return $this->fieldSlugable();
 	}
 
 	/**
@@ -121,7 +136,8 @@ trait ModelTrait
 			return view('admin.layouts.widget.labels.active', [
 				'slot'          => $this->is_active,
 				'text_active'   => $this->getTextActive(),
-				'text_inactive' => $this->getTextInActive()
+				'text_inactive' => $this->getTextInActive(),
+				'text_other'    => $this->getOtherTextActive()
 			]);
 		}
 
@@ -140,6 +156,15 @@ trait ModelTrait
 	 */
 	public function getTextInActive() {
 		return __('admin/common.inactive');
+	}
+
+	/**
+	 * method return others text active without value 0 , 1
+	 * ex: case value is_active difference 0 & 1 then label active will get value from this method
+	 * @return string
+	 */
+	public function getOtherTextActive() {
+		return '';
 	}
 
 	/**
@@ -186,8 +211,66 @@ trait ModelTrait
 	public function getSlugAndId() {
 		if (!empty($this->{$this->getSlugKeyName()})) {
 			return $this->{$this->getSlugKeyName()} . "--" . $this->id;
-		} else {
+		}
+		else {
 			return $this->id;
 		}
+	}
+
+	/**
+	 * @param string             $prefix
+	 * @param string|array|mixed $params
+	 * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+	 */
+	public function getUrlSlugAndId($prefix = '', $params = []) {
+		if (!empty($prefix)) {
+			$prefix .= '/';
+		}
+
+		return url($prefix . $this->getSlugAndId(), $params);
+	}
+
+	/**
+	 * @param string             $prefix
+	 * @param string|array|mixed $params
+	 * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+	 */
+	public function getUrlSlug($prefix = '', $params = '') {
+		if (!empty($prefix)) {
+			$prefix .= '/';
+		}
+
+		return url($prefix . $this->{$this->fieldSlug()}, $params);
+	}
+
+	/**
+	 * @param string $prefix
+	 * @param string $field
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function getLinkSlugAndId($prefix = '', $field = '') {
+		return $this->getLink($this->getUrlSlugAndId($prefix), $field);
+	}
+
+	/**
+	 * @param string $prefix
+	 * @param string $field
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function getLinkSlug($prefix = '', $field = '') {
+		return $this->getLink($this->getUrlSlug($prefix), $field);
+	}
+
+	/**
+	 * @param null   $url
+	 * @param string $field
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function getLink($url = null, $field = '') {
+		if (empty($field)) {
+			$field = $this->{$this->fieldTextLink()};
+		}
+
+		return view('admin.layouts.widget.links.link', ['url' => $url, 'text' => $field]);
 	}
 }

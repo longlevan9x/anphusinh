@@ -13,7 +13,7 @@
             'data-reference-to-class' => $reference ?? $table,
             'id' => "bulk-delete-" . ($id ?? $table),
             'name'=>"bulk-delete-$table",
-            'data-modal-title'=> 'Are you sure delete item selected?'
+            'data-modal-title'=> __('admin.Are you sure delete this item')
         ]
     ])
 </form>
