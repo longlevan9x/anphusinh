@@ -24,6 +24,8 @@ class Order extends Model
 	use ModelTrait;
 
 	const STATUS_NEW       = 'new';
+	const STATUS_SHIPPING  = 'shipping';
+	const STATUS_SHIPPED   = 'shipped';
 	const STATE_ACCEPT     = CConstant::STATE_ACTIVE;
 	const STATE_CANCEL     = 2;
 	const STATE_NOT_ACCEPT = CConstant::STATE_INACTIVE;
@@ -61,6 +63,18 @@ class Order extends Model
 	public function getOtherTextActive() {
 		if ($this->is_active == self::STATE_CANCEL) {
 			return "Đơn hàng đã hủy";
+		}
+	}
+
+	public function showLabelStatus() {
+		if ($this->status == self::STATUS_NEW) {
+			return view('admin.layouts.widget.labels.info', ['text' => __('admin/order.new order')]);
+		}
+		elseif ($this->status == self::STATUS_SHIPPING) {
+			return view('admin.layouts.widget.labels.warning', ['text' => __('admin/order.shipping')]);
+		}
+		elseif ($this->status == self::STATUS_SHIPPED) {
+			return view('admin.layouts.widget.labels.danger', ['text' => __('admin/order.shipped')]);
 		}
 	}
 }

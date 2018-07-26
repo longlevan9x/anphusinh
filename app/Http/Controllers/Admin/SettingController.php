@@ -24,7 +24,6 @@ class SettingController extends Controller
 	 */
 	public function index() {
 		$model = Setting::getModel();
-
 		return view('admin.setting.index', compact('model'));
 	}
 

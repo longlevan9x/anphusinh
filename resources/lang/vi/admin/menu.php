@@ -11,6 +11,7 @@ return [
 	'add_news'         => 'Thêm mới tin tức',
 	'list_post'        => 'Danh sách Bài viết',
 	'post'             => 'Bài viết',
+	'post by category' => "Bài viết theo danh mục",
 	'Product'          => 'sản phẩm',
 	'order'            => 'Đơn đặt hàng',
 	'Profile'          => 'Hồ sơ',
@@ -40,6 +41,7 @@ return [
 	'list district'    => 'Danh sách Quận / Huyện',
 	'add district'     => 'Thêm mới Quận / Huyện',
 	'q & a'            => 'Hỏi đáp',
+	'page'             => 'Trang',
 	'advices'          => 'Lời khuyên chuyên gia',
 	'list advice'      => 'Danh sách lời khuyên',
 	'add advice'       => 'Thêm mới lời khuyên',
@@ -57,9 +59,11 @@ return [
 	'list share'       => "Danh sách kinh nghiệm",
 	'share experience' => "Chia sẻ kinh nghiệm",
 	'expert'           => "Chuyên gia",
+	'post expert'      => "Bài viết chuyên gia",
 	'add expert'       => "Thêm ý kiến chuyên gia",
 	'list expert'      => "Danh sách ý kiến chuyên gia",
 	'expert advice'    => "Lời khuyên chuyên gia",
+	'config'           => "Cấu hình",
 
 	'content message website' => 'Nội dung tin nhắn trang web',
 ];

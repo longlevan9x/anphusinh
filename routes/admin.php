@@ -28,7 +28,8 @@ use App\Http\Controllers\Admin\ShareController;
 use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\NewsController;
-use App\Http\Controllers\Admin\WebsiteMessage;
+use App\Http\Controllers\Admin\WebsiteController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['admin.guest'])->group(function() {
@@ -40,7 +41,6 @@ Route::middleware(['admin.guest'])->group(function() {
 	/*===========Login Route============*/
 
 });
-
 Route::middleware(['admin', 'auth:admin'])->group(function() {
 	Route::post('logout', AdminLoginController::getControllerWithAction('logout', 'AdminAuth'))
 	     ->name(AdminLoginController::getAdminRouteName('logout'));
@@ -67,6 +67,11 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	Route::put(OrderController::getResourceName('confirm/{id}'), OrderController::getControllerWithAction('confirm'));
 	Route::put(OrderController::getResourceName('cancel/{id}'), OrderController::getControllerWithAction('cancel'));
 
+	Route::get(WebsiteController::getResourceName('config'), WebsiteController::getControllerWithAction('showConfig'));
+	Route::post(WebsiteController::getResourceName('config'), WebsiteController::getControllerWithAction('postConfig'));
+	Route::get(WebsiteController::getResourceName('message'), WebsiteController::getControllerWithAction('showMessage'));
+	Route::post(WebsiteController::getResourceName('message'), WebsiteController::getControllerWithAction('postMessage'));
+
 	/*===========Resource===========*/
 	Route::resource(SettingController::getResourceName(), SettingController::getClassName());
 	Route::resource(CategoryController::getResourceName(), CategoryController::getClassName());
@@ -84,7 +89,7 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	Route::resource(SlideController::getResourceName(), SlideController::getClassName());
 	Route::resource(ShareController::getResourceName(), ShareController::getClassName());
 	Route::resource(ExpertController::getResourceName(), ExpertController::getClassName());
-	Route::resource(WebsiteMessage::getResourceName(), WebsiteMessage::getClassName());
+	Route::resource(WebsiteController::getResourceName(), WebsiteController::getClassName());
 	Route::resource(OrderController::getResourceName(), OrderController::getClassName());
 	/*===========Route Ajax===========*/
 	Route::post(AjaxController::getResourceName('delete-file/{table}/{key}/{id?}'), AjaxController::getControllerWithAction('deleteFile'));

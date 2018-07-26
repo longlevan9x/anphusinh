@@ -24,7 +24,11 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property string $format_date
  * @property string $format_datetime
  * @property string $blog_charset
+ * @property string _message_order
+ * @property string _message_order_success
+ * @property string _message_order_fail
  * @property mixed  value
+ * @property mixed  key
  */
 class Setting extends Model
 {
@@ -42,6 +46,7 @@ class Setting extends Model
 	const KEY_LOGO                  = 'logo';
 	const KEY_MESSAGE_ORDER         = '_message_order';
 	const KEY_MESSAGE_ORDER_SUCCESS = '_message_order_success';
+	const KEY_MESSAGE_ORDER_FAIL    = '_message_order_fail';
 	/**
 	 * @var array
 	 */
@@ -198,6 +203,7 @@ class Setting extends Model
 		$this->blog_charset = $blog_charset;
 	}
 
+
 	/**
 	 * @return \Illuminate\Database\Eloquent\Collection|static[]
 	 */
@@ -212,12 +218,46 @@ class Setting extends Model
 			$key   = $item->getAttribute('key');
 			$value = $item->getAttribute('value');
 
+			$this->setAttribute($key, $value);
 			$this->{$key} = $value;
 		});
 
 		Session::put('settings', $this);
 
 		return $models;
+	}
+
+	/**
+	 * @param array|string $keys
+	 * @return Setting
+	 */
+	public function loadModelByKey($keys = "") {
+		if (!empty($keys)) {
+			if (is_array($keys)) {
+				$models = self::whereIn('key', $keys)->get();
+			}
+			else {
+				/** @var self $model */
+				$model = self::where('key', $keys)->first();
+				$this->setAttribute($model->key, $model->value);
+				$this->{$model->key} = $model->value;
+				return $this;
+			}
+		}
+		else {
+			$models = self::all();
+		}
+
+		$models->map(function($item, $index) {
+			/**@var Setting $item */
+			$key   = $item->getAttribute('key');
+			$value = $item->getAttribute('value');
+
+			$this->setAttribute($key, $value);
+			$this->{$key} = $value;
+		});
+
+		return $this;
 	}
 
 	/**
@@ -232,10 +272,12 @@ class Setting extends Model
 			$attribute = key_exists($key, $models);
 			if (isset($attribute) && !empty($attribute)) {
 				return $models->{$key};
-			} else {
+			}
+			else {
 				throw  new  \Exception("$key " . __('admin/common.not found'));
 			}
-		} else {
+		}
+		else {
 			$this->loadModel();
 			$attribute = key_exists($key, $this);
 			if (isset($attribute) && !empty($attribute)) {
@@ -245,6 +287,9 @@ class Setting extends Model
 		}
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public static function getModel() {
 		if (!Session::has('settings')) {
 			return (new static)->loadModel();
@@ -253,6 +298,9 @@ class Setting extends Model
 		return Session::get('settings');
 	}
 
+	/**
+	 * @param Request $request
+	 */
 	public function setModel(Request $request) {
 		$this->website_name        = $request->get(self::KEY_WEBSITE_NAME);
 		$this->website_description = $request->get(self::KEY_WEBSITE_DESCRIPTION);
@@ -263,6 +311,10 @@ class Setting extends Model
 		$this->logo                = $request->get(self::KEY_LOGO);
 	}
 
+	/**
+	 * @param array $options
+	 * @return bool|void
+	 */
 	public function save(
 		array $options = [
 			self::KEY_WEBSITE_NAME,
@@ -285,7 +337,8 @@ class Setting extends Model
 					'created_at' => Carbon::now(),
 					'updated_at' => Carbon::now()
 				];
-			} else {
+			}
+			else {
 				$data[] = [
 					'key'        => $option,
 					'value'      => $this->{$option},
@@ -298,5 +351,141 @@ class Setting extends Model
 		}
 		Session::remove('settings');
 		Setting::insertOnDuplicateKey($data, ['value', 'updated_at']);
+	}
+
+	/**
+	 * @param $keys
+	 * @param $data
+	 * @return $this
+	 */
+	public function fillKeyValues($keys, $data) {
+		foreach ($data as $key => $value) {
+			if (in_array($key, $keys)) {
+				$this->prepareKeyValue($key, $value);
+			}
+		}
+
+		return $this;
+	}
+
+	public $keyFillable = [];
+
+	/**
+	 * @param mixed ...$keys
+	 * @return Setting
+	 */
+	public function setKeyFillable(...$keys) {
+		$this->keyFillable = $keys;
+
+		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getKeyFillable(): array {
+		return $this->keyFillable;
+	}
+
+
+	/**
+	 * @param $data
+	 * @return $this
+	 */
+	public function prepareValue($data) {
+		foreach ($data as $key => $value) {
+			if (in_array($key, $this->keyFillable)) {
+				$this->prepareKeyValue($key, $value);
+			}
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @param array $keyValues
+	 * @param array $options
+	 * @return Setting
+	 */
+	public function prepareKeyValues($keyValues, $options = []) {
+		foreach ($keyValues as $key => $value) {
+			$this->prepareKeyValue($key, $value, $options);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @param string             $key
+	 * @param string|int|boolean $value
+	 * @param array              $options
+	 * @return Setting
+	 */
+	public function prepareKeyValue($key, $value, $options = []) {
+		$this->keyValues[] = [
+			'key'        => $key,
+			'value'      => $value,
+			'is_active'  => isset($options['is_active']) ? $options['is_active'] : CConstant::STATE_ACTIVE,
+			'autoload'   => isset($options['autoload']) ? $options['autoload'] : 0,
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now()
+		];
+
+		return $this;
+	}
+
+	/**
+	 * @param array $keys
+	 * @param array $options
+	 * @return $this
+	 */
+	public function prepareKeyValueUploads($keys, $options = []) {
+		foreach ($keys as $key) {
+			$this->prepareKeyValueUpload($key, $options);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @param string $key
+	 * @param array  $options
+	 * @return $this
+	 */
+	public function prepareKeyValueUpload($key, $options = []) {
+		$old_file = $this->loadModelByKey($key)->getAttribute($key);
+		$this->keyValues[] = [
+			'key'        => $key,
+			'value'      => CFile::upload($key, $this->getTable(), $old_file),
+			'is_active'  => isset($options['is_active']) ? $options['is_active'] : CConstant::STATE_ACTIVE,
+			'autoload'   => isset($options['autoload']) ? $options['autoload'] : 0,
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now()
+		];
+
+		return $this;
+	}
+
+	protected $keyValues = [];
+
+	/**
+	 * @return int
+	 */
+	public function saveModel() {
+		return self::insertOnDuplicateKey($this->keyValues, ['value', 'updated_at']);
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getKeyValues(): array {
+		return $this->keyValues;
+	}
+
+	/**
+	 * @param array $keyValues
+	 */
+	public function setKeyValues(array $keyValues): void {
+		$this->keyValues = $keyValues;
 	}
 }

@@ -15,24 +15,6 @@
                 ]) }}
                     @method('post')
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website_name">@lang('admin/setting.website_name')
-                            <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            {!! Form::text('website_name', $value = null,['required' => "required", 'class' => 'form-control col-md-7 col-xs-12', 'id' => 'website_name']) !!}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website_description">@lang('admin/setting.website_description')
-                            <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            {!! Form::text('website_description', $value = null,['required' => "required", 'class' => 'form-control col-md-7 col-xs-12', 'id' => 'website_description']) !!}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lang_default">@lang('admin/setting.lang_default')
                             <span class="required">*</span>
                         </label>
@@ -67,7 +49,6 @@
                             {!! Form::select('format_time', ['H:i' => __('admin/setting.Hour:Minutes'), "H:i:s" => __('admin/setting.Hour:Minutes:Second')],$value = null,['required' => "required", 'class' => 'form-control col-md-7 col-xs-12', 'id' => 'format_time']) !!}
                         </div>
                     </div>
-                    @include('admin.layouts.widget.form.image-col-6', ['name' => 'logo', 'imagePath' => isset($model) ? $model->getImagePathWithoutDefault('', 'logo') : '', 'label' => __('admin/setting.logo')])
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

@@ -115,9 +115,10 @@
 
                     <div class="ln_solid"></div>
                     <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <button type="submit" class="btn btn-success">@lang('admin.submitButton')</button>
-                            <button class="btn btn-primary" type="reset">@lang('admin.resetButton')</button>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;@lang('admin.saveButton')</button>
+                            <button class="btn btn-primary" type="reset"><i class="fa fa-refresh"></i>&nbsp;@lang('admin.resetButton')</button>
+                            @include('admin.layouts.widget.button.button_link.button', ['text' => __('admin.backButton'), 'icon' => 'fa-mail-reply', 'btn_type' => 'default', 'url' => url('slide'), 'btn_size' => 'md'])
                         </div>
                     </div>
 

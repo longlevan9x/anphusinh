@@ -10,14 +10,15 @@
                             <th>
                                 <input type="checkbox" id="check-all" class="">
                             </th>
-                            <th>@lang('admin/common.name')</th>
-                            <th>@lang('admin/common.phone number')</th>
-                            <th>@lang('admin/common.quantity')</th>
-                            <th>@lang('admin/common.total_money')</th>
-                            <th>@lang('admin/common.is_active')</th>
-                            <th>@lang('admin/order.status order')</th>
-                            <th>@lang('admin/order.ngay dat hang')</th>
-                            <th>@lang('admin/common.action')</th>
+                            <th class="vertical-middle text-center">@lang('admin/common.name')</th>
+                            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1 vertical-middle text-center">@lang('admin/common.phone number')</th>
+                            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1 vertical-middle text-center">@lang('admin/common.quantity')</th>
+                            <th class="vertical-middle text-center">@lang('admin/common.total_money')</th>
+                            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1 vertical-middle text-center">@lang('admin/common.is_active')</th>
+                            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1 vertical-middle text-center">@lang('admin/order.status order')</th>
+                            <th class="vertical-middle text-center">@lang('admin/order.shipping address')</th>
+                            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1 vertical-middle text-center">@lang('admin/order.ngay dat hang')</th>
+                            <th class="vertical-middle text-center">@lang('admin/common.action')</th>
                         </tr>
                         </thead>
                         <tbody>

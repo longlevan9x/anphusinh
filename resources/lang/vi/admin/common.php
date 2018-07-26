@@ -12,6 +12,7 @@ return [
 	'change password'     => "Đổi mật khẩu",
 	'gender'              => "Giới tính",
 	'address'             => "Địa chỉ",
+	'copyright'           => "Copyright",
 	'overview'            => "Tổng quan",
 	'image'               => "Hình ảnh",
 	'update profile'      => "Cập nhật hồ sơ",
@@ -37,5 +38,6 @@ return [
 	'not found'           => "Không tìm thấy",
 	'description'         => "Miêu tả",
 	'select image'        => 'Chọn ảnh',
-	'cover image'         => "Ảnh bìa"
+	'cover image'         => "Ảnh bìa",
+	'user create'         => "Người tạo",
 ];

@@ -30,7 +30,7 @@
             showUpload:           false,
             initialPreviewAsData: true,
             initialPreviewConfig: [
-                {caption: "logo.png", url : '{{$urlDelete}}'}
+                {caption: "{{$model->{$name ?? 'image'} ?? 'no_image.png'}}", url : '{{$urlDelete}}'}
             ]
         };
         let _imagePreview   = '{{$imagePreview}}';

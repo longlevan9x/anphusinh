@@ -92,24 +92,6 @@
             $("#datetimepicker2").datetimepicker({
                 defaultDate: value2 || '{{\Illuminate\Support\Carbon::now()}}'
             });
-
-            let value3 = $("#datetimepicker3 input").attr("value");
-            $("#datetimepicker3 input").attr("value", "");
-            $("#datetimepicker3").datetimepicker({
-                defaultDate: value3 || '{{\Illuminate\Support\Carbon::now()}}'
-            });
-
-            let value4 = $("#datetimepicker4 input").attr("value");
-            $("#datetimepicker4 input").attr("value", "");
-            $("#datetimepicker4").datetimepicker({
-                defaultDate: value4 || '{{\Illuminate\Support\Carbon::now()}}'
-            });
-
-            let value5 = $("#datetimepicker5 input").attr("value");
-            $("#datetimepicker5 input").attr("value", "");
-            $("#datetimepicker5").datetimepicker({
-                defaultDate: value5 || '{{\Illuminate\Support\Carbon::now()}}'
-            });
         });
 
         $(function () {
@@ -122,26 +104,11 @@
                 filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
             };
             let configCKFINDER1 = configCKFINDER;
-            let configCKFINDER2 = configCKFINDER;
-            let configCKFINDER3 = configCKFINDER;
-            let configCKFINDER4 = configCKFINDER;
             let configCKFINDER5 = configCKFINDER;
 
             if ($("#editor1").length > 0) {
                 configCKFINDER1.height = $("#editor1").attr("height") || 500;
                 CKEDITOR.replace("editor1", configCKFINDER1);
-            }
-            if ($("#editor2").length > 0) {
-                configCKFINDER2.height = $("#editor2").attr("height") || 500;
-                CKEDITOR.replace("editor2", configCKFINDER2);
-            }
-            if ($("#editor3").length > 0) {
-                configCKFINDER3.height = $("#editor3").attr("height") || 500;
-                CKEDITOR.replace("editor3", configCKFINDER3);
-            }
-            if ($("#editor4").length > 0) {
-                configCKFINDER4.height = $("#editor4").attr("height") || 500;
-                CKEDITOR.replace("editor4", configCKFINDER4);
             }
             if ($("#editor").length > 0) {
                 configCKFINDER1.height = $("#editor").attr("height") || 500;

@@ -18,7 +18,7 @@
                                 <input type="checkbox" id="check-all" class="">
                             </th>
                             <th class="col-md-1 text-center vertical-middle">@lang('admin/common.image')</th>
-                            <th class="text-center vertical-middle">@lang('admin/news.author')</th>
+                            <th class="text-center vertical-middle">@lang('admin/common.user create')</th>
                             <th class="text-center vertical-middle">@lang('admin/common.name')</th>
                             <th class="text-center vertical-middle">@lang('auth.username')</th>
                             <th class="text-center vertical-middle">@lang('Email')</th>

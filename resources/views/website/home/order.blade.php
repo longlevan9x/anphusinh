@@ -77,7 +77,7 @@
     </div>
     <div class="content-tab">
         <div class="col-md-7 poster hidden-xs">
-            {{$setting->value ?? ''}}
+            {!! $setting->value ?? '' !!}
         </div>
         <div class="col-md-5">
             <div class="form-order">

@@ -9,8 +9,10 @@ return [
 	*/
 
 	'submitButton'    => 'Gửi',
+	'saveButton'      => "Lưu",
 	'resetButton'     => 'Reset',
 	'cancelButton'    => 'Hủy bỏ',
+	'backButton'      => 'Trở lại',
 	'welcome'         => 'Chào mừng',
 	'Hello'           => "Xin chào",
 	'setting'         => 'Cài đặt',
@@ -43,6 +45,14 @@ return [
 	'no'              => "Không",
 	'confirm'         => "Xác nhận",
 	'Confirm message' => "Tin nhắn xác nhận",
+
+	'fax'     => 'Fax',
+	'hotline' => 'Hotline',
+	'social'  => 'Mạng xã hội',
+
+	'notification message order'         => "Thông báo trang đặt hàng",
+	'notification message order success' => "Tin nhắn thông báo khi đặt hàng thành công",
+	'notification message order fail'    => "Tin nhắn khi đặt hàng thất bại",
 
 	"confirm delete item?" => "Xác nhận xóa?",
 	'view on website'      => "Xem trên website",

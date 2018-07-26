@@ -21,7 +21,7 @@ if (!function_exists('setting')) {
 	 * @throws Exception
 	 */
 	function setting($key, $default_value = '') {
-		$value = (new \App\Models\Setting)->getValue($key);
+		$value = \App\Models\Facade\SettingFacade::getValue($key);
 		if (!isset($value) || empty($value)) {
 			return $default_value;
 		}
