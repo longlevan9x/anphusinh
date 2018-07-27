@@ -9,23 +9,24 @@ use App\Http\Controllers\Controller;
 
 class AdviceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-    	$models = Post::whereType(Post::TYPE_ADVICE)->get();
-    	return view('admin.advice.index', compact('models'));
-    }
+	/**
+	 * Display a listing of the resource.
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index() {
+		$models = Post::whereType(Post::TYPE_ADVICE)->get();
+
+		return view('admin.advice.index', compact('models'));
+	}
 
 	/**
 	 * Show the form for creating a new resource.
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		return view('admin.advice.create');
+		$model = new Post;
+
+		return view('admin.advice.create', compact('model'));
 	}
 
 	/**
@@ -35,7 +36,7 @@ class AdviceController extends Controller
 	 * @throws \Exception
 	 */
 	public function store(PostRequest $request) {
-		$model = new Post($request->all());
+		$model       = new Post($request->all());
 		$model->type = Post::TYPE_ADVICE;
 		$model->setAuthorId();
 		$model->save();
@@ -50,6 +51,7 @@ class AdviceController extends Controller
 	 */
 	public function show($id) {
 		$model = Post::findOrFail($id);
+
 		return view('admin.advice.view', compact('model'));
 	}
 
@@ -60,6 +62,7 @@ class AdviceController extends Controller
 	 */
 	public function edit($id) {
 		$model = Post::findOrFail($id);
+
 		return view('admin.advice.update', compact('model'));
 	}
 
@@ -76,6 +79,7 @@ class AdviceController extends Controller
 		$model->fill($request->all());
 		$model->setAuthorUpdatedId();
 		$model->save();
+
 		return redirect(self::getUrlAdmin());
 	}
 
@@ -88,9 +92,10 @@ class AdviceController extends Controller
 	public function destroy($id) {
 		/** @var Post $model */
 		$model = Post::findOrFail($id);
-		if  ($model->delete()) {
+		if ($model->delete()) {
 			return redirect(self::getUrlAdmin());
 		}
+
 		return redirect(self::getUrlAdmin())->with('error', "Delete Fail");
 	}
 }

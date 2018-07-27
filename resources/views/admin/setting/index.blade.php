@@ -11,7 +11,7 @@
                     'class' => 'form-horizontal form-label-left',
                     'id' => 'demo-form2',
                     'data-parsley-validate',
-                    'method' => isset($model) ? 'put' : 'post'
+                    'method' => action_method_push_post($model)
                 ]) }}
                     @method('post')
                     <div class="form-group">

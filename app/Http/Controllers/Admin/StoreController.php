@@ -24,16 +24,19 @@ class StoreController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		return view('admin.store.create');
+		$model = new Store;
+
+		return view('admin.store.create', compact('model'));
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 * @param StoreRequest $request
 	 * @return \Illuminate\Http\Response
+	 * @throws \Exception
 	 */
 	public function store(StoreRequest $request) {
-		$model = new Store();
+		$model = new Store;
 		$model->fill($request->all());
 		$model->save();
 
@@ -83,9 +86,10 @@ class StoreController extends Controller
 	 * @throws \Exception
 	 */
 	public function destroy(Store $store) {
-		if  ($store->delete()) {
+		if ($store->delete()) {
 			return redirect(self::getUrlAdmin());
 		}
+
 		return redirect(self::getUrlAdmin())->with('error', "Delete Fail");
 	}
 }

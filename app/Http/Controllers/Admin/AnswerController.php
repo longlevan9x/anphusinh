@@ -34,7 +34,9 @@ class AnswerController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		return view('admin.answer.create');
+		$model = new Answer;
+
+		return view('admin.answer.create', compact('model'));
 	}
 
 	/**
@@ -71,6 +73,7 @@ class AnswerController extends Controller
 		/** @var Answer $model */
 		$model = Answer::findOrFail($id);
 		$model->prepare();
+
 		return view('admin.answer.update', compact('model'));
 	}
 

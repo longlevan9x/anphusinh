@@ -24,7 +24,9 @@ class SlideController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		return view('admin.slide.create');
+		$model = new Post;
+
+		return view('admin.slide.create', compact('model'));
 	}
 
 	/**
@@ -40,10 +42,12 @@ class SlideController extends Controller
 			$model->parent_id = 0;
 			if ($request->type_link == 'to_link_out') {
 				$model->slug = $request->link;
-			} else {
+			}
+			else {
 				$model->slug = "";
 			}
-		} elseif ($request->type_link == 'to_post') {
+		}
+		elseif ($request->type_link == 'to_post') {
 			/** @var Post $parent */
 			$parent = $model->getParent()->first();
 			if ($request->select_image == 'from_post') {
@@ -54,8 +58,8 @@ class SlideController extends Controller
 			$model->slug = "{$parent->slug}-{$parent->id}";
 		}
 
-		$content = [
-			'type_link' => $request->type_link,
+		$content        = [
+			'type_link'    => $request->type_link,
 			'select_image' => $request->select_image
 		];
 		$model->content = json_encode($content);
@@ -74,11 +78,12 @@ class SlideController extends Controller
 	 */
 	public function show($id) {
 		/** @var Post $model */
-		$model = Post::findOrFail($id);
+		$model   = Post::findOrFail($id);
 		$content = json_decode($model->content);
 		$model->setAttribute('type_link', $content->type_link);
 		$model->setAttribute('select_image', $content->select_image);
 		$model->setAttribute('link', $model->slug);
+
 		return view('admin.slide.view', compact('model'));
 	}
 
@@ -89,7 +94,7 @@ class SlideController extends Controller
 	 */
 	public function edit($id) {
 		/** @var Post $model */
-		$model = Post::findOrFail($id);
+		$model   = Post::findOrFail($id);
 		$content = json_decode($model->content);
 		$model->setAttribute('type_link', $content->type_link);
 		$model->setAttribute('select_image', $content->select_image);
@@ -113,10 +118,12 @@ class SlideController extends Controller
 			$model->parent_id = 0;
 			if ($request->type_link == 'to_link_out') {
 				$model->slug = $request->link;
-			} else {
+			}
+			else {
 				$model->slug = null;
 			}
-		} elseif ($request->type_link == 'to_post') {
+		}
+		elseif ($request->type_link == 'to_post') {
 			/** @var Post $parent */
 			$parent = $model->getParent()->first();
 			if ($request->select_image == 'from_post') {
@@ -127,8 +134,8 @@ class SlideController extends Controller
 			}
 			$model->slug = "{$parent->slug}-{$parent->id}";
 		}
-		$content = [
-			'type_link' => $request->type_link,
+		$content        = [
+			'type_link'    => $request->type_link,
 			'select_image' => $request->select_image
 		];
 		$model->content = json_encode($content);

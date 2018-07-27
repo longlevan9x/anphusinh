@@ -24,7 +24,9 @@ class CategoryStreetController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		return view('admin.category-street.create');
+		$model = new Category;
+
+		return view('admin.category-street.create', compact('model'));
 	}
 
 	/**
@@ -50,7 +52,7 @@ class CategoryStreetController extends Controller
 	 */
 	public function show($id) {
 		$category = Category::findOrFail($id);
-		$model = $category;
+		$model    = $category;
 
 		return view('admin.category-street.view', compact('model'));
 	}
@@ -62,7 +64,7 @@ class CategoryStreetController extends Controller
 	 */
 	public function edit($id) {
 		$category = Category::findOrFail($id);
-		$model = $category;
+		$model    = $category;
 
 		return view('admin.category-street.update', compact('model'));
 	}
@@ -92,9 +94,10 @@ class CategoryStreetController extends Controller
 	public function destroy($id) {
 		/** @var Category $category */
 		$category = Category::findOrFail($id);
-		if  ($category->delete()) {
+		if ($category->delete()) {
 			return redirect(self::getUrlAdmin());
 		}
+
 		return redirect(self::getUrlAdmin())->with('error', "Delete Fail");
 	}
 }

@@ -27,7 +27,10 @@ class NewsController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		return view('admin.news.create');
+		$model = new Post();
+		$model->setMaxImageHeight(358);
+		$model->setMaxImageWidth(264);
+		return view('admin.news.create', compact('model'));
 	}
 
 	/**

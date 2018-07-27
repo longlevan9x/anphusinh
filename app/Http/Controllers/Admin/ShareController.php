@@ -24,7 +24,9 @@ class ShareController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		return view('admin.share.create');
+		$model = new Post;
+
+		return view('admin.share.create', compact('model'));
 	}
 
 	/**

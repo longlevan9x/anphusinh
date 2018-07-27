@@ -302,13 +302,10 @@ class Setting extends Model
 	 * @param Request $request
 	 */
 	public function setModel(Request $request) {
-		$this->website_name        = $request->get(self::KEY_WEBSITE_NAME);
-		$this->website_description = $request->get(self::KEY_WEBSITE_DESCRIPTION);
 		$this->lang_default        = $request->get(self::KEY_LANG_DEFAULT);
 		$this->format_date         = $request->get(self::KEY_FORMAT_DATE);
 		$this->format_time         = $request->get(self::KEY_FORMAT_TIME);
 		$this->format_datetime     = $request->get(self::KEY_FORMAT_DATETIME);
-		$this->logo                = $request->get(self::KEY_LOGO);
 	}
 
 	/**

@@ -44,6 +44,15 @@ if (!function_exists('is_exist_path')) {
 	}
 }
 
+if (!function_exists('action_method_push_post')) {
+	/**
+	 * @param \Illuminate\Database\Eloquent\Model $model
+	 * @return string
+	 */
+	function action_method_push_post($model = null) {
+		return isset($model) && !empty($model->getAttributes()) ? 'put' : 'post';
+	}
+}
 if (!function_exists('public_path_admin')) {
 	/**
 	 * @param string $path

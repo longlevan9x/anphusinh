@@ -19,6 +19,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 trait ModelUploadTrait
 {
+	/**
+	 * @var
+	 */
 	protected $upload_errors;
 	/**
 	 * @var array|string
@@ -29,7 +32,19 @@ trait ModelUploadTrait
 	 */
 	protected $key_file_upload = [];
 
+	/**
+	 * @var string
+	 */
 	protected $folder = '';
+
+	/**
+	 * @var int
+	 */
+	protected $maxImageWidth  = 0;
+	/**
+	 * @var int
+	 */
+	protected $maxImageHeight = 0;
 
 	/**
 	 * @param $folder
@@ -49,6 +64,9 @@ trait ModelUploadTrait
 		return $this->folder;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getFolder() {
 		return $this->folder();
 	}
@@ -91,7 +109,8 @@ trait ModelUploadTrait
 		if (!empty($key)) {
 			if (key_exists($key, $this->getAttributes()) && request()->hasFile($key)) {
 				$this->{$item} = CFile::upload($key, $folder, $old_image);
-			} else {
+			}
+			else {
 				//throw  new \Exception(__("The {$attribute} doesn't exist"));
 			}
 		}
@@ -132,10 +151,12 @@ trait ModelUploadTrait
 					}
 				}
 			}
-		} else {
+		}
+		else {
 			if (key_exists($image, $this->getAttributes())) {
 				CFile::removeFile($folder, $this->{$item});
-			} else {
+			}
+			else {
 				//throw new \Exception("The {$attribute} doesn't exist");
 			}
 		}
@@ -237,6 +258,10 @@ trait ModelUploadTrait
 	}
 
 
+	/**
+	 * @param string $key
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
+	 */
 	public function showImage($key = '') {
 		$value = $this->getAttribute($key);
 		if (key_exists($key, $this->getAttributes())) {
@@ -249,5 +274,33 @@ trait ModelUploadTrait
 		}
 
 		return "";
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getMaxImageWidth(): int {
+		return $this->maxImageWidth;
+	}
+
+	/**
+	 * @param int $maxImageWidth
+	 */
+	public function setMaxImageWidth(int $maxImageWidth): void {
+		$this->maxImageWidth = $maxImageWidth;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getMaxImageHeight(): int {
+		return $this->maxImageHeight;
+	}
+
+	/**
+	 * @param int $maxImageHeight
+	 */
+	public function setMaxImageHeight(int $maxImageHeight): void {
+		$this->maxImageHeight = $maxImageHeight;
 	}
 }

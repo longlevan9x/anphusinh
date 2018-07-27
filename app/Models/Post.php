@@ -275,4 +275,10 @@ class Post extends Model
 
 		return $model;
 	}
+
+	public function __construct(array $attributes = []) {
+		$this->setMaxImageHeight(358);
+		$this->setMaxImageWidth(264);
+		parent::__construct($attributes);
+	}
 }

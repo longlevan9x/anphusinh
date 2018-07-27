@@ -24,7 +24,9 @@ class ExpertController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		return view('admin.expert.create');
+		$model = new Post;
+
+		return view('admin.expert.create', compact('model'));
 	}
 
 	/**
