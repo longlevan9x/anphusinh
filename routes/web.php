@@ -41,3 +41,4 @@ Route::namespace('Website')->group(function() {
 	Route::get('/{slug}', HomeController::getControllerWithAction('showBySlug'));
 	Route::get('/danh-muc/{slug}', HomeController::getControllerWithAction('showByCategory'));
 });
+
