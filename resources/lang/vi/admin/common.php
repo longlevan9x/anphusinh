@@ -40,4 +40,7 @@ return [
 	'select image'        => 'Chọn ảnh',
 	'cover image'         => "Ảnh bìa",
 	'user create'         => "Người tạo",
+
+	'visit website' => "Ghé thăm website",
+	'sort_order'    => "Thứ tự sắp xếp"
 ];

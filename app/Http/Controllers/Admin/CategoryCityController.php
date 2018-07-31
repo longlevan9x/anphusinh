@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CategoryRequest;
+use App\Models\Admins;
 use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class CategoryCityController extends Controller
 {
+	/**
+	 * CategoryCityController constructor.
+	 */
+	public function __construct() {
+		parent::__construct();
+		$this->setRoleExcept(Admins::ROLE_AUTHOR);
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 * @return \Illuminate\Http\Response

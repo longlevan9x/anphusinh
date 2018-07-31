@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use App\Commons\CConstant;
 use App\Models\Category;
+use App\Models\Menu;
 use App\Models\Post;
 use App\Models\PostMeta;
 use Illuminate\Support\Collection;
@@ -36,6 +37,7 @@ class Controller extends \App\Http\Controllers\Controller
 				['text' => __('website.product'), 'url' => url('/san-pham')],
 			];
 
+			$menu = Menu::query()->orderBy('sort_order')->get();
 			$menus1 = [
 				['text' => __('website.diseases'), 'url' => '#', 'children' => []],
 			];
@@ -92,18 +94,7 @@ class Controller extends \App\Http\Controllers\Controller
 		return $output;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getCurrentMethod() {
-		$action = Route::currentRouteAction();
-		$action = substr($action, strpos($action, '@') + 1);
-		if (!$action) {
-			return '';
-		}
 
-		return $action;
-	}
 
 	public function getBannerBottomLeft() {
 		/** @var PostMeta $model */

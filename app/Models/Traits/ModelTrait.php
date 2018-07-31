@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Event;
  */
 trait ModelTrait
 {
+	use ModelBaseTrait;
 	use Sluggable;
 	use SluggableScopeHelpers;
 	use ModelMethodTrait;

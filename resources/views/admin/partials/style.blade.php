@@ -22,6 +22,8 @@
     <link href="{{asset_admin_vendors('bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- JQVMap -->
     <link href="{{asset_admin_vendors('jqvmap/dist/jqvmap.min.css')}}" rel="stylesheet" type="text/css" />
+    <!-- Jquery ui -->
+    <link href="{{asset_admin_vendors('jqueryui/jquery-ui.css')}}" rel="stylesheet" type="text/css" />
     <!-- bootstrap-datatables.net -->
     <link href="{{asset_admin_vendors('datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset_admin_vendors('datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">

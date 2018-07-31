@@ -65,5 +65,10 @@ return [
 	'expert advice'    => "Lời khuyên chuyên gia",
 	'config'           => "Cấu hình",
 
+	'menu'            => 'Menu',
+	'add menu'        => 'Thêm mới menu',
+	'list menu'       => 'Danh sách menu',
+	'sort_order_menu' => "Sắp xếp thứ tự Menu",
+
 	'content message website' => 'Nội dung tin nhắn trang web',
 ];

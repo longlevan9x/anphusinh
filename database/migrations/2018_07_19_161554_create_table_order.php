@@ -22,7 +22,6 @@ class CreateTableOrder extends Migration
         	$table->integer('quantity')->default(0);
         	$table->float('price', 10)->default(0);
         	$table->float('total_price', 10)->default(0);
-        	$table->integer('quantity')->default(0);
         	$table->ipAddress('ipv4')->nullable();
         	$table->string('city')->nullable();
         	$table->tinyInteger('is_active')->default(0);

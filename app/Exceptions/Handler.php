@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use App\Commons\CConstant;
+use App\Http\Controllers\Menu\AdminMenu;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -51,6 +52,7 @@ class Handler extends ExceptionHandler
 	 */
 	public function render($request, Exception $exception)
     {
+    	AdminMenu::render();
 	    if ($request->acceptsJson() && $request->wantsJson()) {
 	    	if(strpos($exception->getMessage(), 'No query results for model') !== false) {
 			    return responseJson(CConstant::STATUS_NOT_FOUND, null, 404);

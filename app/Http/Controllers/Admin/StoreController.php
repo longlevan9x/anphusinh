@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreRequest;
+use App\Models\Admins;
 use App\Models\Store;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class StoreController extends Controller
 {
+	public function __construct() {
+		parent::__construct();
+		$this->setRoleExcept(Admins::ROLE_AUTHOR);
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 * @return \Illuminate\Http\Response

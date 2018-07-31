@@ -53,6 +53,9 @@
     <!--Bootstrapt fileinput-->
     <script src="{{asset_admin_vendors('bootstrap-fileinput/js/fileinput.js')}}" type="text/javascript"></script>
     <script src="{{asset_admin_vendors('bootstrap-fileinput/js/locales/vi.js')}}" type="text/javascript"></script>
+    <!-- Jquery ui -->
+    <script src="{{asset_admin_vendors('jqueryui/jquery-ui.js')}}" type="text/javascript"></script>
+
     <!-- Custom Theme Scripts -->
 
     <script src="{{asset_admin_vendors('datatables.net/js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
@@ -213,7 +216,7 @@
             $modal.find(".modal-title").text(caption);
 
             if (typeof _this === "object") {
-                let message   = _this.data("modal-title");
+                let message = _this.data("modal-title");
                 $modal.find(".modal-body .modal-message").text(message);
                 $modal.modal();
                 $("#delete-yes").click(function () {

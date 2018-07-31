@@ -7,7 +7,7 @@
  */
 ?>
 <div class="navbar nav_title" style="border: 0;">
-    <a href="{{url_admin('/')}}" class="site_title"><i class="fa fa-paw"></i> <span>{{setting(KEY_WEBSITE_NAME, \App\Commons\Facade\Common::showAppName(config('app.name')))}}</span></a>
+    <a href="{{url('/')}}" class="site_title" title="@lang('admin/common.visit website')"><i class="fa fa-paw"></i> <span>{{setting(KEY_WEBSITE_NAME, \App\Commons\Facade\Common::showAppName(config('app.name')))}}</span></a>
 </div>
 
 <div class="clearfix"></div>

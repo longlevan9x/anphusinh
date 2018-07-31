@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Admins;
 use App\Models\Facade\SettingFacade;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class WebsiteController extends Controller
 {
+	public function __construct() {
+		parent::__construct();
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 * @return \Illuminate\Http\Response
@@ -72,12 +76,17 @@ class WebsiteController extends Controller
 	}
 
 	public function showConfig() {
+		$this->setRoleExcept(Admins::ROLE_AUTHOR);
+		$this->checkRole();
 		$model = SettingFacade::loadModelByKey();
-
+		$model->setMaxLogoWidth(107);
+		$model->setMaxLogoHeight(48);
 		return view('admin.website.config', compact('model'));
 	}
 
 	public function postConfig(Request $request) {
+		$this->setRoleExcept(Admins::ROLE_AUTHOR);
+		$this->checkRole();
 		$model = SettingFacade::prepareKeyValues($request->all());
 		$model->prepareKeyValueUploads([Setting::KEY_LOGO])->saveModel();
 

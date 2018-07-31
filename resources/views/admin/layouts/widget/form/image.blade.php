@@ -14,14 +14,14 @@
         }
 
         if ($maxImageWidth == 0) {
-            if (method_exists($model, "getMax".camel_case($name ?? 'image').'Width')) {
-                $maxImageWidth = $model->{"getMax".camel_case($name).'Width'}();
+            if (key_exists("max".ucfirst($name ?? 'image').'Height', $model)) {
+        	    $maxImageWidth = $model->{"getMax".ucfirst($name ?? 'image').'Width'}();
             }
         }
 
         if ($maxImageHeight == 0) {
-            if (method_exists($model, "getMax".camel_case($name ?? 'image').'Height')) {
-                $maxImageHeight = $model->{"getMax".camel_case($name ?? 'image')."Height"}();
+            if (key_exists("max".ucfirst($name ?? 'image').'Height', $model)) {
+        	    $maxImageHeight = $model->{"getMax".ucfirst($name ?? 'image')."Height"}();
             }
         }
     }

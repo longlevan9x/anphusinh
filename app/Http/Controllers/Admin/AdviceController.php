@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PostRequest;
+use App\Models\Admins;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class AdviceController extends Controller
 {

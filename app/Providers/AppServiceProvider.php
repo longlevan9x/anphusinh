@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\Admin\MenuController;
 use App\Models\Setting;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Blade;

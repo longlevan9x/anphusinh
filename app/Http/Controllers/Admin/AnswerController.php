@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Admins;
 use App\Models\Answer;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -17,7 +18,11 @@ class AnswerController extends Controller
 	 * AnswerController constructor.
 	 * @param Answer $model
 	 */
-	public function __construct(Answer $model) { $this->model = $model; }
+	public function __construct(Answer $model) {
+		$this->model = $model;
+		parent::__construct();
+		$this->setRoleExcept(Admins::ROLE_AUTHOR);
+	}
 
 	/**
 	 * Display a listing of the resource.

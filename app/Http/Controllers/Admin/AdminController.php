@@ -7,7 +7,6 @@ use App\Commons\Facade\CUser;
 use App\Http\Requests\AdminRequest;
 use App\Models\Admins;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -17,11 +16,24 @@ use Illuminate\Support\Str;
  */
 class AdminController extends Controller
 {
+	protected $_role = [Admins::ROLE_SUPER_ADMIN, Admins::ROLE_ADMIN, Admins::ROLE_MANAGEMENT];
+
+	public function __construct() {
+		parent::__construct();
+		if (!in_array($this->getCurrentMethod(), ['show_profile', 'update_profile', 'change_password'])) {
+			$this->setRoleExcept(Admins::ROLE_AUTHOR);
+		}
+	}
+
 	/**
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function show_profile() {
-		return view('admin.admin.profile');
+		$model = CUser::userAdmin();
+		$model->setMaxImageWidth(220);
+		$model->setMaxImageHeight(200);
+
+		return view('admin.admin.profile', compact('model'));
 	}
 
 	/**

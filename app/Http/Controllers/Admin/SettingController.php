@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Admins;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,8 @@ class SettingController extends Controller
 
 	public function __construct(Setting $model) {
 		$this->model = $model;
+		parent::__construct();
+		$this->setRoleExcept(Admins::ROLE_AUTHOR);
 	}
 
 	/**

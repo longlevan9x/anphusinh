@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Psy\Util\Str;
 use function Symfony\Component\VarDumper\Dumper\esc;
 use Yadakhov\InsertOnDuplicateKey;
 
@@ -29,6 +30,10 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property string _message_order_fail
  * @property mixed  value
  * @property mixed  key
+ *
+ * ======= method defined in ModelBaseTrait with function __call, __get, __set =======
+ * @method setMaxLogoHeight(int $maxImageHeight)
+ * @method setMaxLogoWidth(int $maxImageWidth)
  */
 class Setting extends Model
 {
@@ -205,9 +210,13 @@ class Setting extends Model
 
 
 	/**
-	 * @return \Illuminate\Database\Eloquent\Collection|static[]
+	 * @return Setting[]|bool|\Illuminate\Database\Eloquent\Collection
 	 */
 	public function loadModel() {
+		if (!file_exists(get_root_name() . "/.env")) {
+			return false;
+		}
+
 		if (Session::has('settings')) {
 			return Session::get('settings');
 		}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Commons\CConstant;
+use App\Models\Admins;
 use App\Models\Post;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,15 @@ use Illuminate\Http\Request;
  */
 class ProductController extends Controller
 {
-	public function __construct(Product $product) { $this->model = $product; }
+	/**
+	 * ProductController constructor.
+	 * @param Product $product
+	 */
+	public function __construct(Product $product) {
+		$this->model = $product;
+		$this->setRoleExcept(Admins::ROLE_AUTHOR);
+		parent::__construct();
+	}
 
 	/**
 	 * Display a listing of the resource.
