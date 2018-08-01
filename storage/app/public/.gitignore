@@ -1,5 +1,6 @@
-\!www/icon-cart.png
+*
+!www/
+!www/icon-cart.png
 !www/no_image.png
 !www/user.png
-*
 !.gitignore
