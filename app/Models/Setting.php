@@ -213,7 +213,7 @@ class Setting extends Model
 	 * @return Setting[]|bool|\Illuminate\Database\Eloquent\Collection
 	 */
 	public function loadModel() {
-		if (!file_exists(get_root_name() . "/.env")) {
+		if (env("APP_NAME") == null) {
 			return false;
 		}
 
@@ -288,6 +288,7 @@ class Setting extends Model
 		}
 		else {
 			$this->loadModel();
+			dd($this);
 			$attribute = key_exists($key, $this);
 			if (isset($attribute) && !empty($attribute)) {
 				return $this->{$key};
