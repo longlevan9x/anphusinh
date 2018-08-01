@@ -57,6 +57,10 @@ class Handler extends ExceptionHandler
 			AdminMenu::render();
 		}
 
+		//if(strpos($request->server('HTTP_HOST'), 'www') == false) {
+		//	return header("Location: ". 'http://www.' . $request->server('HTTP_HOST'));
+		//}
+
 		return parent::render($request, $exception);
 	}
 

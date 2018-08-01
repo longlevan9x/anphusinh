@@ -1,5 +1,5 @@
 @if(!empty($exception->getMessage()))
     @include('errors.error')
 @else
-    Error
+    Error     {{$exception->getStatusCode()}}
 @endif
