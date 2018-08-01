@@ -52,7 +52,8 @@ class Handler extends ExceptionHandler
 				return responseJson(CConstant::STATUS_NOT_FOUND, null, 404);
 			}
 		}
-		if ($exception->getMessage() !== 'Unauthenticated.') {
+
+		if ($request->segment(1) == CConstant::GUARD_ADMIN && $exception->getMessage() !== 'Unauthenticated.' && !empty($exception->getMessage())) {
 			AdminMenu::render();
 		}
 
