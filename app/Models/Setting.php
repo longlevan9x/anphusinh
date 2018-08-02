@@ -276,9 +276,9 @@ class Setting extends Model
 	 * @throws \Exception
 	 */
 	public function getValue($key) {
-		if (Session::has('settings')) {
+		if (Cache::has('settings')) {
 			/** @var Setting $models */
-			$models    = Session::get('settings');
+			$models    = Cache::get('settings');
 			$attribute = key_exists($key, $models);
 			if (isset($attribute) && !empty($attribute)) {
 				return $models->{$key};
@@ -289,7 +289,6 @@ class Setting extends Model
 		}
 		else {
 			$this->loadModel();
-			dd($this);
 			$attribute = key_exists($key, $this);
 			if (isset($attribute) && !empty($attribute)) {
 				return $this->{$key};
@@ -302,11 +301,11 @@ class Setting extends Model
 	 * @return mixed
 	 */
 	public static function getModel() {
-		if (!Session::has('settings')) {
+		if (!Cache::has('settings')) {
 			return (new static)->loadModel();
 		}
 
-		return Session::get('settings');
+		return Cache::get('settings');
 	}
 
 	/**
@@ -357,7 +356,7 @@ class Setting extends Model
 				];
 			}
 		}
-		Session::remove('settings');
+		Cache::forget('settings');
 		Setting::insertOnDuplicateKey($data, ['value', 'updated_at']);
 	}
 
