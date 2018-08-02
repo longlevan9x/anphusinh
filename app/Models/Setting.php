@@ -9,6 +9,7 @@ use App\Models\Traits\ModelUploadTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Psy\Util\Str;
 use function Symfony\Component\VarDumper\Dumper\esc;
@@ -217,8 +218,8 @@ class Setting extends Model
 			return false;
 		}
 
-		if (Session::has('settings')) {
-			return Session::get('settings');
+		if (Cache::has('settings')) {
+			return Cache::get('settings');
 		}
 
 		$models = Setting::where('autoload', 1)->get();
@@ -231,7 +232,7 @@ class Setting extends Model
 			$this->{$key} = $value;
 		});
 
-		Session::put('settings', $this);
+		Cache::put('settings', $this, 120);
 
 		return $models;
 	}
@@ -479,6 +480,7 @@ class Setting extends Model
 	 * @return int
 	 */
 	public function saveModel() {
+		Cache::forget('settings');
 		return self::insertOnDuplicateKey($this->keyValues, ['value', 'updated_at']);
 	}
 
