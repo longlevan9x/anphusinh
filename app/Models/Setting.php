@@ -31,7 +31,6 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property string _message_order_fail
  * @property mixed  value
  * @property mixed  key
- *
  * ======= method defined in ModelBaseTrait with function __call, __get, __set =======
  * @method setMaxLogoHeight(int $maxImageHeight)
  * @method setMaxLogoWidth(int $maxImageWidth)
@@ -41,8 +40,13 @@ class Setting extends Model
 	use ModelTrait;
 	use ModelUploadTrait;
 	use InsertOnDuplicateKey;
-	const KEY_WEBSITE_NAME          = 'website_name';
-	const KEY_WEBSITE_DESCRIPTION   = 'website_description';
+	const KEY_WEBSITE_NAME        = 'website_name';
+	const KEY_WEBSITE_DESCRIPTION = 'website_description';
+	const KEY_WEBSITE_ADDRESS     = 'website_address';
+	const KEY_WEBSITE_PHONE       = 'website_phone';
+	const KEY_WEBSITE_COPYRIGHT   = 'website_copyright';
+	const KEY_WEBSITE_FAX         = 'website_fax';
+
 	const KEY_ADMIN_EMAIL           = 'admin_email';
 	const KEY_LANG_DEFAULT          = 'lang_default';
 	const KEY_FORMAT_TIME           = 'format_time';
@@ -251,6 +255,7 @@ class Setting extends Model
 				$model = self::where('key', $keys)->first();
 				$this->setAttribute($model->key, $model->value);
 				$this->{$model->key} = $model->value;
+
 				return $this;
 			}
 		}
@@ -284,7 +289,13 @@ class Setting extends Model
 				return $models->{$key};
 			}
 			else {
-				throw  new  \Exception("$key " . __('admin/common.not found'));
+				if (isset($models->{$key})) {
+					return $models->{$key};
+				}
+				else {
+					return "";
+					//					throw  new  \Exception("$key " . __('admin/common.not found'));
+				}
 			}
 		}
 		else {
@@ -293,7 +304,14 @@ class Setting extends Model
 			if (isset($attribute) && !empty($attribute)) {
 				return $this->{$key};
 			}
-			throw  new  \Exception("$key " . __('admin/common.not found'));
+			else {
+				if (isset($this->{$key})) {
+					return $this->{$key};
+				}
+
+				return "";
+				//throw  new  \Exception("$key " . __('admin/common.not found'));
+			}
 		}
 	}
 
@@ -312,10 +330,10 @@ class Setting extends Model
 	 * @param Request $request
 	 */
 	public function setModel(Request $request) {
-		$this->lang_default        = $request->get(self::KEY_LANG_DEFAULT);
-		$this->format_date         = $request->get(self::KEY_FORMAT_DATE);
-		$this->format_time         = $request->get(self::KEY_FORMAT_TIME);
-		$this->format_datetime     = $request->get(self::KEY_FORMAT_DATETIME);
+		$this->lang_default    = $request->get(self::KEY_LANG_DEFAULT);
+		$this->format_date     = $request->get(self::KEY_FORMAT_DATE);
+		$this->format_time     = $request->get(self::KEY_FORMAT_TIME);
+		$this->format_datetime = $request->get(self::KEY_FORMAT_DATETIME);
 	}
 
 	/**
@@ -429,6 +447,7 @@ class Setting extends Model
 	 * @return Setting
 	 */
 	public function prepareKeyValue($key, $value, $options = []) {
+
 		$this->keyValues[] = [
 			'key'        => $key,
 			'value'      => $value,
@@ -460,7 +479,7 @@ class Setting extends Model
 	 * @return $this
 	 */
 	public function prepareKeyValueUpload($key, $options = []) {
-		$old_file = $this->loadModelByKey($key)->getAttribute($key);
+		$old_file          = $this->loadModelByKey($key)->getAttribute($key);
 		$this->keyValues[] = [
 			'key'        => $key,
 			'value'      => CFile::upload($key, $this->getTable(), $old_file),
@@ -480,7 +499,8 @@ class Setting extends Model
 	 */
 	public function saveModel() {
 		Cache::forget('settings');
-		return self::insertOnDuplicateKey($this->keyValues, ['value', 'updated_at']);
+
+		return self::insertOnDuplicateKey($this->keyValues, ['value', 'updated_at', 'autoload', 'is_active']);
 	}
 
 	/**

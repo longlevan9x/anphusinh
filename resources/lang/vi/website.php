@@ -34,6 +34,9 @@ return [
 	'expert'              => 'Chuyên gia',
 	'dat-hang-thanh-cong' => 'Đặt hàng thành công',
 	'chia-se-cua-me'      => 'Chia sẻ của mẹ',
+	'send question'       => "Gửi câu hỏi",
+
+	'Just leave the information, we will contact and advise you directly' => "Chỉ cần để lại thông tin, chúng tôi sẽ liên hệ và tư vấn trực tiếp cho bạn.",
 
 	'chúng tôi rất tiếc, trang bạn muốn không còn ở đây nữa. có thể là một trong những liên kết dưới đây có thể giúp bạn!' => 'Chúng tôi rất tiếc, trang bạn muốn không còn ở đây nữa. Có thể là một trong những liên kết dưới đây có thể giúp bạn!'
 

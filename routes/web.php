@@ -38,6 +38,7 @@ Route::namespace('Website')->group(function() {
 	Route::post('/dat-hang-ajax', HomeController::getControllerWithAction('postOrderAjax'))->name('dat-hang-ajax');
 	Route::get('/dat-hang-thanh-cong', HomeController::getControllerWithAction('showOrderMessage'))->name('dat-hang-thanh-cong');
 	Route::post('/dang-ky', HomeController::getControllerWithAction('postSubscribe'))->name('dang-ky');
+	Route::post('/lien-he', HomeController::getControllerWithAction('postContact'))->name('lien-he');
 	Route::get('/{slug}', HomeController::getControllerWithAction('showBySlug'));
 	Route::get('/danh-muc/{slug}', HomeController::getControllerWithAction('showByCategory'));
 });

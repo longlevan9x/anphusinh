@@ -12,6 +12,33 @@ $(function () {
         xhr.success(function (result) {
             if (result.message === 'success') {
                 alert(result.result);
+                window.location.reload(true);
+                return false;
+            }
+            alert(result.result);
+            return false;
+        });
+
+        xhr.error(function (error) {
+            alert("Có lỗi xảy ra");
+            console.log(error.responseText);
+        });
+    });
+
+    $('#btn_submit_contact').click(function (e) {
+        let _form = $("#contact-form");
+        _form.submit(function (event) {
+            event.preventDefault();
+        });
+        let _data = _form.serializeArray();
+        let _url  = _form.attr("action");
+
+        let xhr     = postAjax(_url, _data);
+
+        xhr.success(function (result) {
+            if (result.message === 'success') {
+                alert(result.result);
+                window.location.reload(true);
                 return false;
             }
             alert(result.result);

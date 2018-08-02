@@ -733,38 +733,39 @@
     <section id="contact" class="padding">
         <div class="container">
             <div class="row padding-bottom">
-                <div class="col-md-8 wow fadeInRight" data-wow-delay="1000ms">
-                    <h2 class="heading heading_space">LIÊN HỆ VỚI CHÚNG TÔI<span class="divider-left"></span></h2>
-                    <p> Chỉ cần để lại thông tin, chúng tôi sẽ liên hệ và tư vấn trực tiếp cho bạn</p>
+                <div class="col-md-8 wow fadeInRight" data-wow-delay="300ms">
+                    <h2 class="heading heading_space" style="text-transform: uppercase">@lang('website.contact us')<span class="divider-left"></span></h2>
+                    <p> @lang('website.Just leave the information, we will contact and advise you directly')</p>
+                    {{Form::open(['url' => url('lien-he'), 'id' => 'contact-form', 'class' => 'form-inline findus', 'onSubmit' => "return false", 'style' => "padding-top: 5px;"])}}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="result"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="@lang('admin/common.name')" name="name" id="name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <input type="tel" class="form-control" placeholder="@lang('admin/common.phone number')" name="phone" id="email" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <textarea placeholder="@lang('admin.question')" name="question" rows="2" id="message"></textarea>
+                            <button class="btn_common yellow border_radius" id="btn_submit_contact">@lang('website.send question')</button>
+                        </div>
+                    </div>
+                    {{Form::close()}}
 
-                    <form class="form-inline findus" id="contact-form" onSubmit="return false">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div id="result"></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Name" name="name" id="name" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <textarea placeholder="Comment" name="message" rows="2" id="message"></textarea>
-                                <button class="btn_common yellow border_radius" id="btn_submit">Submit</button>
-                            </div>
-                        </div>
-                    </form>
                     <ul class="social_icon black top30">
-                        <li><a href="#." class="facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#." class="twitter"><i class="icon-twitter4"></i></a></li>
-                        <li><a href="#." class="dribble"><i class="icon-dribbble5"></i></a></li>
-                        <li><a href="#." class="instagram"><i class="icon-instagram"></i></a></li>
+                        <li><a href="{{setting("_social_facebook") ?? '#'}}" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="{{setting("_social_twitter") ?? '#'}}" class="twitter"><i class="icon-twitter4"></i></a></li>
+                        <li><a href="{{setting("_social_youtube") ?? '#'}}" class="dribble"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="{{setting("_social_whatsapp") ?? '#'}}" class="instagram"><i class="fa fa-whatsapp"></i></a></li>
+                        <li><a href="{{setting("_social_google_plus") ?? '#'}}" class="instagram"><i class="fa fa-google-plus"></i></a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 contact_address heading_space wow fadeInLeft" data-wow-delay="1000ms">
@@ -772,18 +773,18 @@
                     <p></p>
                     <div class="address">
                         <i class="icon icon-map-pin border_radius"></i>
-                        <h4>Visit Us</h4>
-                        <p>Tottenham Road, Japan.</p>
+                        <h4>@lang('admin/common.address')</h4>
+                        <p>{{setting(\App\Models\Setting::KEY_WEBSITE_ADDRESS)}}</p>
                     </div>
                     <div class="address">
                         <i class="icon icon-mail border_radius"></i>
-                        <h4>Email Us</h4>
-                        <p><a href="mailto:Edua@info.com">Edua@info.com</a></p>
+                        <h4>@lang('Email')</h4>
+                        <p><a href="mailto:Edua@info.com">{{setting(\App\Models\Setting::KEY_ADMIN_EMAIL)}}</a></p>
                     </div>
                     <div class="address">
                         <i class="icon icon-phone4 border_radius"></i>
-                        <h4>Call Us</h4>
-                        <p>(+01) 123 456 7890</p>
+                        <h4>@lang('admin/common.phone')</h4>
+                        <p>{{setting(\App\Models\Setting::KEY_WEBSITE_PHONE)}}</p>
                     </div>
                 </div>
             </div>

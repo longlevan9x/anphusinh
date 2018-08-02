@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Admins;
 use App\Models\Facade\SettingFacade;
+use App\Models\Post;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -81,14 +82,15 @@ class WebsiteController extends Controller
 		$model = SettingFacade::loadModelByKey();
 		$model->setMaxLogoWidth(107);
 		$model->setMaxLogoHeight(48);
+
 		return view('admin.website.config', compact('model'));
 	}
 
 	public function postConfig(Request $request) {
 		$this->setRoleExcept(Admins::ROLE_AUTHOR);
 		$this->checkRole();
-		$model = SettingFacade::prepareKeyValues($request->all());
-		$model->prepareKeyValueUploads([Setting::KEY_LOGO])->saveModel();
+		$model = SettingFacade::prepareKeyValues($request->all(), ['autoload' => 1]);
+		$model->prepareKeyValueUploads([Setting::KEY_LOGO], ['autoload' => 1])->saveModel();
 
 		return redirect(url(self::getConfigUrlAdmin('config')));
 	}
@@ -108,5 +110,53 @@ class WebsiteController extends Controller
 		$model->prepareValue($request->all())->saveModel();
 
 		return redirect(url(self::getConfigUrlAdmin('message')));
+	}
+
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function showSubscribe() {
+		$models = Post::whereType(Post::TYPE_SUBSCRIBE)->get();
+
+		return view('admin.website.subscribe.index', compact('models'));
+	}
+
+	/**
+	 * @param $id
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+	 * @throws \Exception
+	 */
+	public function deleteSubscribe($id) {
+		/** @var Post $model */
+		$model = Post::findOrFail($id);
+		if ($model->delete()) {
+			return redirect(self::getConfigUrlAdmin('subscribe'));
+		}
+
+		return redirect(self::getConfigUrlAdmin('subscribe'))->with('error', "Delete Fail");
+	}
+
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function showContact() {
+		$models = Post::whereType(Post::TYPE_CONTACT)->get();
+
+		return view('admin.website.contact.index', compact('models'));
+	}
+
+	/**
+	 * @param $id
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+	 * @throws \Exception
+	 */
+	public function deleteContact($id) {
+		/** @var Post $model */
+		$model = Post::findOrFail($id);
+		if ($model->delete()) {
+			return redirect(self::getConfigUrlAdmin('contact'));
+		}
+
+		return redirect(self::getUrlAdmin('contact'))->with('error', "Delete Fail");
 	}
 }

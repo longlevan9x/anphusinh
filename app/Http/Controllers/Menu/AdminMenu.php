@@ -373,6 +373,28 @@ class AdminMenu
 				]
 			],
 			/*Page*/
+			/*Consultation & contact*/
+			[
+				'name'     => __("admin/menu.consultation and contact"),
+				'url'      => '#',
+				'visible'  => CUser::checkRole([Admins::ROLE_SUPER_ADMIN, Admins::ROLE_ADMIN]),
+				'icon'     => 'fa-users',
+				'children' => [
+					[
+						'name'    => __("admin/menu.consultation"),
+						'url'     => url_admin('website/subscribe'),
+						'visible' => true,
+						'icon'    => 'fa-user-circle',
+					],
+					[
+						'name'    => __("admin/menu.contact"),
+						'url'     => url_admin('website/contact'),
+						'visible' => true,
+						'icon'    => 'fa-plus',
+					],
+				]
+			],
+			/*Consultation & contact*/
 			/*User*/
 			[
 				'name'     => __("admin/menu.users"),

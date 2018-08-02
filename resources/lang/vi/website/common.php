@@ -10,5 +10,5 @@ return [
 	'fullname'     => "Họ tên",
 	'phone_number' => "Số điện thoại",
 
-	'free registration registration' => "Nhận đăng ký tư vấn miễn phí",
+	'free registration registration' => "Đăng ký nhận tư vấn miễn phí",
 ];

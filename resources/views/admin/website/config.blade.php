@@ -71,12 +71,13 @@
                             {{--Address && copyright--}}
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="col-md-12 col-sm-12 col-xs-12" for="website_address">@lang('admin/common.address'):</label>
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="admin_email">@lang('admin/setting.admin_email'):</label>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                        {!! Form::text('website_address', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'website_address']) !!}
+                                        {!! Form::text('admin_email', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'admin_email']) !!}
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-md-12 col-sm-12 col-xs-12" for="website_copyright">@lang('admin/common.copyright'):</label>
@@ -86,6 +87,15 @@
                                 </div>
                             </div>
 
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="website_address">@lang('admin/common.address'):</label>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        {!! Form::text('website_address', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'website_address']) !!}
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 @include('admin.layouts.widget.form.image-full', ['name' => 'logo', 'imagePath' => isset($model) ? $model->getImagePathWithoutDefault('', 'logo') : '', 'label' => __('admin/setting.logo')])
                             </div>
@@ -144,6 +154,13 @@
                                         <label class="col-md-12 col-sm-12 col-xs-12" for="_social_youtube">@lang('Youtube'):</label>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             {!! Form::text('_social_youtube', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => '_social_youtube']) !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12 col-sm-12 col-xs-12" for="_social_google_plus">@lang('Google Plus'):</label>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            {!! Form::text('_social_google_plus', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => '_social_google_plus']) !!}
                                         </div>
                                     </div>
 

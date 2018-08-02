@@ -32,9 +32,9 @@
                     {{Form::close()}}
                 </div>
                 <ul class="social_top pull-right">
-                    <li><a href="#."><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#."><i class="icon-twitter4"></i></a></li>
-                    <li><a href="#."><i class="icon-google"></i></a></li>
+                    <li><a href="{{setting("_social_facebook") ?? '#'}}"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="{{setting("_social_twitter") ?? '#'}}"><i class="icon-twitter4"></i></a></li>
+                    <li><a href="{{setting("_social_google_plus") ?? '#'}}"><i class="icon-google"></i></a></li>
                 </ul>
             </div>
         </div>

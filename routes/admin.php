@@ -72,6 +72,10 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	Route::post(WebsiteController::getResourceName('config'), WebsiteController::getControllerWithAction('postConfig'));
 	Route::get(WebsiteController::getResourceName('message'), WebsiteController::getControllerWithAction('showMessage'));
 	Route::post(WebsiteController::getResourceName('message'), WebsiteController::getControllerWithAction('postMessage'));
+	Route::get(WebsiteController::getResourceName('subscribe'), WebsiteController::getControllerWithAction('showSubscribe'));
+	Route::delete(WebsiteController::getResourceName('subscribe/{id}'), WebsiteController::getControllerWithAction('deleteSubscribe'));
+	Route::get(WebsiteController::getResourceName('contact'), WebsiteController::getControllerWithAction('showContact'));
+	Route::delete(WebsiteController::getResourceName('contact/{id}'), WebsiteController::getControllerWithAction('deleteContact'));
 
 	Route::get(MenuController::getResourceName('sort-order'), MenuController::getControllerWithAction('showSortOrder'));
 	Route::post(MenuController::getResourceName('sort-order'), MenuController::getControllerWithAction('postSortOrder'));

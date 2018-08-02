@@ -41,7 +41,8 @@ class HomeController extends Controller
 	public function index() {
 		if (Cache::has('slides')) {
 			$slides = Cache::get('slides');
-		} else {
+		}
+		else {
 			$slides = Post::whereType(Post::TYPE_SLIDE)->where('is_active', CConstant::STATE_ACTIVE)->get();
 			Cache::put('slides', $slides, 60);
 		}
@@ -213,7 +214,8 @@ class HomeController extends Controller
 			$this->getBreadcrumb();
 
 			return view('website.home.question-answer-detail', compact('model', 'relate_posts'));
-		} elseif ($model->type == Post::TYPE_ADVICE) {
+		}
+		elseif ($model->type == Post::TYPE_ADVICE) {
 			$this->prefixBreadcrumb = '';
 			$this->getBreadcrumb();
 
@@ -252,22 +254,46 @@ class HomeController extends Controller
 			return responseJson(CConstant::STATUS_FAIL, "Số điện thoại không hợp lệ");
 		}
 
-		$model = Post::whereType(Post::TYPE_SUBSCRIBE)->where('title', $request->phone)->first();
-		if (isset($model) && !empty($model)) {
-			return responseJson(CConstant::STATUS_FAIL, "Số điện thoại này đã đăng ký");
-		}
-
 		$model = new Post;
 
 		$model->type = Post::TYPE_SUBSCRIBE;
 
-		$model->title    = $request->phone;
-		$model->overview = $request->name;
+		$model->title    = time();
+		$model->content  = $request->name;
+		$model->overview = $request->phone;
 
 		if ($model->save()) {
 			return responseJson(CConstant::STATUS_SUCCESS, 'Xác nhận đăng ký thành công. Yêu cầu tư vấn của bạn đã được chúng tôi tiếp nhận.');
 		}
 
 		return responseJson(CConstant::STATUS_FAIL, 'Yêu cầu đăng ký tư vấn của bạn đã thất bại. Xin vui lòng thử lại sau.');
+	}
+
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\JsonResponse
+	 * @throws \Exception
+	 */
+	public function postContact(Request $request) {
+		$phone = intval($request->phone);
+		if (strlen($phone) < 9 || strlen($phone) > 11) {
+			return responseJson(CConstant::STATUS_FAIL, "Số điện thoại không hợp lệ");
+		}
+
+		$model = new Post;
+
+		$model->type = Post::TYPE_CONTACT;
+
+		$model->title    = time();
+		$model->content  = $request->name;
+		$model->overview = $request->phone;
+
+		if ($model->save()) {
+			$model->postMeta()->create(['key' => '_post_contact', 'value' => $request->question]);
+
+			return responseJson(CConstant::STATUS_SUCCESS, 'Gửi yêu cầu liên hệ thành công. chúng tôi sẽ liên hệ với bạn trong giới gian sớm nhất');
+		}
+
+		return responseJson(CConstant::STATUS_FAIL, 'Yêu cầu liên hệ của bạn đã thất bại. Xin vui lòng thử lại sau.');
 	}
 }

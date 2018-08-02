@@ -65,6 +65,12 @@ return [
 	'expert advice'    => "Lời khuyên chuyên gia",
 	'config'           => "Cấu hình",
 
+	'consultation and feedback' => "Tư vấn và phản hồi",
+	'consultation and contact' => "Tư vấn và liên hệ",
+	'consultation'              => 'Tư vấn',
+	'feedback'                  => "Phản hồi",
+	'contact'                  => "Liên hệ",
+
 	'menu'            => 'Menu',
 	'add menu'        => 'Thêm mới menu',
 	'list menu'       => 'Danh sách menu',

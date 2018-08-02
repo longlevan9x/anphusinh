@@ -30,6 +30,7 @@ use MicrosoftAzure\Storage\Common\Models\RetentionPolicy;
  * @property int          parent_id
  * @property null         image
  * @property string       slug
+ * @property PostMeta     $postMeta
  */
 class Post extends Model
 {
@@ -44,6 +45,7 @@ class Post extends Model
 	const TYPE_SLIDE     = 'slide';
 	const TYPE_EXPERT    = 'expert';
 	const TYPE_SUBSCRIBE = 'subscribe';
+	const TYPE_CONTACT   = 'contact';
 	public static $TYPE_NEWS     = self::TYPE_NEWS;
 	public static $TYPE_SHARE    = self::TYPE_SHARE;
 	public static $TYPE_POST     = self::TYPE_POST;
@@ -276,6 +278,10 @@ class Post extends Model
 		return $model;
 	}
 
+	/**
+	 * Post constructor.
+	 * @param array $attributes
+	 */
 	public function __construct(array $attributes = []) {
 		$this->setMaxImageHeight(358);
 		$this->setMaxImageWidth(264);
