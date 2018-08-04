@@ -37,8 +37,8 @@
 </script>
 <script type="application/ld+json">
 	{
-	"@context": "https://schema.org/ProfessionalService",
-  	"@type": "{{setting(KEY_WEBSITE_NAME)}}",
+	"@context": "https://schema.org",
+  	"@type": "LocalBusiness",
 	"url": "{{url("/")}}",
 	"logo": "{{\App\Commons\Facade\CFile::getImageUrl('settings', setting(KEY_LOGO))}}",
 	"hasMap": "https://www.google.com/maps/place/C%C3%94NG+TY+TNHH+%C4%90%E1%BA%A6U+T%C6%AF+TH%C6%AF%C6%A0NG+M%E1%BA%A0I+PH%C3%9A+NGUY%C3%8AN/@20.9746939,105.8336162,17z/data=!3m1!4b1!4m5!3m4!1s0x3135ac5a1b4bbc1d:0xd3667b3bcf4aa8ab!8m2!3d20.9746939!4d105.8358049",
