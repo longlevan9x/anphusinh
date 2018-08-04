@@ -379,7 +379,7 @@
                                     <div class="image bottom20">
                                         <img src="{{$category->getImagePath()}}" alt="Courses" class="img-responsive border_radius">
                                     </div>
-                                    <h3 class="bottom15" style="text-align: center;">
+                                    <h3 class="bottom15" style="text-align: center;color: #4587d9;">
                                         <a href="{{url($category->slug)}}">{{$category->name}}</a></h3>
                                 </div>
                             @empty
