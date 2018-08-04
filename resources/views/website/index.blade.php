@@ -62,13 +62,13 @@
   	"sameAs" : [ "https://www.facebook.com/everonngogiatu/",
     	"https://www.youtube.com/c/everonngogiatu",
     	"https://twitter.com/everonngogiatu",
-		"https://www.instagram.com/everonngogiatu"
-			"https://www.youtube.com/c/everonngogiatu"
-			"https://www.linkedin.com/company/everonngogiatu"
-			"https://www.pinterest.com/everonngogiatu"
-			"https://soundcloud.com/everonngogiatu"
-			"https://plus.google.com/+Geveronngogiatu"
-			"https://myspace.com/everonngogiatu"
+		"https://www.instagram.com/everonngogiatu",
+			"https://www.youtube.com/c/everonngogiatu",
+			"https://www.linkedin.com/company/everonngogiatu",
+			"https://www.pinterest.com/everonngogiatu",
+			"https://soundcloud.com/everonngogiatu",
+			"https://plus.google.com/+Geveronngogiatu",
+			"https://myspace.com/everonngogiatu",
 			"http://everonngogiatu.tumblr.com/"]
 	}
 </script>
