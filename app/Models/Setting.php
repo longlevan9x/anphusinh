@@ -253,8 +253,10 @@ class Setting extends Model
 			else {
 				/** @var self $model */
 				$model = self::where('key', $keys)->first();
-				$this->setAttribute($model->key, $model->value);
-				$this->{$model->key} = $model->value;
+				if (isset($model) && !empty($model)) {
+					$this->setAttribute($model->key, $model->value);
+					$this->{$model->key} = $model->value;
+				}
 
 				return $this;
 			}
