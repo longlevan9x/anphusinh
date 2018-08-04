@@ -39,10 +39,10 @@
 	{
 	"@context": "https://schema.org/ProfessionalService",
   	"@type": "{{setting(KEY_WEBSITE_NAME)}}",
-	"url": "http://everonlongbien.com.vn/",
-	"logo": "http://everonlongbien.com.vn/uploads/anh_dai_dien_bai_viet/logo-everon.png",
-	"hasMap": "https://www.google.com/maps/place/%C4%90%E1%BA%A1i+l%C3%BD+EVERON+Nguy%E1%BB%85n+V%C4%83n+C%E1%BB%AB/@21.0476489,105.8770703,17z/data=!3m1!4b1!4m5!3m4!1s0x3135a97ef9778361:0x731d039cc7fee20b!8m2!3d21.0476439!4d105.879259",
-	"email": "mailto:everonngogiatu@gmail.com			",
+	"url": "{{url("/")}}",
+	"logo": "{{\App\Commons\Facade\CFile::getImageUrl('settings', setting(KEY_LOGO))}}",
+	"hasMap": "https://www.google.com/maps/place/C%C3%94NG+TY+TNHH+%C4%90%E1%BA%A6U+T%C6%AF+TH%C6%AF%C6%A0NG+M%E1%BA%A0I+PH%C3%9A+NGUY%C3%8AN/@20.9746939,105.8336162,17z/data=!3m1!4b1!4m5!3m4!1s0x3135ac5a1b4bbc1d:0xd3667b3bcf4aa8ab!8m2!3d20.9746939!4d105.8358049",
+	"email": "mailto:{{setting(KEY_ADMIN_EMAIL)}}",
   	"address": {
     	"@type": "PostalAddress",
     	"addressLocality": "Long Biên",
@@ -50,9 +50,9 @@
     	"postalCode":"100000",
     	"streetAddress": "439 Nguyễn Văn Cừ"
   	},
-  	"description": "Đại lý Chăn Ga Gối Đệm Everon tại 47 Ngô Gia Tự, Long Biên, Hà Nội. Với diện tích trưng bày rộng lớn đầy đủ các mẫu sản phẩm mới nhất của Everon để thỏa mã như cầu mua sắm của khách hàng.",
-	"name": "Everon Long Biên",
-  	"telephone": "0966.452.111 - 024.3999.4555",
+  	"description": "{{setting(KEY_WEBSITE_DESCRIPTION)}}",
+	"name": "{{setting(KEY_WEBSITE_NAME)}}",
+  	"telephone": "{{setting(\App\Models\Setting::KEY_WEBSITE_PHONE)}} - {{setting("website_fax")}}  - {{setting("website_hotline")}}",
   	"openingHours": [ "Mo-Sa 07:00-23:00", "Sun 08:00-22:00" ],
   	"geo": {
     	"@type": "GeoCoordinates",
