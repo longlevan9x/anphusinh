@@ -43,6 +43,7 @@
 	"logo": "{{\App\Commons\Facade\CFile::getImageUrl('settings', setting(KEY_LOGO))}}",
 	"hasMap": "{{setting("_google_map_link")}}",
 	"email": "mailto:{{setting(KEY_ADMIN_EMAIL)}}",
+	"image": "{{\App\Commons\Facade\CFile::getImageUrl('settings', setting("website_image"))}}",
   	"address": {
     	"@type": "PostalAddress",
     	"addressLocality": "{{setting('company_district')}}",
@@ -52,7 +53,6 @@
   	},
   	"description": "{{setting(KEY_WEBSITE_DESCRIPTION)}}",
 	"name": "{{setting(KEY_WEBSITE_NAME)}}",
-	"image": "{{setting("website_image")}}",
   	"telephone": "{{setting(\App\Models\Setting::KEY_WEBSITE_PHONE)}} - {{setting("website_fax")}}  - {{setting("website_hotline")}}",
   	"geo": {
     	"@type": "GeoCoordinates",
