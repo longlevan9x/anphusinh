@@ -36,6 +36,7 @@ return [
 	'chia-se-cua-me'      => 'Chia sẻ của mẹ',
 	'send question'       => "Gửi câu hỏi",
 	'contact us'          => 'Liên hệ chúng tôi',
+	'cart'           => "Giỏ hàng",
 
 	'Just leave the information, we will contact and advise you directly' => "Chỉ cần để lại thông tin, chúng tôi sẽ liên hệ và tư vấn trực tiếp cho bạn.",
 
