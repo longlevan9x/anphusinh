@@ -52,7 +52,7 @@
   	},
   	"description": "{{setting(KEY_WEBSITE_DESCRIPTION)}}",
 	"name": "{{setting(KEY_WEBSITE_NAME)}}",
-	"image: "{{setting("website_image")}}",
+	"image": "{{setting("website_image")}}",
   	"telephone": "{{setting(\App\Models\Setting::KEY_WEBSITE_PHONE)}} - {{setting("website_fax")}}  - {{setting("website_hotline")}}",
   	"geo": {
     	"@type": "GeoCoordinates",
