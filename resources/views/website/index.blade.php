@@ -35,6 +35,43 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, "script", "facebook-jssdk"));
 </script>
+<script type="application/ld+json">
+	{
+	"@context": "https://schema.org/ProfessionalService",
+  	"@type": "{{setting(KEY_WEBSITE_NAME)}}",
+	"url": "http://everonlongbien.com.vn/",
+	"logo": "http://everonlongbien.com.vn/uploads/anh_dai_dien_bai_viet/logo-everon.png",
+	"hasMap": "https://www.google.com/maps/place/%C4%90%E1%BA%A1i+l%C3%BD+EVERON+Nguy%E1%BB%85n+V%C4%83n+C%E1%BB%AB/@21.0476489,105.8770703,17z/data=!3m1!4b1!4m5!3m4!1s0x3135a97ef9778361:0x731d039cc7fee20b!8m2!3d21.0476439!4d105.879259",
+	"email": "mailto:everonngogiatu@gmail.com			",
+  	"address": {
+    	"@type": "PostalAddress",
+    	"addressLocality": "Long Biên",
+    	"addressRegion": "Hà Nội",
+    	"postalCode":"100000",
+    	"streetAddress": "439 Nguyễn Văn Cừ"
+  	},
+  	"description": "Đại lý Chăn Ga Gối Đệm Everon tại 47 Ngô Gia Tự, Long Biên, Hà Nội. Với diện tích trưng bày rộng lớn đầy đủ các mẫu sản phẩm mới nhất của Everon để thỏa mã như cầu mua sắm của khách hàng.",
+	"name": "Everon Long Biên",
+  	"telephone": "0966.452.111 - 024.3999.4555",
+  	"openingHours": [ "Mo-Sa 07:00-23:00", "Sun 08:00-22:00" ],
+  	"geo": {
+    	"@type": "GeoCoordinates",
+   	"latitude": "21.05",
+    	"longitude": "105.87"
+ 		},
+  	"sameAs" : [ "https://www.facebook.com/everonngogiatu/",
+    	"https://www.youtube.com/c/everonngogiatu",
+    	"https://twitter.com/everonngogiatu",
+		"https://www.instagram.com/everonngogiatu"
+			"https://www.youtube.com/c/everonngogiatu"
+			"https://www.linkedin.com/company/everonngogiatu"
+			"https://www.pinterest.com/everonngogiatu"
+			"https://soundcloud.com/everonngogiatu"
+			"https://plus.google.com/+Geveronngogiatu"
+			"https://myspace.com/everonngogiatu"
+			"http://everonngogiatu.tumblr.com/"]
+	}
+</script>
 @include('website.partials.topbar')
 @include('website.partials.menu')
 <!-- page content -->
