@@ -20,7 +20,7 @@
     }
 </style>
 <a class="hidden-sm-down" id="icon_order_fix" href="{{url('dat-hang')}}">
-    <img src="{{asset_uploads('www/icon-cart.png')}}">
+    <img src="{{asset_uploads('www/icon-cart.png')}}" alt="@lang('website.cart')">
 </a>
 
 <div id="fb-root"></div>
