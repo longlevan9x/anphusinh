@@ -4,7 +4,26 @@
         /** @var \App\Models\Post $slide */
         /** @var \App\Models\Category $category */
         /** @var \App\Models\Post $share */
+        /** @var \App\Models\Post $postNew */
+        /** @var \App\Models\Product $product */
     @endphp
+    <style type="text/css">
+        .padding-top-50 {
+            padding-top: 50px;
+        }
+
+        .padding-top-20 {
+            padding-top: 20px;
+        }
+
+        .padding-bottom-50 {
+            padding-bottom: 50px;
+        }
+
+        .padding-bottom-20 {
+            padding-bottom: 20px;
+        }
+    </style>
     <!--Slider-->
     <section class="rev_slider_wrapper text-center" style="top: 19%;">
         <!-- START REVOLUTION SLIDER 5.0 auto mode -->
@@ -36,7 +55,7 @@
                              data-transform_in="z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;"
                              data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
                              data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
-                             data-start="800"><h1>{{$slide->title}}</h1>
+                             data-start="800"><h2 style="color: white;font-size: 40px">{{$slide->title}}</h2>
                         </div>
                         <div class="tp-caption tp-resizeme"
                              data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
@@ -74,51 +93,40 @@
 
 
     <!--ABout US-->
-    <section id="about" class="padding">
+    <section id="about" class="" style="padding-top: 150px;padding-bottom: 40px">
         <div class="container">
             <div class="row">
-                <div class="icon_wrap padding-bottom-half clearfix">
-                    <div class="col-sm-4 icon_box text-center heading_space wow fadeInUp" data-wow-delay="300ms">
-                        <i class="icon-icons9"></i>
-                        <h4 class="text-capitalize bottom20 margin10">Unlimited Features</h4>
-                        <p class="no_bottom">Keep away from people who try to belittle your ambitions. Small people always do that but the really great.</p>
-                    </div>
-                    <div class="col-sm-4 icon_box text-center heading_space wow fadeInUp" data-wow-delay="400ms">
-                        <i class="icon-icons9"></i>
-                        <h4 class="text-capitalize bottom20 margin10">Unlimited Features</h4>
-                        <p class="no_bottom">Keep away from people who try to belittle your ambitions. Small people always do that but the really great.</p>
-                    </div>
-                    <div class="col-sm-4 icon_box text-center heading_space wow fadeInUp" data-wow-delay="500ms">
-                        <i class="icon-icons20"></i>
-                        <h4 class="text-capitalize bottom20 margin10">Unlimited Features</h4>
-                        <p class="no_bottom">Keep away from people who try to belittle your ambitions. Small people always do that but the really great.</p>
-                    </div>
-                    <div class="col-sm-4 icon_box text-center heading_space wow fadeInUp" data-wow-delay="600ms">
-                        <i class="icon-globe"></i>
-                        <h4 class="text-capitalize bottom20 margin10">Unlimited Features</h4>
-                        <p class="no_bottom">Keep away from people who try to belittle your ambitions. Small people always do that but the really great.</p>
-                    </div>
-                    <div class="col-sm-4 icon_box text-center heading_space wow fadeInUp" data-wow-delay="400ms">
-                        <i class="icon-layers"></i>
-                        <h4 class="text-capitalize bottom20 margin10">Unlimited Features</h4>
-                        <p class="no_bottom">Keep away from people who try to belittle your ambitions. Small people always do that but the really great.</p>
-                    </div>
-                    <div class="col-sm-4 icon_box text-center heading_space wow fadeInUp" data-wow-delay="500ms">
-                        <i class="icon-laptop"></i>
-                        <h4 class="text-capitalize bottom20 margin10">Unlimited Features</h4>
-                        <p class="no_bottom">Keep away from people who try to belittle your ambitions. Small people always do that but the really great.</p>
-                    </div>
+                <div class="col-md-12">
+                    <h2 class="heading bottom25">@lang('website.latest news') <span class="divider-left"></span></h2>
+                </div>
+                <div class="icon_wrap clearfix">
+                    @forelse($postNews as $postNew)
+                        <div class="col-sm-4 icon_box text-center wow fadeInUp postNews" data-wow-delay="100ms" href="{{$postNew->getSlugAndId()}}" style="margin-bottom: 15px;padding-bottom: 10px;">
+                            <div class="image bottom20" style="width: 50%;margin: 0 auto;">
+                                <img src="{{$postNew->getImagePath()}}" title="{{$postNew->title}}" alt="{{$postNew->title}}" class="img-responsive border_radius">
+                            </div>
+                            <h4 class="text-capitalize bottom20 margin10" title="{{$postNew->title}}">{{str_limit($postNew->title, 37)}}</h4>
+                            <p class="no_bottom">{{str_limit($postNew->overview, 70)}}</p>
+                        </div>
+                    @empty
+                    @endforelse
+                    @push('scriptString')
+                        <script type="text/javascript">
+                            $(function () {
+                                $(".postNews").click(function () {
+                                    window.location.href = $(this).attr("href");
+                                });
+                            });
+                        </script>
+                    @endpush
                 </div>
             </div>
         </div>
-        <div class="container margin_top">
+        <div class="container" style="margin-top: 40px;">
             <div class="row">
                 <div class="col-md-7 col-sm-6 priorty wow fadeInLeft" data-wow-delay="300ms">
-                    <h2 class="heading bottom25">Welcome to Edua Theme <span class="divider-left"></span></h2>
-                    <p class="half_space">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <p>consectetur id. Aenean sit amet massa eu velit commodo cursus fringilla a tellus. Morbi eros urna, mollis porta feugiat non, ornare eu augue.
-                        Sed rhoncus est sit amet diam tempus, et tristique est vive, sectur at dapibus id, luctus at odio. Proin mattis congue tristique
-                        eu augue. Sed rhoncus est.</p>
+                    <h2 class="heading bottom25">@lang('website.product') <span class="divider-left"></span></h2>
+                    <p class="half_space">{{$product->overview}}</p>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="about-post">
@@ -147,7 +155,7 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-sm-6 wow fadeInRight" data-wow-delay="300ms">
-                    <img src="{{asset_website('images/about.jpg')}}" alt="our priorties" class="img-responsive" style="width:100%;">
+                    <img src="{{$product->getImagePath()}}" alt="our priorties" class="img-responsive" style="width:100%;">
                 </div>
             </div>
         </div>
@@ -175,7 +183,8 @@
             position: absolute;
             height: 40px;
             width: 126px;
-            background: url(../img/section-arrow2.png) no-repeat top center/auto 100%;
+        /*url(../img/section-arrow2.png)*/
+            background:  no-repeat top center/auto 100%;
             content: '';
             top: 0;
             left: 50%;
@@ -183,7 +192,8 @@
         }
 
         body .page-section#section-chuyen-gia .border-cloud {
-            background: url(../img/cloud.png) no-repeat center center/100% auto;
+        /*url(../img/cloud.png)*/
+            background:  no-repeat center center/100% auto;
             text-align: center;
             height: 135px;
         }
@@ -230,7 +240,8 @@
         }
 
         body .page-section#section-chuyen-gia .doctor-comment {
-            background: url(../img/doctor-human.png) no-repeat bottom right/70% auto;
+        /*url(../img/doctor-human.png)*/
+            background:  no-repeat bottom right/70% auto;
             min-height: 400px;
         }
 
@@ -349,12 +360,12 @@
     </section>
 
     <!-- Courses -->
-    <section id="courses" class="padding parallax" style="background: #4587d9">
+    <section id="courses" class="padding parallax" style="padding-top: 50px; padding-bottom: 20px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="heading heading_space wow fadeInDown" style="font-family:'Simplesnailsver'; font-size: 1.5em;">Bạn có biết hơn
-                        <span style="text-transform: uppercase; font-weight: bold;color: pink;">90%</span> trẻ em ở Việt Nam chưa được chăm sóc da đúng cách?.
+                    <h2 class="heading heading_space wow fadeInDown" style="font-family:'Simplesnailsver'; font-size: 1.7em;color: #4587d9;">Bạn có biết hơn
+                        <span style="text-transform: uppercase; font-weight: bold;color: red;">90%</span> trẻ em ở Việt Nam chưa được chăm sóc da đúng cách?.
                         <span class="divider-left"></span>
                     </h2>
                 </div>
@@ -382,79 +393,79 @@
     <!-- Courses -->
 
     <!--Fun Facts-->
-    <section id="facts" class="padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center wow fadeInDown">
-                    <h2 class="heading">Education Theme<span class="divider-center"></span></h2>
-                    <p class="heading_space margin10">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                </div>
-            </div>
-            <div class="row number-counters">
-                <div class="col-md-2 col-sm-4">
-                    <div class="counters-item">
-                        <i class="icon-checkmark3"></i>
-                        <strong data-to="1235">0</strong>
-                        <!-- Set Your Number here. i,e. data-to="56" -->
-                        <p>Project Completed</p>
-                    </div>
-                    <div class="counters-item last">
-                        <i class="icon-trophy"></i>
-                        <strong data-to="78">0</strong>
-                        <p>Awards Won</p>
-                    </div>
-                </div>
-                <div class="col-md-7 col-sm-4">
-                    <div class="fact-image">
-                        <img src="{{asset_website('images/fun-facts.png')}}" alt=" some facts" class="img-responsive">
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-4">
-                    <div class="counters-item">
-                        <i class=" icon-icons20"></i>
-                        <strong data-to="186">0</strong>
-                        <p>Hours of Work / Month</p>
-                    </div>
-                    <div class="counters-item last">
-                        <i class="icon-happy"></i>
-                        <strong data-to="89">0</strong>
-                        <p>Satisfied Clients</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{--<section id="facts" class="padding">--}}
+    {{--<div class="container">--}}
+    {{--<div class="row">--}}
+    {{--<div class="col-md-12 text-center wow fadeInDown">--}}
+    {{--<h2 class="heading">Education Theme<span class="divider-center"></span></h2>--}}
+    {{--<p class="heading_space margin10">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--<div class="row number-counters">--}}
+    {{--<div class="col-md-2 col-sm-4">--}}
+    {{--<div class="counters-item">--}}
+    {{--<i class="icon-checkmark3"></i>--}}
+    {{--<strong data-to="1235">0</strong>--}}
+    {{--<!-- Set Your Number here. i,e. data-to="56" -->--}}
+    {{--<p>Project Completed</p>--}}
+    {{--</div>--}}
+    {{--<div class="counters-item last">--}}
+    {{--<i class="icon-trophy"></i>--}}
+    {{--<strong data-to="78">0</strong>--}}
+    {{--<p>Awards Won</p>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--<div class="col-md-7 col-sm-4">--}}
+    {{--<div class="fact-image">--}}
+    {{--<img src="{{asset_website('images/fun-facts.png')}}" alt=" some facts" class="img-responsive">--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--<div class="col-md-3 col-sm-4">--}}
+    {{--<div class="counters-item">--}}
+    {{--<i class=" icon-icons20"></i>--}}
+    {{--<strong data-to="186">0</strong>--}}
+    {{--<p>Hours of Work / Month</p>--}}
+    {{--</div>--}}
+    {{--<div class="counters-item last">--}}
+    {{--<i class="icon-happy"></i>--}}
+    {{--<strong data-to="89">0</strong>--}}
+    {{--<p>Satisfied Clients</p>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</section>--}}
 
-    <!--Customers Review-->
-    <section id="reviews" class="padding bg_light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center wow fadeInDown">
-                    <h2 class="heading heading_space">What People say <span class="divider-center"></span></h2>
-                    <div id="review_slider" class="owl-carousel text-center">
-                        <div class="item">
-                            <h4>John Smith</h4>
-                            <p>Ditector Shangha</p>
-                            <img src="{{asset_website('images/customer1.png')}}" class="client_pic border_radius" alt="costomer">
-                            <p>I've been happy with the services provided by Edua LLC. Scooter Libby has been wonderful! He has returned my calls quickly, and he answered all my questions. This is required when, for example, the final text is not yet available. We are here to help you from the initial phase to the final Edua phase.</p>
-                        </div>
-                        <div class="item">
-                            <h4>John Smith</h4>
-                            <p>Ditector Shangha</p>
-                            <img src="{{asset_website('images/customer1.png')}}" class="client_pic border_radius" alt="costomer">
-                            <p>I've been happy with the services provided by Edua LLC. Scooter Libby has been wonderful! He has returned my calls quickly, and he answered all my questions. This is required when, for example, the final text is not yet available. We are here to help you from the initial phase to the final Edua phase.</p>
-                        </div>
-                        <div class="item">
-                            <h4>John Smith</h4>
-                            <p>Ditector Shangha</p>
-                            <img src="{{asset_website('images/customer1.png')}}" class="client_pic border_radius" alt="costomer">
-                            <p>I've been happy with the services provided by Edua LLC. Scooter Libby has been wonderful! He has returned my calls quickly, and he answered all my questions. This is required when, for example, the final text is not yet available. We are here to help you from the initial phase to the final Edua phase.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{--<!--Customers Review-->--}}
+    {{--<section id="reviews" class="padding bg_light">--}}
+    {{--<div class="container">--}}
+    {{--<div class="row">--}}
+    {{--<div class="col-md-12 text-center wow fadeInDown">--}}
+    {{--<h2 class="heading heading_space">What People say <span class="divider-center"></span></h2>--}}
+    {{--<div id="review_slider" class="owl-carousel text-center">--}}
+    {{--<div class="item">--}}
+    {{--<h4>John Smith</h4>--}}
+    {{--<p>Ditector Shangha</p>--}}
+    {{--<img src="{{asset_website('images/customer1.png')}}" class="client_pic border_radius" alt="costomer">--}}
+    {{--<p>I've been happy with the services provided by Edua LLC. Scooter Libby has been wonderful! He has returned my calls quickly, and he answered all my questions. This is required when, for example, the final text is not yet available. We are here to help you from the initial phase to the final Edua phase.</p>--}}
+    {{--</div>--}}
+    {{--<div class="item">--}}
+    {{--<h4>John Smith</h4>--}}
+    {{--<p>Ditector Shangha</p>--}}
+    {{--<img src="{{asset_website('images/customer1.png')}}" class="client_pic border_radius" alt="costomer">--}}
+    {{--<p>I've been happy with the services provided by Edua LLC. Scooter Libby has been wonderful! He has returned my calls quickly, and he answered all my questions. This is required when, for example, the final text is not yet available. We are here to help you from the initial phase to the final Edua phase.</p>--}}
+    {{--</div>--}}
+    {{--<div class="item">--}}
+    {{--<h4>John Smith</h4>--}}
+    {{--<p>Ditector Shangha</p>--}}
+    {{--<img src="{{asset_website('images/customer1.png')}}" class="client_pic border_radius" alt="costomer">--}}
+    {{--<p>I've been happy with the services provided by Edua LLC. Scooter Libby has been wonderful! He has returned my calls quickly, and he answered all my questions. This is required when, for example, the final text is not yet available. We are here to help you from the initial phase to the final Edua phase.</p>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</section>--}}
 
 
 
@@ -517,17 +528,20 @@
 
 
     <!--Paralax -->
-    {{--<section id="parallax" class="parallax">--}}
-    {{--<div class="container">--}}
-    {{--<div class="row">--}}
-    {{--<div class="col-md-12 text-center wow bounceIn">--}}
-    {{--<h2>We Believe that Education for Everyone Since</h2>--}}
-    {{--<h1 class="margin10">1942</h1>--}}
-    {{--<a href="#." class="border_radius btn_common white_border margin10">Gaet a Quote</a>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</section>--}}
+    <section id="parallax" class="parallax" style="background: #4587d9;padding: 2%">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center wow bounceIn">
+                    <h2>@lang('website.ban muon mua san pham cua chung toi')</h2>
+                    <h1 class="margin10" style="font-size: 3.563em">{{$product->name}}</h1>
+                    <div class="image bottom20" style="width: 25%;margin: 0 auto;">
+                        <img src="{{$product->getImagePath()}}" title="{{$product->name}}" alt="{{$product->name}}" class="img-responsive border_radius">
+                    </div>
+                    <a href="{{url('dat-hang')}}" class="border_radius btn_common white_border margin10">@lang('website.order now')</a>
+                </div>
+            </div>
+        </div>
+    </section>
     <!--Paralax -->
 
     <style>
@@ -540,7 +554,7 @@
         }
 
         body .page-section {
-            padding: 50px 0 0;
+            padding: 50px 0;
             background-size: cover;
             background: #f3f3f3 no-repeat center center;
             position: relative;
@@ -565,7 +579,7 @@
 
         @media (min-width: 1200px) {
             #quytrinh .quytrinh_item {
-                padding: 60px 0 130px;
+                padding: 60px 0 70px;
             }
 
             .fadeInLeft {
@@ -637,7 +651,7 @@
 
         @media (min-width: 1200px) {
             #quytrinh .quytrinh_item {
-                padding: 60px 0 130px;
+                padding: 60px 0 70px;
             }
 
             .fadeInRight {
@@ -689,7 +703,7 @@
     </section>
 
     <!-- News-->
-    <section id="news" class="padding">
+    <section id="news" class="padding-top-50 padding-bottom-50 bg_light">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 wow fadeInDown">
@@ -730,11 +744,12 @@
 
 
     <!--Contact Deatils -->
-    <section id="contact" class="padding">
+    <section id="contact" class="padding-top-50">
         <div class="container">
             <div class="row padding-bottom">
                 <div class="col-md-8 wow fadeInRight" data-wow-delay="300ms">
-                    <h2 class="heading heading_space" style="text-transform: uppercase">@lang('website.contact us')<span class="divider-left"></span></h2>
+                    <h2 class="heading heading_space" style="text-transform: uppercase">@lang('website.contact us')
+                        <span class="divider-left"></span></h2>
                     <p> @lang('website.Just leave the information, we will contact and advise you directly')</p>
                     {{Form::open(['url' => url('lien-he'), 'id' => 'contact-form', 'class' => 'form-inline findus', 'onSubmit' => "return false", 'style' => "padding-top: 5px;"])}}
                     <div class="row">
@@ -761,11 +776,21 @@
                     {{Form::close()}}
 
                     <ul class="social_icon black top30">
-                        <li><a href="{{setting("_social_facebook") ?? '#'}}" class="facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="{{setting("_social_twitter") ?? '#'}}" class="twitter"><i class="icon-twitter4"></i></a></li>
-                        <li><a href="{{setting("_social_youtube") ?? '#'}}" class="dribble"><i class="fa fa-youtube"></i></a></li>
-                        <li><a href="{{setting("_social_whatsapp") ?? '#'}}" class="instagram"><i class="fa fa-whatsapp"></i></a></li>
-                        <li><a href="{{setting("_social_google_plus") ?? '#'}}" class="instagram"><i class="fa fa-google-plus"></i></a></li>
+                        <li>
+                            <a href="{{setting("_social_facebook") ?? '#'}}" class="facebook"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="{{setting("_social_twitter") ?? '#'}}" class="twitter"><i class="icon-twitter4"></i></a>
+                        </li>
+                        <li>
+                            <a href="{{setting("_social_youtube") ?? '#'}}" class="dribble"><i class="fa fa-youtube"></i></a>
+                        </li>
+                        <li>
+                            <a href="{{setting("_social_whatsapp") ?? '#'}}" class="instagram"><i class="fa fa-whatsapp"></i></a>
+                        </li>
+                        <li>
+                            <a href="{{setting("_social_google_plus") ?? '#'}}" class="instagram"><i class="fa fa-google-plus"></i></a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-md-4 contact_address heading_space wow fadeInLeft" data-wow-delay="1000ms">

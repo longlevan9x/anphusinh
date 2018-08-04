@@ -16,6 +16,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int     author_id
  * @property int     id
  * @property int     price
+ * @property string  overview
+ * @property string  name
+ * @property string  content
  */
 class Product extends Model
 {
@@ -105,7 +108,8 @@ class Product extends Model
 		if (isset($model) && !empty($model)) {
 			//$id_meta = $model->id;
 			$model->value = $value;
-		} else {
+		}
+		else {
 			$model = new ProductMeta(['key' => $key, 'value' => $value, 'product_id' => $this->id]);
 		}
 

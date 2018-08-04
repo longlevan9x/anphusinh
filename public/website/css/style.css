@@ -2118,20 +2118,20 @@ body.pushmenu-push-toright .wrap-sticky nav.navbar.bootsnav.sticked {
 
 /* ----- Paralax  ----- */
 #parallax {
-    background: url(../images/parallax2.jpg) no-repeat;
+    /*background: url(../images/parallax2.jpg) no-repeat;*/
     padding: 10% 0;
 }
 
 #courses {
-    background: url(../images/parallax1.jpg) no-repeat;
+    /*background: url(../images/parallax1.jpg) no-repeat;*/
 }
 
 .page_header {
-    background: url(../images/page-tittle.jpg) no-repeat;
+    /*background: url(../images/page-tittle.jpg) no-repeat;*/
 }
 
 #counter {
-    background: url(../images/counter.jpg) no-repeat;
+    /*background: url(../images/counter.jpg) no-repeat;*/
 }
 
 #courses, #parallax, .page_header, #counter {

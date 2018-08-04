@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="keywords" content="{{setting("seo_keyword")}}" />
     <meta name="description" content="{{setting("seo_description")}}" />
-    <title>{{setting(KEY_WEBSITE_NAME)}} | {{setting(KEY_WEBSITE_DESCRIPTION)}}</title>
+    <title>{{setting(KEY_WEBSITE_NAME)}} - {{setting(KEY_WEBSITE_DESCRIPTION)}}</title>
     @stack('styleMain')
     <style type="text/css">
         /*Box product in page post*/

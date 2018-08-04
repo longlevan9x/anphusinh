@@ -47,10 +47,40 @@ class HomeController extends Controller
 			Cache::put('slides', $slides, 60);
 		}
 
-		$categories = Category::whereType(Category::TYPE_CATEGORY)->get();
-		$shares     = Post::whereType(Post::TYPE_SHARE)->latest()->limit(10)->get();
+		if (Cache::has('categories')) {
+			$categories = Cache::get('categories');
+		}
+		else {
+			$categories = Category::whereType(Category::TYPE_CATEGORY)->get();
+			Cache::put('categories', $categories, 60);
+		}
 
-		return view('website.home.index', compact('slides', 'categories', 'shares'));
+		if (Cache::has('shares')) {
+			$shares = Cache::get('shares');
+		}
+		else {
+			$shares = Post::whereType(Post::TYPE_SHARE)->latest()->limit(10)->get();
+			Cache::put('shares', $shares, 60);
+		}
+
+		if (Cache::has('postNews')) {
+			$postNews = Cache::get('postNews');
+		}
+		else {
+			$postNews = Post::whereType(Post::TYPE_NEWS)->latest()->limit(6)->get();
+			Cache::put('postNews', $postNews, 60);
+		}
+
+		if (Cache::has('product')) {
+			$product = Cache::get('product');
+		}
+		else {
+			$product = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
+			Cache::put('product', $product, 60);
+		}
+
+
+		return view('website.home.index', compact('slides', 'categories', 'shares', 'postNews', 'product'));
 	}
 
 	/**

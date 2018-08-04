@@ -36,7 +36,12 @@ return [
 	'chia-se-cua-me'      => 'Chia sẻ của mẹ',
 	'send question'       => "Gửi câu hỏi",
 	'contact us'          => 'Liên hệ chúng tôi',
-	'cart'           => "Giỏ hàng",
+	'cart'                => "Giỏ hàng",
+	'latest news'         => "Tin tức mới nhất",
+	'my product'          => "Sản phẩm",
+	'order now'           => "Đặt hàng ngay",
+
+	'ban muon mua san pham cua chung toi' => "Bạn muốn mua sản phẩm của chúng tôi?",
 
 	'Just leave the information, we will contact and advise you directly' => "Chỉ cần để lại thông tin, chúng tôi sẽ liên hệ và tư vấn trực tiếp cho bạn.",
 
