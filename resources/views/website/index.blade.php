@@ -41,35 +41,31 @@
   	"@type": "LocalBusiness",
 	"url": "{{url("/")}}",
 	"logo": "{{\App\Commons\Facade\CFile::getImageUrl('settings', setting(KEY_LOGO))}}",
-	"hasMap": "https://www.google.com/maps/place/C%C3%94NG+TY+TNHH+%C4%90%E1%BA%A6U+T%C6%AF+TH%C6%AF%C6%A0NG+M%E1%BA%A0I+PH%C3%9A+NGUY%C3%8AN/@20.9746939,105.8336162,17z/data=!3m1!4b1!4m5!3m4!1s0x3135ac5a1b4bbc1d:0xd3667b3bcf4aa8ab!8m2!3d20.9746939!4d105.8358049",
+	"hasMap": "{{setting("_google_map_link")}}",
 	"email": "mailto:{{setting(KEY_ADMIN_EMAIL)}}",
   	"address": {
     	"@type": "PostalAddress",
-    	"addressLocality": "Long Biên",
-    	"addressRegion": "Hà Nội",
-    	"postalCode":"100000",
-    	"streetAddress": "439 Nguyễn Văn Cừ"
+    	"addressLocality": "{{setting('company_district')}}",
+    	"addressRegion": "{{setting('company_city')}}",
+    	"postalCode":"{{setting('company_postal_code')}}",
+    	"streetAddress": "{{setting('company_street')}}"
   	},
   	"description": "{{setting(KEY_WEBSITE_DESCRIPTION)}}",
 	"name": "{{setting(KEY_WEBSITE_NAME)}}",
+	"image: "{{setting("website_image")}}",
   	"telephone": "{{setting(\App\Models\Setting::KEY_WEBSITE_PHONE)}} - {{setting("website_fax")}}  - {{setting("website_hotline")}}",
-  	"openingHours": [ "Mo-Sa 07:00-23:00", "Sun 08:00-22:00" ],
   	"geo": {
     	"@type": "GeoCoordinates",
-   	"latitude": "21.05",
-    	"longitude": "105.87"
- 		},
-  	"sameAs" : [ "https://www.facebook.com/everonngogiatu/",
-    	"https://www.youtube.com/c/everonngogiatu",
-    	"https://twitter.com/everonngogiatu",
-		"https://www.instagram.com/everonngogiatu",
-			"https://www.youtube.com/c/everonngogiatu",
-			"https://www.linkedin.com/company/everonngogiatu",
-			"https://www.pinterest.com/everonngogiatu",
-			"https://soundcloud.com/everonngogiatu",
-			"https://plus.google.com/+Geveronngogiatu",
-			"https://myspace.com/everonngogiatu",
-			"http://everonngogiatu.tumblr.com/"]
+   	    "latitude": "{{setting("company_lat")}}",
+    	"longitude": "{{setting("company_long")}}"
+    },
+  	"sameAs" : [
+            "{{setting("_social_facebook")}}",
+            "{{setting("_social_youtube")}}",
+            "{{setting("_social_whatsapp")}}",
+            "{{setting("_social_twitter")}}",
+    		"{{setting("_social_instagram")}}"
+        ]
 	}
 </script>
 @include('website.partials.topbar')

@@ -87,7 +87,6 @@
                                 </div>
                             </div>
 
-
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="col-md-12 col-sm-12 col-xs-12" for="website_address">@lang('admin/common.address'):</label>
@@ -96,16 +95,86 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="company_city">@lang('admin/common.city'):</label>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        {!! Form::text('company_city', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'company_city']) !!}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="company_district">@lang('admin/common.district'):</label>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        {!! Form::text('company_district', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'company_district']) !!}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="company_street">@lang('admin/common.streetAddress'):</label>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        {!! Form::text('company_street', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'company_street']) !!}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="company_postal_code">@lang('admin/common.postalCode'):</label>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        {!! Form::text('company_postal_code', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'company_postal_code']) !!}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="company_lat">@lang('admin/common.latitude'):</label>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        {!! Form::text('company_lat', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'company_lat']) !!}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="company_long">@lang('admin/common.longitude'):</label>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        {!! Form::text('company_long', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'company_long']) !!}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="_google_map_link">@lang('admin/common.link google map'):</label>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        {!! Form::text('_google_map_link', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => '_google_map_link']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                            {{--Address && copyright--}}
+                            {{--Logo && Image--}}
                             <div class="col-md-6">
                                 @include('admin.layouts.widget.form.image-full', ['name' => 'logo', 'imagePath' => isset($model) ? $model->getImagePathWithoutDefault('', 'logo') : '', 'label' => __('admin/setting.logo')])
                             </div>
+                            <div class="col-md-6">
+                                @include('admin.layouts.widget.form.image-full', ['name' => 'website_image', 'imagePath' => isset($model) ? $model->getImagePathWithoutDefault('', 'website_image') : '', 'label' => __('admin/setting.website_image')])
+                            </div>
+                            {{--Logo && Image--}}
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="form-group">
                             <div class="col-md-12 col-sm-12 col-xs-12 row">
-                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;@lang('admin.saveButton')</button>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa fa-save"></i>&nbsp;@lang('admin.saveButton')</button>
                             </div>
                         </div>
                         <br>
@@ -239,7 +308,8 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;@lang('admin.saveButton')</button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-save"></i>&nbsp;@lang('admin.saveButton')</button>
                         </div>
                     </div>
                     {{ Form::close() }}

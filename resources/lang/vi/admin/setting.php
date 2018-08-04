@@ -22,6 +22,7 @@ return [
 	'Year-Month-Day'                     => "Năm-Tháng-Ngày",
 	'Day-Month-Year'                     => "Ngày-Tháng-Năm",
 	'logo'                               => "Logo",
+	'website_image'                      => "Ảnh website",
 	'seo_keyword'                        => "Từ khóa seo",
 	'seo_description'                    => "Miêu tả seo",
 	'setting website'                    => 'Cấu hình chung website'

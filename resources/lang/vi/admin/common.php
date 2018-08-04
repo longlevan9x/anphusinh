@@ -41,6 +41,15 @@ return [
 	'cover image'         => "Ảnh bìa",
 	'user create'         => "Người tạo",
 
+	'latitude'        => "Vĩ độ",
+	'longitude'       => "Kinh độ",
+	'city'            => "Thành phố",
+	'district'        => "Quận / huyện",
+	'addressLocality' => '',
+	'streetAddress'   => "Địa chỉ đường",
+	'postalCode'      => 'Mã bưu điện',
+	'link google map' => 'Liên kết google map',
+
 	'visit website' => "Ghé thăm website",
 	'sort_order'    => "Thứ tự sắp xếp"
 ];

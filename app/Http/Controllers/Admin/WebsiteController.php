@@ -7,6 +7,7 @@ use App\Models\Facade\SettingFacade;
 use App\Models\Post;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use function MicrosoftAzure\Storage\Samples\deleteDirectory;
 
 class WebsiteController extends Controller
 {
@@ -90,7 +91,7 @@ class WebsiteController extends Controller
 		$this->setRoleExcept(Admins::ROLE_AUTHOR);
 		$this->checkRole();
 		$model = SettingFacade::prepareKeyValues($request->all(), ['autoload' => 1]);
-		$model->prepareKeyValueUploads([Setting::KEY_LOGO], ['autoload' => 1])->saveModel();
+		$model->prepareKeyValueUploads([Setting::KEY_LOGO, 'website_image'], ['autoload' => 1])->saveModel();
 
 		return redirect(url(self::getConfigUrlAdmin('config')));
 	}
