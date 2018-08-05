@@ -210,6 +210,10 @@ trait ModelTrait
 	 * @return int|string
 	 */
 	public function getSlugAndId() {
+		if (filter_var($this->{$this->getSlugKeyName()}, FILTER_VALIDATE_URL)) {
+			return $this->{$this->getSlugKeyName()};
+		}
+
 		if (!empty($this->{$this->getSlugKeyName()})) {
 			return $this->{$this->getSlugKeyName()} . "--" . $this->id;
 		}
@@ -237,6 +241,7 @@ trait ModelTrait
 	 * @return \Illuminate\Contracts\Routing\UrlGenerator|string
 	 */
 	public function getUrlSlug($prefix = '', $params = '') {
+
 		if (!empty($prefix)) {
 			$prefix .= '/';
 		}
@@ -273,5 +278,16 @@ trait ModelTrait
 		}
 
 		return view('admin.layouts.widget.links.link', ['url' => $url, 'text' => $field]);
+	}
+
+	/**
+	 * @return \Illuminate\Contracts\Routing\UrlGenerator|mixed|string
+	 */
+	public function getSlugWithUrl() {
+		if (filter_var($this->{$this->getSlugKeyName()}, FILTER_VALIDATE_URL)) {
+			return $this->{$this->getSlugKeyName()};
+		}
+
+		return url($this->{$this->getSlugKeyName()});
 	}
 }

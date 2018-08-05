@@ -45,6 +45,12 @@ return [
 	'no'              => "Không",
 	'confirm'         => "Xác nhận",
 	'Confirm message' => "Tin nhắn xác nhận",
+	'new'             => 'Mới',
+	'old'             => 'Cũ',
+	'seen'            => "Đã xem",
+	'not seen'        => "Chưa xem",
+	'not contact'     => 'Chưa liên hệ',
+	'contacted'       => "Đã liên hệ",
 
 	'fax'     => 'Fax',
 	'hotline' => 'Hotline',
@@ -57,7 +63,12 @@ return [
 	"confirm delete item?" => "Xác nhận xóa?",
 	'view on website'      => "Xem trên website",
 
-	'Are you sure delete this item' => 'Bạn chắc chắn xóa item này?',
+	'Are you sure delete this item'                => 'Bạn chắc chắn xóa item này?',
+	'are you sure you want to change this record?' => 'Bạn có chắc chắn thay đổi bản ghi này không?',
+
+	'total post'  => "Tổng số bài viết",
+	'total new'   => "Tổng số tin tức",
+	'total order' => "Tổng số đơn hàng",
 
 	'lang_en' => "Tiếng anh",
 	'lang_vi' => "Tiếng việt",

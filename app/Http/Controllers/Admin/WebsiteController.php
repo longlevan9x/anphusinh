@@ -117,7 +117,7 @@ class WebsiteController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function showSubscribe() {
-		$models = Post::whereType(Post::TYPE_SUBSCRIBE)->get();
+		$models = Post::whereType(Post::TYPE_SUBSCRIBE)->latest()->get();
 
 		return view('admin.website.subscribe.index', compact('models'));
 	}
@@ -141,7 +141,7 @@ class WebsiteController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function showContact() {
-		$models = Post::whereType(Post::TYPE_CONTACT)->get();
+		$models = Post::whereType(Post::TYPE_CONTACT)->latest()->get();
 
 		return view('admin.website.contact.index', compact('models'));
 	}

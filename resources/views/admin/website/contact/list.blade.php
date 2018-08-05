@@ -3,7 +3,12 @@
         <div class="x_panel">
             @include('admin.layouts.title_table', ['text' => __('admin/website.list contact')])
             <div class="box-header with-border">
-                @include('admin.layouts.widget.button.bulk-delete', ['table' => \App\Models\Post::table(), 'classTable' => \App\Models\Post::class])
+                <div class="col-md-1">
+                    @include('admin.layouts.widget.button.bulk', ['text' => __('admin.contacted'), 'table' => \App\Models\Post::table(), 'classTable' => \App\Models\Post::class, 'key' => 'is_active', 'value' => 0 ])
+                </div>
+                <div class="col-md-1">
+                    @include('admin.layouts.widget.button.bulk-delete', ['table' => \App\Models\Post::table(), 'classTable' => \App\Models\Post::class])
+                </div>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -17,6 +22,7 @@
                             <th>@lang('admin/common.name')</th>
                             <th>@lang('admin/common.phone number')</th>
                             <th>@lang('admin.question')</th>
+                            <th>@lang('admin/common.is_active')</th>
                             <th>@lang('admin/common.created date')</th>
                             <th>@lang('admin/common.action')</th>
                         </tr>

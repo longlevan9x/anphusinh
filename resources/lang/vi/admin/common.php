@@ -50,6 +50,8 @@ return [
 	'postalCode'      => 'Mã bưu điện',
 	'link google map' => 'Liên kết google map',
 
+	'confirm edit multiple records' => "Xác nhận sửa nhiều bản ghi?",
+
 	'visit website' => "Ghé thăm website",
 	'sort_order'    => "Thứ tự sắp xếp"
 ];

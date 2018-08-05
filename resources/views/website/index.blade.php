@@ -18,7 +18,22 @@
         width: 80px;
         height: auto;
     }
+
+    #icon_phone_fix {
+        position: fixed;
+        top: 50%;
+        z-index: 100000;
+        left: 0;
+    }
+
+    #icon_phone_fix img {
+        width: 80px;
+        height: auto;
+    }
 </style>
+<a class="hidden-sm-down" id="icon_phone_fix" href="tel::{{setting("website_telephone")}}">
+    <img src="http://bottamnhanhung.vn/images/icon-phone1.png">
+</a>
 <a class="hidden-sm-down" id="icon_order_fix" href="{{url('dat-hang')}}">
     <img src="{{asset_uploads('www/icon-cart.png')}}" alt="@lang('website.cart')">
 </a>
@@ -53,7 +68,7 @@
   	},
   	"description": "{{setting(KEY_WEBSITE_DESCRIPTION)}}",
 	"name": "{{setting(KEY_WEBSITE_NAME)}}",
-  	"telephone": "{{setting(\App\Models\Setting::KEY_WEBSITE_PHONE)}} - {{setting("website_fax")}}  - {{setting("website_hotline")}}",
+  	"telephone": "{{setting(\App\Models\Setting::KEY_WEBSITE_PHONE)}} - {{setting("website_fax")}} - {{setting("website_hotline")}}",
   	"geo": {
     	"@type": "GeoCoordinates",
    	    "latitude": "{{setting("company_lat")}}",
@@ -67,6 +82,7 @@
     		"{{setting("_social_instagram")}}"
         ]
 	}
+
 </script>
 @include('website.partials.topbar')
 @include('website.partials.menu')

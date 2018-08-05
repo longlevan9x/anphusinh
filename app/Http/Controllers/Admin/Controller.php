@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Commons\Facade\CFile;
 use App\Commons\Facade\CUser;
 use App\Models\Admins;
+use App\Models\Post;
 use App\Models\Traits\ModelMethodTrait;
 use App\Models\Traits\ModelUploadTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -51,6 +52,11 @@ class Controller extends \App\Http\Controllers\Controller
 
 			return $next($request);
 		});
+
+		$totalNewContact   = Post::whereType(Post::TYPE_CONTACT)->whereIsActive(1)->count();
+		$totalNewSubscribe = Post::whereType(Post::TYPE_SUBSCRIBE)->whereIsActive(1)->count();
+
+		view()->share(compact('totalNewSubscribe', 'totalNewContact'));
 	}
 
 	/**
@@ -162,5 +168,32 @@ class Controller extends \App\Http\Controllers\Controller
 		}
 
 		return redirect()->back()->with('fail', __('message.delete fail'));
+	}
+
+	public function bulk(Request $request) {
+		$table = $request->table;
+		$key = $request->key;
+		$value = $request->value;
+		$ids   = $request->ids;
+
+		if (is_string($ids)) {
+			$ids = explode(',', $ids);
+		}
+
+		if (empty($table)) {
+			return redirect()->back()->with('fail', 'table ' . __('admin/common.not found'));
+		}
+
+		if (empty($ids)) {
+			return redirect()->back()->with('fail', 'id ' . __('admin/common.not found'));
+		}
+		/** @var Model|ModelMethodTrait $model */
+		$model = new $table;
+
+		if ($model::whereIn('id', $ids)->update([$key => $value]) > 0) {
+			return redirect()->back()->with('success', __('message.update success'));
+		}
+
+		return redirect()->back()->with('fail', __('message.update fail'));
 	}
 }

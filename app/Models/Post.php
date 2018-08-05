@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Commons\Facade\CUser;
+use App\Models\Traits\ModelMethodTrait;
 use App\Models\Traits\ModelTrait;
 use App\Models\Traits\ModelUploadTrait;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -98,7 +99,7 @@ class Post extends Model
 
 	/**
 	 * @param string $type
-	 * @return Builder
+	 * @return ModelMethodTrait|Builder
 	 */
 	public static function whereType($type = self::TYPE_POST) {
 		return self::where('type', $type);
@@ -286,5 +287,23 @@ class Post extends Model
 		$this->setMaxImageHeight(358);
 		$this->setMaxImageWidth(264);
 		parent::__construct($attributes);
+	}
+
+	/**
+	 * @return array|null|string
+	 */
+	public function getTextActive() {
+		if (in_array($this->type, [self::TYPE_SUBSCRIBE, self::TYPE_CONTACT])) {
+			return __('admin.new');
+		}
+	}
+
+	/**
+	 * @return array|null|string
+	 */
+	public function getTextInActive() {
+		if (in_array($this->type, [self::TYPE_SUBSCRIBE, self::TYPE_CONTACT])) {
+			return __('admin.contacted');
+		}
 	}
 }

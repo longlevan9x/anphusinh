@@ -7,6 +7,7 @@
  */
 
 return [
-	'list contact'   => "Danh sách yêu cầu liên hệ",
-	'list subscribe' => "Danh sách đăng ký tư vấn"
+	'list contact'     => "Danh sách yêu cầu liên hệ",
+	'list subscribe'   => "Danh sách đăng ký tư vấn",
+	'telephone number' => "Điện thoại tổng đài"
 ];

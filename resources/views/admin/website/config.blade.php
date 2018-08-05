@@ -42,27 +42,35 @@
                             </div>
 
                             {{--Phone--}}
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="col-md-12 col-sm-12 col-xs-12" for="website_description">@lang('admin/common.phone'):</label>
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="website_phone">@lang('admin/common.phone'):</label>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         {!! Form::number('website_phone', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'website_phone']) !!}
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="col-md-12 col-sm-12 col-xs-12" for="website_description">@lang('admin.fax'):</label>
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="website_hotline">@lang('admin.fax'):</label>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         {!! Form::number('website_hotline', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'website_hotline']) !!}
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="col-md-12 col-sm-12 col-xs-12" for="website_description">@lang('admin.hotline'):</label>
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="website_fax">@lang('admin.hotline'):</label>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         {!! Form::number('website_fax', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'website_fax']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="website_telephone">@lang('admin/website.telephone number'):</label>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        {!! Form::number('website_telephone', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'website_telephone']) !!}
                                     </div>
                                 </div>
                             </div>

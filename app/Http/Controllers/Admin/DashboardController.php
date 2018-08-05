@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Commons\Facade\CUser;
 use App\Models\Admins;
+use App\Models\Order;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class DashboardController extends Controller
 {
@@ -22,8 +25,11 @@ class DashboardController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		//    	echo asset_upload('c');die;
-		return view('admin.dashboard.index');
+		$totalPost         = Post::whereType(Post::TYPE_NEWS)->count();
+		$totalNews         = Post::whereType(Post::TYPE_POST)->count();
+		$totalOrder        = Order::query()->count();
+
+		return view('admin.dashboard.index', compact('totalPost', 'totalNews', 'totalOrder', 'totalNewContact', 'totalNewSubscribe'));
 	}
 
 }

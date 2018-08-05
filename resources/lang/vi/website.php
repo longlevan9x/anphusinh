@@ -40,6 +40,7 @@ return [
 	'latest news'         => "Tin tức mới nhất",
 	'my product'          => "Sản phẩm",
 	'order now'           => "Đặt hàng ngay",
+	'visit now'           => "Truy cập ngay",
 
 	'ban muon mua san pham cua chung toi' => "Bạn muốn mua sản phẩm của chúng tôi?",
 

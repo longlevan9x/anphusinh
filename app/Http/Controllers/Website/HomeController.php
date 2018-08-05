@@ -49,7 +49,7 @@ class HomeController extends Controller
 
 		if (Cache::has('categories')) {
 			$categories = Cache::get('categories');
-		}
+			}
 		else {
 			$categories = Category::whereType(Category::TYPE_CATEGORY)->get();
 			Cache::put('categories', $categories, 60);
@@ -78,7 +78,6 @@ class HomeController extends Controller
 			$product = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
 			Cache::put('product', $product, 60);
 		}
-
 
 		return view('website.home.index', compact('slides', 'categories', 'shares', 'postNews', 'product'));
 	}
@@ -291,7 +290,7 @@ class HomeController extends Controller
 		$model->title    = time();
 		$model->content  = $request->name;
 		$model->overview = $request->phone;
-
+		$model->is_active = 1;
 		if ($model->save()) {
 			return responseJson(CConstant::STATUS_SUCCESS, 'Xác nhận đăng ký thành công. Yêu cầu tư vấn của bạn đã được chúng tôi tiếp nhận.');
 		}
@@ -317,7 +316,7 @@ class HomeController extends Controller
 		$model->title    = time();
 		$model->content  = $request->name;
 		$model->overview = $request->phone;
-
+		$model->is_active = 1;
 		if ($model->save()) {
 			$model->postMeta()->create(['key' => '_post_contact', 'value' => $request->question]);
 

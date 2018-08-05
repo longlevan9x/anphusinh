@@ -22,6 +22,7 @@ use Illuminate\Database\Query\Builder as QueryBuilder;
  * @method  static Builder|Model updateOrCreate(array $attributes, array $values = [])
  * @method  static Builder whereId(int|string $id)
  * @method  static Builder whereType(string $id)
+ * @method  static Builder whereIsActive(int $value)
  * @see Builder
  * @see QueryBuilder
  *
