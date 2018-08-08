@@ -7,7 +7,6 @@ use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\PostMeta;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Carbon;
 
 class NewsController extends Controller

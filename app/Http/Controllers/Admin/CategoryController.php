@@ -8,7 +8,6 @@ use App\Http\Requests\StoreRequest;
 use App\Models\Category;
 use App\Models\Store;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {

@@ -36,16 +36,16 @@
                     </ul>
                 </li>
 
-                <li role="presentation" class="dropdown" title="Tư vấn">
-                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-envelope-o"></i>
-                        <span class="badge bg-green">{{$totalNewContact}}</span>
+                <li role="presentation" class="" title="Tư vấn">
+                    <a href="{{url_admin('website/subscribe')}}" class=" info-number" data-toggle="" aria-expanded="false">
+                        <i class="fa fa-bell-o"></i>
+                        <span class="badge bg-green">{{$totalNewSubscribe}}</span>
                     </a>
                 </li>
 
-                <li role="presentation" class="dropdown" title="Liên hệ">
-                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-envelope-o"></i>
+                <li role="presentation" class="" title="Liên hệ">
+                    <a href="{{url_admin('website/contact')}}" class=" info-number" data-toggle="" aria-expanded="false">
+                        <i class="fa fa-linode"></i>
                         <span class="badge bg-green">{{$totalNewContact}}</span>
                     </a>
                 </li>

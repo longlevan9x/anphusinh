@@ -138,9 +138,9 @@
         </div>
     @endif
     <div class="widget">
-        <div class="fb-page" data-href="https://www.facebook.com/chuyencuaem.page/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-            <blockquote cite="https://www.facebook.com/chuyencuaem.page/" class="fb-xfbml-parse-ignore">
-                <a href="https://www.facebook.com/chuyencuaem.page/">Chuyện của Em</a></blockquote>
+        <div class="fb-page" data-href="{{setting('_social_facebook')}}" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+            <blockquote cite="{{setting('_social_facebook')}}" class="fb-xfbml-parse-ignore">
+                <a href="{{setting('_social_facebook')}}">Chuyện của Em</a></blockquote>
         </div>
     </div>
 </aside>

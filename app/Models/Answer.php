@@ -14,12 +14,54 @@ use Illuminate\Http\Request;
 
 /**
  * Class Answer
+ *
  * @package App\Models
- * @property  string name
- * @property  string phone
- * @property  string question
- * @property  string answer
+ * @property string name
+ * @property string phone
+ * @property string question
+ * @property string answer
  * @property string  content_question
+ * @property int $id
+ * @property int $author_id
+ * @property int|null $parent_id
+ * @property string $title
+ * @property string|null $slug
+ * @property int $category_id
+ * @property string|null $image
+ * @property int $is_active
+ * @property string|null $post_time
+ * @property string|null $type
+ * @property string|null $overview
+ * @property string|null $content
+ * @property string|null $status
+ * @property string|null $path
+ * @property int|null $author_updated_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\Admins $author
+ * @property-read \App\Models\Admins|null $authorUpdated
+ * @property-read \App\Models\Category $category
+ * @property-read \App\Models\PostMeta $postMeta
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\PostMeta[] $postMetas
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereAuthorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereAuthorUpdatedId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereOverview($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer wherePath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer wherePostTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Answer extends Post
 {

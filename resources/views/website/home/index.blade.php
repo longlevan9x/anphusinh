@@ -183,8 +183,8 @@
             position: absolute;
             height: 40px;
             width: 126px;
-        /*url(../img/section-arrow2.png)*/
-            background:  no-repeat top center/auto 100%;
+            /*url(../img/section-arrow2.png)*/
+            background: no-repeat top center/auto 100%;
             content: '';
             top: 0;
             left: 50%;
@@ -192,8 +192,7 @@
         }
 
         body .page-section#section-chuyen-gia .border-cloud {
-        /*url(../img/cloud.png)*/
-            background:  no-repeat center center/100% auto;
+            background: url({{asset_uploads('www/cloud.png')}}) no-repeat center center/100% auto;
             text-align: center;
             height: 135px;
         }
@@ -240,8 +239,8 @@
         }
 
         body .page-section#section-chuyen-gia .doctor-comment {
-        /*url(../img/doctor-human.png)*/
-            background:  no-repeat bottom right/70% auto;
+            /*url(../img/doctor-human.png)*/
+            background: no-repeat bottom right/70% auto;
             min-height: 400px;
         }
 
@@ -265,7 +264,7 @@
             position: absolute;
             top: 10px;
             left: 0;
-            font-family: 'Roboto';
+            font-family: 'Times New Roman';
             font-style: italic;
             line-height: 30px;
         }
@@ -301,14 +300,6 @@
             width: 50% !important;
         }
 
-        #quytrinh {
-            background: no-repeat;
-            background-size: 100% 100%;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 2px solid #fff;
-        }
-
         body .page-section {
             padding: 50px 0;
             background-size: cover;
@@ -317,9 +308,6 @@
         }
 
         @media (min-width: 1200px) {
-            #quytrinh h2 {
-                padding-top: 10px;
-            }
 
             body .page-section .section-heading {
                 margin: 10px 0 30px;
@@ -334,10 +322,6 @@
         }
 
         @media (min-width: 1200px) {
-            #quytrinh .quytrinh_item {
-                padding: 60px 0 70px;
-            }
-
             .fadeInLeft {
                 -webkit-animation-name: fadeInLeft;
                 animation-name: fadeInLeft;
@@ -353,44 +337,9 @@
             .text-center {
                 text-align: center !important;
             }
-
-            .col-5 {
-                flex: 0 0 41.66667%;
-                max-width: 41.66667%;
-            }
         }
 
         @media (min-width: 1200px) {
-            #quytrinh .quytrinh_item img {
-                width: 300px;
-                height: 300px;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            #quytrinh .quytrinh_item p {
-                font-size: 25px;
-                width: 90%;
-                margin: 0px auto;
-                padding-top: 10px;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            #quytrinh .quytrinh_item_mui_ten {
-                padding: 60px 0 150px;
-            }
-        }
-
-        .col-2 {
-            flex: 0 0 16.66667%;
-            max-width: 16.66667%;
-        }
-
-        @media (min-width: 1200px) {
-            #quytrinh .quytrinh_item_mui_ten img {
-                height: 300px;
-            }
 
             .zoomIn {
                 -webkit-animation-name: zoomIn;
@@ -406,40 +355,21 @@
         }
 
         @media (min-width: 1200px) {
-            #quytrinh .quytrinh_item {
-                padding: 60px 0 70px;
-            }
-
             .fadeInRight {
                 -webkit-animation-name: fadeInRight;
                 animation-name: fadeInRight;
             }
         }
 
-        @media (min-width: 1200px) {
-            #quytrinh .quytrinh_item img {
-                width: 300px;
-                height: 300px;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            #quytrinh .quytrinh_item p {
-                font-size: 25px;
-                width: 90%;
-                margin: 0px auto;
-                padding-top: 10px;
-            }
-        }
     </style>
     <section id="section-chuyen-gia" class="page-section bg-blue2">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="border-cloud d-flex justify-content-center align-items-center mb-md-5 mb-3">
-                        <a href="http://bottamnhanhung.vn/chuyen-gia">
-                            <h2 class="section-heading text-blue font-weight-normal">
-                                Ý kiến chuyên gia </h2></a>
+                    <div class="border-cloud d-flex justify-content-center align-items-center mb-md-5 mb-3" style="margin-bottom: 40px">
+                        <a href="{{url('chuyen-gia')}}">
+                            <h2 class="section-heading text-blue font-weight-normal" style="line-height: 3.7em">Ý kiến chuyên gia </h2>
+                        </a>
                     </div>
                     <div class="box-video">
                         <iframe class="w-100" height="315" src="https://www.youtube.com/embed/FB4EbSH6vts" frameborder="0" allowfullscreen=""></iframe>
@@ -452,21 +382,22 @@
                         <div class="col-md-6 col-12 pt-5 mt-5 xs-m-0 xs-p-0">
                             <div class="blockquote block_quote">
                                 <p class="h5 font-weight-bold"></p>
-                                <p class="blockquote_content scrollpoint sp-fadeIn active animated fadeIn">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-weight:500;">&nbsp;Bột tắm Nhân Hưng</i> có tác dụng se da rất nhanh, đặc biệt là giúp ngăn cản sự phát triển của vi khuẩn, siêu vi trùng, nấm. Do đó, các bà mẹ nên dùng bột tắm này tắm cho trẻ, nhất là những trẻ bị bệnh ngoài da.&nbsp;
+                                <p class="blockquote_content scrollpoint sp-fadeIn active animated fadeIn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-weight:500;">&nbsp;Bột tắm Nhân Hưng</i> có tác dụng se da rất nhanh, đặc biệt là giúp ngăn cản sự phát triển của vi khuẩn, siêu vi trùng, nấm. Do đó, các bà mẹ nên dùng bột tắm này tắm cho trẻ, nhất là những trẻ bị bệnh ngoài da.&nbsp;
                                 </p>
                                 <style type="text/css">
                                     .blockquote_content {
                                         -vendor-animation-duration: 5s;
                                         -vendor-animation-delay: 4s;
                                         -vendor-animation-iteration-count: infinite;
+                                        font-size: 1.25rem;
+                                        color: #0073bc;
                                     }
 
                                     .blockquote_content::after {
                                         content: '"';
                                         font-size: 80px;
                                         position: absolute;
-                                        font-family: 'Roboto';
+                                        font-family: 'Times New Roman';
                                         font-style: italic;
                                         line-height: 30px;
                                         bottom: -20px;
@@ -538,32 +469,6 @@
         </div>
     </section>
     <!--Paralax -->
-
-    <section id="quytrinh" class="page-section">
-
-        <div class="container">
-            <h2 class="section-heading text-blue text-center text-uppercase clearfix  scrollpoint sp-zoomIn active animated zoomIn">Khi da bé khỏe</h2>
-            <div class="row">
-                <div class="col-5 col-md-5 quytrinh_item text-center scrollpoint sp-fadeInLeft active animated fadeInLeft">
-                    <a href="http://bottamnhanhung.vn/bi-quyet-cham-soc-da-be-khoe-manh-moi-ngay">
-                        <img src="http://bottamnhanhung.vn/images/b1.png">
-                        <p style="font-weight: 500;">Khi da bé khỏe</p>
-                    </a>
-
-                </div>
-                <div class="col-2 col-md-2 quytrinh_item_mui_ten text-center">
-                    <img src="http://bottamnhanhung.vn/images/mui_ten.png" class="scrollpoint sp-zoomIn active animated zoomIn">
-                </div>
-                <div class="col-5 col-md-5 quytrinh_item text-center scrollpoint sp-fadeInRight active animated fadeInRight">
-                    <a href="http://bottamnhanhung.vn/tai-sao-khi-da-be-khoe-co-the-dung-sua-tam-thong-thuong">
-                        <img src="http://bottamnhanhung.vn/images/b2.png">
-                        <p class="clearfix" style="font-weight: 500;">Có thể tắm cho bé bằng các loại sữa tắm thông thường</p>
-                    </a>
-
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- News-->
     <section id="news" class="padding-top-50 padding-bottom-50 bg_light">

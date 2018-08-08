@@ -32,7 +32,7 @@
     }
 </style>
 <a class="hidden-sm-down" id="icon_phone_fix" href="tel::{{setting("website_telephone")}}">
-    <img src="http://bottamnhanhung.vn/images/icon-phone1.png">
+    <img src="{{asset_uploads('www/icon-phone.png')}}">
 </a>
 <a class="hidden-sm-down" id="icon_order_fix" href="{{url('dat-hang')}}">
     <img src="{{asset_uploads('www/icon-cart.png')}}" alt="@lang('website.cart')">
@@ -82,6 +82,7 @@
     		"{{setting("_social_instagram")}}"
         ]
 	}
+
 
 </script>
 @include('website.partials.topbar')
@@ -138,6 +139,16 @@
 @includeWhen(!empty($banner_bottom_left), 'website.partials.banner-bottom-left')
 @stack("scriptFile")
 @stack('scriptString')
-
+<!--FOOTER ends-->
+<script lang="javascript">var _vc_data = {id: '{{setting('_vchat_hash')}}', secret: '{{setting('_vchat_data')}}'};
+    (function () {
+        var ga   = document.createElement("script");
+        ga.type  = "text/javascript";
+        ga.async = true;
+        ga.defer = true;
+        ga.src   = "//live.vnpgroup.net/client/tracking.js?id=5780231";
+        var s    = document.getElementsByTagName("script");
+        s[0].parentNode.insertBefore(ga, s[0]);
+    })();</script>
 </body>
 </html>

@@ -11,11 +11,37 @@ use Illuminate\Support\Collection;
 
 /**
  * Class Category
+ *
  * @package App\Models
  * @property string $type
  * @property int    $is_active
  * @property int    parent_id
  * @property string name
+ * @property int $id
+ * @property string|null $image
+ * @property string|null $slug
+ * @property string|null $status
+ * @property string|null $description
+ * @property string|null $path
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\Admins $authorUpdated
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category wherePath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereUpdatedAt($value)
+ * @mixin \Eloquent
+ * @property int $parent_id
+ * @property string $name
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereType($value)
  */
 class Category extends Model
 {

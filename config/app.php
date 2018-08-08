@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Ho_Chi_Minh',
 
     /*
     |--------------------------------------------------------------------------
@@ -164,6 +164,7 @@ return [
          * Packages Providers
          */
 	    Collective\Html\HtmlServiceProvider::class,
+	    Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
 	    /**
          * Custom Provider

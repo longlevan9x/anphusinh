@@ -66,9 +66,12 @@ return [
 	'Are you sure delete this item'                => 'Bạn chắc chắn xóa item này?',
 	'are you sure you want to change this record?' => 'Bạn có chắc chắn thay đổi bản ghi này không?',
 
-	'total post'  => "Tổng số bài viết",
-	'total new'   => "Tổng số tin tức",
-	'total order' => "Tổng số đơn hàng",
+	'total post'      => "Tổng số bài viết",
+	'total new'       => "Tổng số tin tức",
+	'total order'     => "Tổng số đơn hàng",
+	'total store'     => "Tổng số nhà thuốc",
+	'total answer'    => "Tổng số câu hỏi",
+	'recent question' => "Câu hỏi gần đây",
 
 	'lang_en' => "Tiếng anh",
 	'lang_vi' => "Tiếng việt",

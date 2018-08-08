@@ -378,19 +378,19 @@ class AdminMenu
 				'name'     => __("admin/menu.consultation and contact"),
 				'url'      => '#',
 				'visible'  => CUser::checkRole([Admins::ROLE_SUPER_ADMIN, Admins::ROLE_ADMIN]),
-				'icon'     => 'fa-users',
+				'icon'     => 'fa-bell-o',
 				'children' => [
 					[
 						'name'    => __("admin/menu.consultation"),
 						'url'     => url_admin('website/subscribe'),
 						'visible' => true,
-						'icon'    => 'fa-user-circle',
+						'icon'    => 'fa-bell-o',
 					],
 					[
 						'name'    => __("admin/menu.contact"),
 						'url'     => url_admin('website/contact'),
 						'visible' => true,
-						'icon'    => 'fa-plus',
+						'icon'    => 'fa-linode',
 					],
 				]
 			],

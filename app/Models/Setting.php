@@ -17,7 +17,8 @@ use Yadakhov\InsertOnDuplicateKey;
 
 /**
  * Class Setting
- * @package  App\Models
+ *
+ * @package App\Models
  * @property string $website_name
  * @property string $website_description
  * @property string $admin_email
@@ -34,6 +35,24 @@ use Yadakhov\InsertOnDuplicateKey;
  * ======= method defined in ModelBaseTrait with function __call, __get, __set =======
  * @method setMaxLogoHeight(int $maxImageHeight)
  * @method setMaxLogoWidth(int $maxImageWidth)
+ * @property int $id
+ * @property int|null $autoload
+ * @property int|null $is_active
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\Admins $authorUpdated
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereAutoload($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereSlug($slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereValue($value)
+ * @mixin \Eloquent
+ * @property string|null $key
+ * @property string|null $value
  */
 class Setting extends Model
 {

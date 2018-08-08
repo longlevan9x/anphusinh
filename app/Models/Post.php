@@ -15,23 +15,49 @@ use MicrosoftAzure\Storage\Common\Models\RetentionPolicy;
 
 /**
  * Class Post
+ *
  * @package App\Models
- * @property string       $title
- * @property string       $type
- * @property string       $post_time
- * @property Category     category
- * @property Admins       $author
- * @property Admins       $authorUpdated
- * @property int          $author_id
- * @property int          author_updated_id
- * @property mixed        content
- * @property string       overview
- * @property int          is_active
- * @property mixed|string path
- * @property int          parent_id
- * @property null         image
- * @property string       slug
- * @property PostMeta     $postMeta
+ * @property string                                                               $title
+ * @property string                                                               $type
+ * @property string                                                               $post_time
+ * @property Admins                                                               $author
+ * @property Admins                                                               $authorUpdated
+ * @property int                                                                  $author_id
+ * @property string                                                               $created_at
+ * @property PostMeta                                                             $postMeta
+ * @property int                                                                  $id
+ * @property int                                                                  $category_id
+ * @property string|null                                                          $status
+ * @property \Carbon\Carbon|null                                                  $updated_at
+ * ===Method===
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\PostMeta[] $postMetas
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereAuthorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereAuthorUpdatedId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereOverview($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post wherePath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post wherePostTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUpdatedAt($value)
+ * @mixin \Eloquent
+ * @property int|null $parent_id
+ * @property string|null $slug
+ * @property string|null $image
+ * @property int $is_active
+ * @property string|null $overview
+ * @property string|null $content
+ * @property string|null $path
+ * @property int|null $author_updated_id
+ * @property-read \App\Models\Category $category
  */
 class Post extends Model
 {
@@ -117,8 +143,7 @@ class Post extends Model
 	 */
 	public function beforeSave() {
 		$this->parsePostTime();
-		if (
-		in_array($this->getType(), [
+		if (in_array($this->getType(), [
 			self::TYPE_NEWS,
 			self::TYPE_SLIDE,
 			self::TYPE_SHARE,
@@ -151,8 +176,7 @@ class Post extends Model
 		//			return $this->folder = $this->path;
 		//		}
 
-		if (
-		in_array($this->getType(), [
+		if (in_array($this->getType(), [
 			self::TYPE_NEWS,
 			self::TYPE_SLIDE,
 			self::TYPE_SHARE,
@@ -261,8 +285,7 @@ class Post extends Model
 	 */
 	public static function prepareMetaValueKey($models = null) {
 		if (!isset($models) || empty($models)) {
-			$models = Post::query()->join(PostMeta::table(), PostMeta::table() . '.post_id', '=', Post::table() . '.id')
-			              ->get();
+			$models = Post::query()->join(PostMeta::table(), PostMeta::table() . '.post_id', '=', Post::table() . '.id')->get();
 		}
 
 		$model = new self;
