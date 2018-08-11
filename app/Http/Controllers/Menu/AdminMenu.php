@@ -425,6 +425,18 @@ class AdminMenu
 				'icon'     => 'fa-rss-square',
 				'children' => [
 					[
+						'name'    => __("admin/menu.config"),
+						'url'     => url_admin('website/config'),
+						'visible' => CUser::checkRole(Admins::ROLE_ALL, Admins::ROLE_AUTHOR),
+						'icon'    => 'fa-home',
+					],
+					[
+						'name'    => __("admin/menu.information expert"),
+						'url'     => url_admin('website/info-expert'),
+						'visible' => CUser::checkRole(Admins::ROLE_ALL, Admins::ROLE_AUTHOR),
+						'icon'    => 'fa-bars',
+					],
+					[
 						'name'    => __("admin/menu.slide"),
 						'url'     => url_admin('slide'),
 						'visible' => true,
@@ -435,12 +447,6 @@ class AdminMenu
 						'url'     => url_admin('website/message'),
 						'visible' => true,
 						'icon'    => 'fa-columns',
-					],
-					[
-						'name'    => __("admin/menu.config"),
-						'url'     => url_admin('website/config'),
-						'visible' => CUser::checkRole(Admins::ROLE_ALL, Admins::ROLE_AUTHOR),
-						'icon'    => 'fa-home',
 					],
 					[
 						'name'    => __("admin/menu.menu"),

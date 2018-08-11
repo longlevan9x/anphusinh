@@ -9,9 +9,11 @@
  * @see https://github.com/barryvdh/laravel-ide-helper
  */
 
-namespace Illuminate\Support\Facades { 
+namespace Illuminate\Support\Facades {
 
-    class App {
+	use Illuminate\Routing\RouteRegistrar;
+
+	class App {
         
         /**
          * Get the version number of the application.
@@ -9361,7 +9363,15 @@ namespace Illuminate\Support\Facades {
         {
             return \Illuminate\Routing\Router::getMiddleware();
         }
-        
+
+	    /**
+	     * @param array|string|null $middleware
+	     * @return RouteRegistrar
+	     */
+	    public static function middleware($middleware) {
+        	return RouteRegistrar::middleware($middleware);
+        }
+
         /**
          * Register a short-hand name for a middleware.
          *

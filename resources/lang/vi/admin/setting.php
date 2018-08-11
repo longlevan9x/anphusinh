@@ -25,5 +25,11 @@ return [
 	'website_image'                      => "Ảnh website",
 	'seo_keyword'                        => "Từ khóa seo",
 	'seo_description'                    => "Miêu tả seo",
-	'setting website'                    => 'Cấu hình chung website'
+	'setting website'                    => 'Cấu hình chung website',
+	'_expert_name'                       => "Họ & Tên",
+	'_expert_image'                      => "Hình ảnh",
+	'_expert_thumbnail'                  => "Hình ảnh nhỏ",
+	'_expert_phone'                      => "Số điện thoại",
+	'_expert_workplace'                  => "Nơi làm việc và chức vụ",
+	'_expert_quote'                      => "Trích dẫn",
 ];

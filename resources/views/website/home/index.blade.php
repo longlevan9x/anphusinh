@@ -172,10 +172,8 @@
 
         body .page-section {
             padding: 50px 0;
-            background-color: #fff;
-            background-position: center center;
             background-size: cover;
-            background-repeat: no-repeat;
+            background: #fff no-repeat center center;
             position: relative;
         }
 
@@ -239,8 +237,7 @@
         }
 
         body .page-section#section-chuyen-gia .doctor-comment {
-            /*url(../img/doctor-human.png)*/
-            background: no-repeat bottom right/70% auto;
+        url('{{setting('_expert_thumbnail')}}   ') background: no-repeat bottom right / 70 % auto;
             min-height: 400px;
         }
 
@@ -376,14 +373,13 @@
                     </div>
                 </div>
                 <div class="col-md-6 text-blue text-center">
-                    <p class="mt-0 mb-1 h1 title_mobile">Bác sĩ Nguyễn Văn Lộc</p>
-                    <p class="font-weight-bold">Nguyên phó giám đốc Bệnh viện Nhi Trung ương</p>
+                    <p class="mt-0 mb-1 h1 title_mobile">{{setting('_expert_name')}}</p>
+                    <p class="font-weight-bold">{{setting('_expert_workplace')}}</p>
                     <div class="doctor-comment row" style="background: url(http://bottamnhanhung.vn/assets/uploads/thumbs/doctor-human42611051095212_9315890.png) no-repeat bottom right/70% auto;">
                         <div class="col-md-6 col-12 pt-5 mt-5 xs-m-0 xs-p-0">
                             <div class="blockquote block_quote">
                                 <p class="h5 font-weight-bold"></p>
-                                <p class="blockquote_content scrollpoint sp-fadeIn active animated fadeIn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-weight:500;">&nbsp;Bột tắm Nhân Hưng</i> có tác dụng se da rất nhanh, đặc biệt là giúp ngăn cản sự phát triển của vi khuẩn, siêu vi trùng, nấm. Do đó, các bà mẹ nên dùng bột tắm này tắm cho trẻ, nhất là những trẻ bị bệnh ngoài da.&nbsp;
-                                </p>
+                                <p class="blockquote_content scrollpoint sp-fadeIn active animated fadeIn">{!! setting('_expert_quote')  !!}</p>
                                 <style type="text/css">
                                     .blockquote_content {
                                         -vendor-animation-duration: 5s;

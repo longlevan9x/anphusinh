@@ -39,17 +39,17 @@ class HomeController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		if (Cache::has('slides')) {
-			$slides = Cache::get('slides');
-		}
-		else {
-			$slides = Post::whereType(Post::TYPE_SLIDE)->where('is_active', CConstant::STATE_ACTIVE)->get();
-			Cache::put('slides', $slides, 60);
-		}
+		//		if (Cache::has('slides')) {
+		//			$slides = Cache::get('slides');
+		//		}
+		//		else {
+		//			$slides = Post::whereType(Post::TYPE_SLIDE)->where('is_active', CConstant::STATE_ACTIVE)->get();
+		//			Cache::put('slides', $slides, 60);
+		//		}
 
 		if (Cache::has('categories')) {
 			$categories = Cache::get('categories');
-			}
+		}
 		else {
 			$categories = Category::whereType(Category::TYPE_CATEGORY)->get();
 			Cache::put('categories', $categories, 60);
@@ -78,6 +78,8 @@ class HomeController extends Controller
 			$product = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
 			Cache::put('product', $product, 60);
 		}
+
+		$slides = Post::whereType(Post::TYPE_SLIDE)->where('is_active', CConstant::STATE_ACTIVE)->get();
 
 		return view('website.home.index', compact('slides', 'categories', 'shares', 'postNews', 'product'));
 	}
@@ -198,8 +200,7 @@ class HomeController extends Controller
 		if ($category->type != Category::TYPE_CATEGORY) {
 			$models = $category->getChildren()->get();
 
-			if (
-			in_array($category->type, [
+			if (in_array($category->type, [
 				Category::TYPE_CITY,
 				Category::TYPE_DISTRICT,
 				Category::TYPE_AREA
@@ -287,9 +288,9 @@ class HomeController extends Controller
 
 		$model->type = Post::TYPE_SUBSCRIBE;
 
-		$model->title    = time();
-		$model->content  = $request->name;
-		$model->overview = $request->phone;
+		$model->title     = time();
+		$model->content   = $request->name;
+		$model->overview  = $request->phone;
 		$model->is_active = 1;
 		if ($model->save()) {
 			return responseJson(CConstant::STATUS_SUCCESS, 'Xác nhận đăng ký thành công. Yêu cầu tư vấn của bạn đã được chúng tôi tiếp nhận.');
@@ -313,9 +314,9 @@ class HomeController extends Controller
 
 		$model->type = Post::TYPE_CONTACT;
 
-		$model->title    = time();
-		$model->content  = $request->name;
-		$model->overview = $request->phone;
+		$model->title     = time();
+		$model->content   = $request->name;
+		$model->overview  = $request->phone;
 		$model->is_active = 1;
 		if ($model->save()) {
 			$model->postMeta()->create(['key' => '_post_contact', 'value' => $request->question]);

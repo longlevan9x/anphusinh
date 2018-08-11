@@ -105,6 +105,7 @@ class WebsiteController extends Controller
 	/**
 	 * @param Request $request
 	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+	 * @throws \Psr\SimpleCache\InvalidArgumentException
 	 */
 	public function postMessage(Request $request) {
 		$model = SettingFacade::setKeyFillable(Setting::KEY_MESSAGE_ORDER, Setting::KEY_MESSAGE_ORDER_SUCCESS, Setting::KEY_MESSAGE_ORDER_FAIL);
@@ -159,5 +160,29 @@ class WebsiteController extends Controller
 		}
 
 		return redirect(self::getUrlAdmin('contact'))->with('error', "Delete Fail");
+	}
+
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function showInformationExpert() {
+		$model = SettingFacade::loadModelByKey(['_expert_name', '_expert_image', '_expert_thumbnail', '_expert_phone', '_expert_workplace', '_expert_quote']);
+		$model->setMax_expert_imageHeight(711);
+		$model->setMax_expert_imageWidth(591);
+		$model->setMax_expert_thumbnailHeight(300);
+		$model->setMax_expert_thumbnailWidth(200);
+		return view('admin.website.information-expert', compact('model'));
+	}
+
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+	 * @throws \Psr\SimpleCache\InvalidArgumentException
+	 */
+	public function postInformationExpert(Request $request) {
+		$model = SettingFacade::prepareKeyValues($request->all(), ['autoload' => 1]);
+		$model->prepareKeyValueUploads(['_expert_image', '_expert_thumbnail'], ['autoload' => 1])->saveModel();
+
+		return redirect(url(self::getConfigUrlAdmin('info-expert')));
 	}
 }

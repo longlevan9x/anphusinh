@@ -6,53 +6,52 @@ use App\Commons\CConstant;
 use App\Commons\Facade\CFile;
 use App\Models\Traits\ModelTrait;
 use App\Models\Traits\ModelUploadTrait;
+use Cache;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Session;
-use Psy\Util\Str;
-use function Symfony\Component\VarDumper\Dumper\esc;
 use Yadakhov\InsertOnDuplicateKey;
 
 /**
  * Class Setting
- *
  * @package App\Models
- * @property string $website_name
- * @property string $website_description
- * @property string $admin_email
- * @property string $lang_default
- * @property string $format_time
- * @property string $format_date
- * @property string $format_datetime
- * @property string $blog_charset
- * @property string _message_order
- * @property string _message_order_success
- * @property string _message_order_fail
- * @property mixed  value
- * @property mixed  key
+ * @property string                  $website_name
+ * @property string                  $website_description
+ * @property string                  $admin_email
+ * @property string                  $lang_default
+ * @property string                  $format_time
+ * @property string                  $format_date
+ * @property string                  $format_datetime
+ * @property string                  $blog_charset
+ * @property string                  _message_order
+ * @property string                  _message_order_success
+ * @property string                  _message_order_fail
+ * @property mixed                   value
+ * @property mixed                   key
  * ======= method defined in ModelBaseTrait with function __call, __get, __set =======
  * @method setMaxLogoHeight(int $maxImageHeight)
  * @method setMaxLogoWidth(int $maxImageWidth)
- * @property int $id
- * @property int|null $autoload
- * @property int|null $is_active
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @method setMax_expert_imageHeight(int $maxImageHeight)
+ * @method setMax_expert_imageWidth(int $maxImageWidth)
+ * @method setMax_expert_thumbnailWidth(int $maxImageHeight)
+ * @method setMax_expert_thumbnailHeight(int $maxImageWidth)
+ * @property int                     $id
+ * @property int|null                $autoload
+ * @property int|null                $is_active
+ * @property Carbon|null             $created_at
+ * @property Carbon|null             $updated_at
  * @property-read \App\Models\Admins $authorUpdated
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereAutoload($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereIsActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereSlug($slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereValue($value)
+ * @method static Builder|Setting findSimilarSlugs($attribute, $config, $slug)
+ * @method static Builder|Setting whereAutoload($value)
+ * @method static Builder|Setting whereCreatedAt($value)
+ * @method static Builder|Setting whereId($value)
+ * @method static Builder|Setting whereIsActive($value)
+ * @method static Builder|Setting whereKey($value)
+ * @method static Builder|Setting whereSlug($slug)
+ * @method static Builder|Setting whereUpdatedAt($value)
+ * @method static Builder|Setting whereValue($value)
  * @mixin \Eloquent
- * @property string|null $key
- * @property string|null $value
  */
 class Setting extends Model
 {
@@ -360,17 +359,14 @@ class Setting extends Model
 	/**
 	 * @param array $options
 	 * @return bool|void
+	 * @throws \Psr\SimpleCache\InvalidArgumentException
 	 */
-	public function save(
-		array $options = [
-			self::KEY_WEBSITE_NAME,
-			self::KEY_WEBSITE_DESCRIPTION,
-			self::KEY_LANG_DEFAULT,
-			self::KEY_FORMAT_TIME,
-			self::KEY_FORMAT_DATE,
-			self::KEY_FORMAT_DATETIME,
-			self::KEY_LOGO
-		]
+	public function save(array $options = [
+		self::KEY_LANG_DEFAULT,
+		self::KEY_FORMAT_TIME,
+		self::KEY_FORMAT_DATE,
+		self::KEY_FORMAT_DATETIME,
+	]
 	) {
 		$data = [];
 		foreach ($options as $index => $option) {
@@ -395,7 +391,7 @@ class Setting extends Model
 				];
 			}
 		}
-		Cache::forget('settings');
+		Cache::delete('settings');
 		Setting::insertOnDuplicateKey($data, ['value', 'updated_at']);
 	}
 
@@ -517,9 +513,10 @@ class Setting extends Model
 
 	/**
 	 * @return int
+	 * @throws \Psr\SimpleCache\InvalidArgumentException
 	 */
 	public function saveModel() {
-		Cache::forget('settings');
+		Cache::delete('settings');
 
 		return self::insertOnDuplicateKey($this->keyValues, ['value', 'updated_at', 'autoload', 'is_active']);
 	}

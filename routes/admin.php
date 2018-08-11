@@ -30,34 +30,25 @@ use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\WebsiteController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
 Route::middleware(['admin.guest'])->group(function() {
 	/*===========Login Route============*/
 	Route::get(AdminLoginController::getResourceName(), AdminLoginController::getControllerWithAction('showLoginForm', 'AdminAuth'))
 	     ->name(AdminLoginController::getAdminRouteName('show-login'));
-	Route::post(AdminLoginController::getResourceName(), AdminLoginController::getControllerWithAction('login', 'AdminAuth'))
-	     ->name(AdminLoginController::getAdminRouteName('login'));
+	Route::post(AdminLoginController::getResourceName(), AdminLoginController::getControllerWithAction('login', 'AdminAuth'))->name(AdminLoginController::getAdminRouteName('login'));
 	/*===========Login Route============*/
 
 });
 Route::middleware(['admin', 'auth:admin'])->group(function() {
-	Route::post('logout', AdminLoginController::getControllerWithAction('logout', 'AdminAuth'))
-	     ->name(AdminLoginController::getAdminRouteName('logout'));
-	Route::post('change-password', AdminController::getControllerWithAction('change_password'))
-	     ->name(AdminController::getAdminRouteName('change-password'));
+	Route::post('logout', AdminLoginController::getControllerWithAction('logout', 'AdminAuth'))->name(AdminLoginController::getAdminRouteName('logout'));
+	Route::post('change-password', AdminController::getControllerWithAction('change_password'))->name(AdminController::getAdminRouteName('change-password'));
 	/*===========Profile============*/
-	Route::get('profile', AdminController::getControllerWithAction('show_profile'))
-	     ->name(AdminController::getAdminRouteName('show-profile'));
-	Route::post('profile/{id}', AdminController::getControllerWithAction('update_profile'))
-	     ->name(AdminController::getAdminRouteName('update-profile'));
+	Route::get('profile', AdminController::getControllerWithAction('show_profile'))->name(AdminController::getAdminRouteName('show-profile'));
+	Route::post('profile/{id}', AdminController::getControllerWithAction('update_profile'))->name(AdminController::getAdminRouteName('update-profile'));
 	/*===========Profile============*/
 	/*===========Dashboard Route============*/
-	Route::get('/', DashboardController::getControllerWithAction('index'))
-	     ->name(DashboardController::getAdminRouteName('dashboard'));
-	Route::get(DashboardController::getResourceName(), DashboardController::getControllerWithAction('index'))
-	     ->name(DashboardController::getAdminRouteName('dashboard'));
+	Route::get('/', DashboardController::getControllerWithAction('index'))->name(DashboardController::getAdminRouteName('dashboard'));
+	Route::get(DashboardController::getResourceName(), DashboardController::getControllerWithAction('index'))->name(DashboardController::getAdminRouteName('dashboard'));
 	/*===========Dashboard Route============*/
 
 	Route::get(NewsController::getResourceName('banner'), NewsController::getControllerWithAction('showBanner'));
@@ -76,6 +67,8 @@ Route::middleware(['admin', 'auth:admin'])->group(function() {
 	Route::delete(WebsiteController::getResourceName('subscribe/{id}'), WebsiteController::getControllerWithAction('deleteSubscribe'));
 	Route::get(WebsiteController::getResourceName('contact'), WebsiteController::getControllerWithAction('showContact'));
 	Route::delete(WebsiteController::getResourceName('contact/{id}'), WebsiteController::getControllerWithAction('deleteContact'));
+	Route::get(WebsiteController::getResourceName('info-expert'), WebsiteController::getControllerWithAction('showInformationExpert'));
+	Route::post(WebsiteController::getResourceName('info-expert'), WebsiteController::getControllerWithAction('postInformationExpert'));
 
 	Route::get(MenuController::getResourceName('sort-order'), MenuController::getControllerWithAction('showSortOrder'));
 	Route::post(MenuController::getResourceName('sort-order'), MenuController::getControllerWithAction('postSortOrder'));

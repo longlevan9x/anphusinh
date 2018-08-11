@@ -52,7 +52,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="col-md-12 col-sm-12 col-xs-12" for="website_hotline">@lang('admin.fax'):</label>
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="website_hotline">@lang('admin.hotline'):</label>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         {!! Form::number('website_hotline', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'website_hotline']) !!}
                                     </div>
@@ -60,7 +60,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="col-md-12 col-sm-12 col-xs-12" for="website_fax">@lang('admin.hotline'):</label>
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="website_fax">@lang('admin.fax'):</label>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         {!! Form::number('website_fax', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'website_fax']) !!}
                                     </div>

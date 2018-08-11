@@ -66,15 +66,16 @@ return [
 	'config'           => "Cấu hình",
 
 	'consultation and feedback' => "Tư vấn và phản hồi",
-	'consultation and contact' => "Tư vấn và liên hệ",
+	'consultation and contact'  => "Tư vấn và liên hệ",
 	'consultation'              => 'Tư vấn',
 	'feedback'                  => "Phản hồi",
-	'contact'                  => "Liên hệ",
+	'contact'                   => "Liên hệ",
 
-	'menu'            => 'Menu',
-	'add menu'        => 'Thêm mới menu',
-	'list menu'       => 'Danh sách menu',
-	'sort_order_menu' => "Sắp xếp thứ tự Menu",
+	'menu'               => 'Menu',
+	'add menu'           => 'Thêm mới menu',
+	'list menu'          => 'Danh sách menu',
+	'sort_order_menu'    => "Sắp xếp thứ tự Menu",
+	'information expert' => 'Thông tin chuyên gia',
 
 	'content message website' => 'Nội dung tin nhắn trang web',
 ];
