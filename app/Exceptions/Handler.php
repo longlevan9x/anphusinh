@@ -18,8 +18,7 @@ class Handler extends ExceptionHandler
 	 * A list of the exception types that are not reported.
 	 * @var array
 	 */
-	protected $dontReport = [
-		//
+	protected $dontReport = [//
 	];
 
 	/**
@@ -54,7 +53,9 @@ class Handler extends ExceptionHandler
 		}
 
 		if ($request->segment(1) == CConstant::GUARD_ADMIN && $exception->getMessage() !== 'Unauthenticated.' && !empty($exception->getMessage())) {
-			AdminMenu::render();
+			if ($request->getPathInfo() != '/admin/login') {
+				AdminMenu::render();
+			}
 		}
 
 		//if(strpos($request->server('HTTP_HOST'), 'www') == false) {
