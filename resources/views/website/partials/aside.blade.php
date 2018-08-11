@@ -101,7 +101,7 @@
             </div>
         </div>
     @endif
-    @if(request()->getPathInfo() == 'hoi-dap')
+    {{--/@if(request()->getPathInfo() == 'hoi-dap')--}}
         <div class="widget heading_space" style="border: 1px solid #4587d9;border-radius: 10px 10px 0 0;">
             <h3 class="bottom20">@lang('website.expert consultants')</h3>
             <div class="sb_body">
@@ -136,7 +136,7 @@
                 {{Form::close()}}
             </div>
         </div>
-    @endif
+    {{--@endif--}}
     <div class="widget">
         <div class="fb-page" data-href="{{setting('_social_facebook')}}" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
             <blockquote cite="{{setting('_social_facebook')}}" class="fb-xfbml-parse-ignore">
