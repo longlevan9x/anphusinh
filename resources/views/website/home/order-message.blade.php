@@ -1,6 +1,6 @@
 @extends('website.index')
 @section('content')
     <div class="detail_content">
-        {{$model->value ?? ''}}
+        {!! $model->value ?? '' !!}
     </div>
 @endsection
