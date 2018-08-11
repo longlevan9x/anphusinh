@@ -237,7 +237,7 @@
         }
 
         body .page-section#section-chuyen-gia .doctor-comment {
-        url('{{setting('_expert_thumbnail')}}   ') background: no-repeat bottom right / 70 % auto;
+            background: url('{{\App\Commons\Facade\CFile::getImageUrl('settings', setting('_expert_thumbnail'))}}') no-repeat bottom right / 70% auto;
             min-height: 400px;
         }
 
@@ -375,7 +375,7 @@
                 <div class="col-md-6 text-blue text-center">
                     <p class="mt-0 mb-1 h1 title_mobile">{{setting('_expert_name')}}</p>
                     <p class="font-weight-bold">{{setting('_expert_workplace')}}</p>
-                    <div class="doctor-comment row" style="background: url(http://bottamnhanhung.vn/assets/uploads/thumbs/doctor-human42611051095212_9315890.png) no-repeat bottom right/70% auto;">
+                    <div class="doctor-comment row" style="background: url('{{\App\Commons\Facade\CFile::getImageUrl('settings', setting('_expert_thumbnail'))}}') no-repeat bottom right/70% auto;">
                         <div class="col-md-6 col-12 pt-5 mt-5 xs-m-0 xs-p-0">
                             <div class="blockquote block_quote">
                                 <p class="h5 font-weight-bold"></p>
