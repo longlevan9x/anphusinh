@@ -25,7 +25,7 @@
         }
     </style>
     <!--Slider-->
-    <section class="rev_slider_wrapper text-center" style="top: 19%;">
+    <section class="rev_slider_wrapper text-center" style="top: 13.7%;">
         <!-- START REVOLUTION SLIDER 5.0 auto mode -->
         <div id="rev_slider" class="rev_slider" data-version="5.0">
             <ul>
@@ -93,7 +93,7 @@
 
 
     <!--ABout US-->
-    <section id="about" class="" style="padding-top: 150px;padding-bottom: 40px">
+    <section id="about" class="" style="">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -101,7 +101,7 @@
                 </div>
                 <div class="icon_wrap clearfix">
                     @forelse($postNews as $postNew)
-                        <div class="col-sm-4 icon_box text-center wow fadeInUp postNews" data-wow-delay="100ms" href="{{$postNew->getSlugAndId()}}" style="margin-bottom: 15px;padding-bottom: 10px;">
+                        <div class="col-sm-4 col-xs-6 icon_box text-center wow fadeInUp postNews" data-wow-delay="100ms" href="{{$postNew->getSlugAndId()}}" style="margin-bottom: 15px;padding-bottom: 10px;">
                             <div class="image bottom20" style="width: 50%;margin: 0 auto;">
                                 <img src="{{$postNew->getImagePath()}}" title="{{$postNew->title}}" alt="{{$postNew->title}}" class="img-responsive border_radius">
                             </div>
@@ -128,25 +128,25 @@
                     <h2 class="heading bottom25">@lang('website.product') <span class="divider-left"></span></h2>
                     <p class="half_space">{{$product->overview}}</p>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="about-post">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="about-post col-xs-6">
                                 <a href="#." class="border_radius"><img src="{{asset_website('images/hands.png')}}" alt="hands"></a>
                                 <h4>Good Planning</h4>
                                 <p>Renean sit amet massa</p>
                             </div>
-                            <div class="about-post">
+                            <div class="about-post col-xs-6">
                                 <a href="#." class="border_radius"><img src="{{asset_website('images/awesome.png')}}" alt="hands"></a>
                                 <h4>Happy Students</h4>
                                 <p>Renean sit amet massa</p>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="about-post">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="about-post col-xs-6">
                                 <a href="#." class="border_radius"><img src="{{asset_website('images/maintenance.png')}}" alt="hands"></a>
                                 <h4>Our Courses</h4>
                                 <p>Renean sit amet massa</p>
                             </div>
-                            <div class="about-post">
+                            <div class="about-post col-xs-6">
                                 <a href="#." class="border_radius"><img src="{{asset_website('images/home.png')}}" alt="hands"></a>
                                 <h4>Our Teachers</h4>
                                 <p>Renean sit amet massa</p>
@@ -372,42 +372,37 @@
                         <iframe class="w-100" height="315" src="https://www.youtube.com/embed/FB4EbSH6vts" frameborder="0" allowfullscreen=""></iframe>
                     </div>
                 </div>
+                <style type="text/css">
+                    .blockquote_content {
+                        -vendor-animation-duration: 5s;
+                        -vendor-animation-delay: 4s;
+                        -vendor-animation-iteration-count: infinite;
+                        font-size: 1.25rem;
+                        color: #0073bc;
+                    }
+
+                    .blockquote_content::after {
+                        content: '"';
+                        font-size: 80px;
+                        position: absolute;
+                        font-family: 'Times New Roman';
+                        font-style: italic;
+                        line-height: 30px;
+                        bottom: -20px;
+                        right: 0;
+                    }
+
+                    .block_quote::after {
+                        content: '' !important;
+                    }
+                </style>
                 <div class="col-md-6 text-blue text-center">
                     <p class="mt-0 mb-1 h1 title_mobile">{{setting('_expert_name')}}</p>
                     <p class="font-weight-bold">{{setting('_expert_workplace')}}</p>
-                    <div class="doctor-comment row" style="background: url('{{\App\Commons\Facade\CFile::getImageUrl('settings', setting('_expert_thumbnail'))}}') no-repeat bottom right/70% auto;">
-                        <div class="col-md-6 col-12 pt-5 mt-5 xs-m-0 xs-p-0">
+                    <div class="doctor-comment row" style="background: url('{{\App\Commons\Facade\CFile::getImageUrl('settings', setting('_expert_thumbnail'))}}') no-repeat bottom right/50% auto;">
+                        <div class="col-md-6 col-12 pt-5 mt-5 xs-m-0 xs-p-0 col-xs-6">
                             <div class="blockquote block_quote">
-                                <p class="h5 font-weight-bold"></p>
-                                <p class="blockquote_content scrollpoint sp-fadeIn active animated fadeIn">{!! setting('_expert_quote')  !!}</p>
-                                <style type="text/css">
-                                    .blockquote_content {
-                                        -vendor-animation-duration: 5s;
-                                        -vendor-animation-delay: 4s;
-                                        -vendor-animation-iteration-count: infinite;
-                                        font-size: 1.25rem;
-                                        color: #0073bc;
-                                    }
-
-                                    .blockquote_content::after {
-                                        content: '"';
-                                        font-size: 80px;
-                                        position: absolute;
-                                        font-family: 'Times New Roman';
-                                        font-style: italic;
-                                        line-height: 30px;
-                                        bottom: -20px;
-                                    }
-
-                                    .block_quote::after {
-                                        content: '' !important;
-                                    }
-                                </style>
-                            </div>
-                            <div class="hidden-md-up text-left  pl-1" style="padding-top: 50px">
-                                <a href="#contactForm">
-                                    <img src="http://bottamnhanhung.vn/images/btn_tuvan.gif" class="w-50">
-                                </a>
+                                <p class="blockquote_content scrollpoint sp-fadeIn active animated fadeIn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!! setting('_expert_quote')  !!}</p>
                             </div>
                         </div>
                     </div>
@@ -560,17 +555,17 @@
                 <div class="col-md-4 contact_address heading_space wow fadeInLeft" data-wow-delay="1000ms">
                     <h2 class="heading heading_space">Hoặc<span class="divider-left"></span></h2>
                     <p></p>
-                    <div class="address">
+                    <div class="address col-xs-12">
                         <i class="icon icon-map-pin border_radius"></i>
                         <h4>@lang('admin/common.address')</h4>
                         <p>{{setting(\App\Models\Setting::KEY_WEBSITE_ADDRESS)}}</p>
                     </div>
-                    <div class="address">
+                    <div class="address col-xs-12">
                         <i class="icon icon-mail border_radius"></i>
                         <h4>@lang('Email')</h4>
                         <p><a href="mailto:Edua@info.com">{{setting(\App\Models\Setting::KEY_ADMIN_EMAIL)}}</a></p>
                     </div>
-                    <div class="address">
+                    <div class="address col-xs-12">
                         <i class="icon icon-phone4 border_radius"></i>
                         <h4>@lang('admin/common.phone')</h4>
                         <p>{{setting(\App\Models\Setting::KEY_WEBSITE_PHONE)}}</p>

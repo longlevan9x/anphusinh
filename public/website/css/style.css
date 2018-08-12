@@ -1234,7 +1234,7 @@ nav.navbar.bootsnav.navbar-fixed.no-background ul.nav > li > a {
 
 nav.navbar.bootsnav.sticked ul.nav > li > a,
 nav.navbar.bootsnav.navbar-fixed ul.nav > li > a {
-    padding: 20px 0;
+    padding: 35px 0;
 }
 
 nav.navbar.bootsnav ul.nav > li > a:hover,
@@ -3294,8 +3294,8 @@ footer .footer_panel p.address > i, .services p.address > i {
     }
 
     .icon_box {
-        margin-left: 15px;
-        margin-right: 15px;
+        margin-left: 0;
+        margin-right: 0px;
     }
 
     #about .about_box {
@@ -3450,7 +3450,9 @@ footer .footer_panel p.address > i, .services p.address > i {
     top: 0;
 }
 
-
+.events .item {
+    height: 30px;
+}
 
 
 

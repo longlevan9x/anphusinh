@@ -7,8 +7,10 @@
             $listUrl = explode("=", $urlVideo);
             if (count($listUrl) > 1) {
                 $urlVideo = $listUrl[1];
-                $urlVideo1 = substr($urlVideo, strpos($urlVideo, '&'));
-                $urlVideo = str_replace($urlVideo1, '', $urlVideo);
+                if (strpos($urlVideo, '&') !== false) {
+                    $urlVideo1 = substr($urlVideo, strpos($urlVideo, '&'));
+                    $urlVideo = str_replace($urlVideo1, '', $urlVideo);
+                }
             }
         }
 
@@ -38,7 +40,7 @@
                         <div class="image">
                             <img title="{{str_limit($post->title, 100)}}" src="{{$post->getImagePath()}}" alt="{{str_limit($post->title, 100)}}" class="">
                         </div>
-                        <h4 class="top20">
+                        <h4 class="top20 item">
                             <a href="{{$post->getSlugAndId()}}" title="{{str_limit($post->title, 100)}}">{{str_limit($post->title, 45)}}</a>
                         </h4>
                         <div class="clearfix"></div>
