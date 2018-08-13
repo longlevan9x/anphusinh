@@ -22,7 +22,7 @@
                     {{--<li><a href="#."><i class="icon-comment"></i> 5</a></li>--}}
                     {{--</ul>--}}
                     <p class="margin10">{{str_limit($model->overview, 200)}}</p>
-                    <a class=" btn_common btn_border margin10 border_radius post-item-readmore" href="{{url($model->getSlugAndId())}}">Read More</a>
+                    <a class=" btn_common btn_border margin10 border_radius post-item-readmore" href="{{url($model->getSlugAndId())}}">@lang('website.read more')</a>
                 </div>
             </div>
         </article>

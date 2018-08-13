@@ -368,8 +368,23 @@
                             <h2 class="section-heading text-blue font-weight-normal" style="line-height: 3.7em">Ý kiến chuyên gia </h2>
                         </a>
                     </div>
+                    @php
+                        $urlVideo = setting('_expert_video');
+                        if (\Illuminate\Support\Str::startsWith($urlVideo, 'https://www.youtube.com/')) {
+                            $urlVideo = substr($urlVideo, strpos($urlVideo, '='));
+                            $listUrl = explode("=", $urlVideo);
+                            if (count($listUrl) > 1) {
+                                $urlVideo = $listUrl[1];
+                                if (strpos($urlVideo, '&') !== false) {
+                                    $urlVideo1 = substr($urlVideo, strpos($urlVideo, '&'));
+                                    $urlVideo = str_replace($urlVideo1, '', $urlVideo);
+                                }
+                            }
+                        }
+
+                    @endphp
                     <div class="box-video">
-                        <iframe class="w-100" height="315" src="https://www.youtube.com/embed/FB4EbSH6vts" frameborder="0" allowfullscreen=""></iframe>
+                        <iframe class="w-100" height="315" src="https://www.youtube.com/embed/{{$urlVideo}}" frameborder="0" allowfullscreen=""></iframe>
                     </div>
                 </div>
                 <style type="text/css">
@@ -460,47 +475,7 @@
         </div>
     </section>
     <!--Paralax -->
-
-    <!-- News-->
-    <section id="news" class="padding-top-50 padding-bottom-50 bg_light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 wow fadeInDown">
-                    <h2 class="heading heading_space">@lang('website.chia-se-cua-me')<span class="divider-left"></span>
-                    </h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="slider_wrapper">
-                        <div id="news_slider" class="owl-carousel">
-                            @forelse($shares as $share)
-                                <div class="item">
-                                    <div class="content_wrap">
-                                        <div class="image">
-                                            <img src="{{$share->getImagePath()}}" alt="Edua" class="img-responsive border_radius">
-                                        </div>
-                                        <div class="news_box border_radius" style="height: 70px;">
-                                            <h4><a href="{{$share->getSlugAndId()}}">{{str_limit($share->title)}}</a>
-                                            </h4>
-                                            {{--<ul class="commment">--}}
-                                            {{--<li><a href="#."><i class="icon-icons20"></i>June 6, 2016</a></li>--}}
-                                            {{--<li><a href="#."><i class="icon-comment"></i> 02</a></li>--}}
-                                            {{--</ul>--}}
-                                            {{--<p>We offer the most complete house Services in the country...</p>--}}
-                                            {{--<a href="blog_detail.html" class="readmore">Read More</a>--}}
-                                        </div>
-                                    </div>
-                                </div>
-                            @empty
-                            @endforelse
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    @includeWhen(!empty($shares), 'website.home.template.share')
 
     <!--Contact Deatils -->
     <section id="contact" class="padding-top-50">

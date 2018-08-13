@@ -101,7 +101,7 @@
                 <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOut">
                     @foreach($menus as $menu)
                         <li class="{{isset($menu['children']) && !empty($menu['children']) ? 'dropdown' : ''}}">
-                            @if(isset($menu['children']) && !empty($menu['children']))
+                            @if(!isset($menu['children']) || empty($menu['children']))
                                 <a href="{{$menu['url']}}">{{$menu['text']}}</a>
                             @else
                                 <a href="{{$menu['url']}}" class="dropdown-toggle" data-toggle="dropdown">{{$menu['text']}}</a>

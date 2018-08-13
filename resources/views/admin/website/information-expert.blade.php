@@ -49,6 +49,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-sm-12 col-xs-12" for="_expert_video">@lang('admin/setting._expert_video'):</label>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        {!! Form::text('_expert_video', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => '_expert_video']) !!}
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="col-md-12"></div>
                             @include('admin.layouts.widget.form.editor', ['name' => '_expert_quote', 'label' => __('admin/setting._expert_quote'), 'height' => 200])

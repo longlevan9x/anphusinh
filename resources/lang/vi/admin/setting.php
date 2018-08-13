@@ -32,4 +32,5 @@ return [
 	'_expert_phone'                      => "Số điện thoại",
 	'_expert_workplace'                  => "Nơi làm việc và chức vụ",
 	'_expert_quote'                      => "Trích dẫn",
+	'_expert_video'                      => "Video Youtube",
 ];
