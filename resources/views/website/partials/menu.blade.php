@@ -2,6 +2,7 @@
     @media screen and (min-width: 1024px) {
         nav.navbar.bootsnav.navbar-fixed .navbar-brand img {
             width: 115px;
+            height: 100px;
         }
     }
 

@@ -17,7 +17,7 @@ class CreateTableProductMeta extends Migration
         	$table->increments('id');
         	$table->integer('product_id')->default(0);
         	$table->string('key');
-        	$table->string('value');
+        	$table->longText('value')->nullable();
         	$table->timestamps();
         });
     }

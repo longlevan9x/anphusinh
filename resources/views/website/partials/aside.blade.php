@@ -105,7 +105,7 @@
         <div class="widget heading_space" style="border: 1px solid #4587d9;border-radius: 10px 10px 0 0;">
             <h3 class="bottom20">@lang('website.expert consultants')</h3>
             <div class="sb_body">
-                <img src="http://bottamnhanhung.vn/assets/uploads/thumbs/anh-bac-si-tu-van_9835306.png" class="w-100">
+                <img src="{{\App\Commons\Facade\CFile::getImageUrl('settings', setting('_expert_image'))}}" class="w-100">
                 {{Form::open([
                     'url' => '',
                     'style' => '    padding: 15px;text-align:center'

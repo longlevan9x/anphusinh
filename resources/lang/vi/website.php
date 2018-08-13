@@ -23,7 +23,7 @@ return [
 	'dat-hang'            => "Đặt hàng",
 	'chuyen-gia'          => "Chuyên gia",
 	'chia-se'             => "Chia sẻ",
-	'diseases'            => "Các loại bệnh",
+	'diseases'            => "Sản phẩm liên quan",
 	'expert consultants'  => "Chuyên gia tư vấn",
 	'ask_submit'          => 'Gửi thắc mắc',
 	'hoi-dap'             => "Hỏi đáp",
