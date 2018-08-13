@@ -25,7 +25,7 @@
                         <label class="col-md-12 col-sm-12 col-xs-12" for="title">@lang('admin/news.title')
                             <span class="required">*</span></label>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            {!! Form::text('title', $value = null,['required' => "required", 'class' => 'form-control col-md-7 col-xs-12', 'id' => 'title']) !!}
+                            {!! Form::text('title', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'title']) !!}
                         </div>
                     </div>
 
