@@ -431,7 +431,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="heading heading_space wow fadeInDown" style="font-family:'Simplesnailsver'; font-size: 1.7em;color: #4587d9;">Bạn có biết hơn
+                    <h2 class="heading heading_space wow fadeInDown" style="font-family:'Simplesnailsver'; font-size: 1.7em;color: #4587d9;">Bạn có biết
                         <span style="text-transform: uppercase; font-weight: bold;color: red;">90%</span> trẻ em ở Việt Nam chưa được chăm sóc da đúng cách?.
                         <span class="divider-left"></span>
                     </h2>

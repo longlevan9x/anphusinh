@@ -19,12 +19,12 @@
                     'data-parsley-validate',
                     'method' => action_method_push_post($model)
                 ]) }}
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="parent_id"> {{__('admin/category.parent')}}</label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        {!! Form::select('parent_id', \App\Models\Category::pluckWithCategory('name', 'id'), $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'parent_id']) !!}
-                    </div>
-                </div>
+                {{--<div class="form-group">--}}
+                    {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="parent_id"> {{__('admin/category.parent')}}</label>--}}
+                    {{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
+                        {{--{!! Form::select('parent_id', \App\Models\Category::pluckWithCategory('name', 'id'), $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'parent_id']) !!}--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">@lang('admin/category.name')<span class="required">*</span></label>
