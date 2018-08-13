@@ -33,7 +33,7 @@ return [
 	'quick-link'          => 'Liên kết nhanh',
 	'expert'              => 'Chuyên gia',
 	'dat-hang-thanh-cong' => 'Đặt hàng thành công',
-	'chia-se-cua-me'      => 'Chia sẻ của mẹ',
+	'chia-se-cua-me'      => 'Chia sẻ của phụ nữ',
 	'send question'       => "Gửi câu hỏi",
 	'contact us'          => 'Liên hệ chúng tôi',
 	'cart'                => "Giỏ hàng",
