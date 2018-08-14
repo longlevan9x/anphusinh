@@ -256,10 +256,10 @@ class HomeController extends Controller
 			return view('website.home.advice', compact('model', 'relate_posts'));
 		}
 		$this->getBreadcrumb();
-		/** @var Post $advertise_post */
-		$advertise_post = Post::prepareMetaValueKey((new Post())->queryWithPostMeta()->whereIsActive(1)->get());
 
-		$product = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
+		$advertise_post = Post::prepareMetaValueKey((new Post)->queryWithPostMeta()->where('is_active', 1)->get());
+
+		$product = Product::wherePostType(Product::POST_TYPE_DETAIL)->first();
 
 		return view('website.home.post', compact('model', 'relate_posts', 'advertise_post', 'product'));
 	}
