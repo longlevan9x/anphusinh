@@ -15,7 +15,6 @@ use MicrosoftAzure\Storage\Common\Models\RetentionPolicy;
 
 /**
  * Class Post
- *
  * @package App\Models
  * @property string                                                               $title
  * @property string                                                               $type
@@ -49,15 +48,15 @@ use MicrosoftAzure\Storage\Common\Models\RetentionPolicy;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property int|null $parent_id
- * @property string|null $slug
- * @property string|null $image
- * @property int $is_active
- * @property string|null $overview
- * @property string|null $content
- * @property string|null $path
- * @property int|null $author_updated_id
- * @property-read \App\Models\Category $category
+ * @property int|null                                                             $parent_id
+ * @property string|null                                                          $slug
+ * @property string|null                                                          $image
+ * @property int                                                                  $is_active
+ * @property string|null                                                          $overview
+ * @property string|null                                                          $content
+ * @property string|null                                                          $path
+ * @property int|null                                                             $author_updated_id
+ * @property-read \App\Models\Category                                            $category
  */
 class Post extends Model
 {
@@ -280,12 +279,19 @@ class Post extends Model
 	}
 
 	/**
+	 * @return Builder
+	 */
+	public function queryWithPostMeta() {
+		return self::query()->join(PostMeta::table(), PostMeta::table() . '.post_id', '=', Post::table() . '.id');
+	}
+
+	/**
 	 * @param null $models
 	 * @return Post|Builder|mixed
 	 */
 	public static function prepareMetaValueKey($models = null) {
 		if (!isset($models) || empty($models)) {
-			$models = Post::query()->join(PostMeta::table(), PostMeta::table() . '.post_id', '=', Post::table() . '.id')->get();
+			$models = (new self)->queryWithPostMeta()->get();
 		}
 
 		$model = new self;

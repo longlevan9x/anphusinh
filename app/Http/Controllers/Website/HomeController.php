@@ -257,7 +257,7 @@ class HomeController extends Controller
 		}
 		$this->getBreadcrumb();
 		/** @var Post $advertise_post */
-		$advertise_post = Post::prepareMetaValueKey();
+		$advertise_post = Post::prepareMetaValueKey(Post::whereIsActive(1)->queryWithPostMeta()->get());
 
 		$product = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
 
