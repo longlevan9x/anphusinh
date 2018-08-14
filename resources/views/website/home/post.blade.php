@@ -80,7 +80,7 @@
             <div class="col-sm-5 px-md-5">
                 <div class="box_main bg-light" style="padding: 25px;">
                     <div class="box_inner bg-light">
-                        <center>Mua <span class="text-red text-uppercase text-bold">Bột tắm</span> <br> ở
+                        <center>Mua <span class="text-red text-uppercase text-bold">An phụ sinh</span> <br> ở
                             <span class="text-orange text-uppercase text-bold">Hà nội	</span></center>
                         <a href="{{url('ha-noi')}}" class="button text-bold text-uppercase" style="margin-top: 10px">Bấm để xem</a>
                     </div>
@@ -94,7 +94,7 @@
             <div class="col-sm-5 px-md-5">
                 <div class="box_main bg-light" style="padding: 25px;">
                     <div class="box_inner bg-light">
-                        <center>Mua <span class="text-red text-uppercase text-bold">Bột tắm</span> nơi <br>
+                        <center>Mua <span class="text-red text-uppercase text-bold">An phụ sinh</span> nơi <br>
                             <span class="text-orange text-uppercase text-bold"> Bạn gần nhất	</span></center>
                         <a href="{{url('he-thong-nha-thuoc')}}" class="button text-bold text-uppercase" style="margin-top: 10px">Bấm để xem</a>
                     </div>
