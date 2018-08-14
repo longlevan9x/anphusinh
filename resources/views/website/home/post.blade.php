@@ -19,8 +19,16 @@
     <h3 class="top30 bottom20" style="font-size: 2em;">{{$model->title}}</h3>
     <p class="bottom25" style="font-weight: 700;font-size: 1.1em;">{!! $model->overview !!}</p>
     <img src="{{$model->getImagePath()}}" alt="Teachers" class=" border_radius img-responsive bottom15">
-
-    <div class="bottom25">{!! $model->content !!}</div>
+    <style type="text/css">
+        .content img {
+            max-width: 100%;
+        }
+        .content p {
+            line-height: 24px;
+            margin-bottom: 5px;
+        }
+    </style>
+    <div class="bottom25 content">{!! $model->content !!}</div>
 
     <div class="clearfix"></div>
 
