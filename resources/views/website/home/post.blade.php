@@ -20,7 +20,7 @@
     <p class="bottom25" style="font-weight: 700;font-size: 1.1em;">{!! $model->overview !!}</p>
     <img src="{{$model->getImagePath()}}" alt="Teachers" class=" border_radius img-responsive bottom15">
 
-    <p class="bottom25">{!! $model->content !!}</p>
+    <div class="bottom25">{!! $model->content !!}</div>
 
     <div class="clearfix"></div>
 
