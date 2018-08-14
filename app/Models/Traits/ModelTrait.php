@@ -202,9 +202,9 @@ trait ModelTrait
 	 * @param int $value
 	 * @return Builder
 	 */
-	public function whereIsActive($value = 1) {
-		return self::where('is_active', $value);
-	}
+//	public function whereIsActive($value = 1) {
+//		return self::where('is_active', $value);
+//	}
 
 	/**
 	 * @return int|string
