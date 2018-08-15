@@ -42,7 +42,7 @@ class Controller extends \App\Http\Controllers\Controller
 				['text' => __('website.diseases'), 'url' => '#', 'children' => []],
 			];
 
-			$categories            = Category::whereType(Category::TYPE_CATEGORY)->where('is_active', 1)->get();
+			$categories            = Category::whereType(Category::TYPE_CATEGORY)->where('parent_id', '>', 0)->where('is_active', 1)->get();
 			$menus1[0]['children'] = $this->getCategoryMenu($categories);
 
 			$menus2 = [

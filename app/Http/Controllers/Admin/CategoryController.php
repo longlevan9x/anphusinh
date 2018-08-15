@@ -40,7 +40,7 @@ class CategoryController extends Controller
 	public function store(CategoryRequest $request) {
 		$model = new Category;
 		$model->fill($request->all());
-		$model->parent_id = Category::whereType()->whereSlug('#')->first()->id;
+		$model->parent_id = Category::whereType()->whereSlug('#')->whereParentId(0)->first()->id;
 		$model->type = Category::TYPE_CATEGORY;
 		$model->save();
 
