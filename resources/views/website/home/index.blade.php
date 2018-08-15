@@ -130,26 +130,22 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="about-post col-xs-6">
-                                <a href="#." class="border_radius"><img src="{{asset_website('images/hands.png')}}" alt="hands"></a>
-                                <h4>Good Planning</h4>
-                                <p>Renean sit amet massa</p>
+                                <a href="{{url('san-pham')}}" class="border_radius"><img src="{{asset_website('images/hands.png')}}" alt="hands"></a>
+                                <h4>@lang('Cơ chế')</h4>
                             </div>
                             <div class="about-post col-xs-6">
                                 <a href="#." class="border_radius"><img src="{{asset_website('images/awesome.png')}}" alt="hands"></a>
                                 <h4>Happy Students</h4>
-                                <p>Renean sit amet massa</p>
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="about-post col-xs-6">
-                                <a href="#." class="border_radius"><img src="{{asset_website('images/maintenance.png')}}" alt="hands"></a>
-                                <h4>Our Courses</h4>
-                                <p>Renean sit amet massa</p>
+                                <a href="{{url('san-pham')}}" class="border_radius"><img src="{{asset_website('images/maintenance.png')}}" alt="hands"></a>
+                                <h4>@lang('Thành phần')</h4>
                             </div>
                             <div class="about-post col-xs-6">
                                 <a href="#." class="border_radius"><img src="{{asset_website('images/home.png')}}" alt="hands"></a>
                                 <h4>Our Teachers</h4>
-                                <p>Renean sit amet massa</p>
                             </div>
                         </div>
                     </div>
