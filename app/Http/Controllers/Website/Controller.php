@@ -60,7 +60,6 @@ class Controller extends \App\Http\Controllers\Controller
 		//
 		$menus0 = [
 			['text' => __('website.home page'), 'url' => url('/')],
-			['text' => __('website.product'), 'url' => url('/san-pham')],
 		];
 
 		$categories = Category::whereType()->active()->get();
