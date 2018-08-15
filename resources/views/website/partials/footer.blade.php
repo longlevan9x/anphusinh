@@ -26,6 +26,7 @@
                     @php
                         /** @var $item \App\Models\Category */
                     @endphp
+                    <li><a href=""><i class="icon-chevron-small-right"></i>@lang('website.home page')</a></li>
                     @forelse($menu_footer as $item)
                         <li><a href="{{$item->getUrlSlug()}}"><i class="icon-chevron-small-right"></i>{{$item->name}}</a></li>
                     @empty
