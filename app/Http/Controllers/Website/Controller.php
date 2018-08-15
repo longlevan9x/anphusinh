@@ -21,6 +21,7 @@ class Controller extends \App\Http\Controllers\Controller
 		$this->getBreadcrumb();
 		$this->getAdviceAside();
 		$this->getShareAside();
+
 	}
 
 	/**
