@@ -28,9 +28,9 @@ class Controller extends \App\Http\Controllers\Controller
 	 * @throws \Exception
 	 */
 	public function getMenu() {
-		if (cache()->has('menus')) {
-			$menus = Cache::get('menus');
-		} else {
+//		if (cache()->has('menus')) {
+//			$menus = Cache::get('menus');
+//		} else {
 
 			$menus0 = [
 				['text' => __('website.home page'), 'url' => url('/')],
@@ -56,7 +56,7 @@ class Controller extends \App\Http\Controllers\Controller
 
 			$menus = array_merge($menus0, $menus1, $menus2);
 			cache()->put('menus', $menus, 60);
-		}
+//		}
 		view()->share(compact('menus'));
 	}
 
