@@ -70,7 +70,7 @@ class Category extends Model
 	}
 
 	public static function pluckWithType($column, $key = null, $type = '') {
-		$category = Category::where('type', $type)->pluck($column, $key);
+		$category = Category::where('type', $type)->where('parent_id', '>', 0)->pluck($column, $key);
 		/** @var Collection $category */
 		$category->put(0, __('admin.select') . " " . __("admin.$type"));
 		$category = $category->toArray();
