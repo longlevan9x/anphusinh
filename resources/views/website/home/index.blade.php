@@ -506,7 +506,8 @@
         </div>
     </section>
     <!--Paralax -->
-    @includeWhen(!empty($shares), 'website.home.template.share')
+    @dd($shares)
+    @includeWhen(count($shares) > 0, 'website.home.template.share')
 
     <!--Contact Deatils -->
     <section id="contact" class="padding-top-50">
