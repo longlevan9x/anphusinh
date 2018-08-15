@@ -431,7 +431,7 @@
         </div>
     </section>
 
-    @includeWhen(!empty($categories->items), 'website.home.template.index.category')
+    @includeWhen(count($categories) > 0, 'website.home.template.index.category')
 
     <!--Paralax -->
     <section id="parallax" class="parallax" style="background: #4587d9;padding: 2%">
@@ -449,7 +449,7 @@
         </div>
     </section>
     <!--Paralax -->
-    @includeWhen(!empty($shares->items), 'website.home.template.share')
+    @includeWhen(count($shares) > 0, 'website.home.template.share')
 
     <!--Contact Deatils -->
     <section id="contact" class="padding-top-50">

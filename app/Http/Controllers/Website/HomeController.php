@@ -83,7 +83,7 @@ class HomeController extends Controller
 		$shares     = Post::whereType(Post::TYPE_SHARE)->latest()->limit(10)->get();
 		$product    = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
 		$postNews   = Post::whereType(Post::TYPE_NEWS)->latest()->limit(6)->get();
-		$categories = Category::whereType(Category::TYPE_CATEGORY)->get();
+		$categories = Category::whereType(Category::TYPE_CATEGORY)->where('parent_id', '>', 0)->active()->get();
 
 		return view('website.home.index', compact('slides', 'categories', 'shares', 'postNews', 'product'));
 	}
