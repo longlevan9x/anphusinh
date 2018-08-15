@@ -69,6 +69,13 @@ class Controller extends \App\Http\Controllers\Controller
 	 */
 	public function getCategoryMenu($categories, $parent_id = 0, &$output = [], $level = 0) {
 		foreach ($categories as $category) {
+			$output[$category->id] = [
+				'text'     => $category->name,
+				'url'      => url($category->slug),
+			];
+		}
+		return $output;
+		foreach ($categories as $category) {
 			/** @var Category $category */
 			if ($category->parent_id == $parent_id) {
 				if ($category->parent_id == 0) {
