@@ -178,7 +178,7 @@
                 @push('scriptString')
                     <script type="text/javascript">
                         $(function () {
-                            (".about-post").click(function () {
+                            $(".about-post").click(function () {
                                 window.location.href = $(this).data("url");
                             });
                         });
