@@ -16,7 +16,7 @@ class CategoryController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$models = Category::whereType(Category::TYPE_CATEGORY)->get();
+		$models = Category::whereType(Category::TYPE_CATEGORY)->where('parent_id', ">", 0)->get();
 
 		return view('admin.category.index', compact('models'));
 	}
