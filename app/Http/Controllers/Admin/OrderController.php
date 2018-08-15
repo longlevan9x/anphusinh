@@ -68,7 +68,7 @@ class OrderController extends Controller
 	 * Update the specified resource in storage.
 	 * @param  \Illuminate\Http\Request $request
 	 * @param Order                     $order
-	 * @return void
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
 	 * @throws \Exception
 	 */
 	public function update(Request $request, Order $order) {
@@ -87,7 +87,7 @@ class OrderController extends Controller
 	}
 
 	/**
-	 * @param Order $order
+	 * @param $id
 	 * @return \Illuminate\Http\RedirectResponse
 	 * @throws \Exception
 	 */
@@ -102,7 +102,7 @@ class OrderController extends Controller
 	}
 
 	/**
-	 * @param Order $order
+	 * @param $id
 	 * @return \Illuminate\Http\RedirectResponse
 	 * @throws \Exception
 	 */
