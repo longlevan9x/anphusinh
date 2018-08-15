@@ -434,6 +434,10 @@
 
     @push('cssString')
         <style type="text/css">
+            .category {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
             .category .slider_wrapper .owl-item {
                 height: 340px !important;
             }
@@ -443,18 +447,19 @@
                 height: inherit;
             }
 
-            .category .slider_wrapper .item  h3{
+            .category .slider_wrapper .item h3 {
                 position: absolute;
                 bottom: 0;
                 width: 100%;
             }
-            .category .slider_wrapper .item  .image{
+
+            .category .slider_wrapper .item .image {
                 max-height: 270px;
             }
         </style>
     @endpush
     <!-- Courses -->
-    <section id="courses" class="category padding parallax" style="padding-top: 50px; padding-bottom: 20px;">
+    <section id="courses" class="padding parallax category">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
