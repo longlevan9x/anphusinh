@@ -3,12 +3,6 @@
         <div class="x_panel">
             @include('admin.layouts.title_table', ['text' => __('admin/menu.list menu')])
             <div class="box-header with-border">
-                <div style="float: left;">
-                    @include('admin.layouts.widget.button.button_link.create', ['text' => __("admin/menu.add menu"), 'btn_size' => 'md', 'icon' => 'fa-plus', 'options' => ['data-style'=>"zoom-in", 'class' => 'ladda-button'], 'url' => route(\App\Http\Controllers\Admin\MenuController::getAdminRouteName('create'))])
-                </div>
-                <div style="float: left;">
-                    @include('admin.layouts.widget.button.bulk-delete', ['table' => \App\Models\Menu::table(), 'classTable' => \App\Models\Menu::class])
-                </div>
                 @include('admin.layouts.widget.button.button_link.button', ['url' => \App\Http\Controllers\Admin\MenuController::getResourceName('sort-order'), 'text' => "Sắp xếp thứ tự menu", 'btn_size' => "md", 'icon' => 'fa-arrows', 'btn_type' => "default"])
                 <div class="clearfix"></div>
             </div>

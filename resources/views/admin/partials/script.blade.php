@@ -74,6 +74,8 @@
     <script src="{{asset_admin_vendors('datatables.net-buttons/js/buttons.html5.min.js')}}" type="text/javascript"></script>
     <script src="{{asset_admin_vendors('datatables.net-buttons/js/buttons.print.min.js')}}" type="text/javascript"></script>
 
+    <script src="{{asset_admin_vendors('pnotify/dist/pnotify.js')}}"></script>
+
     <script src="{{asset_admin_vendors('jszip/dist/jszip.min.js')}}" type="text/javascript"></script>
     <script src="{{asset_admin_vendors('pdfmake/build/pdfmake.min.js')}}" type="text/javascript"></script>
     <script src="{{asset_admin_vendors('pdfmake/build/vfs_fonts.js')}}" type="text/javascript"></script>
@@ -81,7 +83,7 @@
     @stack('scriptFileAppend')
 
     <script src="{{asset_admin('build/js/custom.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset_css('custom.css')}}" type="text/javascript"></script>
+    <script src="{{asset_js('custom.js')}}" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             let value1 = $("#datetimepicker1 input").attr("value");

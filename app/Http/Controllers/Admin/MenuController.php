@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Commons\CConstant;
 use App\Http\Requests\MenuRequest;
+use App\Models\Category;
 use App\Models\Menu;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 
 class MenuController extends Controller
 {
@@ -13,7 +17,7 @@ class MenuController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$models = Menu::all();
+		$models = Category::whereType()->whereParentId(0)->sortOrder()->get();
 
 		return view('admin.menu.index', compact('models'));
 	}
@@ -23,19 +27,19 @@ class MenuController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		$model = new Menu;
+		$model = new Category;
 
 		return view('admin.menu.create', compact('model'));
 	}
 
 	/**
 	 * Store a newly created resource in storage.
-	 * @param MenuRequest $request
+	 * @param Category $request
 	 * @return \Illuminate\Http\Response
 	 * @throws \Exception
 	 */
-	public function store(MenuRequest $request) {
-		$model = new Menu;
+	public function store(Category $request) {
+		$model = new Category;
 		$model->fill($request->all());
 		$model->save();
 
@@ -45,48 +49,48 @@ class MenuController extends Controller
 
 	/**
 	 * Display the specified resource.
-	 * @param Menu $menu
+	 * @param Category $category
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(Menu $menu) {
-		$model = $menu;
+	public function show(Category $category) {
+		$model = $category;
 
 		return view('admin.menu.view', compact('model'));
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * @param Menu $menu
+	 * @param $id
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-	public function edit(Menu $menu) {
-		$model = $menu;
+	public function edit($id) {
+		$model = Category::findOrFail($id);
 
 		return view('admin.menu.update', compact('model'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
-	 * @param Menu $request
-	 * @param Menu $menu
-	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-	 * @throws \Exception
+	 * @param Request  $request
+	 * @param          $id
+	 * @return RedirectResponse|Redirector
 	 */
-	public function update(Menu $request, Menu $menu) {
-		$menu->fill($request->all());
-		$menu->save();
+	public function update(Request $request, $id) {
+		$category = Category::findOrFail($id);
+		$category->fill($request->all());
+		$category->save();
 
 		return redirect(self::getUrlAdmin());
 	}
 
 	/**
 	 * Remove the specified resource from storage.
-	 * @param Menu $menu
-	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+	 * @param Category $category
+	 * @return RedirectResponse|Redirector
 	 * @throws \Exception
 	 */
-	public function destroy(Menu $menu) {
-		if ($menu->delete()) {
+	public function destroy(Category $category) {
+		if ($category->delete()) {
 			return redirect(self::getUrlAdmin());
 		}
 
@@ -94,18 +98,19 @@ class MenuController extends Controller
 	}
 
 	public function showSortOrder() {
-		$models = Menu::query()->orderBy('sort_order')->get();
+		$models = Category::whereParentId(0)->whereType(Category::TYPE_CATEGORY)->orderBy('sort_order')->get();
 
 		return view('admin.menu.sort_order', compact('models'));
 	}
 
 	public function postSortOrder(Request $request) {
 		$data = [];
-
-		foreach ($request->items as $item) {
-//			$data =
+		foreach ($request->items as $key => $item) {
+			$category             = Category::whereId($item)->first();
+			$category->sort_order = $key;
+			$category->save();
 		}
 
-		Menu::insertOnDuplicateKey($data, ['sort_order']);
+		return responseJson(CConstant::STATUS_SUCCESS);
 	}
 }

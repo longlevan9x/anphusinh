@@ -8,15 +8,17 @@ PNotify.defaults.icons = 'fontawesome4'; // Font Awesome 4
  * @constructor
  */
 function PNotifyAlert($title, $text) {
-    PNotify.alert({
+    new PNotify({
         text:  $text,
-        title: $title
+        title: $title,
+        type:  "alert"
     });
 }
 
 function PNotifySuccess($title, $text) {
-    PNotify.success({
+    new PNotify({
         text:  $text,
-        title: $title
+        title: $title,
+        type:  "info"
     });
 }
