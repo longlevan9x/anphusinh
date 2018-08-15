@@ -150,7 +150,7 @@
         <div class="container" style="margin-top: 40px;">
             <div class="row">
                 <div class="col-md-7 col-sm-6 priorty wow fadeInLeft" data-wow-delay="300ms">
-                    <h2 class="heading bottom25">@lang('website.product') {{setting(KEY_WEBSITE_NAME)}}<span class="divider-left"></span></h2>
+                    <h2 class="heading bottom25">@lang('website.product') <i>{{setting(KEY_WEBSITE_NAME)}}</i><span class="divider-left"></span></h2>
                     <p class="half_space">{{$product->overview}}</p>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
