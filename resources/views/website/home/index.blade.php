@@ -106,7 +106,7 @@
                                 <img src="{{$postNew->getImagePath()}}" title="{{$postNew->title}}" alt="{{$postNew->title}}" class="img-responsive border_radius" style="width: 180px;height: 120px;">
                             </div>
                             <h4 class="text-capitalize bottom20 margin10" title="{{$postNew->title}}">{{str_limit($postNew->title, 31)}}</h4>
-                            <p class="no_bottom" style="height: 1px">{{str_limit($postNew->overview, 70)}}</p>
+                            <p class="no_bottom" style="height: 15px">{{str_limit($postNew->overview, 70)}}</p>
                         </div>
                     @empty
                     @endforelse
