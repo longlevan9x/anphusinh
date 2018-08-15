@@ -22,7 +22,7 @@ class OrderController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$models = Order::query()->orderBy('status')->latest()->get();
+		$models = Order::query()->orderBy('status')->orderBy('is_active')->latest()->get();
 
 		return view('admin.order.index', compact('models'));
 	}
@@ -74,6 +74,7 @@ class OrderController extends Controller
 	public function update(Request $request, Order $order) {
 		$order->fill($request->all());
 		$order->save();
+
 		return redirect(self::getUrlAdmin());
 	}
 
