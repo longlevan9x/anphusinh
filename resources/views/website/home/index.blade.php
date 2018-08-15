@@ -459,7 +459,7 @@
         </style>
     @endpush
     <!-- Courses -->
-    <section id="courses" class="padding parallax category">
+    <section id="courses" class="parallax category">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
