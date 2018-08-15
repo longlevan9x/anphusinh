@@ -150,7 +150,7 @@
         <div class="container" style="margin-top: 40px;">
             <div class="row">
                 <div class="col-md-7 col-sm-6 priorty wow fadeInLeft" data-wow-delay="300ms">
-                    <h2 class="heading bottom25">@lang('website.product') <span class="divider-left"></span></h2>
+                    <h2 class="heading bottom25">@lang('website.product') {{setting(KEY_WEBSITE_NAME)}}<span class="divider-left"></span></h2>
                     <p class="half_space">{{$product->overview}}</p>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -411,7 +411,6 @@
                                 }
                             }
                         }
-
                     @endphp
                     <div class="box-video">
                         <iframe class="w-100" height="315" src="https://www.youtube.com/embed/{{$urlVideo}}" frameborder="0" allowfullscreen=""></iframe>
@@ -438,6 +437,7 @@
                 padding-top: 50px;
                 padding-bottom: 20px;
             }
+
             .category .slider_wrapper .owl-item {
                 height: 340px !important;
             }
