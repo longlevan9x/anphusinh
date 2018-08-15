@@ -7,23 +7,48 @@
         /** @var \App\Models\Post $postNew */
         /** @var \App\Models\Product $product */
     @endphp
-    <style type="text/css">
-        .padding-top-50 {
-            padding-top: 50px;
-        }
+    @push('cssString')
+        <style type="text/css">
+            .padding-top-50 {
+                padding-top: 50px;
+            }
 
-        .padding-top-20 {
-            padding-top: 20px;
-        }
+            .padding-top-20 {
+                padding-top: 20px;
+            }
 
-        .padding-bottom-50 {
-            padding-bottom: 50px;
-        }
+            .padding-bottom-50 {
+                padding-bottom: 50px;
+            }
 
-        .padding-bottom-20 {
-            padding-bottom: 20px;
-        }
-    </style>
+            .padding-bottom-20 {
+                padding-bottom: 20px;
+            }
+
+            .blockquote_content {
+                -vendor-animation-duration: 5s;
+                -vendor-animation-delay: 4s;
+                -vendor-animation-iteration-count: infinite;
+                font-size: 1.25rem;
+                color: #0073bc;
+            }
+
+            .blockquote_content::after {
+                content: '"';
+                font-size: 80px;
+                position: absolute;
+                font-family: 'Times New Roman';
+                font-style: italic;
+                line-height: 30px;
+                bottom: -20px;
+                right: 0;
+            }
+
+            .block_quote::after {
+                content: '' !important;
+            }
+        </style>
+    @endpush
     <!--Slider-->
     <section class="rev_slider_wrapper text-center" style="top: 13.7%;">
         <!-- START REVOLUTION SLIDER 5.0 auto mode -->
@@ -129,21 +154,21 @@
                     <p class="half_space">{{$product->overview}}</p>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="about-post col-xs-6" data-url="{{url('san-pham')}}">
+                            <div class="about-post col-xs-6" data-url="{{url('san-pham')}}" style="cursor: pointer">
                                 <a href="{{url('san-pham')}}" class="border_radius"><img src="{{asset_website('images/hands.png')}}" alt="hands"></a>
                                 <h4>@lang('Cơ chế')</h4>
                             </div>
-                            <div class="about-post col-xs-6">
+                            <div class="about-post col-xs-6" style="cursor: pointer">
                                 <a href="#." class="border_radius"><img src="{{asset_website('images/awesome.png')}}" alt="hands"></a>
                                 <h4>Happy Students</h4>
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="about-post col-xs-6" data-url="{{url('san-pham')}}">
+                            <div class="about-post col-xs-6" data-url="{{url('san-pham')}}" style="cursor: pointer">
                                 <a href="{{url('san-pham')}}" class="border_radius"><img src="{{asset_website('images/maintenance.png')}}" alt="hands"></a>
                                 <h4>@lang('Thành phần')</h4>
                             </div>
-                            <div class="about-post col-xs-6">
+                            <div class="about-post col-xs-6" style="cursor: pointer">
                                 <a href="#." class="border_radius"><img src="{{asset_website('images/home.png')}}" alt="hands"></a>
                                 <h4>Our Teachers</h4>
                             </div>
@@ -167,149 +192,43 @@
     </section>
     <!--ABout US-->
 
-
-    <style>
-
-        body .page-section#section-chuyen-gia {
-            position: relative;
-            overflow: hidden;
-        }
-
-        body .page-section {
-            padding: 50px 0;
-            background-size: cover;
-            background: #fff no-repeat center center;
-            position: relative;
-        }
-
-        body .page-section#section-chuyen-gia:before {
-            position: absolute;
-            height: 40px;
-            width: 126px;
-            /*url(../img/section-arrow2.png)*/
-            background: no-repeat top center/auto 100%;
-            content: '';
-            top: 0;
-            left: 50%;
-            margin-left: -63px;
-        }
-
-        body .page-section#section-chuyen-gia .border-cloud {
-            background: url({{asset_uploads('www/cloud.png')}}) no-repeat center center/100% auto;
-            text-align: center;
-            height: 135px;
-        }
-
-        body .page-section#section-chuyen-gia .border-cloud .section-heading {
-            font-weight: normal;
-            text-transform: none;
-            margin: 0;
-        }
-
-        body .page-section .section-heading {
-            margin: 10px 0 30px;
-            text-transform: uppercase;
-            font-weight: bold;
-            font-size: 2.5rem;
-        }
-
-        .w-100 {
-            width: 100% !important;
-        }
-
-        body .text-blue {
-            color: #0073bc;
-        }
-
-        .text-center {
-            text-align: center !important;
-        }
-
-        .mb-1 {
-            margin-bottom: 0.25rem !important;
-        }
-
-        .mt-0 {
-            margin-top: 0 !important;
-        }
-
-        .font-weight-bold {
-            font-weight: bold;
-        }
-
-        .font-weight-bold {
-            font-weight: bold;
-        }
-
-        body .page-section#section-chuyen-gia .doctor-comment {
-            background: url('{{\App\Commons\Facade\CFile::getImageUrl('settings', setting('_expert_thumbnail'))}}') no-repeat bottom right / 70% auto;
-            min-height: 400px;
-        }
-
-        .pt-5 {
-            padding-top: 3rem !important;
-        }
-
-        .mt-5 {
-            margin-top: 3rem !important;
-        }
-
-        body .page-section#section-chuyen-gia .doctor-comment .blockquote {
-            border: 0;
-            padding: 0;
-            position: relative;
-        }
-
-        body .page-section#section-chuyen-gia .doctor-comment .blockquote:before {
-            content: '"';
-            font-size: 80px;
-            position: absolute;
-            top: 10px;
-            left: 0;
-            font-family: 'Times New Roman';
-            font-style: italic;
-            line-height: 30px;
-        }
-
-        .fadeIn {
-            -webkit-animation-name: fadeIn;
-            animation-name: fadeIn;
-        }
-
-        .animated {
-            -webkit-animation-duration: 1.3s;
-            animation-duration: 1.3s;
-            -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
-        }
-
-        @media (min-width: 768px) {
-
-            .hidden-md-up {
-                display: none !important;
+    @push('cssString')
+        <style>
+            body .page-section#section-chuyen-gia {
+                position: relative;
+                overflow: hidden;
             }
 
-            .text-left {
-                text-align: left !important;
+            body .page-section {
+                padding: 50px 0;
+                background-size: cover;
+                background: #fff no-repeat center center;
+                position: relative;
             }
 
-            .pl-1 {
-                padding-left: 0.25rem !important;
+            body .page-section#section-chuyen-gia:before {
+                position: absolute;
+                height: 40px;
+                width: 126px;
+                /*url(../img/section-arrow2.png)*/
+                background: no-repeat top center/auto 100%;
+                content: '';
+                top: 0;
+                left: 50%;
+                margin-left: -63px;
             }
-        }
 
-        .w-50 {
-            width: 50% !important;
-        }
+            body .page-section#section-chuyen-gia .border-cloud {
+                background: url({{asset_uploads('www/cloud.png')}}) no-repeat center center/100% auto;
+                text-align: center;
+                height: 135px;
+            }
 
-        body .page-section {
-            padding: 50px 0;
-            background-size: cover;
-            background: #f3f3f3 no-repeat center center;
-            position: relative;
-        }
-
-        @media (min-width: 1200px) {
+            body .page-section#section-chuyen-gia .border-cloud .section-heading {
+                font-weight: normal;
+                text-transform: none;
+                margin: 0;
+            }
 
             body .page-section .section-heading {
                 margin: 10px 0 30px;
@@ -318,34 +237,67 @@
                 font-size: 2.5rem;
             }
 
+            .w-100 {
+                width: 100% !important;
+            }
+
             body .text-blue {
                 color: #0073bc;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .fadeInLeft {
-                -webkit-animation-name: fadeInLeft;
-                animation-name: fadeInLeft;
-            }
-
-            .animated {
-                -webkit-animation-duration: 1.3s;
-                animation-duration: 1.3s;
-                -webkit-animation-fill-mode: both;
-                animation-fill-mode: both;
             }
 
             .text-center {
                 text-align: center !important;
             }
-        }
 
-        @media (min-width: 1200px) {
+            .mb-1 {
+                margin-bottom: 0.25rem !important;
+            }
 
-            .zoomIn {
-                -webkit-animation-name: zoomIn;
-                animation-name: zoomIn;
+            .mt-0 {
+                margin-top: 0 !important;
+            }
+
+            .font-weight-bold {
+                font-weight: bold;
+            }
+
+            .font-weight-bold {
+                font-weight: bold;
+            }
+
+            body .page-section#section-chuyen-gia .doctor-comment {
+                background: url('{{\App\Commons\Facade\CFile::getImageUrl('settings', setting('_expert_thumbnail'))}}') no-repeat bottom right / 70% auto;
+                min-height: 400px;
+            }
+
+            .pt-5 {
+                padding-top: 3rem !important;
+            }
+
+            .mt-5 {
+                margin-top: 3rem !important;
+            }
+
+            body .page-section#section-chuyen-gia .doctor-comment .blockquote {
+                border: 0;
+                padding: 0;
+                position: relative;
+            }
+
+            body .page-section#section-chuyen-gia .doctor-comment .blockquote:before {
+                content: '"';
+                font-size: 80px;
+                position: absolute;
+                top: 10px;
+                left: 0;
+                font-family: 'Times New Roman';
+                font-style: italic;
+                line-height: 30px;
+            }
+
+            .fadeIn {
+                -webkit-animation-name: fadeIn;
+                animation-name: fadeIn;
             }
 
             .animated {
@@ -354,16 +306,89 @@
                 -webkit-animation-fill-mode: both;
                 animation-fill-mode: both;
             }
-        }
 
-        @media (min-width: 1200px) {
-            .fadeInRight {
-                -webkit-animation-name: fadeInRight;
-                animation-name: fadeInRight;
+            @media (min-width: 768px) {
+
+                .hidden-md-up {
+                    display: none !important;
+                }
+
+                .text-left {
+                    text-align: left !important;
+                }
+
+                .pl-1 {
+                    padding-left: 0.25rem !important;
+                }
             }
-        }
 
-    </style>
+            .w-50 {
+                width: 50% !important;
+            }
+
+            body .page-section {
+                padding: 50px 0;
+                background-size: cover;
+                background: #f3f3f3 no-repeat center center;
+                position: relative;
+            }
+
+            @media (min-width: 1200px) {
+
+                body .page-section .section-heading {
+                    margin: 10px 0 30px;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    font-size: 2.5rem;
+                }
+
+                body .text-blue {
+                    color: #0073bc;
+                }
+            }
+
+            @media (min-width: 1200px) {
+                .fadeInLeft {
+                    -webkit-animation-name: fadeInLeft;
+                    animation-name: fadeInLeft;
+                }
+
+                .animated {
+                    -webkit-animation-duration: 1.3s;
+                    animation-duration: 1.3s;
+                    -webkit-animation-fill-mode: both;
+                    animation-fill-mode: both;
+                }
+
+                .text-center {
+                    text-align: center !important;
+                }
+            }
+
+            @media (min-width: 1200px) {
+
+                .zoomIn {
+                    -webkit-animation-name: zoomIn;
+                    animation-name: zoomIn;
+                }
+
+                .animated {
+                    -webkit-animation-duration: 1.3s;
+                    animation-duration: 1.3s;
+                    -webkit-animation-fill-mode: both;
+                    animation-fill-mode: both;
+                }
+            }
+
+            @media (min-width: 1200px) {
+                .fadeInRight {
+                    -webkit-animation-name: fadeInRight;
+                    animation-name: fadeInRight;
+                }
+            }
+
+        </style>
+    @endpush
     <section id="section-chuyen-gia" class="page-section bg-blue2">
         <div class="container">
             <div class="row">
@@ -392,30 +417,6 @@
                         <iframe class="w-100" height="315" src="https://www.youtube.com/embed/{{$urlVideo}}" frameborder="0" allowfullscreen=""></iframe>
                     </div>
                 </div>
-                <style type="text/css">
-                    .blockquote_content {
-                        -vendor-animation-duration: 5s;
-                        -vendor-animation-delay: 4s;
-                        -vendor-animation-iteration-count: infinite;
-                        font-size: 1.25rem;
-                        color: #0073bc;
-                    }
-
-                    .blockquote_content::after {
-                        content: '"';
-                        font-size: 80px;
-                        position: absolute;
-                        font-family: 'Times New Roman';
-                        font-style: italic;
-                        line-height: 30px;
-                        bottom: -20px;
-                        right: 0;
-                    }
-
-                    .block_quote::after {
-                        content: '' !important;
-                    }
-                </style>
                 <div class="col-md-6 text-blue text-center">
                     <p class="mt-0 mb-1 h1 title_mobile">{{setting('_expert_name')}}</p>
                     <p class="font-weight-bold">{{setting('_expert_workplace')}}</p>
@@ -431,8 +432,29 @@
         </div>
     </section>
 
+    @push('cssString')
+        <style type="text/css">
+            .category .slider_wrapper .owl-item {
+                height: 340px !important;
+            }
+
+            .category .slider_wrapper .item {
+                position: relative;
+                height: inherit;
+            }
+
+            .category .slider_wrapper .item  h3{
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+            .category .slider_wrapper .item  .image{
+                max-height: 270px;
+            }
+        </style>
+    @endpush
     <!-- Courses -->
-    <section id="courses" class="padding parallax" style="padding-top: 50px; padding-bottom: 20px;">
+    <section id="courses" class="category padding parallax" style="padding-top: 50px; padding-bottom: 20px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
