@@ -23,12 +23,13 @@
             <div class="col-md-4 col-sm-4 footer_panel bottom25">
                 <h3 class="heading bottom25">@lang('website.quick-link')<span class="divider-left"></span></h3>
                 <ul class="links">
-                    <li><a href="#."><i class="icon-chevron-small-right"></i>@lang('website.home page')</a></li>
-                    <li><a href="#."><i class="icon-chevron-small-right"></i>@lang('website.product')</a></li>
-                    <li><a href="#."><i class="icon-chevron-small-right"></i>@lang('website.chia-se')</a></li>
-                    <li><a href="#."><i class="icon-chevron-small-right"></i>@lang('website.expert-share')</a></li>
-                    <li><a href="#."><i class="icon-chevron-small-right"></i>@lang('website.news')</a></li>
-                    <li><a href="#."><i class="icon-chevron-small-right"></i>@lang('website.order')</a></li>
+                    @php
+                        /** @var $item \App\Models\Category */
+                    @endphp
+                    @forelse($menu_footer as $item)
+                        <li><a href="{{$item->getUrlSlug()}}"><i class="icon-chevron-small-right"></i>{{$item->name}}</a></li>
+                    @empty
+                    @endforelse
                 </ul>
             </div>
             <div class="col-md-4 col-sm-4 footer_panel bottom25">

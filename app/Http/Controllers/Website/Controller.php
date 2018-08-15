@@ -21,7 +21,8 @@ class Controller extends \App\Http\Controllers\Controller
 		$this->getBreadcrumb();
 		$this->getAdviceAside();
 		$this->getShareAside();
-
+		$menu_footer = Category::whereType()->whereParentId(0)->active()->get();
+		view()->share(compact('menu_footer'));
 	}
 
 	/**
@@ -64,7 +65,7 @@ class Controller extends \App\Http\Controllers\Controller
 		];
 
 		$categories = Category::whereType()->active()->get();
-		$menus1      = $this->getCategoryMenu($categories);
+		$menus1     = $this->getCategoryMenu($categories);
 		$menus      = array_merge($menus0, $menus1);
 
 		view()->share(compact('menus'));
