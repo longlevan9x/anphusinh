@@ -3,58 +3,52 @@
 namespace App\Models;
 
 use App\Commons\CConstant;
+use App\Models\Admins;
 use App\Models\Traits\ModelTrait;
-use DemeterChain\C;
+use Carbon\Carbon;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Order
- *
  * @package App\Models
- * @property string status
- * @property string name
- * @property string phone
- * @property float  price
- * @property float  total_price
- * @property int    product_id
- * @property int    quantity
- * @property int    is_active
- * @property int $id
+ * @property int         $id
  * @property string|null $address
  * @property string|null $ipv4
  * @property string|null $city
  * @property string|null $note
- * @property int $author_updated_id
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property-read \App\Models\Admins $authorUpdated
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereAuthorUpdatedId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereCity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereIpv4($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereIsActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereNote($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereQuantity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereSlug($slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereTotalPrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereUpdatedAt($value)
- * @mixin \Eloquent
- * @property int $product_id
+ * @property int         $author_updated_id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Admins $authorUpdated
+ * @method static Builder|Order findSimilarSlugs($attribute, $config, $slug)
+ * @method static Builder|Order whereAddress($value)
+ * @method static Builder|Order whereAuthorUpdatedId($value)
+ * @method static Builder|Order whereCity($value)
+ * @method static Builder|Order whereCreatedAt($value)
+ * @method static Builder|Order whereId($value)
+ * @method static Builder|Order whereIpv4($value)
+ * @method static Builder|Order whereIsActive($value)
+ * @method static Builder|Order whereName($value)
+ * @method static Builder|Order whereNote($value)
+ * @method static Builder|Order wherePhone($value)
+ * @method static Builder|Order wherePrice($value)
+ * @method static Builder|Order whereProductId($value)
+ * @method static Builder|Order whereQuantity($value)
+ * @method static Builder|Order whereSlug($slug)
+ * @method static Builder|Order whereStatus($value)
+ * @method static Builder|Order whereTotalPrice($value)
+ * @method static Builder|Order whereUpdatedAt($value)
+ * @mixin Eloquent
+ * @property int         $product_id
  * @property string|null $name
  * @property string|null $phone
- * @property int $quantity
- * @property float|null $price
- * @property float|null $total_price
- * @property int $is_active
- * @property string $status
+ * @property int         $quantity
+ * @property float|null  $price
+ * @property float|null  $total_price
+ * @property int         $is_active
+ * @property string      $status
  */
 class Order extends Model
 {
