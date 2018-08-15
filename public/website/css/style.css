@@ -1218,7 +1218,7 @@ nav.navbar.bootsnav ul.nav > li {
 nav.navbar.bootsnav ul.nav > li > a {
     color: #0f0f0f;
     /*color: #fff; !*custom*!*/
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
     position: relative;
