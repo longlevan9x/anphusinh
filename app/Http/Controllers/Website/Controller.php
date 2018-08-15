@@ -64,7 +64,7 @@ class Controller extends \App\Http\Controllers\Controller
 		];
 
 		$categories = Category::whereType()->active()->get();
-		$menu1      = $this->getCategoryMenu($categories);
+		$menus1      = $this->getCategoryMenu($categories);
 		$menus      = array_merge($menus0, $menus1);
 
 		view()->share(compact('menus'));
