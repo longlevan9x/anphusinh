@@ -506,7 +506,6 @@
         </div>
     </section>
     <!--Paralax -->
-    @dd(count($shares))
     @includeWhen(!empty($shares->items), 'website.home.template.share')
 
     <!--Contact Deatils -->
