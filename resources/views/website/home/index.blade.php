@@ -101,7 +101,7 @@
                 </div>
                 <div class="icon_wrap clearfix">
                     @forelse($postNews as $postNew)
-                        <div class="col-sm-4 col-xs-6 icon_box text-center wow fadeInUp postNews" data-wow-delay="100ms" href="{{$postNew->getSlugAndId()}}" style="margin-bottom: 15px;padding-bottom: 10px;">
+                        <div class="col-sm-4 col-xs-6 icon_box text-center wow fadeInUp postNews" data-wow-delay="100ms" href="{{$postNew->getSlugAndId()}}" style="margin-bottom: 15px;padding-bottom: 10px;" title="{{$postNew->title}}">
                             <div class="image bottom20" style="width: 50%;margin: 0 auto;">
                                 <img src="{{$postNew->getImagePath()}}" title="{{$postNew->title}}" alt="{{$postNew->title}}" class="img-responsive border_radius" style="width: 180px;height: 120px;">
                             </div>
@@ -129,7 +129,7 @@
                     <p class="half_space">{{$product->overview}}</p>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="about-post col-xs-6">
+                            <div class="about-post col-xs-6" data-url="{{url('san-pham')}}">
                                 <a href="{{url('san-pham')}}" class="border_radius"><img src="{{asset_website('images/hands.png')}}" alt="hands"></a>
                                 <h4>@lang('Cơ chế')</h4>
                             </div>
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="about-post col-xs-6">
+                            <div class="about-post col-xs-6" data-url="{{url('san-pham')}}">
                                 <a href="{{url('san-pham')}}" class="border_radius"><img src="{{asset_website('images/maintenance.png')}}" alt="hands"></a>
                                 <h4>@lang('Thành phần')</h4>
                             </div>
@@ -150,6 +150,15 @@
                         </div>
                     </div>
                 </div>
+                @push('scriptString')
+                    <script type="text/javascript">
+                        $(function () {
+                            (".about-post").click(function () {
+                                window.location.href = $(this).data("url");
+                            });
+                        });
+                    </script>
+                @endpush
                 <div class="col-md-5 col-sm-6 wow fadeInRight" data-wow-delay="300ms">
                     <img src="{{$product->getImagePath()}}" alt="our priorties" class="img-responsive" style="width:100%;">
                 </div>
