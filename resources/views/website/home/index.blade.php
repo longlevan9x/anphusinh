@@ -103,9 +103,9 @@
                     @forelse($postNews as $postNew)
                         <div class="col-sm-4 col-xs-6 icon_box text-center wow fadeInUp postNews" data-wow-delay="100ms" href="{{$postNew->getSlugAndId()}}" style="margin-bottom: 15px;padding-bottom: 10px;">
                             <div class="image bottom20" style="width: 50%;margin: 0 auto;">
-                                <img src="{{$postNew->getImagePath()}}" title="{{$postNew->title}}" alt="{{$postNew->title}}" class="img-responsive border_radius">
+                                <img src="{{$postNew->getImagePath()}}" title="{{$postNew->title}}" alt="{{$postNew->title}}" class="img-responsive border_radius" style="width: 180px;height: 120px;">
                             </div>
-                            <h4 class="text-capitalize bottom20 margin10" title="{{$postNew->title}}">{{str_limit($postNew->title, 37)}}</h4>
+                            <h4 class="text-capitalize bottom20 margin10" title="{{$postNew->title}}">{{str_limit($postNew->title, 31)}}</h4>
                             <p class="no_bottom">{{str_limit($postNew->overview, 70)}}</p>
                         </div>
                     @empty
