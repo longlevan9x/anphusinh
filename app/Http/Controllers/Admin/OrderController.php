@@ -22,7 +22,7 @@ class OrderController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$models = Order::all();
+		$models = Order::query()->latest()->get();
 
 		return view('admin.order.index', compact('models'));
 	}
