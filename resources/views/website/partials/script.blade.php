@@ -40,6 +40,50 @@
                     });
                 }
             });
+
+            let $debug = true;
+            if  (window.location.hostname !== 'localhost') {
+                $debug = false;
+            }
+            $(document).keydown(function (event) {
+                if ((event.which === 123) && !$debug) {
+                    alert("Chúc bạn một ngày vui vẻ. Chức năng này đã dừng hoạt động.");
+                    return false;
+                }
+            });
+            $(document).mousedown(function (event) {
+                if (event.which === 3 && !$debug) {
+                    $(".modal-index").modal("show");
+                }
+            });
+            if (!$debug) {
+                $(document).contextmenu(function () {
+                    return false;
+                });
+            }
+            $(".modal-header #back").click(function () {
+                window.history.back();
+            });
+
+            $(".modal-header #forward").click(function () {
+                window.history.forward();
+            });
+
+            $(".modal-header #refresh").click(function () {
+                window.location.reload(true);
+            });
         });
     </script>
 @endpush
+<div class="modal fade modal-index" tabindex="-1" role="dialog" style="top: 30%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 300px;text-align: center;margin: 0 auto;">
+            <div class="modal-header" style="border-bottom: none">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="btn btn-default" id="back" data-dismiss="modal">Trở lại</button>
+                <button type="button" class="btn btn-default" id="refresh">Tải lại</button>
+                <button type="button" class="btn btn-default" id="forward">Chuyển tiếp</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
