@@ -53,7 +53,7 @@
     }
 </style>
 <aside class="col-sm-4 wow fadeIn" data-wow-delay="200ms">
-    @if(!empty($share_experience))
+    @if(count($share_experience) > 0)
         <div class="widget heading_space">
             <h3 class="bottom20">@lang('admin/menu.share experience')</h3>
             @forelse($share_experience as $item)
@@ -68,7 +68,7 @@
             @endforelse
         </div>
     @endif
-    @if(!empty($advice_expert))
+    @if(count($advice_expert) > 0)
         @php
             $item = $advice_expert->get(0);
             $urlVideo = $item->overview;
