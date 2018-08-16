@@ -190,13 +190,13 @@ class Controller extends \App\Http\Controllers\Controller
 	}
 
 	public function getAdviceAside() {
-		if (cache()->has('advice_expert')) {
-			$advice_expert = Cache::get('advice_expert');
-		}
-		else {
+//		if (cache()->has('advice_expert')) {
+//			$advice_expert = Cache::get('advice_expert');
+//		}
+//		else {
 			$advice_expert = Post::whereType(Post::TYPE_ADVICE)->orderByDesc('created_at')->limit(5)->get();
-			cache()->put('advice_expert', $advice_expert, 60);
-		}
+//			cache()->put('advice_expert', $advice_expert, 60);
+//		}
 		view()->share(compact('advice_expert'));
 	}
 }
