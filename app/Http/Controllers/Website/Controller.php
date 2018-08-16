@@ -179,13 +179,13 @@ class Controller extends \App\Http\Controllers\Controller
 	}
 
 	public function getShareAside() {
-		if (cache()->has('share_experience')) {
-			$share_experience = Cache::get('share_experience');
-		}
-		else {
+//		if (cache()->has('share_experience')) {
+//			$share_experience = Cache::get('share_experience');
+//		}
+//		else {
 			$share_experience = Post::whereType(Post::TYPE_SHARE)->orderByDesc('created_at')->limit(5)->get();
-			cache()->put('share_experience', $share_experience, 60);
-		}
+//			cache()->put('share_experience', $share_experience, 60);
+//		}
 		view()->share(compact('share_experience'));
 	}
 
