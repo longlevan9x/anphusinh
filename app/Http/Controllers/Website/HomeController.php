@@ -225,7 +225,6 @@ class HomeController extends Controller
 		$this->getBreadcrumb();
 
 		return view('website.home.category', compact('models'));
-
 	}
 
 	/**
@@ -329,5 +328,14 @@ class HomeController extends Controller
 		}
 
 		return responseJson(CConstant::STATUS_FAIL, 'Yêu cầu liên hệ của bạn đã thất bại. Xin vui lòng thử lại sau.');
+	}
+
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function publicProduct() {
+		$advertise_post = Post::prepareMetaValueKey((new Post)->queryWithPostMeta()->where('is_active', 1)->get());
+		$product = Product::wherePostType(Product::POST_TYPE_DETAIL)->first();
+		return view('website.home.public-product', compact('product', 'advertise_post'));
 	}
 }

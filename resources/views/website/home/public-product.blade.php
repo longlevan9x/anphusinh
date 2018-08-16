@@ -1,35 +1,11 @@
 @extends('website.index')
 @section('content')
     @php
-        /** @var \App\Models\Post $model */
-        /** @var \App\Models\Post $post */
         /** @var \App\Models\Post|\App\Models\PostMeta $advertise_post */
         /** @var \App\Models\Product $product */
     @endphp
-    {{--<div class="detail_course">--}}
-    {{--<div class="clearfix">--}}
-    {{--<ul class="comment pull-left">--}}
-    {{--<li><a href="#." class="facebook"><i class="icon-map-pin"></i> July 19, 2017 3:15 pm</a></li>--}}
-    {{--<li><a href="#." class="facebook"><i>End:</i> July 19, 2017 3:15 pm</a></li>--}}
-    {{--<li><a href="#." class="facebook"><i class="icon-icons20"></i> Paris, Rue Femile 82</a></li>--}}
-    {{--</ul>--}}
-    {{--<a href="#." class="btn_common blue border_radius pull-right"> Join!</a>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    <h3 class="top30 bottom20" style="font-size: 2em;">{{$model->title}}</h3>
-    <p class="bottom25" style="font-weight: 700;font-size: 1.1em;">{!! $model->overview !!}</p>
-    <img src="{{$model->getImagePath()}}" alt="Teachers" class=" border_radius img-responsive bottom15">
-    <style type="text/css">
-        .content img {
-            max-width: 100%;
-        }
-
-        .content p {
-            line-height: 24px;
-            margin-bottom: 5px;
-        }
-    </style>
-    <div class="bottom25 content">{!! $model->content !!}</div>
+    <h3 class="top30 bottom20" style="font-size: 2em;">@lang('Xác nhận công bống sản phẩm')</h3>
+    <img src="{{asset_uploads('www/xac-nhan-cong-bo.jpg')}}" alt="Teachers" class=" border_radius img-responsive bottom15">
 
     <div class="clearfix"></div>
 
@@ -137,25 +113,4 @@
 
     <div class="clearfix"></div>
 
-    <!-- Relate Post -->
-    <div class="posts_concern mb-3">Bài viết liên quan</div>
-    <section id="events" class="padding-bottom">
-        <div class="row">
-            @forelse($relate_posts as $post)
-                <div class="col-sm-6 col-md-4">
-                    <div class="events top30 wow fadeIn" data-wow-delay="300ms">
-                        <div class="image">
-                            <img title="{{str_limit($post->title, 100)}}" src="{{$post->getImagePath()}}" alt="{{str_limit($post->title, 100)}}" class="">
-                        </div>
-                        <h4 class="top20 item">
-                            <a href="{{$post->getSlugAndId()}}" title="{{str_limit($post->title, 100)}}">{{str_limit($post->title, 45)}}</a>
-                        </h4>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            @empty
-            @endforelse
-        </div>
-    </section>
-    <!-- Relate Post -->
 @endsection

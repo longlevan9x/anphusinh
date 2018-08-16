@@ -28,6 +28,7 @@ Route::namespace('Website')->group(function() {
 	Route::get('/', 'HomeController@index')->name('home');
 	Route::get('/home', 'HomeController@index')->name('home')->name('home');
 	Route::get('/san-pham', HomeController::getControllerWithAction('showProduct'))->name('san-pham');
+	Route::get('/cong-bo-san-pham', HomeController::getControllerWithAction('publicProduct'))->name('cong-bo-san-pham');
 	Route::get('/hoi-dap', HomeController::getControllerWithAction('showAnswerQuestion'))->name('hoi-dap');
 	Route::get('/tin-tuc', HomeController::getControllerWithAction('showNews'))->name('tin-tuc');
 	Route::get('/chia-se', HomeController::getControllerWithAction('showShare'))->name('chia-se');

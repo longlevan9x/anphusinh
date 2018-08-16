@@ -159,8 +159,8 @@
                                 <h4>@lang('Cơ chế')</h4>
                             </div>
                             <div class="about-post col-xs-6" style="cursor: pointer">
-                                <a href="#." class="border_radius"><img src="{{asset_website('images/awesome.png')}}" alt="hands"></a>
-                                <h4>Happy Students</h4>
+                                <a href="{{url('cong-bo-san-pham')}}" class="border_radius"><img src="{{asset_website('images/awesome.png')}}" alt="hands"></a>
+                                <h4>@lang("Xác nhận công bống sản phẩm")</h4>
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -169,8 +169,8 @@
                                 <h4>@lang('Thành phần')</h4>
                             </div>
                             <div class="about-post col-xs-6" style="cursor: pointer">
-                                <a href="#." class="border_radius"><img src="{{asset_website('images/home.png')}}" alt="hands"></a>
-                                <h4>Our Teachers</h4>
+                                <a href="{{url('dat-hang')}}" class="border_radius"><i class="fa fa-shopping-cart"></i></a>
+                                <h4>@lang('Đặt hàng ngay')</h4>
                             </div>
                         </div>
                     </div>
