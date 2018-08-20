@@ -18,8 +18,9 @@ class MenuController extends Controller
 	 */
 	public function index() {
 		$models = Category::whereType()->whereParentId(0)->sortOrder()->get();
+		$model  = new Category;
 
-		return view('admin.menu.index', compact('models'));
+		return view('admin.menu.index', compact('models', 'model'));
 	}
 
 	/**
@@ -64,9 +65,14 @@ class MenuController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function edit($id) {
-		$model = Category::findOrFail($id);
+		$models = Category::whereType()->whereParentId(0)->sortOrder()->get();
+		$model  = Category::findOrFail($id);
 
-		return view('admin.menu.update', compact('model'));
+		//		$model  = new Category;
+
+		return view('admin.menu.index', compact('models', 'model'));
+
+		//		return view('admin.menu.update', compact('model'));
 	}
 
 	/**

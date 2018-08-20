@@ -1,11 +1,23 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="keywords" content="{{setting("seo_keyword")}}" />
     <meta name="description" content="{{setting("seo_description")}}" />
     <title>{{setting(KEY_WEBSITE_NAME)}} - {{setting(KEY_WEBSITE_DESCRIPTION)}}</title>
+    <meta property="fb:app_id" content="{{ env('FB_APP_ID') ?? '' }}" />
+    <meta property="og:url" content="{{ Request::url() }}" />
+    <meta property="og:type"   content="website" />
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="300">
+
+    <meta property="og:site_name" content="{{ $heading or '' }}" />
+    <meta property="og:title"  content="{{ $heading or '' }}" />
+    <meta property="og:description"  content="{{ $description or '' }}" />
+    <meta property="og:image"  content="{{\App\Commons\Facade\CFile::getImageUrl('settings', setting(KEY_LOGO))}}" />
+
     @stack('styleMain')
     <style type="text/css">
         /*Box product in page post*/

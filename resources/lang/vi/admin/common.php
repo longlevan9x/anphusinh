@@ -41,6 +41,10 @@ return [
 	'cover image'         => "Ảnh bìa",
 	'user create'         => "Người tạo",
 
+	'seo_title' => "Tiêu đề seo",
+	'seo_keyword' => "Từ khóa seo",
+	'seo_description' => "Miêu tả seo",
+
 	'latitude'        => "Vĩ độ",
 	'longitude'       => "Kinh độ",
 	'city'            => "Thành phố",

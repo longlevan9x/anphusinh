@@ -3,67 +3,61 @@
 namespace App\Models;
 
 use App\Commons\Facade\CUser;
-use App\Models\Traits\ModelMethodTrait;
 use App\Models\Traits\ModelTrait;
 use App\Models\Traits\ModelUploadTrait;
+use Carbon\Carbon;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Product
- *
  * @package App\Models
- * @property string                                                                  post_type
- * @property integer                                                                 is_active
- * @property int                                                                     author_id
- * @property int                                                                     id
- * @property int                                                                     price
- * @property string                                                                  overview
- * @property string                                                                  name
- * @property string                                                                  content
- * @property string|null                                                             $image
- * @property string|null                                                             $slug
- * @property int|null                                                                $category_id
- * @property float|null                                                              $price_sale
- * @property int|null                                                                $quantity
- * @property string|null                                                             $status
- * @property string|null                                                             $post_time
- * @property string|null                                                             $path
- * @property int|null                                                                $admin_id
- * @property \Carbon\Carbon|null                                                     $created_at
- * @property \Carbon\Carbon|null                                                     $updated_at
- * @property-read \App\Models\Admins|null                                            $author
- * @property-read \App\Models\Admins                                                 $authorUpdated
- * @property-read \App\Models\ProductMeta                                            $productMetaByKey
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProductMeta[] $productMetas
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereAdminId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereAuthorId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCategoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereImage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereOverview($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePostTime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePostType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePriceSale($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereQuantity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)
- * @mixin \Eloquent
- * @property int $id
- * @property int|null $author_id
- * @property string $name
- * @property float|null $price
- * @property int|null $is_active
- * @property string|null $content
- * @property string|null $overview
- * @property string|null $post_type
+ * @property string|null                   $image
+ * @property string|null                   $slug
+ * @property int|null                      $category_id
+ * @property float|null                    $price_sale
+ * @property int|null                      $quantity
+ * @property string|null                   $status
+ * @property string|null                   $post_time
+ * @property string|null                   $path
+ * @property int                           $id
+ * @property int|null                      $author_id
+ * @property string                        $name
+ * @property float|null                    $price
+ * @property int|null                      $is_active
+ * @property string|null                   $content
+ * @property string|null                   $overview
+ * @property string|null                   $post_type
+ * @property int|null                      $admin_id
+ * @property Carbon|null                   $created_at
+ * @property Carbon|null                   $updated_at
+ * @property-read Admins|null              $author
+ * @property-read Admins                   $authorUpdated
+ * @property-read ProductMeta              $productMetaByKey
+ * @property-read Collection|ProductMeta[] $productMetas
+ * @method static Builder|Product findSimilarSlugs($attribute, $config, $slug)
+ * @method static Builder|Product whereAdminId($value)
+ * @method static Builder|Product whereAuthorId($value)
+ * @method static Builder|Product whereCategoryId($value)
+ * @method static Builder|Product whereContent($value)
+ * @method static Builder|Product whereCreatedAt($value)
+ * @method static Builder|Product whereId($value)
+ * @method static Builder|Product whereImage($value)
+ * @method static Builder|Product whereIsActive($value)
+ * @method static Builder|Product whereName($value)
+ * @method static Builder|Product whereOverview($value)
+ * @method static Builder|Product wherePath($value)
+ * @method static Builder|Product wherePostTime($value)
+ * @method static Builder|Product wherePostType($value)
+ * @method static Builder|Product wherePrice($value)
+ * @method static Builder|Product wherePriceSale($value)
+ * @method static Builder|Product whereQuantity($value)
+ * @method static Builder|Product whereSlug($value)
+ * @method static Builder|Product whereStatus($value)
+ * @method static Builder|Product whereUpdatedAt($value)
+ * @mixin Eloquent
  */
 class Product extends Model
 {
@@ -87,6 +81,9 @@ class Product extends Model
 		'post_time',
 		'post_type',
 		'path',
+		'seo_title',
+		'seo_keyword',
+		'seo_description',
 		'admin_id'
 	];
 
@@ -146,7 +143,7 @@ class Product extends Model
 	 * @param        $value
 	 * @return bool
 	 */
-	public function setProductMeta($key = '', $value) {
+	public function setProductMeta($key = '', $value = '') {
 		$meta = $this->productMetaByKey($key);
 		/** @var ProductMeta $model */
 		$model = $meta->first();

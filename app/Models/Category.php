@@ -43,6 +43,9 @@ use Illuminate\Support\Collection;
  * @method static Builder|Category active()
  * @mixin \Eloquent
  * @property int         sort_order
+ * @property string      seo_title
+ * @property string      seo_keyword
+ * @property string      seo_description
  * \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereType($value)
  */
 class Category extends Model
@@ -54,7 +57,20 @@ class Category extends Model
 	const TYPE_CITY     = 'city';
 	const TYPE_DISTRICT = 'district';
 	const TYPE_STREET   = 'street';
-	protected $fillable = ['parent_id', 'image', 'name', 'slug', 'is_active', 'status', 'description', 'type', 'path'];
+	protected $fillable = [
+		'parent_id',
+		'image',
+		'name',
+		'slug',
+		'is_active',
+		'status',
+		'description',
+		'type',
+		'path',
+		'seo_title',
+		'seo_keyword',
+		'seo_description'
+	];
 
 	/**
 	 * @param string $column

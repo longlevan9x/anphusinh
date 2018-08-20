@@ -9,6 +9,7 @@ return [
 	*/
 
 	'submitButton'    => 'Gửi',
+	'updateButton'    => 'Cập nhật',
 	'saveButton'      => "Lưu",
 	'resetButton'     => 'Reset',
 	'cancelButton'    => 'Hủy bỏ',
@@ -55,6 +56,8 @@ return [
 	'fax'     => 'Fax',
 	'hotline' => 'Hotline',
 	'social'  => 'Mạng xã hội',
+	'seo'  => 'Seo',
+	'information_general'  => 'Thông tin chung',
 
 	'notification message order'         => "Thông báo trang đặt hàng",
 	'notification message order success' => "Tin nhắn thông báo khi đặt hàng thành công",

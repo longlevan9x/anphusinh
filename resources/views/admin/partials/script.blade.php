@@ -75,6 +75,8 @@
     <script src="{{asset_admin_vendors('datatables.net-buttons/js/buttons.print.min.js')}}" type="text/javascript"></script>
 
     <script src="{{asset_admin_vendors('pnotify/dist/pnotify.js')}}"></script>
+    <script src="{{asset_admin_vendors('pnotify/dist/pnotify.buttons.js')}}"></script>
+    <script src="{{asset_admin_vendors('pnotify/dist/pnotify.nonblock.js')}}"></script>
 
     <script src="{{asset_admin_vendors('jszip/dist/jszip.min.js')}}" type="text/javascript"></script>
     <script src="{{asset_admin_vendors('pdfmake/build/pdfmake.min.js')}}" type="text/javascript"></script>

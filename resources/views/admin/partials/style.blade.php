@@ -35,6 +35,8 @@
     <link href="{{asset_admin_vendors('bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')}}" type="text/css" rel="stylesheet">
     <link href="{{asset_admin_vendors('switchery/dist/switchery.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset_admin_vendors('pnotify/dist/pnotify.css')}}" rel="stylesheet">
+    <link href="{{asset_admin_vendors('pnotify/dist/pnotify.buttons.css')}}" rel="stylesheet">
+    <link href="{{asset_admin_vendors('pnotify/dist/pnotify.nonblock.css')}}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{asset_admin('build/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('css/custom.css')}}" rel="stylesheet" type="text/css" />

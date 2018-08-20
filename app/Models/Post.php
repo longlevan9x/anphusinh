@@ -6,57 +6,59 @@ use App\Commons\Facade\CUser;
 use App\Models\Traits\ModelMethodTrait;
 use App\Models\Traits\ModelTrait;
 use App\Models\Traits\ModelUploadTrait;
-use Cviebrock\EloquentSluggable\Sluggable;
+use Carbon\Carbon;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
-use MicrosoftAzure\Storage\Common\Models\RetentionPolicy;
 
 /**
  * Class Post
  * @package App\Models
- * @property string                                                               $title
- * @property string                                                               $type
- * @property string                                                               $post_time
- * @property Admins                                                               $author
- * @property Admins                                                               $authorUpdated
- * @property int                                                                  $author_id
- * @property string                                                               $created_at
- * @property PostMeta                                                             $postMeta
- * @property int                                                                  $id
- * @property int                                                                  $category_id
- * @property string|null                                                          $status
- * @property \Carbon\Carbon|null                                                  $updated_at
+ * @property string                                                   $title
+ * @property string                                                   $type
+ * @property string                                                   $post_time
+ * @property Admins                                                   $author
+ * @property Admins                                                   $authorUpdated
+ * @property int                                                      $author_id
+ * @property string                                                   $created_at
+ * @property PostMeta                                                 $postMeta
+ * @property int                                                      $id
+ * @property int                                                      $category_id
+ * @property string|null                                              $status
+ * @property Carbon|null                                              $updated_at
+ * @property int|null                                                 $parent_id
+ * @property string|null                                              $slug
+ * @property string|null                                              $image
+ * @property int                                                      $is_active
+ * @property string|null                                              $overview
+ * @property string|null                                              $content
+ * @property string|null                                              $path
+ * @property int|null                                                 $author_updated_id
+ * @property string                                                   seo_title
+ * @property string                                                   seo_keyword
+ * @property string                                                   seo_description
+ * @property-read Category                                            $category
  * ===Method===
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\PostMeta[] $postMetas
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereAuthorId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereAuthorUpdatedId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereCategoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereImage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereIsActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereOverview($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereParentId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post wherePath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post wherePostTime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUpdatedAt($value)
- * @mixin \Eloquent
- * @property int|null                                                             $parent_id
- * @property string|null                                                          $slug
- * @property string|null                                                          $image
- * @property int                                                                  $is_active
- * @property string|null                                                          $overview
- * @property string|null                                                          $content
- * @property string|null                                                          $path
- * @property int|null                                                             $author_updated_id
- * @property-read \App\Models\Category                                            $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|PostMeta[] $postMetas
+ * @method static Builder|Post findSimilarSlugs($attribute, $config, $slug)
+ * @method static Builder|Post whereAuthorId($value)
+ * @method static Builder|Post whereAuthorUpdatedId($value)
+ * @method static Builder|Post whereCategoryId($value)
+ * @method static Builder|Post whereContent($value)
+ * @method static Builder|Post whereCreatedAt($value)
+ * @method static Builder|Post whereId($value)
+ * @method static Builder|Post whereImage($value)
+ * @method static Builder|Post whereIsActive($value)
+ * @method static Builder|Post whereOverview($value)
+ * @method static Builder|Post whereParentId($value)
+ * @method static Builder|Post wherePath($value)
+ * @method static Builder|Post wherePostTime($value)
+ * @method static Builder|Post whereSlug($value)
+ * @method static Builder|Post whereStatus($value)
+ * @method static Builder|Post whereTitle($value)
+ * @method static Builder|Post whereUpdatedAt($value)
+ * @mixin Eloquent
  */
 class Post extends Model
 {
@@ -93,6 +95,9 @@ class Post extends Model
 		'overview',
 		'content',
 		'status',
+		'seo_title',
+		'seo_keyword',
+		'seo_description',
 		'author_updated_id',
 		'path'
 	];

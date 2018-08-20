@@ -98,6 +98,10 @@ trait ModelBaseTrait
 		return false;
 	}
 
+	/**
+	 * @param $method
+	 * @return bool
+	 */
 	private function isMethodMaxHeight($method) {
 		if (Str::startsWith($method, 'max') && Str::endsWith($method, 'Height') && strlen($method) > 8) {
 			return true;
@@ -118,6 +122,10 @@ trait ModelBaseTrait
 		return false;
 	}
 
+	/**
+	 * @param $method
+	 * @return bool
+	 */
 	private function isMethodSetMaxHeight($method) {
 		if (Str::startsWith($method, 'setMax') && Str::endsWith($method, 'Height') && strlen($method) > 11) {
 			return true;
@@ -138,6 +146,10 @@ trait ModelBaseTrait
 		return false;
 	}
 
+	/**
+	 * @param $method
+	 * @return bool
+	 */
 	private function isMethodGetMaxHeight($method) {
 		if (Str::startsWith($method, 'getMax') && Str::endsWith($method, 'Height') && strlen($method) > 11) {
 			return true;
@@ -146,6 +158,11 @@ trait ModelBaseTrait
 		return false;
 	}
 
+	/**
+	 * @param $method
+	 * @param $parameters
+	 * @return mixed
+	 */
 	private function methodSetMaxWidthHeight($method, $parameters) {
 		$this->{$method} = function($method, $value) {
 			$attribute = substr($method, strpos($method, 'set') + 3);

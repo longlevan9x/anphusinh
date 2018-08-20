@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset_website_css('style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset_website_css('loader.css')}}">
 
-    <link rel="icon" href="{{\App\Commons\Facade\CFile::getImageUrl('settings', setting(KEY_LOGO))}}">
-
+    <link rel="icon" href="{{\App\Commons\Facade\CFile::getImageUrl('settings', setting(KEY_LOGO))}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{\App\Commons\Facade\CFile::getImageUrl('settings', setting(KEY_LOGO))}}" type="image/x-icon">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>

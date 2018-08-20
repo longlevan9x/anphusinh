@@ -195,6 +195,13 @@
                                 <div class="col-md-12">
 
                                     <div class="form-group">
+                                        <label class="col-md-12 col-sm-12 col-xs-12" for="seo_title">@lang('admin/common.seo_title'):</label>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            {!! Form::text('seo_title', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'seo_title']) !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label class="col-md-12 col-sm-12 col-xs-12" for="seo_keyword">@lang('admin/setting.seo_keyword'):</label>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             {!! Form::text('seo_keyword', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'id' => 'seo_keyword']) !!}

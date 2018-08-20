@@ -13,15 +13,15 @@
 <div class="clearfix"></div>
 
 <!-- menu profile quick info -->
-<div class="profile clearfix">
-    <div class="profile_pic user-profile">
-        <img style="width: 58px;height: 58px;" src="{{\App\Commons\Facade\CUser::userAdmin()->getImagePath()}}" alt="..." class="img-circle profile_img">
-    </div>
-    <div class="profile_info">
-        <span>{{__('admin.welcome')}},</span>
-        <h2>{{\App\Commons\Facade\CUser::userAdmin()->name}}</h2>
-    </div>
-</div>
+{{--<div class="profile clearfix">--}}
+    {{--<div class="profile_pic user-profile">--}}
+        {{--<img style="width: 58px;height: 58px;" src="{{\App\Commons\Facade\CUser::userAdmin()->getImagePath()}}" alt="..." class="img-circle profile_img">--}}
+    {{--</div>--}}
+    {{--<div class="profile_info">--}}
+        {{--<span>{{__('admin.welcome')}},</span>--}}
+        {{--<h2>{{\App\Commons\Facade\CUser::userAdmin()->name}}</h2>--}}
+    {{--</div>--}}
+{{--</div>--}}
 <!-- /menu profile quick info -->
 
 <br />

@@ -22,6 +22,9 @@ class CreateTableCategory extends Migration
         	$table->tinyInteger('is_active')->default(0);
         	$table->string('status', 50)->nullable();
         	$table->string('description')->nullable();
+	        $table->string('seo_title', 500)->nullable();
+	        $table->string('seo_keyword', 500)->nullable();
+	        $table->text('seo_description')->nullable();
         	$table->string('path')->nullable()->comment('folder file');
         	$table->timestamps();
         });
