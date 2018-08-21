@@ -76,12 +76,6 @@
                             {!! Form::text('seo_keyword', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'rows' => 2, 'id' => 'seo_keyword']) !!}
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-12 col-sm-12 col-xs-12" for="seo_description">@lang('admin/common.seo_description')</label>
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            {!! Form::textarea('seo_description', $value = null,['class' => 'form-control col-md-7 col-xs-12', 'rows' => 4, 'id' => 'seo_description']) !!}
-                        </div>
-                    </div>
                     {{--Seo--}}
                 </div>
                 <div class="clearfix"></div>

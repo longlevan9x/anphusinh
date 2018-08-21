@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Website;
 
 use App\Commons\CConstant;
 use App\Http\Requests\PostRequest;
+use App\Mail\ContactMail;
+use App\Mail\OrderMail;
+use App\Mail\SubscribeMail;
 use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Order;
@@ -17,6 +20,7 @@ use Faker\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
+use Mail;
 use function MicrosoftAzure\Storage\Samples\deleteDirectory;
 
 /**
@@ -166,6 +170,8 @@ class HomeController extends Controller
 		$model->total_price = $model->price * (int) $model->quantity;
 		$model->status      = Order::STATUS_NEW;
 		if ($model->save()) {
+			Mail::to(setting(KEY_ADMIN_EMAIL) ?? config('mail.username'))->send(new OrderMail($request->name, $request->phone, $request->quantity, $product->price));
+
 			return redirect(route('dat-hang-thanh-cong', ['mess' => CConstant::STATUS_SUCCESS]));
 		}
 
@@ -296,6 +302,8 @@ class HomeController extends Controller
 		$model->overview  = $request->phone;
 		$model->is_active = 1;
 		if ($model->save()) {
+			Mail::to(setting(KEY_ADMIN_EMAIL) ?? config('mail.username'))->send(new SubscribeMail($request->name, $request->phone));
+
 			return responseJson(CConstant::STATUS_SUCCESS, 'Xác nhận đăng ký thành công. Yêu cầu tư vấn của bạn đã được chúng tôi tiếp nhận.');
 		}
 
@@ -323,6 +331,7 @@ class HomeController extends Controller
 		$model->is_active = 1;
 		if ($model->save()) {
 			$model->postMeta()->create(['key' => '_post_contact', 'value' => $request->question]);
+			Mail::to(setting(KEY_ADMIN_EMAIL) ?? config('mail.username'))->send(new ContactMail($request->name, $request->phone, $request->question));
 
 			return responseJson(CConstant::STATUS_SUCCESS, 'Gửi yêu cầu liên hệ thành công. chúng tôi sẽ liên hệ với bạn trong giới gian sớm nhất');
 		}
@@ -335,7 +344,8 @@ class HomeController extends Controller
 	 */
 	public function publicProduct() {
 		$advertise_post = Post::prepareMetaValueKey((new Post)->queryWithPostMeta()->where('is_active', 1)->get());
-		$product = Product::wherePostType(Product::POST_TYPE_DETAIL)->first();
+		$product        = Product::wherePostType(Product::POST_TYPE_DETAIL)->first();
+
 		return view('website.home.public-product', compact('product', 'advertise_post'));
 	}
 }

@@ -179,24 +179,26 @@ class Controller extends \App\Http\Controllers\Controller
 	}
 
 	public function getShareAside() {
-//		if (cache()->has('share_experience')) {
-//			$share_experience = Cache::get('share_experience');
-//		}
-//		else {
-			$share_experience = Post::whereType(Post::TYPE_SHARE)->orderByDesc('created_at')->limit(5)->get();
-//			cache()->put('share_experience', $share_experience, 60);
-//		}
+		//		if (cache()->has('share_experience')) {
+		//			$share_experience = Cache::get('share_experience');
+		//		}
+		//		else {
+		$share_experience = Post::whereType(Post::TYPE_SHARE)->orderByDesc('created_at')->limit(5)->get();
+		//			cache()->put('share_experience', $share_experience, 60);
+		//		}
 		view()->share(compact('share_experience'));
 	}
 
 	public function getAdviceAside() {
-//		if (cache()->has('advice_expert')) {
-//			$advice_expert = Cache::get('advice_expert');
-//		}
-//		else {
-			$advice_expert = Post::whereType(Post::TYPE_ADVICE)->orderByDesc('created_at')->limit(5)->get();
-//			cache()->put('advice_expert', $advice_expert, 60);
-//		}
+		//		if (cache()->has('advice_expert')) {
+		//			$advice_expert = Cache::get('advice_expert');
+		//		}
+		//		else {
+		$advice_expert = Post::whereType(Post::TYPE_ADVICE)->orderByDesc('created_at')->limit(5)->get();
+		//			cache()->put('advice_expert', $advice_expert, 60);
+		//		}
 		view()->share(compact('advice_expert'));
 	}
+
+	//public function
 }

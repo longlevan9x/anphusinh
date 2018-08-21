@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function() {
 //	return view('welcome');
 //});
+Route::get('mail', 'TestController@mail');
 
 Auth::routes();
 Route::get('admin', function() {
@@ -43,4 +44,5 @@ Route::namespace('Website')->group(function() {
 	Route::get('/{slug}', HomeController::getControllerWithAction('showBySlug'));
 	Route::get('/danh-muc/{slug}', HomeController::getControllerWithAction('showByCategory'));
 });
+
 
