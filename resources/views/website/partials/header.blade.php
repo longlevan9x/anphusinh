@@ -1,5 +1,6 @@
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="content-language" content="{{config('app.locale')}}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -12,11 +13,12 @@
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="300">
     <meta property="og:image:height" content="300">
-
+    <meta name="robots" content="noodp,index,follow" />
     <meta property="og:site_name" content="{{ $heading or '' }}" />
     <meta property="og:title"  content="{{ $heading or '' }}" />
     <meta property="og:description"  content="{{ $description or '' }}" />
     <meta property="og:image"  content="{{\App\Commons\Facade\CFile::getImageUrl('settings', setting(KEY_LOGO))}}" />
+    <link rel="canonical" href="{{ Request::url() }}" />
 
     @stack('styleMain')
     <style type="text/css">

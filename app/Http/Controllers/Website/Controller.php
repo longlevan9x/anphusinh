@@ -200,5 +200,15 @@ class Controller extends \App\Http\Controllers\Controller
 		view()->share(compact('advice_expert'));
 	}
 
-	//public function
+	protected $seo_title       = '';
+	protected $seo_keyword     = '';
+	protected $seo_description = '';
+
+	public function renderSEOMeta() {
+		view()->share([
+			'seo_title'       => $this->seo_title ?? setting('seo_title'),
+			'seo_keyword'     => $this->seo_keyword ?? setting('seo_keyword'),
+			'seo_description' => $this->seo_description ?? setting('seo_description'),
+		]);
+	}
 }

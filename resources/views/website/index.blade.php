@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{config('app.locale')}}">
 @include('website.partials.style')
-@stack('cssFile')
-@stack('cssString')
 @include('website.partials.script')
 @include('website.partials.header')
+@stack('cssFile')
+@stack('cssString')
 <body>
 <style>
     #icon_order_fix {
