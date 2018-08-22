@@ -75,15 +75,3 @@
         });
     </script>
 @endpush
-<div class="modal fade modal-index" tabindex="-1" role="dialog" style="top: 30%;">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" style="width: 300px;text-align: center;margin: 0 auto;">
-            <div class="modal-header" style="border-bottom: none">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <button type="button" class="btn btn-default" id="back" data-dismiss="modal">Trở lại</button>
-                <button type="button" class="btn btn-default" id="refresh">Tải lại</button>
-                <button type="button" class="btn btn-default" id="forward">Chuyển tiếp</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
