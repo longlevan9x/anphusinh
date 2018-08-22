@@ -21,6 +21,8 @@
     <link rel="canonical" href="{{ Request::url() }}" />
 
     @stack('styleMain')
+    @stack('cssFile')
+    @stack('cssString')
     <style type="text/css">
         /*Box product in page post*/
         #box_lydo {

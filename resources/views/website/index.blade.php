@@ -3,8 +3,6 @@
 @include('website.partials.style')
 @include('website.partials.script')
 @include('website.partials.header')
-@stack('cssFile')
-@stack('cssString')
 <body>
 <style>
     #icon_order_fix {
