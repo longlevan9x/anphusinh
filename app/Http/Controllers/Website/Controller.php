@@ -206,9 +206,9 @@ class Controller extends \App\Http\Controllers\Controller
 
 	public function renderSEOMeta() {
 		view()->share([
-			'seo_title'       => $this->seo_title ?? setting('seo_title'),
-			'seo_keyword'     => $this->seo_keyword ?? setting('seo_keyword'),
-			'seo_description' => $this->seo_description ?? setting('seo_description'),
+			'seo_title'       => empty($this->seo_title) ? $this->seo_title : setting('seo_title'),
+			'seo_keyword'     => empty($this->seo_keyword) ? $this->seo_keyword : setting('seo_keyword'),
+			'seo_description' => empty($this->seo_description) ? $this->seo_description : setting('seo_description'),
 		]);
 	}
 }
