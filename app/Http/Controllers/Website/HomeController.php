@@ -88,6 +88,7 @@ class HomeController extends Controller
 		$product    = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
 		$postNews   = Post::whereType(Post::TYPE_NEWS)->latest()->limit(6)->get();
 		$categories = Category::whereType(Category::TYPE_CATEGORY)->where('parent_id', '>', 0)->active()->get();
+		$this->renderSEOMeta();
 
 		return view('website.home.index', compact('slides', 'categories', 'shares', 'postNews', 'product'));
 	}
@@ -97,6 +98,7 @@ class HomeController extends Controller
 	 */
 	public function showProduct() {
 		$model = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
+		$this->renderSEOMeta();
 
 		return view('website.home.product', compact('model'));
 	}
@@ -106,12 +108,14 @@ class HomeController extends Controller
 	 */
 	public function showAnswerQuestion() {
 		$models = Answer::whereType(Post::TYPE_QUESTION)->latest()->whereIsActive(CConstant::STATE_ACTIVE)->paginate(5);
+		$this->renderSEOMeta();
 
 		return view('website.home.question-answer', compact('models'));
 	}
 
 	public function showCategory($type) {
 		$models = Post::whereType($type)->where('is_active', CConstant::STATE_ACTIVE)->paginate(5);
+		$this->renderSEOMeta();
 
 		return view('website.home.category', compact('models'));
 	}
@@ -120,6 +124,8 @@ class HomeController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function showNews() {
+		$this->renderSEOMeta();
+
 		return $this->showCategory(Post::TYPE_NEWS);
 	}
 
@@ -127,6 +133,8 @@ class HomeController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function showExpert() {
+		$this->renderSEOMeta();
+
 		return $this->showCategory(Post::TYPE_EXPERT);
 	}
 
@@ -134,6 +142,8 @@ class HomeController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function showShare() {
+		$this->renderSEOMeta();
+
 		return $this->showCategory(Post::TYPE_SHARE);
 	}
 
@@ -143,6 +153,7 @@ class HomeController extends Controller
 	public function showSystemStore() {
 		/** @var Category $models */
 		$models = Category::whereType(Category::TYPE_AREA)->get();
+		$this->renderSEOMeta();
 
 		return view('website.home.system-store', compact('models'));
 	}
@@ -153,6 +164,7 @@ class HomeController extends Controller
 	public function showOrder() {
 		$model   = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
 		$setting = Setting::where('key', Setting::KEY_MESSAGE_ORDER)->first();
+		$this->renderSEOMeta();
 
 		return view('website.home.order', compact('model', 'setting'));
 	}
@@ -183,6 +195,7 @@ class HomeController extends Controller
 	 */
 	public function showOrderMessage() {
 		$model = Setting::where('key', Setting::KEY_MESSAGE_ORDER_SUCCESS)->first();
+		$this->renderSEOMeta();
 
 		return view('website.home.order-message', compact('model'));
 	}
@@ -204,6 +217,7 @@ class HomeController extends Controller
 			$this->prefixBreadcrumb   = 'he-thong-nha-thuoc';
 			$this->pathInfoBreadcrumb = $category->name;
 			$this->getBreadcrumb();
+			$this->renderSEOMeta();
 
 			return view('website.home.store', compact('models'));
 		}
@@ -220,6 +234,7 @@ class HomeController extends Controller
 			$this->pathInfoBreadcrumb = $category->name;
 
 			$this->getBreadcrumb();
+			$this->renderSEOMeta();
 
 			return view('website.home.system-store', compact('models'));
 		}
@@ -229,6 +244,7 @@ class HomeController extends Controller
 		$models = Post::where('category_id', $category->id)->where('is_active', CConstant::STATE_ACTIVE)->paginate(5);
 
 		$this->getBreadcrumb();
+		$this->renderSEOMeta();
 
 		return view('website.home.category', compact('models'));
 	}
@@ -251,12 +267,14 @@ class HomeController extends Controller
 		if ($model->type == Post::TYPE_QUESTION) {
 			$this->prefixBreadcrumb = 'hoi-dap';
 			$this->getBreadcrumb();
+			$this->renderSEOMeta();
 
 			return view('website.home.question-answer-detail', compact('model', 'relate_posts'));
 		}
 		elseif ($model->type == Post::TYPE_ADVICE) {
 			$this->prefixBreadcrumb = '';
 			$this->getBreadcrumb();
+			$this->renderSEOMeta();
 
 			return view('website.home.advice', compact('model', 'relate_posts'));
 		}
@@ -265,6 +283,7 @@ class HomeController extends Controller
 		$advertise_post = Post::prepareMetaValueKey((new Post)->queryWithPostMeta()->where('is_active', 1)->get());
 
 		$product = Product::wherePostType(Product::POST_TYPE_DETAIL)->first();
+		$this->renderSEOMeta();
 
 		return view('website.home.post', compact('model', 'relate_posts', 'advertise_post', 'product'));
 	}
@@ -345,6 +364,7 @@ class HomeController extends Controller
 	public function publicProduct() {
 		$advertise_post = Post::prepareMetaValueKey((new Post)->queryWithPostMeta()->where('is_active', 1)->get());
 		$product        = Product::wherePostType(Product::POST_TYPE_DETAIL)->first();
+		$this->renderSEOMeta();
 
 		return view('website.home.public-product', compact('product', 'advertise_post'));
 	}
