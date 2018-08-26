@@ -31,7 +31,6 @@ class CreateTableProduct extends Migration
 			$table->string('seo_title', 500)->nullable();
 			$table->string('seo_keyword', 500)->nullable();
 			$table->text('seo_description')->nullable();
-			$table->string('path')->nullable()->comment('folder file');
 			$table->integer('admin_id')->default(0)->nullable();
 			$table->timestamps();
 			$table->unique(['name', 'post_type']);

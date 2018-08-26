@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Yadakhov\InsertOnDuplicateKey;
 
 /**
@@ -244,6 +245,9 @@ class Setting extends Model
 			return Cache::get('settings');
 		}
 
+		if (!Schema::hasTable('settings')) {
+			return false;
+		}
 		$models = Setting::where('autoload', 1)->get();
 		$models->map(function($item, $index) {
 			/**@var Setting $item */
