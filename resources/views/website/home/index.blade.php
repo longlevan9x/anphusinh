@@ -160,7 +160,7 @@
                             </div>
                             <div class="about-post col-xs-6" style="cursor: pointer">
                                 <a href="{{url('cong-bo-san-pham')}}" class="border_radius"><img src="{{asset_website('images/awesome.png')}}" alt="hands"></a>
-                                <h4>@lang("Xác nhận công bống sản phẩm")</h4>
+                                <h4>@lang("Xác nhận công bố sản phẩm")</h4>
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
