@@ -41,6 +41,7 @@ class HomeController extends Controller
 	/**
 	 * Show the application dashboard.
 	 * @return \Illuminate\Http\Response
+	 * @throws \Exception
 	 */
 	public function index() {
 		//		if (Cache::has('slides')) {
@@ -95,16 +96,18 @@ class HomeController extends Controller
 
 	/**
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @throws \Exception
 	 */
 	public function showProduct() {
 		$model = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
-		$this->renderSEOMeta();
+		$this->renderSEOMeta($model);
 
 		return view('website.home.product', compact('model'));
 	}
 
 	/**
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @throws \Exception
 	 */
 	public function showAnswerQuestion() {
 		$models = Answer::whereType(Post::TYPE_QUESTION)->latest()->whereIsActive(CConstant::STATE_ACTIVE)->paginate(5);
@@ -122,10 +125,9 @@ class HomeController extends Controller
 
 	/**
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @throws \Exception
 	 */
 	public function showNews() {
-		$this->renderSEOMeta();
-
 		return $this->showCategory(Post::TYPE_NEWS);
 	}
 
@@ -133,13 +135,12 @@ class HomeController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function showExpert() {
-		$this->renderSEOMeta();
-
 		return $this->showCategory(Post::TYPE_EXPERT);
 	}
 
 	/**
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @throws \Exception
 	 */
 	public function showShare() {
 		$this->renderSEOMeta();
@@ -149,6 +150,7 @@ class HomeController extends Controller
 
 	/**
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @throws \Exception
 	 */
 	public function showSystemStore() {
 		/** @var Category $models */
@@ -160,6 +162,7 @@ class HomeController extends Controller
 
 	/**
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @throws \Exception
 	 */
 	public function showOrder() {
 		$model   = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
@@ -192,6 +195,7 @@ class HomeController extends Controller
 
 	/**
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @throws \Exception
 	 */
 	public function showOrderMessage() {
 		$model = Setting::where('key', Setting::KEY_MESSAGE_ORDER_SUCCESS)->first();
@@ -207,6 +211,7 @@ class HomeController extends Controller
 	/**
 	 * @param $slug
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @throws \Exception
 	 */
 	public function showByCategory($slug) {
 		/** @var Category $category */
@@ -244,7 +249,7 @@ class HomeController extends Controller
 		$models = Post::where('category_id', $category->id)->where('is_active', CConstant::STATE_ACTIVE)->paginate(5);
 
 		$this->getBreadcrumb();
-		$this->renderSEOMeta();
+		$this->renderSEOMeta($category);
 
 		return view('website.home.category', compact('models'));
 	}
@@ -252,6 +257,7 @@ class HomeController extends Controller
 	/**
 	 * @param $slug
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @throws \Exception
 	 */
 	public function showPost($slug) {
 		$id   = substr($slug, strpos($slug, '--'));
@@ -267,14 +273,14 @@ class HomeController extends Controller
 		if ($model->type == Post::TYPE_QUESTION) {
 			$this->prefixBreadcrumb = 'hoi-dap';
 			$this->getBreadcrumb();
-			$this->renderSEOMeta();
+			$this->renderSEOMeta($model);
 
 			return view('website.home.question-answer-detail', compact('model', 'relate_posts'));
 		}
 		elseif ($model->type == Post::TYPE_ADVICE) {
 			$this->prefixBreadcrumb = '';
 			$this->getBreadcrumb();
-			$this->renderSEOMeta();
+			$this->renderSEOMeta($model);
 
 			return view('website.home.advice', compact('model', 'relate_posts'));
 		}
@@ -283,7 +289,7 @@ class HomeController extends Controller
 		$advertise_post = Post::prepareMetaValueKey((new Post)->queryWithPostMeta()->where('is_active', 1)->get());
 
 		$product = Product::wherePostType(Product::POST_TYPE_DETAIL)->first();
-		$this->renderSEOMeta();
+		$this->renderSEOMeta($model);
 
 		return view('website.home.post', compact('model', 'relate_posts', 'advertise_post', 'product'));
 	}
@@ -291,6 +297,7 @@ class HomeController extends Controller
 	/**
 	 * @param $slug
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @throws \Exception
 	 */
 	public function showBySlug($slug) {
 		if (strpos($slug, '--') == false) {
@@ -360,11 +367,12 @@ class HomeController extends Controller
 
 	/**
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @throws \Exception
 	 */
 	public function publicProduct() {
 		$advertise_post = Post::prepareMetaValueKey((new Post)->queryWithPostMeta()->where('is_active', 1)->get());
 		$product        = Product::wherePostType(Product::POST_TYPE_DETAIL)->first();
-		$this->renderSEOMeta();
+		$this->renderSEOMeta($product);
 
 		return view('website.home.public-product', compact('product', 'advertise_post'));
 	}

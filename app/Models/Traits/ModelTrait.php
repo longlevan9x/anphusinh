@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Event;
  * @property Model  $this
  * @property int    id
  * @property string slug
+ * @property string seo_keyword
+ * @property string seo_description
+ * @property string seo_title
  * @method  static Builder where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  * @method  static Builder orWhere(string $column, string $operator = null, string $value = null)
  * @method  static Builder|Model findOrFail(mixed | int | string $id, array $column = ['*'])

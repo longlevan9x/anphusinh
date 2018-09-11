@@ -7,12 +7,17 @@ use App\Models\Category;
 use App\Models\Menu;
 use App\Models\Post;
 use App\Models\PostMeta;
+use App\Models\Traits\ModelTrait;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 class Controller extends \App\Http\Controllers\Controller
 {
+	/**
+	 * Controller constructor.
+	 * @throws \Exception
+	 */
 	public function __construct() {
 		$current_method = $this->getCurrentMethod();
 		$this->getMenu();
@@ -23,6 +28,7 @@ class Controller extends \App\Http\Controllers\Controller
 		$this->getShareAside();
 		$menu_footer = Category::whereType()->whereParentId(0)->active()->get();
 		view()->share(compact('menu_footer'));
+		$this->renderSEOMeta();
 	}
 
 	/**
@@ -204,7 +210,16 @@ class Controller extends \App\Http\Controllers\Controller
 	protected $seo_keyword     = '';
 	protected $seo_description = '';
 
-	public function renderSEOMeta() {
+	/**
+	 * @param ModelTrait $model
+	 * @throws \Exception
+	 */
+	public function renderSEOMeta($model = null) {
+		if (isset($model)) {
+			$this->seo_title       = $model->seo_title;
+			$this->seo_description = $model->seo_description;
+			$this->seo_keyword     = $model->seo_keyword;
+		}
 		view()->share([
 			'seo_title'       => !empty($this->seo_title) ? $this->seo_title : setting('seo_title'),
 			'seo_keyword'     => !empty($this->seo_keyword) ? $this->seo_keyword : setting('seo_keyword'),
