@@ -1,16 +1,20 @@
 $(function () {
-    $("#btnSubscribe").click(function () {
+    $("#btnSubscribe,#btnSubscribeModal").click(function () {
         let _form = $("#form-subscribe");
+
+        if ($(this).attr("id") === "btnSubscribeModal") {
+            _form = $("#form-subscribe-modal");
+        }
         _form.submit(function (event) {
             event.preventDefault();
         });
         let _data = _form.serializeArray();
         let _url  = _form.attr("action");
 
-        let xhr     = postAjax(_url, _data);
+        let xhr = postAjax(_url, _data);
 
         xhr.success(function (result) {
-            if (result.message === 'success') {
+            if (result.message === "success") {
                 alert(result.result);
                 window.location.reload(true);
                 return false;
@@ -25,7 +29,7 @@ $(function () {
         });
     });
 
-    $('#btn_submit_contact').click(function (e) {
+    $("#btn_submit_contact").click(function (e) {
         let _form = $("#contact-form");
         _form.submit(function (event) {
             event.preventDefault();
@@ -33,10 +37,10 @@ $(function () {
         let _data = _form.serializeArray();
         let _url  = _form.attr("action");
 
-        let xhr     = postAjax(_url, _data);
+        let xhr = postAjax(_url, _data);
 
         xhr.success(function (result) {
-            if (result.message === 'success') {
+            if (result.message === "success") {
                 alert(result.result);
                 window.location.reload(true);
                 return false;

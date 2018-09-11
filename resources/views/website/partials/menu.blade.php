@@ -92,7 +92,7 @@
                 </a>
 
                 <div class="subscribe">
-                    <a href="#subscribe-form">
+                    <a href="#subscribe-form-modal" data-toggle="modal" data-target="#subscribe-form-modal">
                         <img src="{{asset_uploads('www/subscribe.gif')}}" alt="subscribe" style="width: 115px;">
                     </a>
                     {{--<button class="btn btn-sm btn-primary">@lang('website.dang ky nhan tin')</button>--}}
@@ -150,3 +150,26 @@
 {{--</form>--}}
 {{--</div>--}}
 
+
+<!-- /.modal -->
+<div class="modal modal-contact" id="subscribe-form-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><label class="control-label" style="text-transform: uppercase" for="">@lang('website/common.free registration registration')</label>:&nbsp;</h4>
+            </div>
+            <div class="modal-body">
+                {{Form::open(['url' => url('dang-ky'),'id' => 'form-subscribe-modal', 'class' => 'form-inline', 'style' => "padding-top: 5px;"])}}
+                {{Form::text('name', $value = null, ['class' => "form-control   form-group", 'placeholder' => __('website/common.fullname')])}}
+                {{Form::text('phone', $value = null, ['class' => "form-control  form-group", 'placeholder' => __('website/common.phone_number')])}}
+                <input type="hidden" id="message-subscribe">
+                {{Form::close()}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnSubscribeModal">@lang('admin.submitButton')</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('admin.cancelButton')</button>
+            </div>
+        </div>
+    </div>
+</div>
