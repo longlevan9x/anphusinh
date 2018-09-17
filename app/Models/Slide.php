@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * App\Models\Slide
+ *
  * @property int                             $id
  * @property string|null                     $name
  * @property string|null                     $description
@@ -40,6 +41,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Slide orderBySortOrderDesc()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Slide whereAuthorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Slide whereAuthorUpdateId($value)
+ * @property-read \App\Models\Admins|null $author
  */
 class Slide extends Model
 {

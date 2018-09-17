@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SlideMeta whereSlug($slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SlideMeta orderBySortOrder()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SlideMeta orderBySortOrderDesc()
+ * @property-read \App\Models\Admins $author
  */
 class SlideMeta extends Model implements IModelMeta
 {

@@ -28,6 +28,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact inActive()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact whereSlug($slug)
+ * @property string|null $type
+ * @property-read \App\Models\Admins $author
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact orderBySortOrder()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact orderBySortOrderDesc()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact whereType($value = '')
  */
 class Contact extends Model
 {

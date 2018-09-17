@@ -12,6 +12,7 @@ use Illuminate\Support\Collection;
 
 /**
  * Class Category
+ *
  * @package App\Models
  * @property string      $type
  * @property int         $is_active
@@ -54,6 +55,7 @@ use Illuminate\Support\Collection;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereSeoKeyword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereSeoTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereType($value = '')
+ * @property-read \App\Models\Admins $author
  */
 class Category extends Model
 {

@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store inActive()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store orderBySortOrder()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store orderBySortOrderDesc()
+ * @property-read \App\Models\Admins $author
  */
 class Store extends Model
 {

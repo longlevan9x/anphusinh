@@ -54,6 +54,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order inActive()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order orderBySortOrder()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order orderBySortOrderDesc()
+ * @property-read \App\Models\Admins $author
  */
 class Order extends Model
 {

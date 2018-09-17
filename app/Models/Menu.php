@@ -8,6 +8,7 @@ use Yadakhov\InsertOnDuplicateKey;
 
 /**
  * Class Menu
+ *
  * @package App\Models
  * @property int                     $id
  * @property string|null             $slug
@@ -32,6 +33,7 @@ use Yadakhov\InsertOnDuplicateKey;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Menu inActive()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Menu orderBySortOrder()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Menu orderBySortOrderDesc()
+ * @property-read \App\Models\Admins $author
  */
 class Menu extends Model
 {

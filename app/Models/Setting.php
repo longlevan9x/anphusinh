@@ -16,6 +16,7 @@ use Yadakhov\InsertOnDuplicateKey;
 
 /**
  * Class Setting
+ *
  * @package App\Models
  * @property string                  $website_name
  * @property string                  $website_description
@@ -57,6 +58,7 @@ use Yadakhov\InsertOnDuplicateKey;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting inActive()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting orderBySortOrder()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting orderBySortOrderDesc()
+ * @property-read \App\Models\Admins $author
  */
 class Setting extends Model
 {

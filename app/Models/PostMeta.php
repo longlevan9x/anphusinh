@@ -13,6 +13,7 @@ use Yadakhov\InsertOnDuplicateKey;
 
 /**
  * Class PostMeta
+ *
  * @package App\Models
  * @method static Builder whereKey(string $key)
  * @property int                        $id
@@ -35,6 +36,7 @@ use Yadakhov\InsertOnDuplicateKey;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostMeta inActive()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostMeta orderBySortOrder()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostMeta orderBySortOrderDesc()
+ * @property-read \App\Models\Admins $author
  */
 class PostMeta extends Model
 {

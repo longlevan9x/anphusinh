@@ -53,6 +53,17 @@ if (!function_exists('action_method_push_post')) {
 		return isset($model) && !empty($model->getAttributes()) ? 'put' : 'post';
 	}
 }
+
+if (!function_exists('get_model')) {
+	/**
+	 * @param \Illuminate\Database\Eloquent\Model $model
+	 * @return string
+	 */
+	function get_model($model = null) {
+		return isset($model) ? $model : null;
+	}
+}
+
 if (!function_exists('public_path_admin')) {
 	/**
 	 * @param string $path
