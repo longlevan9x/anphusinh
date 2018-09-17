@@ -33,6 +33,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereStreet($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store active($value = 1)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store inActive()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store orderBySortOrder()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store orderBySortOrderDesc()
  */
 class Store extends Model
 {

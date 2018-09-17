@@ -8,16 +8,11 @@ use Yadakhov\InsertOnDuplicateKey;
 
 /**
  * Class Menu
- *
  * @package App\Models
- * @property string title
- * @property int    is_active
- * @property int    sort_order
- * @property string type
- * @property int $id
- * @property string|null $slug
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property int                     $id
+ * @property string|null             $slug
+ * @property \Carbon\Carbon|null     $created_at
+ * @property \Carbon\Carbon|null     $updated_at
  * @property-read \App\Models\Admins $authorUpdated
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Menu findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Menu whereCreatedAt($value)
@@ -29,10 +24,14 @@ use Yadakhov\InsertOnDuplicateKey;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Menu whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Menu whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property string $title
- * @property int $sort_order
- * @property int $is_active
- * @property string|null $type
+ * @property string                  $title
+ * @property int                     $sort_order
+ * @property int                     $is_active
+ * @property string|null             $type
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Menu active($value = 1)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Menu inActive()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Menu orderBySortOrder()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Menu orderBySortOrderDesc()
  */
 class Menu extends Model
 {

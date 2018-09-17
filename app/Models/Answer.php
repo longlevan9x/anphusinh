@@ -62,6 +62,16 @@ use Illuminate\Http\Request;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $seo_title
+ * @property string|null $seo_keyword
+ * @property string|null $seo_description
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post active($value = 1)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post inActive()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post orderBySortOrder()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post orderBySortOrderDesc()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereSeoDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereSeoKeyword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Answer whereSeoTitle($value)
  */
 class Answer extends Post
 {

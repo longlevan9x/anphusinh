@@ -13,19 +13,15 @@ use Yadakhov\InsertOnDuplicateKey;
 
 /**
  * Class PostMeta
- *
  * @package App\Models
- * @property integer post_id
- * @property string  key
- * @property string  value
  * @method static Builder whereKey(string $key)
- * @property int $id
- * @property int|null $post_id
- * @property string|null $key
- * @property string|null $value
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property-read \App\Models\Admins $authorUpdated
+ * @property int                        $id
+ * @property int|null                   $post_id
+ * @property string|null                $key
+ * @property string|null                $value
+ * @property \Carbon\Carbon|null        $created_at
+ * @property \Carbon\Carbon|null        $updated_at
+ * @property-read \App\Models\Admins    $authorUpdated
  * @property-read \App\Models\Post|null $post
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostMeta findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostMeta whereCreatedAt($value)
@@ -35,6 +31,10 @@ use Yadakhov\InsertOnDuplicateKey;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostMeta whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostMeta whereValue($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostMeta active($value = 1)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostMeta inActive()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostMeta orderBySortOrder()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostMeta orderBySortOrderDesc()
  */
 class PostMeta extends Model
 {

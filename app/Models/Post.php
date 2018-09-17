@@ -14,6 +14,7 @@ use Illuminate\Support\Collection;
 
 /**
  * Class Post
+ *
  * @package App\Models
  * @property string                                                   $title
  * @property string                                                   $type
@@ -35,9 +36,6 @@ use Illuminate\Support\Collection;
  * @property string|null                                              $content
  * @property string|null                                              $path
  * @property int|null                                                 $author_updated_id
- * @property string                                                   seo_title
- * @property string                                                   seo_keyword
- * @property string                                                   seo_description
  * @property-read Category                                            $category
  * ===Method===
  * @property-read \Illuminate\Database\Eloquent\Collection|PostMeta[] $postMetas
@@ -59,6 +57,17 @@ use Illuminate\Support\Collection;
  * @method static Builder|Post whereTitle($value)
  * @method static Builder|Post whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property string|null $seo_title
+ * @property string|null $seo_keyword
+ * @property string|null $seo_description
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post active($value = 1)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post inActive()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post orderBySortOrder()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post orderBySortOrderDesc()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereSeoDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereSeoKeyword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereSeoTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereType($value = '')
  */
 class Post extends Model
 {
@@ -128,11 +137,16 @@ class Post extends Model
 	}
 
 	/**
-	 * @param string $type
+	 * @param Builder $query
+	 * @param         $type
 	 * @return ModelMethodTrait|Builder
 	 */
-	public static function whereType($type = self::TYPE_POST) {
-		return self::where('type', $type);
+	public function scopeWhereType($query, $type = null) {
+		if (!isset($type)) {
+			$type = self::TYPE_POST;
+		}
+
+		return $query->where('type', $type);
 	}
 
 	/**
@@ -219,6 +233,9 @@ class Post extends Model
 		return "-";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function setAuthorId() {
 		return $this->author_id = CUser::userAdmin()->id;
 	}

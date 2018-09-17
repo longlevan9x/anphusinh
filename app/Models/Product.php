@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Product
+ *
  * @package App\Models
  * @property string|null                   $image
  * @property string|null                   $slug
@@ -58,6 +59,16 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Product whereStatus($value)
  * @method static Builder|Product whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property string|null $seo_title
+ * @property string|null $seo_keyword
+ * @property string|null $seo_description
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product active($value = 1)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product inActive()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product orderBySortOrder()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product orderBySortOrderDesc()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSeoDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSeoKeyword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSeoTitle($value)
  */
 class Product extends Model
 {

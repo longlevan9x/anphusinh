@@ -1,7 +1,7 @@
 @extends('website.index')
 @section("content")
     @php
-        /** @var \App\Models\Post $slide */
+        /** @var \App\Models\Slide $slide */
         /** @var \App\Models\Category $category */
         /** @var \App\Models\Post $share */
         /** @var \App\Models\Post $postNew */
@@ -56,17 +56,6 @@
             <ul>
                 <!-- SLIDE  -->
                 @foreach($slides as $slide)
-                    @php
-                        $href = '';
-                        if (filter_var($slide->slug, FILTER_VALIDATE_URL)) {
-                            $href = $slide->slug;
-                        }
-                        else {
-                            if (!empty($slide->parent_id)) {
-                                $href = url($slide->slug);
-                            }
-                        }
-                    @endphp
                     <li data-transition="fade">
                         <!-- MAIN IMAGE -->
                         <img src="{{$slide->getImagePath()}}" alt="" data-bgposition="center center" data-bgfit="cover" data-bgparallax="10" class="rev-slidebg">
@@ -80,7 +69,7 @@
                              data-transform_in="z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;"
                              data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
                              data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
-                             data-start="800"><h2 style="color: white;font-size: 40px">{{$slide->title}}</h2>
+                             data-start="800"><h2 style="color: white;font-size: 40px">{{$slide->name}}</h2>
                         </div>
                         <div class="tp-caption tp-resizeme"
                              data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
@@ -91,7 +80,7 @@
                              data-transform_in="opacity:0;s:1000;e:Power2.easeInOut;"
                              data-transform_out="opacity:0;s:1000;s:1000;"
                              data-start="1500">
-                            <p>{{$slide->overview}}</p>
+                            <p>{{$slide->description}}</p>
                         </div>
                         <div class="tp-caption  tp-resizeme"
                              data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
@@ -104,8 +93,8 @@
                              data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
                              data-mask_out="x:0;y:0;s:inherit;e:inherit;"
                              data-start="2000">
-                            @if(!empty($href))
-                                <a href="{{$href}}" class="border_radius btn_common blue">@lang('website.visit now')</a>
+                            @if(!empty($slide->url))
+                                <a href="{{$slide->url}}" class="border_radius btn_common blue">@lang('website.visit now')</a>
                             @endif
                         </div>
                     </li>

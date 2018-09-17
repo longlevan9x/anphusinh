@@ -36,7 +36,27 @@ trait ModelMethodTrait
 		return $query->where('is_active', $value);
 	}
 
+	/**
+	 * @param QueryBuilder $query
+	 * @return QueryBuilder
+	 */
 	public function scopeInActive($query) {
-		return $this->scopeActive($query,0);
+		return $this->scopeActive($query, 0);
+	}
+
+	/**
+	 * @param QueryBuilder $query
+	 * @return QueryBuilder
+	 */
+	public function scopeOrderBySortOrder($query) {
+		return $query->orderBy('sort_order');
+	}
+
+	/**
+	 * @param QueryBuilder $query
+	 * @return QueryBuilder
+	 */
+	public function scopeOrderBySortOrderDesc($query) {
+		return $query->orderByDesc('sort_order');
 	}
 }

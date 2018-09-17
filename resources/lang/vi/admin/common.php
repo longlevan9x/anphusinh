@@ -12,6 +12,7 @@ return [
 	'change password'     => "Đổi mật khẩu",
 	'gender'              => "Giới tính",
 	'address'             => "Địa chỉ",
+	'email'               => 'Email',
 	'copyright'           => "Copyright",
 	'overview'            => "Tổng quan",
 	'image'               => "Hình ảnh",
@@ -20,6 +21,7 @@ return [
 	'phone'               => "Điện thoại",
 	'phone number'        => "Số điện thoại",
 	'total_money'         => "Tổng tiền",
+	'content'             => "Nội dung",
 	'quantity'            => 'Số lượng',
 	'title'               => "Tiêu đề",
 	'is_active'           => 'Tình trạng',
@@ -41,8 +43,8 @@ return [
 	'cover image'         => "Ảnh bìa",
 	'user create'         => "Người tạo",
 
-	'seo_title' => "Tiêu đề seo",
-	'seo_keyword' => "Từ khóa seo",
+	'seo_title'       => "Tiêu đề seo",
+	'seo_keyword'     => "Từ khóa seo",
 	'seo_description' => "Miêu tả seo",
 
 	'latitude'        => "Vĩ độ",
@@ -57,5 +59,7 @@ return [
 	'confirm edit multiple records' => "Xác nhận sửa nhiều bản ghi?",
 
 	'visit website' => "Ghé thăm website",
-	'sort_order'    => "Thứ tự sắp xếp"
+	'sort_order'    => "Thứ tự sắp xếp",
+	'sort'          => 'Sắp xếp',
+
 ];

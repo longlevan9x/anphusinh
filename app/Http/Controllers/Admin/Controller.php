@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Commons\Facade\CFile;
 use App\Commons\Facade\CUser;
 use App\Models\Admins;
+use App\Models\Contact;
 use App\Models\Post;
 use App\Models\Traits\ModelMethodTrait;
 use App\Models\Traits\ModelUploadTrait;
@@ -53,7 +54,7 @@ class Controller extends \App\Http\Controllers\Controller
 			return $next($request);
 		});
 
-		$totalNewContact   = Post::whereType(Post::TYPE_CONTACT)->whereIsActive(1)->count();
+		$totalNewContact   = Contact::query()->count();
 		$totalNewSubscribe = Post::whereType(Post::TYPE_SUBSCRIBE)->whereIsActive(1)->count();
 
 		view()->share(compact('totalNewSubscribe', 'totalNewContact'));

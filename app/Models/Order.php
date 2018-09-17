@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Order
+ *
  * @package App\Models
  * @property int         $id
  * @property string|null $address
@@ -49,6 +50,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property float|null  $total_price
  * @property int         $is_active
  * @property string      $status
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order active($value = 1)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order inActive()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order orderBySortOrder()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order orderBySortOrderDesc()
  */
 class Order extends Model
 {

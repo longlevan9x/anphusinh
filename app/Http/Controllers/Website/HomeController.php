@@ -9,11 +9,13 @@ use App\Mail\OrderMail;
 use App\Mail\SubscribeMail;
 use App\Models\Answer;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Order;
 use App\Models\Post;
 use App\Models\PostMeta;
 use App\Models\Product;
 use App\Models\Setting;
+use App\Models\Slide;
 use App\Models\Store;
 use Carbon\Carbon;
 use Faker\Factory;
@@ -84,7 +86,7 @@ class HomeController extends Controller
 		//			Cache::put('product', $product, 60);
 		//		}
 
-		$slides     = Post::whereType(Post::TYPE_SLIDE)->where('is_active', CConstant::STATE_ACTIVE)->get();
+		$slides     = Slide::active()->get();
 		$shares     = Post::whereType(Post::TYPE_SHARE)->latest()->limit(10)->get();
 		$product    = Product::where('post_type', Product::POST_TYPE_DETAIL)->first();
 		$postNews   = Post::whereType(Post::TYPE_NEWS)->latest()->limit(6)->get();
@@ -347,16 +349,12 @@ class HomeController extends Controller
 			return responseJson(CConstant::STATUS_FAIL, "Số điện thoại không hợp lệ");
 		}
 
-		$model = new Post;
+		$model = new Contact;
 
-		$model->type = Post::TYPE_CONTACT;
-
-		$model->title     = time();
-		$model->content   = $request->name;
-		$model->overview  = $request->phone;
-		$model->is_active = 1;
+		$model->name    = $request->name;
+		$model->phone   = $request->phone;
+		$model->content = $request->question;
 		if ($model->save()) {
-			$model->postMeta()->create(['key' => '_post_contact', 'value' => $request->question]);
 			Mail::to(setting(KEY_ADMIN_EMAIL) ?? config('mail.username'))->send(new ContactMail($request->name, $request->phone, $request->question));
 
 			return responseJson(CConstant::STATUS_SUCCESS, 'Gửi yêu cầu liên hệ thành công. chúng tôi sẽ liên hệ với bạn trong giới gian sớm nhất');

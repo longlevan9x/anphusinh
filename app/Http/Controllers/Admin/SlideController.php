@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Commons\CConstant;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\SlideRequest;
 use App\Models\Post;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 
 class SlideController extends Controller
@@ -13,7 +16,7 @@ class SlideController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$models = Post::whereType(Post::TYPE_SLIDE)->get();
+		$models = Slide::all();
 
 		return view('admin.slide.index', compact('models'));
 	}
@@ -23,48 +26,19 @@ class SlideController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		$model = new Post;
+		$model = new Slide;
 
 		return view('admin.slide.create', compact('model'));
 	}
 
 	/**
 	 * Store a newly created resource in storage.
-	 * @param PostRequest $request
+	 * @param SlideRequest $request
 	 * @return \Illuminate\Http\Response
 	 * @throws \Exception
 	 */
-	public function store(PostRequest $request) {
-		/** @var Post $model */
-		$model = new Post($request->all());
-		if ($request->type_link != 'to_post') {
-			$model->parent_id = 0;
-			if ($request->type_link == 'to_link_out') {
-				$model->slug = $request->link;
-			}
-			else {
-				$model->slug = "";
-			}
-		}
-		elseif ($request->type_link == 'to_post') {
-			/** @var Post $parent */
-			$parent = $model->getParent()->first();
-			if ($request->select_image == 'from_post') {
-				$model->setAutoUploadImage(false);
-				$model->image = $parent->getImagePath();
-				$model->path  = $parent->path;
-			}
-			$model->slug = "{$parent->slug}-{$parent->id}";
-		}
-
-		$content        = [
-			'type_link'    => $request->type_link,
-			'select_image' => $request->select_image
-		];
-		$model->content = json_encode($content);
-
-		$model->type = Post::TYPE_SLIDE;
-		$model->setAuthorId();
+	public function store(SlideRequest $request) {
+		$model = new Slide($request->all());
 		$model->save();
 
 		return redirect(self::getUrlAdmin());
@@ -72,93 +46,76 @@ class SlideController extends Controller
 
 	/**
 	 * Display the specified resource.
-	 * @param  int $id
+	 * @param Slide $slide
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id) {
-		/** @var Post $model */
-		$model   = Post::findOrFail($id);
-		$content = json_decode($model->content);
-		$model->setAttribute('type_link', $content->type_link);
-		$model->setAttribute('select_image', $content->select_image);
-		$model->setAttribute('link', $model->slug);
+	public function show(Slide $slide) {
+		$model = $slide;
 
 		return view('admin.slide.view', compact('model'));
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * @param  int $id
+	 * @param Slide $slide
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id) {
-		/** @var Post $model */
-		$model   = Post::findOrFail($id);
-		$content = json_decode($model->content);
-		$model->setAttribute('type_link', $content->type_link);
-		$model->setAttribute('select_image', $content->select_image);
-		$model->setAttribute('link', $model->slug);
+	public function edit(Slide $slide) {
+		$model = $slide;
 
 		return view('admin.slide.update', compact('model'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
-	 * @param  \Illuminate\Http\Request $request
-	 * @param  int                      $id
+	 * @param SlideRequest $request
+	 * @param Slide        $slide
 	 * @return \Illuminate\Http\Response
 	 * @throws \Exception
 	 */
-	public function update(Request $request, $id) {
-		/** @var Post $model */
-		$model = Post::findOrFail($id);
-		$model->fill($request->all());
-		if ($request->type_link != 'to_post') {
-			$model->parent_id = 0;
-			if ($request->type_link == 'to_link_out') {
-				$model->slug = $request->link;
-			}
-			else {
-				$model->slug = null;
-			}
-		}
-		elseif ($request->type_link == 'to_post') {
-			/** @var Post $parent */
-			$parent = $model->getParent()->first();
-			if ($request->select_image == 'from_post') {
-				$model->setAutoUploadImage(false);
-				$model->removeImage($model->path);
-				$model->image = $parent->getImagePath();
-				$model->path  = $parent->path;
-			}
-			$model->slug = "{$parent->slug}-{$parent->id}";
-		}
-		$content        = [
-			'type_link'    => $request->type_link,
-			'select_image' => $request->select_image
-		];
-		$model->content = json_encode($content);
-
-		$model->type = Post::TYPE_SLIDE;
-		$model->setAuthorUpdatedId();
-		$model->save();
+	public function update(SlideRequest $request, Slide $slide) {
+		$slide->fill($request->all());
+		$slide->save();
 
 		return redirect(self::getUrlAdmin());
 	}
 
 	/**
 	 * Remove the specified resource from storage.
-	 * @param  int $id
+	 * @param Slide $slide
 	 * @return \Illuminate\Http\Response
 	 * @throws \Exception
 	 */
-	public function destroy($id) {
-		/** @var Post $model */
-		$model = Post::findOrFail($id);
-		if ($model->delete()) {
+	public function destroy(Slide $slide) {
+		if ($slide->delete()) {
 			return redirect(self::getUrlAdmin());
 		}
 
 		return redirect(self::getUrlAdmin())->with('error', "Delete Fail");
+	}
+
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function showSortOrder() {
+		$models = Slide::query()->orderBy('sort_order')->get();
+
+		return view('admin.slide.sort_order', compact('models'));
+	}
+
+	/**
+	 * @param SlideRequest $request
+	 * @return \Illuminate\Http\JsonResponse
+	 * @throws \Exception
+	 */
+	public function postSortOrder(SlideRequest $request) {
+		$data = [];
+		foreach ($request->items as $key => $item) {
+			$model             = Slide::whereId($item)->first();
+			$model->sort_order = $key;
+			$model->save();
+		}
+
+		return responseJson(CConstant::STATUS_SUCCESS);
 	}
 }

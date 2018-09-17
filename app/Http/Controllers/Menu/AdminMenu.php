@@ -388,7 +388,7 @@ class AdminMenu
 					],
 					[
 						'name'    => __("admin/menu.contact"),
-						'url'     => url_admin('website/contact'),
+						'url'     => url_admin('contact'),
 						'visible' => true,
 						'icon'    => 'fa-linode',
 					],

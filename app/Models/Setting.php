@@ -28,8 +28,6 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property string                  _message_order
  * @property string                  _message_order_success
  * @property string                  _message_order_fail
- * @property mixed                   value
- * @property mixed                   key
  * ======= method defined in ModelBaseTrait with function __call, __get, __set =======
  * @method setMaxLogoHeight(int $maxImageHeight)
  * @method setMaxLogoWidth(int $maxImageWidth)
@@ -53,6 +51,12 @@ use Yadakhov\InsertOnDuplicateKey;
  * @method static Builder|Setting whereUpdatedAt($value)
  * @method static Builder|Setting whereValue($value)
  * @mixin \Eloquent
+ * @property string|null             $key
+ * @property string|null             $value
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting active($value = 1)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting inActive()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting orderBySortOrder()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting orderBySortOrderDesc()
  */
 class Setting extends Model
 {

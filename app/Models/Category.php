@@ -15,8 +15,6 @@ use Illuminate\Support\Collection;
  * @package App\Models
  * @property string      $type
  * @property int         $is_active
- * @property int         parent_id
- * @property string      name
  * @property int         $id
  * @property string|null $image
  * @property string|null $slug
@@ -42,11 +40,20 @@ use Illuminate\Support\Collection;
  * @method static Builder|Category sortOrder()
  * @method static Builder|Category active()
  * @mixin \Eloquent
- * @property int         sort_order
- * @property string      seo_title
- * @property string      seo_keyword
- * @property string      seo_description
  * \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereType($value)
+ * @property int         $parent_id
+ * @property string      $name
+ * @property int|null    $sort_order
+ * @property string|null $seo_title
+ * @property string|null $seo_keyword
+ * @property string|null $seo_description
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category inActive()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category orderBySortOrder()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category orderBySortOrderDesc()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereSeoDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereSeoKeyword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereSeoTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereType($value = '')
  */
 class Category extends Model
 {
@@ -157,11 +164,16 @@ class Category extends Model
 	}
 
 	/**
-	 * @param string $type
-	 * @return Builder|Category
+	 * @param Builder $query
+	 * @param string  $type
+	 * @return Builder
 	 */
-	public static function whereType($type = self::TYPE_CATEGORY) {
-		return self::where('type', $type);
+	public function scopeWhereType($query, $type = self::TYPE_CATEGORY) {
+		if (!isset($type)) {
+			$type = self::TYPE_CATEGORY;
+		}
+
+		return $query->where('type', $type);
 	}
 
 	/**

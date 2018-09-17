@@ -62,6 +62,10 @@ use Illuminate\Support\Facades\Storage;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admins whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admins whereUsername($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admins active($value = 1)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admins inActive()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admins orderBySortOrder()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admins orderBySortOrderDesc()
  */
 class Admins extends Authenticatable
 {

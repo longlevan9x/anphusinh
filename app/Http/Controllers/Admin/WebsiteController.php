@@ -141,30 +141,6 @@ class WebsiteController extends Controller
 	/**
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-	public function showContact() {
-		$models = Post::whereType(Post::TYPE_CONTACT)->latest()->get();
-
-		return view('admin.website.contact.index', compact('models'));
-	}
-
-	/**
-	 * @param $id
-	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-	 * @throws \Exception
-	 */
-	public function deleteContact($id) {
-		/** @var Post $model */
-		$model = Post::findOrFail($id);
-		if ($model->delete()) {
-			return redirect(self::getConfigUrlAdmin('contact'));
-		}
-
-		return redirect(self::getUrlAdmin('contact'))->with('error', "Delete Fail");
-	}
-
-	/**
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-	 */
 	public function showInformationExpert() {
 		$model = SettingFacade::loadModelByKey(['_expert_name', '_expert_image', '_expert_thumbnail', '_expert_phone', '_expert_workplace', '_expert_quote', '_expert_video']);
 		$model->setMax_expert_imageHeight(711);
