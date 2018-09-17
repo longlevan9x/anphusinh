@@ -92,3 +92,8 @@ or add:
     $ composer require symfony/dom-crawler
     
 ### Library
+
+#### ide-helper
+    php artisan ide-helper:generate - phpDoc generation for Laravel Facades
+    php artisan ide-helper:models - phpDocs for models
+    php artisan ide-helper:meta - PhpStorm Meta file
